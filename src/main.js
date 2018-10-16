@@ -3,12 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import ElementUI from 'element-ui'
+import ElementUI from 'element-ui'
 
 import '@/styles/index.scss'
 Vue.config.productionTip = false
 
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
