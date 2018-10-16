@@ -8,8 +8,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Layout',
-      component: Layout
+      name: 'Dashboard',
+      component: Layout,
+      redirect:'/dashboard',
+      children: [{
+        path:'dashboard',
+        component: () => import()
+      }]
     }
   ]
 })
