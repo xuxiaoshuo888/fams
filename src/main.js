@@ -3,12 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import ElementUI from 'element-ui'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';//样式表被单独抽出来
 
 import '@/styles/index.scss'
 Vue.config.productionTip = false
 
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
