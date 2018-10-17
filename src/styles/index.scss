@@ -10,7 +10,7 @@ body{
 .layout{
   width: 1200px;
   margin: 0 auto;
-  min-height: 100%;
+  height: 100%;
 }
 .el-header {
   background-color: white;
@@ -23,5 +23,5 @@ body{
 .el-aside {
   color: #333;
   background-color: rgb(255, 255, 255);
-  margin: 20px 0;
+  //margin: 20px 0;
 }
