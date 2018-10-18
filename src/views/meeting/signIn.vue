@@ -1,10 +1,10 @@
 <template>
-  <div>this is login page</div>
+  <div>班会签到</div>
 </template>
 
 <script>
   export default {
-    name: 'login'
+    name: 'signIn'
   }
 </script>
 

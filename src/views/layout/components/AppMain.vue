@@ -1,13 +1,13 @@
 <template>
   <el-main class="el-main-1">
-    <!--<div class="breadcrumb">-->
-      <!--<el-breadcrumb separator-class="el-icon-arrow-right">-->
-        <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
-        <!--<el-breadcrumb-item>活动管理</el-breadcrumb-item>-->
-        <!--<el-breadcrumb-item>活动列表</el-breadcrumb-item>-->
-        <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
-      <!--</el-breadcrumb>-->
-    <!--</div>-->
+    <div class="breadcrumb">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <!--<div class="main">-->
       <!--<el-table :data="tableData">-->
         <!--<el-table-column prop="date" label="日期" width="140">-->
@@ -39,7 +39,7 @@
     },
     computed: {
       key() {
-        return this.$route.fullPath;
+        return this.$route.name + +new Date();
       }
     }
   }

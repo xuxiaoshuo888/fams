@@ -1,10 +1,10 @@
 <template>
-  <div>this is login page</div>
+  <div>班会记录</div>
 </template>
 
 <script>
   export default {
-    name: 'login'
+    name: 'record'
   }
 </script>
 
