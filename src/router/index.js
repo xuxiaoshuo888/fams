@@ -20,7 +20,7 @@ export default new Router({
         component: () => import('@/views/dashboard/index')
       }]
     },
-    {//学生详情
+    {//04学生详情
       path: '/stdInfo',
       component: Layout,
       // name:"StdInfo",
@@ -31,7 +31,7 @@ export default new Router({
         component: () => import('@/views/stdInfo/stdInfo'),
       }]
     },
-    {//班会，班会记录和班会签到
+    {//14班会，班会记录和班会签到
       path:'/meeting',
       component:Layout,
       redirect:'/meeting/record',
@@ -42,15 +42,70 @@ export default new Router({
           path:'record',
           name:'Record',
           component: () => import('@/views/meeting/record'),
-          meta: {title :'班会',icon:''}
+          meta: {title :'班会记录表',icon:''}
         },
         {
           path:'signIn',
           name:'SignIn',
           component: () => import('@/views/meeting/signIn'),
-          meta: {title :'签到',icon:''}
+          meta: {title :'班会签到表',icon:''}
         }
       ]
+    },
+    {//05国籍统计表
+      path: '/nation',
+      component: Layout,
+      // name:"",
+      meta:{title:'国籍统计表',icon:''},
+      children: [{
+        path:'',
+        name:'Nation',
+        component: () => import('@/views/nation/nation'),
+      }]
+    },
+    {//06班级学生照片
+      path: '/stdpic',
+      component: Layout,
+      // name:"",
+      meta:{title:'班级学生照片',icon:''},
+      children: [{
+        path:'',
+        name:'Stdpic',
+        component: () => import('@/views/stdpic/stdpic'),
+      }]
+    },
+    {//07班干部情况
+      path: '/leader',
+      component: Layout,
+      // name:"",
+      meta:{title:'班干部情况',icon:''},
+      children: [{
+        path:'',
+        name:'Leader',
+        component: () => import('@/views/leader/leader'),
+      }]
+    },
+    {//08护照及居留许可统计表
+      path: '/passport',
+      component: Layout,
+      // name:"",
+      meta:{title:'护照及居留许可统计表',icon:''},
+      children: [{
+        path:'',
+        name:'Passport',
+        component: () => import('@/views/passport/passport'),
+      }]
+    },
+    {//09临住登记统计表
+      path: '/tempAccommodation',
+      component: Layout,
+      // name:"",
+      meta:{title:'临住登记统计表',icon:''},
+      children: [{
+        path:'',
+        name:'TempAccommodation',
+        component: () => import('@/views/tempAccommodation/tempAccommodation'),
+      }]
     }
   ]
 })
