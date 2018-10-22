@@ -106,6 +106,56 @@ export default new Router({
         name:'TempAccommodation',
         component: () => import('@/views/tempAccommodation/tempAccommodation'),
       }]
-    }
+    },
+    {//10留学生日常动态
+      path: '/stdDt',
+      component: Layout,
+      // name:"",
+      meta:{title:'留学生日常动态',icon:''},
+      children: [{
+        path:'',
+        name:'StdDt',
+        component: () => import('@/views/stdDt/stdDt'),
+      }]
+    },
+    {//11费用缴纳等级
+      path: '/payment',
+      component: Layout,
+      // name:"",
+      meta:{title:'费用缴纳等级',icon:''},
+      children: [{
+        path:'',
+        name:'Payment',
+        component: () => import('@/views/payment/payment'),
+      }]
+    },
+    {//13寝室管理登记
+      path:'/room',
+      component:Layout,
+      redirect:'/room/check',
+      name:'Room',
+      meta:{title:'寝室管理登记', icon:''},
+      children:[
+        {
+          path:'check',
+          name:'Check',
+          component: () => import('@/views/room/check'),
+          meta: {title :'查寝',icon:''}
+        },
+        {
+          path:'repair',
+          name:'Repair',
+          component: () => import('@/views/room/repair'),
+          meta: {title :'保修',icon:''}
+        },
+        {
+          path:'assets',
+          name:'Assets',
+          component: () => import('@/views/room/assets'),
+          meta: {title :'财产',icon:''}
+        }
+      ]
+    },
+
   ]
 })

@@ -35,7 +35,7 @@
       height="250">
       <el-table-column
         prop="order"
-        label="序号"
+        label="学号"
         width="150">
       </el-table-column>
       <el-table-column
@@ -45,54 +45,37 @@
       </el-table-column>
       <el-table-column
         prop="nj"
-        label="年级"
+        label="是否请假"
         width="120">
       </el-table-column>
 
       <el-table-column
         prop="xh"
-        label="学号"
+        label="离开事由"
         width="120">1
       </el-table-column>
       <el-table-column
         prop="passport"
-        label="护照号"
+        label="目的地"
         width="120">
       </el-table-column>
       <el-table-column
         prop="cnName"
-        label="联系号码"
+        label="离开时间"
         width="120">
       </el-table-column>
       <el-table-column
         prop="gender"
-        label="出境学生"
+        label="返回时间"
         width="120">
       </el-table-column>
       <el-table-column
         prop="roomNum"
-        label="国内旅游学生"
+        label="记录日期"
         width="120">
       </el-table-column>
-
       <el-table-column
         prop="birthday"
-        label="更新护照学生"
-        width="120">
-      </el-table-column>
-
-      <el-table-column
-        prop="Nation"
-        label="辅导员姓名/登记日期"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="stdNo"
-        label="登记老师姓名/上报日期"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="arriveDate"
         label="备注"
         width="120">
       </el-table-column>
@@ -169,7 +152,7 @@
 
 <script>
   export default {
-    name: 'tempAccommodation',
+    name: 'stdDt',
     data() {
       return {
         input1: "",

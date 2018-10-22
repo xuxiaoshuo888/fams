@@ -35,67 +35,105 @@
       height="250">
       <el-table-column
         prop="order"
-        label="序号"
+        label="所属年级"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="nj"
+        label="所属班级"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="class"
+        label="学号"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="xh"
         label="姓名"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="nj"
-        label="年级"
+        prop="name"
+        label="中文名"
         width="120">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="学费"
+        width="120">
+        <el-table-column
+          prop=""
+          label="实缴学费"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="欠缴学费"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="缴费日期"
+          width="120">
+        </el-table-column>
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="住宿费"
+        width="120">
+        <el-table-column
+          prop=""
+          label="住宿情况（单/双）"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="实缴住宿费"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="欠缴住宿费"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="缴费日期"
+          width="120">
+        </el-table-column>
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="保险费"
+        width="120">
+        <el-table-column
+          prop=""
+          label="保险费"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="缴费日期"
+          width="120">
+        </el-table-column>
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="签证费"
+        width="120">
+        <el-table-column
+          prop=""
+          label="签证延期费"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="缴费日期"
+          width="120">
+        </el-table-column>
       </el-table-column>
 
-      <el-table-column
-        prop="xh"
-        label="学号"
-        width="120">1
-      </el-table-column>
-      <el-table-column
-        prop="passport"
-        label="护照号"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="cnName"
-        label="联系号码"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="gender"
-        label="出境学生"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="roomNum"
-        label="国内旅游学生"
-        width="120">
-      </el-table-column>
-
-      <el-table-column
-        prop="birthday"
-        label="更新护照学生"
-        width="120">
-      </el-table-column>
-
-      <el-table-column
-        prop="Nation"
-        label="辅导员姓名/登记日期"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="stdNo"
-        label="登记老师姓名/上报日期"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="arriveDate"
-        label="备注"
-        width="120">
-      </el-table-column>
       <el-table-column
         fixed="right"
         label="操作"
@@ -115,41 +153,64 @@
       <div>
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
                  class="demo-ruleForm">
-          <el-form-item label="序号" prop="name">
+          <el-form-item label="姓名" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="">
+          <el-form-item label="性别" prop="">
+            <el-radio-group v-model="ruleForm.xb">
+              <el-radio label="男"></el-radio>
+              <el-radio label="女"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="学号" prop="">
             <el-input v-model="ruleForm.xh"></el-input>
           </el-form-item>
-
+          <el-form-item label="班级" prop="">
+            <el-input v-model="ruleForm.bj"></el-input>
+          </el-form-item>
           <el-form-item label="年级" prop="">
             <el-input v-model="ruleForm.nj"></el-input>
           </el-form-item>
-          <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.bj"></el-input>
-          </el-form-item>
-          <el-form-item label="护照号" prop="">
+          <el-form-item label="中文名" prop="">
             <el-input v-model="ruleForm.zwm"></el-input>
           </el-form-item>
-          <el-form-item label="联系号码" prop="">
-            <el-input v-model="ruleForm.zwm"></el-input>
+          <!--<el-form-item label="活动区域" prop="region">-->
+          <!--<el-select v-model="ruleForm.region" placeholder="请选择活动区域">-->
+          <!--<el-option label="区域一" value="shanghai"></el-option>-->
+          <!--<el-option label="区域二" value="beijing"></el-option>-->
+          <!--</el-select>-->
+          <!--</el-form-item>-->
+          <el-form-item label="出生年月" required>
+            <el-form-item prop="">
+              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
+            </el-form-item>
           </el-form-item>
-
-          <el-form-item label="出境学生" prop="">
+          <el-form-item label="到校日期" required>
+            <el-form-item prop="">
+              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date2"></el-date-picker>
+            </el-form-item>
+          </el-form-item>
+          <el-form-item label="宿舍号" prop="">
             <el-input v-model="ruleForm.ssh"></el-input>
           </el-form-item>
 
-          <el-form-item label="国内旅游学生" prop="">
+          <el-form-item label="电话号码" prop="">
             <el-input v-model="ruleForm.tel"></el-input>
           </el-form-item>
-          <el-form-item label="更新护照学生" prop="">
+          <el-form-item label="护照号码" prop="">
             <el-input v-model="ruleForm.hzhm"></el-input>
           </el-form-item>
-          <el-form-item label="辅导员姓名/登记日期" prop="">
+          <el-form-item label="国籍" prop="">
             <el-input v-model="ruleForm.gj"></el-input>
           </el-form-item>
-          <el-form-item label="登记老师姓名/上报日期" prop="">
+          <el-form-item label="学籍注册号" prop="">
             <el-input v-model="ruleForm.xjzch"></el-input>
+          </el-form-item>
+          <el-form-item label="宗教" prop="">
+            <el-input v-model="ruleForm.religion"></el-input>
+          </el-form-item>
+          <el-form-item label="班主任" prop="">
+            <el-input v-model="ruleForm.bzr"></el-input>
           </el-form-item>
         </el-form>
         <el-form label-width="100px">
@@ -169,7 +230,7 @@
 
 <script>
   export default {
-    name: 'tempAccommodation',
+    name: 'payment',
     data() {
       return {
         input1: "",
@@ -189,6 +250,11 @@
           birthday: "19900808",
           passport: "126351263715283",
           Nation: "美国",
+          stdNo: "1231323123213",
+          arriveDate: "20170707",
+          religion: "无宗教信仰",
+          bzr: '张洋',
+          bz: '无'
         }, {
           order: '1',
           nj: "2018",
@@ -232,6 +298,28 @@
           desc: ''//备注
         },
         rules: {
+          // name: [
+          //   { required: true, message: '', trigger: 'blur' },
+          //   { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          // ],
+          // region: [
+          //   { required: true, message: '请选择活动区域', trigger: 'change' }
+          // ],
+          // date1: [
+          //   { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+          // ],
+          // date2: [
+          //   { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+          // ],
+          // type: [
+          //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
+          // ],
+          // resource: [
+          //   { required: true, message: '请选择活动资源', trigger: 'change' }
+          // ],
+          // desc: [
+          //   { required: true, message: '请填写活动形式', trigger: 'blur' }
+          // ]
         }
       }
     },
