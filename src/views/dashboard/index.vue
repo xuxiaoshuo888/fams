@@ -1,5 +1,5 @@
 <template>
-    <div>dashboard</div>
+    <div>欢迎页，XX您好</div>
 </template>
 
 <script>
