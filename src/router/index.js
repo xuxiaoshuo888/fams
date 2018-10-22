@@ -23,7 +23,7 @@ export default new Router({
     {//学生详情
       path: '/stdInfo',
       component: Layout,
-      name:"StdInfo",
+      // name:"StdInfo",
       meta:{title:'班级学生信息',icon:''},
       children: [{
         path:'',
