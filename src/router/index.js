@@ -7,16 +7,16 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path:'/login',component:() => import('@/views/login/login'),hidden:true
+      path: '/login', component: () => import('@/views/login/login'), hidden: true
     },
     {//进入后默认看到的内容
       path: '/',
       name: 'Dashboard',
       component: Layout,
-      redirect:'/dashboard',//路由重定向，如果设置noredirect，则在面包屑中不可点击
-      hidden:true,//true代表在侧边栏中不展示，true代表展示
+      redirect: '/dashboard',//路由重定向，如果设置noredirect，则在面包屑中不可点击
+      hidden: true,//true代表在侧边栏中不展示，true代表展示
       children: [{
-        path:'dashboard',
+        path: 'dashboard',
         component: () => import('@/views/dashboard/index')
       }]
     },
@@ -24,42 +24,22 @@ export default new Router({
       path: '/stdInfo',
       component: Layout,
       // name:"StdInfo",
-      meta:{title:'班级学生信息',icon:''},
+      meta: {title: '班级学生信息', icon: ''},
       children: [{
-        path:'',
-        name:'StdInfoIndex',
+        path: '',
+        name: 'StdInfoIndex',
         component: () => import('@/views/stdInfo/stdInfo'),
       }]
     },
-    {//14班会，班会记录和班会签到
-      path:'/meeting',
-      component:Layout,
-      redirect:'/meeting/record',
-      name:'Meeting',
-      meta:{title:'班会', icon:''},
-      children:[
-        {
-          path:'record',
-          name:'Record',
-          component: () => import('@/views/meeting/record'),
-          meta: {title :'班会记录表',icon:''}
-        },
-        {
-          path:'signIn',
-          name:'SignIn',
-          component: () => import('@/views/meeting/signIn'),
-          meta: {title :'班会签到表',icon:''}
-        }
-      ]
-    },
+
     {//05国籍统计表
       path: '/nation',
       component: Layout,
       // name:"",
-      meta:{title:'国籍统计表',icon:''},
+      meta: {title: '国籍统计表', icon: ''},
       children: [{
-        path:'',
-        name:'Nation',
+        path: '',
+        name: 'Nation',
         component: () => import('@/views/nation/nation'),
       }]
     },
@@ -67,10 +47,10 @@ export default new Router({
       path: '/stdpic',
       component: Layout,
       // name:"",
-      meta:{title:'班级学生照片',icon:''},
+      meta: {title: '班级学生照片', icon: ''},
       children: [{
-        path:'',
-        name:'Stdpic',
+        path: '',
+        name: 'Stdpic',
         component: () => import('@/views/stdpic/stdpic'),
       }]
     },
@@ -78,10 +58,10 @@ export default new Router({
       path: '/leader',
       component: Layout,
       // name:"",
-      meta:{title:'班干部情况',icon:''},
+      meta: {title: '班干部情况', icon: ''},
       children: [{
-        path:'',
-        name:'Leader',
+        path: '',
+        name: 'Leader',
         component: () => import('@/views/leader/leader'),
       }]
     },
@@ -89,10 +69,10 @@ export default new Router({
       path: '/passport',
       component: Layout,
       // name:"",
-      meta:{title:'护照及居留许可统计表',icon:''},
+      meta: {title: '护照及居留许可统计表', icon: ''},
       children: [{
-        path:'',
-        name:'Passport',
+        path: '',
+        name: 'Passport',
         component: () => import('@/views/passport/passport'),
       }]
     },
@@ -100,10 +80,10 @@ export default new Router({
       path: '/tempAccommodation',
       component: Layout,
       // name:"",
-      meta:{title:'临住登记统计表',icon:''},
+      meta: {title: '临住登记统计表', icon: ''},
       children: [{
-        path:'',
-        name:'TempAccommodation',
+        path: '',
+        name: 'TempAccommodation',
         component: () => import('@/views/tempAccommodation/tempAccommodation'),
       }]
     },
@@ -111,10 +91,10 @@ export default new Router({
       path: '/stdDt',
       component: Layout,
       // name:"",
-      meta:{title:'留学生日常动态',icon:''},
+      meta: {title: '留学生日常动态', icon: ''},
       children: [{
-        path:'',
-        name:'StdDt',
+        path: '',
+        name: 'StdDt',
         component: () => import('@/views/stdDt/stdDt'),
       }]
     },
@@ -122,40 +102,81 @@ export default new Router({
       path: '/payment',
       component: Layout,
       // name:"",
-      meta:{title:'费用缴纳等级',icon:''},
+      meta: {title: '费用缴纳等级', icon: ''},
       children: [{
-        path:'',
-        name:'Payment',
+        path: '',
+        name: 'Payment',
         component: () => import('@/views/payment/payment'),
       }]
     },
     {//13寝室管理登记
-      path:'/room',
-      component:Layout,
-      redirect:'/room/check',
-      name:'Room',
-      meta:{title:'寝室管理登记', icon:''},
-      children:[
+      path: '/room',
+      component: Layout,
+      redirect: '/room/check',
+      name: 'Room',
+      meta: {title: '寝室管理登记', icon: ''},
+      children: [
         {
-          path:'check',
-          name:'Check',
+          path: 'check',
+          name: 'Check',
           component: () => import('@/views/room/check'),
-          meta: {title :'查寝',icon:''}
+          meta: {title: '查寝', icon: ''}
         },
         {
-          path:'repair',
-          name:'Repair',
+          path: 'repair',
+          name: 'Repair',
           component: () => import('@/views/room/repair'),
-          meta: {title :'保修',icon:''}
+          meta: {title: '保修', icon: ''}
         },
         {
-          path:'assets',
-          name:'Assets',
+          path: 'assets',
+          name: 'Assets',
           component: () => import('@/views/room/assets'),
-          meta: {title :'财产',icon:''}
+          meta: {title: '财产', icon: ''}
         }
       ]
     },
-
+    {//14班会，班会记录和班会签到
+      path: '/meeting',
+      component: Layout,
+      redirect: '/meeting/record',
+      name: 'Meeting',
+      meta: {title: '班会', icon: ''},
+      children: [
+        {
+          path: 'record',
+          name: 'Record',
+          component: () => import('@/views/meeting/record'),
+          meta: {title: '班会记录表', icon: ''}
+        },
+        {
+          path: 'signIn',
+          name: 'SignIn',
+          component: () => import('@/views/meeting/signIn'),
+          meta: {title: '班会签到表', icon: ''}
+        }
+      ]
+    },
+    {//15素质评分登记
+      path: '/score',
+      component: Layout,
+      redirect: '/score/regist',
+      name: 'Score',
+      meta: {title: '素质评分', icon: ''},
+      children: [
+        {
+          path: 'regist',
+          name: 'Regist',
+          component: () => import('@/views/score/regist'),
+          meta: {title: '素质评分登记', icon: ''}
+        },
+        {
+          path: 'matter',
+          name: 'Matter',
+          component: () => import('@/views/score/matter'),
+          meta: {title: '素质评分事项', icon: ''}
+        }
+      ]
+    },
   ]
 })

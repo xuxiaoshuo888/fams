@@ -2,7 +2,7 @@
     <el-aside width="200px" style="">
       <el-menu
         :show-timeout="200"
-        :default-active="$route.path"
+
         mode="vertical"
         :router="menu_router"
        >
@@ -14,10 +14,10 @@
             <span slot="title">{{route.meta.title}}</span>
           </el-menu-item>
           <!--点击展开，1、子路由展示个数大于等于2-->
-          <el-submenu v-if="!route.hidden && (route.children.length > 1)">
+          <el-submenu v-if="!route.hidden && (route.children.length > 1)" :index="index + ''">
             <template slot="title"><i class="el-icon-menu"></i>{{route.meta.title}}</template>
             <el-menu-item-group>
-              <el-menu-item v-for="(i,index) in route.children" :key="index" :index="route.path +'/' +i.path">{{i.meta.title}}</el-menu-item>
+              <el-menu-item v-for="(i,num) in route.children" :key="num" :index="route.path +'/' +i.path">{{i.meta.title}}</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </div>
