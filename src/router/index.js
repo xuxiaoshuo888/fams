@@ -10,8 +10,9 @@ export default new Router({
       path: '/login', component: () => import('@/views/login/login'), hidden: true
     },
     {
-      path: '/404', component: () => import('@/views/404/404'), hidden: true
+      path: '/404', component: () => import('@/views/404/error'), hidden: true
     },
+
     {//进入后默认看到的内容
       path: '/',
       name: 'Dashboard',
@@ -184,33 +185,30 @@ export default new Router({
     {//16违纪违规学生教育登记
       path: '/violation',
       component: Layout,
-      name:"Violation",
       meta: {title: '违纪违规学生教育', icon: ''},
       children: [{
         path: '',
-        name: 'violation',
+        name: 'Violation',
         component: () => import('@/views/violation/violation'),
       }]
     },
     {//17心理健康谈话记录
       path: '/psychology',
       component: Layout,
-      name:"Psychology",
       meta: {title: '心理健康谈话记录', icon: ''},
       children: [{
         path: '',
-        name: 'psychology',
+        name: 'Psychology',
         component: () => import('@/views/psychology/psychology'),
       }]
     },
     {//18特殊群体学生基本情况
       path: '/special',
       component: Layout,
-      name:"Special",
       meta: {title: '特殊群体学生基本情况', icon: ''},
       children: [{
         path: '',
-        name: 'psychology',
+        name: 'Special',
         component: () => import('@/views/special/special'),
       }]
     },
@@ -235,6 +233,9 @@ export default new Router({
         name: 'Routine',
         component: () => import('@/views/routine/routine'),
       }]
+    },
+    {
+      path: '/*', component: () => import('@/views/404/error'), hidden: true
     },
   ]
 })
