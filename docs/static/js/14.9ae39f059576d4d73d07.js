@@ -1,0 +1,1 @@
+webpackJsonp([14],{JbrP:function(e,t){},UVtM:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("保险购买及理赔")])},staticRenderFns:[]};var a=n("VU/8")({name:"insurance"},r,!1,function(e){n("JbrP")},"data-v-40441ebc",null);t.default=a.exports}});

@@ -1,0 +1,1 @@
+webpackJsonp([18],{EjBK:function(e,t){},bH6U:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("心理健康谈话记录")])},staticRenderFns:[]};var s=n("VU/8")({name:"psychology"},r,!1,function(e){n("EjBK")},"data-v-1f844d66",null);t.default=s.exports}});

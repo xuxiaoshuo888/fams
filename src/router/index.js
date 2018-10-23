@@ -9,6 +9,9 @@ export default new Router({
     {
       path: '/login', component: () => import('@/views/login/login'), hidden: true
     },
+    {
+      path: '/404', component: () => import('@/views/404/404'), hidden: true
+    },
     {//进入后默认看到的内容
       path: '/',
       name: 'Dashboard',
@@ -69,7 +72,7 @@ export default new Router({
       path: '/passport',
       component: Layout,
       // name:"",
-      meta: {title: '护照及居留许可统计表', icon: ''},
+      meta: {title: '护照及居留许可统计', icon: ''},
       children: [{
         path: '',
         name: 'Passport',
@@ -177,6 +180,61 @@ export default new Router({
           meta: {title: '素质评分事项', icon: ''}
         }
       ]
+    },
+    {//16违纪违规学生教育登记
+      path: '/violation',
+      component: Layout,
+      name:"Violation",
+      meta: {title: '违纪违规学生教育', icon: ''},
+      children: [{
+        path: '',
+        name: 'violation',
+        component: () => import('@/views/violation/violation'),
+      }]
+    },
+    {//17心理健康谈话记录
+      path: '/psychology',
+      component: Layout,
+      name:"Psychology",
+      meta: {title: '心理健康谈话记录', icon: ''},
+      children: [{
+        path: '',
+        name: 'psychology',
+        component: () => import('@/views/psychology/psychology'),
+      }]
+    },
+    {//18特殊群体学生基本情况
+      path: '/special',
+      component: Layout,
+      name:"Special",
+      meta: {title: '特殊群体学生基本情况', icon: ''},
+      children: [{
+        path: '',
+        name: 'psychology',
+        component: () => import('@/views/special/special'),
+      }]
+    },
+    {//19保险购买及理赔
+      path: '/insurance',
+      component: Layout,
+      // name:"Insurance",
+      meta: {title: '保险购买及理赔', icon: ''},
+      children: [{
+        path: '',
+        name: 'Insurance',
+        component: () => import('@/views/insurance/insurance'),
+      }]
+    },
+    {//20班主任日常工作记录
+      path: '/routine',
+      component: Layout,
+      // name:"Routine",
+      meta: {title: '班主任日常工作记录', icon: ''},
+      children: [{
+        path: '',
+        name: 'Routine',
+        component: () => import('@/views/routine/routine'),
+      }]
     },
   ]
 })
