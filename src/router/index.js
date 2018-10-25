@@ -28,7 +28,7 @@ export default new Router({
       path: '/stdInfo',
       component: Layout,
       // name:"StdInfo",
-      meta: {title: '班级学生信息', icon: ''},
+      meta: {title: '班级学生信息', icon: 'example'},
       children: [{
         path: '',
         name: 'StdInfoIndex',
@@ -40,7 +40,7 @@ export default new Router({
       path: '/nation',
       component: Layout,
       // name:"",
-      meta: {title: '国籍统计表', icon: ''},
+      meta: {title: '国籍统计表', icon: 'eye'},
       children: [{
         path: '',
         name: 'Nation',
@@ -51,7 +51,7 @@ export default new Router({
       path: '/stdpic',
       component: Layout,
       // name:"",
-      meta: {title: '班级学生照片', icon: ''},
+      meta: {title: '班级学生照片', icon: 'form'},
       children: [{
         path: '',
         name: 'Stdpic',
@@ -62,7 +62,7 @@ export default new Router({
       path: '/leader',
       component: Layout,
       // name:"",
-      meta: {title: '班干部情况', icon: ''},
+      meta: {title: '班干部情况', icon: 'link'},
       children: [{
         path: '',
         name: 'Leader',
@@ -73,7 +73,7 @@ export default new Router({
       path: '/passport',
       component: Layout,
       // name:"",
-      meta: {title: '护照及居留许可统计', icon: ''},
+      meta: {title: '护照及居留许可统计', icon: 'nested'},
       children: [{
         path: '',
         name: 'Passport',
@@ -84,7 +84,7 @@ export default new Router({
       path: '/tempAccommodation',
       component: Layout,
       // name:"",
-      meta: {title: '临住登记统计表', icon: ''},
+      meta: {title: '临住登记统计表', icon: 'password'},
       children: [{
         path: '',
         name: 'TempAccommodation',
@@ -95,7 +95,7 @@ export default new Router({
       path: '/stdDt',
       component: Layout,
       // name:"",
-      meta: {title: '留学生日常动态', icon: ''},
+      meta: {title: '留学生日常动态', icon: 'table'},
       children: [{
         path: '',
         name: 'StdDt',
@@ -106,7 +106,7 @@ export default new Router({
       path: '/payment',
       component: Layout,
       // name:"",
-      meta: {title: '费用缴纳等级', icon: ''},
+      meta: {title: '费用缴纳等级', icon: 'tree'},
       children: [{
         path: '',
         name: 'Payment',
@@ -118,25 +118,25 @@ export default new Router({
       component: Layout,
       redirect: '/room/check',
       name: 'Room',
-      meta: {title: '寝室管理登记', icon: ''},
+      meta: {title: '寝室管理登记', icon: 'user'},
       children: [
         {
           path: 'check',
           name: 'Check',
           component: () => import('@/views/room/check'),
-          meta: {title: '查寝', icon: ''}
+          meta: {title: '查寝', icon: 'user'}
         },
         {
           path: 'repair',
           name: 'Repair',
           component: () => import('@/views/room/repair'),
-          meta: {title: '保修', icon: ''}
+          meta: {title: '保修', icon: 'user'}
         },
         {
           path: 'assets',
           name: 'Assets',
           component: () => import('@/views/room/assets'),
-          meta: {title: '财产', icon: ''}
+          meta: {title: '财产', icon: 'user'}
         }
       ]
     },
@@ -145,19 +145,19 @@ export default new Router({
       component: Layout,
       redirect: '/meeting/record',
       name: 'Meeting',
-      meta: {title: '班会', icon: ''},
+      meta: {title: '班会', icon: 'user'},
       children: [
         {
           path: 'record',
           name: 'Record',
           component: () => import('@/views/meeting/record'),
-          meta: {title: '班会记录表', icon: ''}
+          meta: {title: '班会记录表', icon: 'user'}
         },
         {
           path: 'signIn',
           name: 'SignIn',
           component: () => import('@/views/meeting/signIn'),
-          meta: {title: '班会签到表', icon: ''}
+          meta: {title: '班会签到表', icon: 'user'}
         }
       ]
     },
@@ -166,26 +166,26 @@ export default new Router({
       component: Layout,
       redirect: '/score/regist',
       name: 'Score',
-      meta: {title: '素质评分', icon: ''},
+      meta: {title: '素质评分', icon: 'user'},
       children: [
         {
           path: 'regist',
           name: 'Regist',
           component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: ''}
+          meta: {title: '素质评分登记', icon: 'user'}
         },
         {
           path: 'matter',
           name: 'Matter',
           component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: ''}
+          meta: {title: '素质评分事项', icon: 'user'}
         }
       ]
     },
     {//16违纪违规学生教育登记
       path: '/violation',
       component: Layout,
-      meta: {title: '违纪违规学生教育', icon: ''},
+      meta: {title: '违纪违规学生教育', icon: 'user'},
       children: [{
         path: '',
         name: 'Violation',
@@ -195,7 +195,7 @@ export default new Router({
     {//17心理健康谈话记录
       path: '/psychology',
       component: Layout,
-      meta: {title: '心理健康谈话记录', icon: ''},
+      meta: {title: '心理健康谈话记录', icon: 'user'},
       children: [{
         path: '',
         name: 'Psychology',
@@ -205,7 +205,7 @@ export default new Router({
     {//18特殊群体学生基本情况
       path: '/special',
       component: Layout,
-      meta: {title: '特殊群体学生基本情况', icon: ''},
+      meta: {title: '特殊群体学生基本情况', icon: 'user'},
       children: [{
         path: '',
         name: 'Special',
@@ -216,7 +216,7 @@ export default new Router({
       path: '/insurance',
       component: Layout,
       // name:"Insurance",
-      meta: {title: '保险购买及理赔', icon: ''},
+      meta: {title: '保险购买及理赔', icon: 'user'},
       children: [{
         path: '',
         name: 'Insurance',
@@ -227,12 +227,33 @@ export default new Router({
       path: '/routine',
       component: Layout,
       // name:"Routine",
-      meta: {title: '班主任日常工作记录', icon: ''},
+      meta: {title: '班主任日常工作记录', icon: 'user'},
       children: [{
         path: '',
         name: 'Routine',
         component: () => import('@/views/routine/routine'),
       }]
+    },
+    {//21系统管理
+      path: '/sysManagement',
+      component: Layout,
+      redirect: '/score/regist',
+      name: 'Score',
+      meta: {title: '素质评分', icon: 'user'},
+      children: [
+        {
+          path: 'regist',
+          name: 'Regist',
+          component: () => import('@/views/score/regist'),
+          meta: {title: '素质评分登记', icon: 'user'}
+        },
+        {
+          path: 'matter',
+          name: 'Matter',
+          component: () => import('@/views/score/matter'),
+          meta: {title: '素质评分事项', icon: 'user'}
+        }
+      ]
     },
     {
       path: '/*', component: () => import('@/views/404/error'), hidden: true
