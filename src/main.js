@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';//样式表被单独抽出来
 
 import '@/styles/index.scss'
+import '@/icons'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)

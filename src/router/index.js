@@ -238,18 +238,18 @@ export default new Router({
       path: '/sysManagement',
       component: Layout,
       redirect: '/score/regist',
-      name: 'Score',
-      meta: {title: '素质评分', icon: 'user'},
+      // name: 'Score',
+      meta: {title: '系统管理', icon: 'user'},
       children: [
         {
           path: 'regist',
-          name: 'Regist',
+          name: '',
           component: () => import('@/views/score/regist'),
           meta: {title: '素质评分登记', icon: 'user'}
         },
         {
           path: 'matter',
-          name: 'Matter',
+          name: '',
           component: () => import('@/views/score/matter'),
           meta: {title: '素质评分事项', icon: 'user'}
         }
