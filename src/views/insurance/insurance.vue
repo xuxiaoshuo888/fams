@@ -25,6 +25,7 @@
       <el-col :span="12">
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+        <el-button type="primary" icon="el-icon-download">导出</el-button>
       </el-col>
     </el-row>
 

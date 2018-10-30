@@ -25,6 +25,7 @@
       <el-col :span="12">
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+        <el-button type="primary" icon="el-icon-upload2">上传</el-button>
       </el-col>
     </el-row>
 
@@ -135,7 +136,7 @@
       width="60%">
       <div slot="title">学生详情</div>
       <div>
-        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
+        <el-form  :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
                  class="demo-ruleForm">
           <el-form-item label="姓名" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
