@@ -13,7 +13,7 @@ export default new Router({
       path: '/404', component: () => import('@/views/404/error'), hidden: true
     },
 
-    {//进入后默认看到的内容
+    {//进入后默认进入通知公告
       path: '/',
       name: 'Dashboard',
       component: Layout,
@@ -24,16 +24,128 @@ export default new Router({
         component: () => import('@/views/dashboard/index')
       }]
     },
-    {//04学生详情
-      path: '/stdInfo',
+    {//a1招生录入管理
+      path: '/stdBasic',
       component: Layout,
       // name:"StdInfo",
-      meta: {title: '班级学生信息', icon: 'example'},
+      meta: {title: '招生录入管理', icon: 'example'},
       children: [{
         path: '',
         name: 'StdInfoIndex',
-        component: () => import('@/views/stdInfo/stdInfo'),
+        component: () => import('@/views/stdBasic/stdBasic'),
       }]
+    },
+    {//a2学生信息管理
+      path: '/stdBasic',
+      component: Layout,
+      redirect: '/stdBasic/card',
+      name: 'StdInfo',
+      meta: {title: '学生信息管理', icon: 'user'},
+      children: [
+        {//学生资料卡
+          path: 'card',
+          name: 'Card',
+          component: () => import('@/views/room/check'),
+          meta: {title: '学生资料卡', icon: ''}
+        },
+        {//学生基本信息管理
+          path: 'basic',
+          name: 'Basic',
+          component: () => import('@/views/stdpic/stdpic'),
+          meta: {title: '学生基本信息管理', icon: ''}
+        },
+        {//学生照片管理
+          path: 'stdpic',
+          name: 'Stdpic',
+          component: () => import('@/views/stdpic/stdpic'),
+          meta: {title: '学生照片管理', icon: ''}
+        }
+      ]
+    },
+    {//a3护照及居留许可管理
+      path: '/passport',
+      component: Layout,
+      // name:"",
+      meta: {title: '护照及居留许可管理', icon: 'nested'},
+      children: [{
+        path: '',
+        name: 'Passport',
+        component: () => import('@/views/passport/passport'),
+      }]
+    },
+    {//a4保险管理
+      path: '/insurance',
+      component: Layout,
+      // name:"Insurance",
+      meta: {title: '保险管理', icon: 'user'},
+      children: [{
+        path: '',
+        name: 'Insurance',
+        component: () => import('@/views/insurance/insurance'),
+      }]
+    },
+    {//a5学生处分管理
+      path: '/violation',
+      component: Layout,
+      meta: {title: '学生处分管理', icon: 'user'},
+      children: [{
+        path: '',
+        name: 'Violation',
+        component: () => import('@/views/violation/violation'),
+      }]
+    },
+    {//a6学生素质评分管理
+      path: '/score',
+      component: Layout,
+      redirect: '/score/regist',
+      name: 'Score',
+      meta: {title: '学生素质评分管理', icon: 'user'},
+      children: [
+        {
+          path: 'regist',
+          name: 'Regist',
+          component: () => import('@/views/score/regist'),
+          meta: {title: '素质评分登记', icon: 'user'}
+        },
+        {
+          path: 'matter',
+          name: 'Matter',
+          component: () => import('@/views/score/matter'),
+          meta: {title: '素质评分事项', icon: 'user'}
+        }
+      ]
+    },
+    {//a7临住管理
+      path: '/tempAccommodation',
+      component: Layout,
+      // name:"",
+      meta: {title: '临住管理', icon: 'password'},
+      children: [{
+        path: '',
+        name: 'TempAccommodation',
+        component: () => import('@/views/tempAccommodation/tempAccommodation'),
+      }]
+    },
+    {//a8系统管理
+      path: '/sysManagement',
+      component: Layout,
+      redirect: '/score/regist',
+      // name: 'Score',
+      meta: {title: '系统管理', icon: 'user'},
+      children: [
+        {
+          path: 'regist',
+          name: '',
+          component: () => import('@/views/score/regist'),
+          meta: {title: '素质评分登记', icon: 'user'}
+        },
+        {
+          path: 'matter',
+          name: '',
+          component: () => import('@/views/score/matter'),
+          meta: {title: '素质评分事项', icon: 'user'}
+        }
+      ]
     },
 
     {//05国籍统计表
@@ -69,28 +181,8 @@ export default new Router({
         component: () => import('@/views/leader/leader'),
       }]
     },
-    {//08护照及居留许可统计表
-      path: '/passport',
-      component: Layout,
-      // name:"",
-      meta: {title: '护照及居留许可统计', icon: 'nested'},
-      children: [{
-        path: '',
-        name: 'Passport',
-        component: () => import('@/views/passport/passport'),
-      }]
-    },
-    {//09临住登记统计表
-      path: '/tempAccommodation',
-      component: Layout,
-      // name:"",
-      meta: {title: '临住登记统计表', icon: 'password'},
-      children: [{
-        path: '',
-        name: 'TempAccommodation',
-        component: () => import('@/views/tempAccommodation/tempAccommodation'),
-      }]
-    },
+
+
     {//10留学生日常动态
       path: '/stdDt',
       component: Layout,
@@ -161,37 +253,8 @@ export default new Router({
         }
       ]
     },
-    {//15素质评分登记
-      path: '/score',
-      component: Layout,
-      redirect: '/score/regist',
-      name: 'Score',
-      meta: {title: '素质评分', icon: 'user'},
-      children: [
-        {
-          path: 'regist',
-          name: 'Regist',
-          component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: 'user'}
-        },
-        {
-          path: 'matter',
-          name: 'Matter',
-          component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: 'user'}
-        }
-      ]
-    },
-    {//16违纪违规学生教育登记
-      path: '/violation',
-      component: Layout,
-      meta: {title: '违纪违规学生教育', icon: 'user'},
-      children: [{
-        path: '',
-        name: 'Violation',
-        component: () => import('@/views/violation/violation'),
-      }]
-    },
+
+
     {//17心理健康谈话记录
       path: '/psychology',
       component: Layout,
@@ -212,17 +275,7 @@ export default new Router({
         component: () => import('@/views/special/special'),
       }]
     },
-    {//19保险购买及理赔
-      path: '/insurance',
-      component: Layout,
-      // name:"Insurance",
-      meta: {title: '保险购买及理赔', icon: 'user'},
-      children: [{
-        path: '',
-        name: 'Insurance',
-        component: () => import('@/views/insurance/insurance'),
-      }]
-    },
+
     {//20班主任日常工作记录
       path: '/routine',
       component: Layout,
@@ -234,27 +287,7 @@ export default new Router({
         component: () => import('@/views/routine/routine'),
       }]
     },
-    {//21系统管理
-      path: '/sysManagement',
-      component: Layout,
-      redirect: '/score/regist',
-      // name: 'Score',
-      meta: {title: '系统管理', icon: 'user'},
-      children: [
-        {
-          path: 'regist',
-          name: '',
-          component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: 'user'}
-        },
-        {
-          path: 'matter',
-          name: '',
-          component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: 'user'}
-        }
-      ]
-    },
+
     {
       path: '/*', component: () => import('@/views/404/error'), hidden: true
     },

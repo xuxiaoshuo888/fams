@@ -1,28 +1,11 @@
 <template>
-  <div class="layout">
-    <el-container style="border: 1px solid #eee">
-      <!--顶部header-->
-      <el-header class="header1">
-        <img src="@/assets/logo-black.jpg">
-        <div>
-          <el-dropdown>
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>查看</el-dropdown-item>
-              <el-dropdown-item>新增</el-dropdown-item>
-              <el-dropdown-item>删除</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-          <span>王小虎</span>
-        </div>
-      </el-header>
-      <el-container class="container2">
-        <!--左侧侧边栏-->
-        <sidebar></sidebar>
-        <!--右侧主体内容(含面包屑)-->
-        <app-main></app-main>
-      </el-container>
-    </el-container>
+  <div :class="classObj" class="app-wrapper">
+    <!--<div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>-->
+    <sidebar class="sidebar-container"/>
+    <div class="main-container">
+      <navbar/>
+      <app-main/>
+    </div>
   </div>
 </template>
 
@@ -41,19 +24,36 @@
       return {
         tableData: Array(30).fill(item)
       }
+    },
+    computed:{
+      classObj(){
+        return{
+
+        }
+      }
     }
   }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .container2 {
-    /*height: calc(100vh - 80px);*/
-    overflow: hidden;
+  @import "@/styles/mixin.scss";
+  .app-wrapper {
+    @include clearfix;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    &.mobile.openSidebar{
+      position: fixed;
+      top: 0;
+    }
   }
-
-  .header1 {
-    border-bottom: solid 1px #e6e6e6;
-    display: flex;
-    justify-content: space-between;
+  .drawer-bg {
+    background: #000;
+    opacity: 0.3;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
   }
 </style>

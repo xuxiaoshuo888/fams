@@ -1,9 +1,12 @@
 <template>
-  <el-aside width="200px" style="">
+  <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
       :show-timeout="200"
       mode="vertical"
       :router="menu_router"
+      background-color="#304156"
+      text-color="#bfcbd9"
+      active-text-color="#409EFF"
     >
       <div v-for="(route,index) in routes" :key="index" v-if="!route.hidden&&route.children">
         <!--点击不展开,1、没有子路由，2、有一个子路由，3、有子路由但是不展示-->
@@ -23,7 +26,7 @@
         </el-submenu>
       </div>
     </el-menu>
-  </el-aside>
+  </el-scrollbar>
 </template>
 
 <script>
@@ -32,7 +35,7 @@
 
   export default {
     name: 'Sidebar',
-    components: {svgIcon,Item},
+    components: {svgIcon, Item},
     data() {
       return {
         menu_router: true
