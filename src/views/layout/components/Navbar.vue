@@ -1,5 +1,6 @@
 <template>
     <el-header style="text-align: right; font-size: 12px">
+      <breadcrumb></breadcrumb>
       <el-dropdown>
         <i class="el-icon-setting" style="margin-right: 15px"></i>
         <el-dropdown-menu slot="dropdown">
@@ -13,8 +14,11 @@
 </template>
 
 <script>
+  import breadcrumb from '@/components/breadcrumb/breadcrumb'
   export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    components:{breadcrumb},
+
   }
 </script>
 

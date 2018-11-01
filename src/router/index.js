@@ -36,16 +36,16 @@ export default new Router({
       }]
     },
     {//a2学生信息管理
-      path: '/stdBasic',
+      path: '/stdInfo',
       component: Layout,
-      redirect: '/stdBasic/card',
+      redirect: '/stdInfo/card',
       name: 'StdInfo',
       meta: {title: '学生信息管理', icon: 'user'},
       children: [
         {//学生资料卡
           path: 'card',
           name: 'Card',
-          component: () => import('@/views/room/check'),
+          component: () => import('@/views/stdCard/stdCard'),
           meta: {title: '学生资料卡', icon: ''}
         },
         {//学生基本信息管理
@@ -94,27 +94,27 @@ export default new Router({
         component: () => import('@/views/violation/violation'),
       }]
     },
-    {//a6学生素质评分管理
-      path: '/score',
-      component: Layout,
-      redirect: '/score/regist',
-      name: 'Score',
-      meta: {title: '学生素质评分管理', icon: 'user'},
-      children: [
-        {
-          path: 'regist',
-          name: 'Regist',
-          component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: 'user'}
-        },
-        {
-          path: 'matter',
-          name: 'Matter',
-          component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: 'user'}
-        }
-      ]
-    },
+    // {//a6学生素质评分管理
+    //   path: '/score',
+    //   component: Layout,
+    //   redirect: '/score/regist',
+    //   name: 'Score',
+    //   meta: {title: '学生素质评分管理', icon: 'user'},
+    //   children: [
+    //     {
+    //       path: 'regist',
+    //       name: 'Regist',
+    //       component: () => import('@/views/score/regist'),
+    //       meta: {title: '素质评分登记', icon: 'user'}
+    //     },
+    //     {
+    //       path: 'matter',
+    //       name: 'Matter',
+    //       component: () => import('@/views/score/matter'),
+    //       meta: {title: '素质评分事项', icon: 'user'}
+    //     }
+    //   ]
+    // },
     {//a7临住管理
       path: '/tempAccommodation',
       component: Layout,
@@ -126,27 +126,27 @@ export default new Router({
         component: () => import('@/views/tempAccommodation/tempAccommodation'),
       }]
     },
-    {//a8系统管理
-      path: '/sysManagement',
-      component: Layout,
-      redirect: '/score/regist',
-      // name: 'Score',
-      meta: {title: '系统管理', icon: 'user'},
-      children: [
-        {
-          path: 'regist',
-          name: '',
-          component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: 'user'}
-        },
-        {
-          path: 'matter',
-          name: '',
-          component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: 'user'}
-        }
-      ]
-    },
+    // {//a8系统管理
+    //   path: '/sysManagement',
+    //   component: Layout,
+    //   redirect: '/score/regist',
+    //   // name: 'Score',
+    //   meta: {title: '系统管理', icon: 'user'},
+    //   children: [
+    //     {
+    //       path: 'regist',
+    //       name: '',
+    //       component: () => import('@/views/score/regist'),
+    //       meta: {title: '素质评分登记', icon: 'user'}
+    //     },
+    //     {
+    //       path: 'matter',
+    //       name: '',
+    //       component: () => import('@/views/score/matter'),
+    //       meta: {title: '素质评分事项', icon: 'user'}
+    //     }
+    //   ]
+    // },
 
     {//05国籍统计表
       path: '/nation',
@@ -205,54 +205,54 @@ export default new Router({
         component: () => import('@/views/payment/payment'),
       }]
     },
-    {//13寝室管理登记
-      path: '/room',
-      component: Layout,
-      redirect: '/room/check',
-      name: 'Room',
-      meta: {title: '寝室管理登记', icon: 'user'},
-      children: [
-        {
-          path: 'check',
-          name: 'Check',
-          component: () => import('@/views/room/check'),
-          meta: {title: '查寝', icon: 'user'}
-        },
-        {
-          path: 'repair',
-          name: 'Repair',
-          component: () => import('@/views/room/repair'),
-          meta: {title: '保修', icon: 'user'}
-        },
-        {
-          path: 'assets',
-          name: 'Assets',
-          component: () => import('@/views/room/assets'),
-          meta: {title: '财产', icon: 'user'}
-        }
-      ]
-    },
-    {//14班会，班会记录和班会签到
-      path: '/meeting',
-      component: Layout,
-      redirect: '/meeting/record',
-      name: 'Meeting',
-      meta: {title: '班会', icon: 'user'},
-      children: [
-        {
-          path: 'record',
-          name: 'Record',
-          component: () => import('@/views/meeting/record'),
-          meta: {title: '班会记录表', icon: 'user'}
-        },
-        {
-          path: 'signIn',
-          name: 'SignIn',
-          component: () => import('@/views/meeting/signIn'),
-          meta: {title: '班会签到表', icon: 'user'}
-        }
-      ]
-    },
+    // {//13寝室管理登记
+    //   path: '/room',
+    //   component: Layout,
+    //   redirect: '/room/check',
+    //   name: 'Room',
+    //   meta: {title: '寝室管理登记', icon: 'user'},
+    //   children: [
+    //     {
+    //       path: 'check',
+    //       name: 'Check',
+    //       component: () => import('@/views/room/check'),
+    //       meta: {title: '查寝', icon: 'user'}
+    //     },
+    //     {
+    //       path: 'repair',
+    //       name: 'Repair',
+    //       component: () => import('@/views/room/repair'),
+    //       meta: {title: '保修', icon: 'user'}
+    //     },
+    //     {
+    //       path: 'assets',
+    //       name: 'Assets',
+    //       component: () => import('@/views/room/assets'),
+    //       meta: {title: '财产', icon: 'user'}
+    //     }
+    //   ]
+    // },
+    // {//14班会，班会记录和班会签到
+    //   path: '/meeting',
+    //   component: Layout,
+    //   redirect: '/meeting/record',
+    //   name: 'Meeting',
+    //   meta: {title: '班会', icon: 'user'},
+    //   children: [
+    //     {
+    //       path: 'record',
+    //       name: 'Record',
+    //       component: () => import('@/views/meeting/record'),
+    //       meta: {title: '班会记录表', icon: 'user'}
+    //     },
+    //     {
+    //       path: 'signIn',
+    //       name: 'SignIn',
+    //       component: () => import('@/views/meeting/signIn'),
+    //       meta: {title: '班会签到表', icon: 'user'}
+    //     }
+    //   ]
+    // },
 
 
     {//17心理健康谈话记录

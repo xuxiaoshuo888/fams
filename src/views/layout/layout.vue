@@ -26,9 +26,13 @@
       }
     },
     computed:{
+      sidebar() {
+        return this.$store.state.app.sidebar
+      },
       classObj(){
         return{
-
+          hideSidebar: !this.sidebar.opened,
+          openSidebar: this.sidebar.opened,
         }
       }
     }

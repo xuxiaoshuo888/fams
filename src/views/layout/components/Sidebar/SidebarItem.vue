@@ -1,6 +1,6 @@
 <!--此组件未使用-->
 <template>
-  <div>
+  <div v-if="!item.hidden&&item.children" class="menu-wrapper">
     <!--子路由只有一个-->
     <el-menu-item index="9">
       <i class="el-icon-menu"></i>
@@ -19,10 +19,20 @@
 </template>
 
 <script>
+  import Item from './Item'
+
   export default {
     name: 'SidebarItem',
-    props:{
-      item:{type:Object,require:true}
+    components: {Item},
+    props: {
+      item: {
+        type: Object,
+        require: true
+      },
+      basePath: {
+        type: String,
+        default: ''
+      }
     },
 
   }

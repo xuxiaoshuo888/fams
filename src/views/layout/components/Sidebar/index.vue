@@ -4,11 +4,12 @@
       :show-timeout="200"
       mode="vertical"
       :router="menu_router"
+      :collapse="isCollapse"
       background-color="#304156"
       text-color="#bfcbd9"
       active-text-color="#409EFF"
     >
-      <div v-for="(route,index) in routes" :key="index" v-if="!route.hidden&&route.children">
+      <div class="" v-for="(route,index) in routes" :key="index" v-if="!route.hidden&&route.children">
         <!--点击不展开,1、没有子路由，2、有一个子路由，3、有子路由但是不展示-->
         <el-menu-item v-if="!route.hidden && (route.children.length === 1)" :index="route.path">
           <item :title="route.meta.title" :icon="route.meta.icon"></item>
@@ -25,6 +26,7 @@
           </el-menu-item-group>
         </el-submenu>
       </div>
+      <!--<sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"></sidebar-item>-->
     </el-menu>
   </el-scrollbar>
 </template>
@@ -32,21 +34,37 @@
 <script>
   import svgIcon from '@/components/svgIcon/index'
   import Item from './Item'
+  import {mapGetters, mapMutations} from 'vuex'
+  import SidebarItem from './SidebarItem'
 
   export default {
     name: 'Sidebar',
-    components: {svgIcon, Item},
+    components: {SidebarItem, svgIcon, Item},
     data() {
       return {
-        menu_router: true
+        menu_router: true,
+        isCollapse:false
       }
     },
-    methods: {},
+    methods: {
+      toggle_sidebar1(){
+        this.toggle_sidebar()
+      }
+    },
     computed: {
+      ...mapGetters([
+        'sidebar'
+      ]),
+      ...mapMutations([
+        'toggle_sidebar'
+      ]),
       routes() {
         console.log(this.$router.options.routes);
         return this.$router.options.routes
-      }
+      },
+      // isCollapse() {
+      //   return !this.sidebar.opened
+      // }
     }
 
   }
