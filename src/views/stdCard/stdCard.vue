@@ -209,58 +209,78 @@
           <block class="card_content">
             <el-row :gutter="20">
               <el-col :span="12">
-                <el-form ref="form" :model="sizeForm" label-width="120px" size="mini">
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                <el-form ref="form" :model="sizeForm" label-width="130px" size="mini">
+                  <el-form-item label="学号：">
+                    <div>201808080012</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="姓名：">
+                    <div>Tom</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="中文名：">
+                    <div>汤姆</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="性别：">
+                    <div>男</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="出生年月：">
+                    <div>1993年8月</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="年级：">
+                    <div>2016级</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="学院：">
+                    <div>工学院</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="专业：">
+                    <div>机械工程</div>
                   </el-form-item>
+                  <el-form-item label="班级：">
+                    <div>机械工程1班</div>
+                  </el-form-item>
+                  <el-form-item label="入学年月：">
+                    <div>2015年1月</div>
+                  </el-form-item>
+                  <el-form-item label="在校状态：">
+                    <div>在校</div>
+                  </el-form-item>
+                  <el-form-item label="学籍状态：">
+                    <div>正常</div>
+                  </el-form-item>
+                  <el-form-item label="联系电话：">
+                    <div>123213123213</div>
+                  </el-form-item>
+                  <el-form-item label="住宿情况：">
+                    <div>2号宿舍楼503</div>
+                  </el-form-item>
+
                 </el-form>
               </el-col>
               <el-col :span="12">
-                <el-form ref="form" :model="sizeForm" label-width="120px" size="mini">
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                <el-form ref="form" :model="sizeForm" label-width="130px" size="mini">
+                  <div class="card_pic"><img src="" /></div>
+                  <el-form-item label="出生地：">
+                    <div>莫桑比克马普多</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="国籍：">
+                    <div>莫桑比克</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="宗教信仰：">
+                    <div>无宗教信仰</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="辅导员工号：">
+                    <div>12321321</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="辅导员姓名：">
+                    <div>张三</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="辅导员联系方式：">
+                    <div>1231232313</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="毕业去向：">
+                    <div>长沙XX机械制造有限公司XX分公司</div>
                   </el-form-item>
-                  <el-form-item label="活动名称">
-                    <div>123</div>
+                  <el-form-item label="永久联系电话：">
+                    <div>1231232333</div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -560,6 +580,13 @@
     .card_content {
       display: block;
       padding: 20px;
+      .card_pic{
+        width: 200px;
+        height: 300px;
+        border: 1px solid black;
+        margin: auto;
+        margin-bottom: 15px;
+      }
     }
   }
 </style>
