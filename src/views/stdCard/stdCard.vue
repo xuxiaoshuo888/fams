@@ -471,110 +471,172 @@
         <div class="card_block">
           <header class="card_title">缴费信息</header>
           <div class="card_content paddingtop0">
-            <el-collapse accordion class="bordertopN">
-              <el-collapse-item title="2018年9月3日 学费" name="1">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="缴费年度：">
-                        <div>2018年</div>
-                      </el-form-item>
-                      <el-form-item label="应收金额：">
-                        <div>20000</div>
-                      </el-form-item>
-                      <el-form-item label="实缴金额：">
-                        <div>2018年6月6日</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="欠费金额：">
-                        <div>5000元</div>
-                      </el-form-item>
-                      <el-form-item label="缴费日期：">
-                        <div>2018年3月3日</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="2018年9月3日 住宿费" name="2">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="缴费年度：">
-                        <div>2018年</div>
-                      </el-form-item>
-                      <el-form-item label="应收金额：">
-                        <div>4000元</div>
-                      </el-form-item>
-                      <el-form-item label="实缴金额：">
-                        <div>3000元</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="欠费金额：">
-                        <div>1000元</div>
-                      </el-form-item>
-                      <el-form-item label="缴费日期：">
-                        <div>2018年3月8日</div>
-                      </el-form-item>
-                      <el-form-item label="住宿情况：">
-                        <div>住院</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="2018年9月3日 保险费" name="3">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="缴费年度：">
-                        <div>重大疾病险</div>
-                      </el-form-item>
-                      <el-form-item label="应收金额：">
-                        <div>20000</div>
-                      </el-form-item>
-                      <el-form-item label="实缴金额：">
-                        <div>17000元</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="欠费金额：">
-                        <div>3000元</div>
-                      </el-form-item>
-                      <el-form-item label="缴费日期：">
-                        <div>2018年3月8日</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="2018年9月3日 签证费" name="4">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="签证延期费：">
-                        <div>200元</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form size="mini">
-                      <el-form-item label="缴费日期：">
-                        <div>2018年3月8日</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-            </el-collapse>
+            <el-table
+              :data="jiaofei"
+              style="width: 100%">
+              <el-table-column
+                prop="xnxq"
+                label="收费区间"
+                width="180"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="jfxm"
+                label="缴费项目"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="jfnd"
+                label="缴费年度"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="ysje"
+                label="应收金额"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="sjje"
+                label="实缴金额"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="qfje"
+                label="欠费金额"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="jfrq"
+                label="缴费日期"
+                header-align="center"
+                align="center"
+                width="100">
+              </el-table-column>
+              <el-table-column
+                prop="qzyqf"
+                label="签证延期费"
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
+            <div class="textr margintop20">
+              <el-button type="primary" size="mini" :icon="showMoreJiaofei ? 'el-icon-caret-top' : 'el-icon-caret-bottom'" round @click="toggleJiaofei">
+                {{showMoreJiaofei === false ? '更多' : '收起'}}
+
+              </el-button>
+            </div>
+            <!--<el-collapse accordion class="bordertopN">-->
+            <!--<el-collapse-item title="2018年9月3日 学费" name="1">-->
+            <!--<el-row :gutter="20">-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="缴费年度：">-->
+            <!--<div>2018年</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="应收金额：">-->
+            <!--<div>20000</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="实缴金额：">-->
+            <!--<div>2018年6月6日</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="欠费金额：">-->
+            <!--<div>5000元</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="缴费日期：">-->
+            <!--<div>2018年3月3日</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--</el-row>-->
+            <!--</el-collapse-item>-->
+            <!--<el-collapse-item title="2018年9月3日 住宿费" name="2">-->
+            <!--<el-row :gutter="20">-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="缴费年度：">-->
+            <!--<div>2018年</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="应收金额：">-->
+            <!--<div>4000元</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="实缴金额：">-->
+            <!--<div>3000元</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="欠费金额：">-->
+            <!--<div>1000元</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="缴费日期：">-->
+            <!--<div>2018年3月8日</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="住宿情况：">-->
+            <!--<div>住院</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--</el-row>-->
+            <!--</el-collapse-item>-->
+            <!--<el-collapse-item title="2018年9月3日 保险费" name="3">-->
+            <!--<el-row :gutter="20">-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="缴费年度：">-->
+            <!--<div>重大疾病险</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="应收金额：">-->
+            <!--<div>20000</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="实缴金额：">-->
+            <!--<div>17000元</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="欠费金额：">-->
+            <!--<div>3000元</div>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="缴费日期：">-->
+            <!--<div>2018年3月8日</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--</el-row>-->
+            <!--</el-collapse-item>-->
+            <!--<el-collapse-item title="2018年9月3日 签证费" name="4">-->
+            <!--<el-row :gutter="20">-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="签证延期费：">-->
+            <!--<div>200元</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--<el-col :span="12">-->
+            <!--<el-form size="mini">-->
+            <!--<el-form-item label="缴费日期：">-->
+            <!--<div>2018年3月8日</div>-->
+            <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--</el-col>-->
+            <!--</el-row>-->
+            <!--</el-collapse-item>-->
+            <!--</el-collapse>-->
           </div>
         </div>
 
@@ -826,7 +888,308 @@
           // desc: [
           //   { required: true, message: '请填写活动形式', trigger: 'blur' }
           // ]
-        }
+        },
+        jiaofei_contain: [
+          {
+            xnxq: '2018~2019学年第一学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2018~2019学年第一学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2018~2019学年第一学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2018~2019学年第一学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2018~2019学年第二学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2018~2019学年第二学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2018~2019学年第二学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2018~2019学年第二学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2017~2018学年第一学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2017~2018学年第一学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2017~2018学年第一学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2017~2018学年第一学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2017~2018学年第二学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2017~2018学年第二学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2017~2018学年第二学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2017~2018学年第二学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2016~2017学年第一学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2016~2017学年第一学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2016~2017学年第一学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2016~2017学年第一学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2016~2017学年第二学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2016~2017学年第二学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2016~2017学年第二学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2016~2017学年第二学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2015~2016学年第一学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2015~2016学年第一学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2015~2016学年第一学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2015~2016学年第一学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+          {
+            xnxq: '2015~2016学年第二学期',
+            jfxm: '学费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2015~2016学年第二学期',
+            jfxm: '住宿费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2015~2016学年第二学期',
+            jfxm: '保险费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000'
+          },
+          {
+            xnxq: '2015~2016学年第二学期',
+            jfxm: '签证费',
+            jfnd: '2018',
+            qfje: '5000',
+            ysje: '20000',
+            jfrq: '2018-03-03',
+            sjje: '15000',
+            qzyqf: '100'
+          },
+
+        ],
+        jiaofei: [],//绑定表格
+        showMoreJiaofei: false,//默认表格是收起的，false代表目前表格是收起的,true表示表格是展开的
       }
     },
     computed: {},
@@ -837,7 +1200,31 @@
       },
       handleSelectionChange(e) {
         console.log(e)
+      },
+      //初始化10个数据
+      initJiaofei() {
+        var a = this.jiaofei_contain.slice(0, 9)
+        this.jiaofei = a
+      },
+      //展开/收起缴费信息
+      toggleJiaofei() {
+        if (!this.showMoreJiaofei) {
+          //展开
+          this.jiaofei = this.jiaofei.concat(this.jiaofei_contain.slice(9, -1))
+          this.showMoreJiaofei = true
+        } else {
+          // 收起
+          this.jiaofei.splice(10)
+          this.showMoreJiaofei = false
+        }
+
       }
+    },
+    computed: {
+
+    },
+    mounted() {
+      this.initJiaofei()
     }
   }
 </script>
