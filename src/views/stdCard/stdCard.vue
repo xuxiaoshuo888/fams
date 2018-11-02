@@ -201,15 +201,16 @@
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="60%">
+      width="900px">
       <div slot="title">学生资料卡</div>
       <div>
-        <block class="card_block">
+        <!--基本信息-->
+        <div class="card_block">
           <header class="card_title">基本信息</header>
-          <block class="card_content">
+          <div class="card_content">
             <el-row :gutter="20">
               <el-col :span="12">
-                <el-form ref="form" :model="sizeForm" label-width="130px" size="mini">
+                <el-form ref="form" size="mini">
                   <el-form-item label="学号：">
                     <div>201808080012</div>
                   </el-form-item>
@@ -252,15 +253,14 @@
                   <el-form-item label="住宿情况：">
                     <div>2号宿舍楼503</div>
                   </el-form-item>
-
-                </el-form>
-              </el-col>
-              <el-col :span="12">
-                <el-form ref="form" :model="sizeForm" label-width="130px" size="mini">
-                  <div class="card_pic"><img src="" /></div>
                   <el-form-item label="出生地：">
                     <div>莫桑比克马普多</div>
                   </el-form-item>
+                </el-form>
+              </el-col>
+              <el-col :span="12">
+                <el-form ref="form" size="mini">
+                  <div class="card_pic"><img src="@/assets/1.jpg"/></div>
                   <el-form-item label="国籍：">
                     <div>莫桑比克</div>
                   </el-form-item>
@@ -285,15 +285,299 @@
                 </el-form>
               </el-col>
             </el-row>
-          </block>
-        </block>
+          </div>
+        </div>
+        <!--护照-->
+        <div class="card_block">
+          <header class="card_title">护照居留证信息</header>
+          <div class="card_content">
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form label-width="130px" size="mini">
+                  <el-form-item label="护照号码：">
+                    <div>201808080012</div>
+                  </el-form-item>
+                  <el-form-item label="护照有效期：">
+                    <div>2019年8月7日</div>
+                  </el-form-item>
+                  <el-form-item label="居留许可证件号：">
+                    <div>2564132168431</div>
+                  </el-form-item>
+                  <el-form-item label="居留许可有效期：">
+                    <div>2019年7月6日</div>
+                  </el-form-item>
+                  <el-form-item label="护照首页：">
+                    <div><a href="#" target="_blank">点击预览</a></div>
+                  </el-form-item>
+                  <el-form-item label="签证页：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                </el-form>
+              </el-col>
+              <el-col :span="12">
+                <el-form ref="form" size="mini">
+                  <el-form-item label="护照有效期：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                  <el-form-item label="居留许可页：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                  <el-form-item label="JW202表：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                  <el-form-item label="录取通知书：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                  <el-form-item label="临住登记表：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                  <el-form-item label="健康证：">
+                    <div><a href="">点击预览</a></div>
+                  </el-form-item>
+                </el-form>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
+        <!--保险-->
+        <div class="card_block">
+          <header class="card_title">保险购买及理赔信息</header>
+          <div class="card_content paddingtop0">
+            <el-collapse accordion class="bordertopN">
+              <el-collapse-item title="2018年9月3日 重大疾病险" name="1">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form label-width="130px" size="mini">
+                      <el-form-item label="购买保险名字：">
+                        <div>重大疾病险</div>
+                      </el-form-item>
+                      <el-form-item label="保险费金额：">
+                        <div>20000</div>
+                      </el-form-item>
+                      <el-form-item label="购买保险日期：">
+                        <div>2018年6月6日</div>
+                      </el-form-item>
+                      <el-form-item label="就诊医院：">
+                        <div>湖北省人民医院</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form ref="form" size="mini">
+                      <el-form-item label="病情：">
+                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
+                      </el-form-item>
+                      <el-form-item label="报案情况：">
+                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+              <el-collapse-item title="2018年9月3日 意外险" name="2">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form label-width="130px" size="mini">
+                      <el-form-item label="购买保险名字：">
+                        <div>重大疾病险</div>
+                      </el-form-item>
+                      <el-form-item label="保险费金额：">
+                        <div>20000</div>
+                      </el-form-item>
+                      <el-form-item label="购买保险日期：">
+                        <div>2018年6月6日</div>
+                      </el-form-item>
+                      <el-form-item label="就诊医院：">
+                        <div>湖北省人民医院</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form ref="form" size="mini">
+                      <el-form-item label="病情：">
+                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
+                      </el-form-item>
+                      <el-form-item label="报案情况：">
+                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+              <el-collapse-item title="2018年9月3日 财产险" name="3">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form label-width="130px" size="mini">
+                      <el-form-item label="购买保险名字：">
+                        <div>重大疾病险</div>
+                      </el-form-item>
+                      <el-form-item label="保险费金额：">
+                        <div>20000</div>
+                      </el-form-item>
+                      <el-form-item label="购买保险日期：">
+                        <div>2018年6月6日</div>
+                      </el-form-item>
+                      <el-form-item label="就诊医院：">
+                        <div>湖北省人民医院</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form ref="form" size="mini">
+                      <el-form-item label="病情：">
+                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
+                      </el-form-item>
+                      <el-form-item label="报案情况：">
+                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+              <el-collapse-item title="2018年9月3日 意外险" name="4">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form label-width="130px" size="mini">
+                      <el-form-item label="购买保险名字：">
+                        <div>重大疾病险</div>
+                      </el-form-item>
+                      <el-form-item label="保险费金额：">
+                        <div>20000</div>
+                      </el-form-item>
+                      <el-form-item label="购买保险日期：">
+                        <div>2018年6月6日</div>
+                      </el-form-item>
+                      <el-form-item label="就诊医院：">
+                        <div>湖北省人民医院</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form ref="form" size="mini">
+                      <el-form-item label="病情：">
+                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
+                      </el-form-item>
+                      <el-form-item label="报案情况：">
+                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+        </div>
+        <!--缴费-->
+        <div class="card_block">
+          <header class="card_title">缴费信息</header>
+          <div class="card_content paddingtop0">
+            <el-collapse accordion class="bordertopN">
+              <el-collapse-item title="2018年9月3日 学费" name="1">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="缴费年度：">
+                        <div>2018年</div>
+                      </el-form-item>
+                      <el-form-item label="应收金额：">
+                        <div>20000</div>
+                      </el-form-item>
+                      <el-form-item label="实缴金额：">
+                        <div>2018年6月6日</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="欠费金额：">
+                        <div>5000元</div>
+                      </el-form-item>
+                      <el-form-item label="缴费日期：">
+                        <div>2018年3月3日</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+              <el-collapse-item title="2018年9月3日 住宿费" name="2">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="缴费年度：">
+                        <div>2018年</div>
+                      </el-form-item>
+                      <el-form-item label="应收金额：">
+                        <div>4000元</div>
+                      </el-form-item>
+                      <el-form-item label="实缴金额：">
+                        <div>3000元</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="欠费金额：">
+                        <div>1000元</div>
+                      </el-form-item>
+                      <el-form-item label="缴费日期：">
+                        <div>2018年3月8日</div>
+                      </el-form-item>
+                      <el-form-item label="住宿情况：">
+                        <div>住院</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+              <el-collapse-item title="2018年9月3日 保险费" name="3">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="缴费年度：">
+                        <div>重大疾病险</div>
+                      </el-form-item>
+                      <el-form-item label="应收金额：">
+                        <div>20000</div>
+                      </el-form-item>
+                      <el-form-item label="实缴金额：">
+                        <div>17000元</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="欠费金额：">
+                        <div>3000元</div>
+                      </el-form-item>
+                      <el-form-item label="缴费日期：">
+                        <div>2018年3月8日</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+              <el-collapse-item title="2018年9月3日 签证费" name="4">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="签证延期费：">
+                        <div>200元</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form size="mini">
+                      <el-form-item label="缴费日期：">
+                        <div>2018年3月8日</div>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+        </div>
 
-        <block class="card_block">
-          <header class="card_title">基本信息</header>
-          <block class="card_content">
-            123
-          </block>
-        </block>
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
@@ -567,25 +851,37 @@
   }
 
   .card_block {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: block;
     font-size: 14px;
     color: #000;
+    /*-webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);*/
+    /*box-shadow: 0 2px 12px 0 rgba(238,238,238,1);*/
+    box-shadow: 0px 3px 12px 0 rgba(0, 0, 0, .3);
     .card_title {
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid rgb(238, 238, 238);
       font-size: 16px;
       font-weight: 600;
-      padding-bottom: 10px;
+      padding: 20px;
+      text-align: center;
     }
     .card_content {
       display: block;
       padding: 20px;
-      .card_pic{
+      .card_content_subtitle {
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px;
+        text-align: center;
+      }
+      .card_pic {
         width: 200px;
         height: 300px;
-        border: 1px solid black;
         margin: auto;
         margin-bottom: 15px;
+        img {
+          width: 100%;
+        }
       }
     }
   }

@@ -40,6 +40,12 @@ body{
 .textr{
   text-align: right;
 }
+.paddingtop0{
+  padding-top: 0 !important;
+}
+.bordertopN{
+  border-top: none !important;
+}
 //上传组件样式
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
@@ -87,4 +93,7 @@ body{
 }
 .el-dialog .el-input{
   width: 202px;
+}
+.el-form-item__label {
+  width: 130px;
 }

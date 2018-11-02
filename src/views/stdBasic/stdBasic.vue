@@ -201,7 +201,7 @@
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="60%">
+      width="900px">
       <div slot="title">学生详情</div>
       <div>
         <el-form :model="ruleForm" inline="" :rules="rules" ref="ruleForm" label-width="120px"
