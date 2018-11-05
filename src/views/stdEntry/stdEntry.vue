@@ -300,11 +300,8 @@
 </template>
 
 <script>
-  import Modal from '@/components/modal/Modal'
-
   export default {
-    name: 'stdBasic',
-    components: {Modal},
+    name: 'stdEntry',
     data() {
       return {
         input1: "",

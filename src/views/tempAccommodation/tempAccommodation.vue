@@ -1,30 +1,34 @@
 <template>
   <div class="pad20">
-    <el-row :gutter="20" class="marginbot20">
-      <el-col :span="4">
+    <el-row :gutter="20" class="search_area">
+      <el-col :span="24" class="">
         <el-input
           placeholder="学号"
+          size="mini"
+          clearable
           v-model="input1">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-      </el-col>
-      <el-col :span="4">
         <el-input
           placeholder="性别"
+          size="mini"
+          clearable
           v-model="input2">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-      </el-col>
-      <el-col :span="4">
         <el-input
           placeholder="姓名"
+          size="mini"
+          clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </el-col>
-      <el-col :span="12">
-        <el-button type="primary" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+      <el-col :span="24">
+        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
       </el-col>
     </el-row>
 
@@ -32,77 +36,108 @@
       :data="tableData3"
       style="width: 100%"
       border
-      height="250">
+      header-align="center"
+      align="center">
+      <el-table-column
+        type="selection"
+        header-align="center"
+        align="center"
+        width="50">
+      </el-table-column>
       <el-table-column
         prop="order"
         label="序号"
-        width="150">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="name"
         label="姓名"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="nj"
         label="年级"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
 
       <el-table-column
         prop="xh"
         label="学号"
-        width="120">1
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="passport"
         label="护照号"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="cnName"
         label="联系号码"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="gender"
         label="出境学生"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="roomNum"
         label="国内旅游学生"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
-
       <el-table-column
         prop="birthday"
         label="更新护照学生"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
-
       <el-table-column
         prop="Nation"
         label="辅导员姓名/登记日期"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="stdNo"
         label="登记老师姓名/上报日期"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="arriveDate"
         label="备注"
-        width="120">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         fixed="right"
         label="操作"
-        width="100">
+        width="150"
+        header-align="center"
+        align="center">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="text" size="small">详情</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
+          <el-button type="danger" size="mini">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

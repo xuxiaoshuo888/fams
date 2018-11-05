@@ -1,39 +1,53 @@
 <template>
   <div class="pad20">
-    <el-row :gutter="20" class="marginbot20">
-      <el-col :span="4">
+    <el-row :gutter="20" class="search_area">
+      <el-col :span="24" class="">
         <el-input
           placeholder="学号"
+          size="mini"
+          clearable
           v-model="input1">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-      </el-col>
-      <el-col :span="4">
         <el-input
           placeholder="性别"
+          size="mini"
+          clearable
           v-model="input2">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-      </el-col>
-      <el-col :span="4">
         <el-input
           placeholder="姓名"
+          size="mini"
+          clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+        <el-input
+          placeholder="保险种类"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
       </el-col>
-      <el-col :span="12">
-        <el-button type="primary" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" icon="el-icon-download">导出</el-button>
+      <el-col :span="24">
+        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
       </el-col>
     </el-row>
 
     <el-table
       :data="tableData3"
       style="width: 100%"
-      border
-      height="250">
+      border>
+      <el-table-column
+        type="selection"
+        header-align="center"
+        align="center"
+        width="50">
+      </el-table-column>
       <el-table-column
         prop="xh"
         label="学号"
@@ -90,20 +104,24 @@
         width="120">
       </el-table-column>
       <el-table-column
-        fixed="right"
         label="操作"
-        width="100">
+        width="150"
+        header-align="center"
+        align="center"
+        fixed="right"
+      >
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="text" size="small">详情</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
+          <el-button type="danger" size="mini">删除</el-button>
         </template>
       </el-table-column>
+
     </el-table>
     <!--模态框-->
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="60%">
+      width="">
       <div slot="title">学生详情</div>
       <div>
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"

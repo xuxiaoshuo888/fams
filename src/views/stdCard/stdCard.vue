@@ -10,6 +10,20 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
+          placeholder="在校状态"
+          size="mini"
+          clearable
+          v-model="input1">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="学籍类别"
+          size="mini"
+          clearable
+          v-model="input1">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
           placeholder="性别"
           size="mini"
           clearable
@@ -23,12 +37,37 @@
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+        <el-input
+          placeholder="专业"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="学院"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="年级"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="民族"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
       </el-col>
       <el-col :span="24">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-upload">上传</el-button>
         <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-document">导出</el-button>
       </el-col>
     </el-row>
 
@@ -310,29 +349,29 @@
                     <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="签证页：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                 </el-form>
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <el-form-item label="护照有效期：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="居留许可页：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="JW202表：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="录取通知书：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="临住登记表：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="健康证：">
-                    <div><a href="">点击预览</a></div>
+                    <div><a href="#" target="_blank">点击预览</a></div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -343,128 +382,47 @@
         <div class="card_block">
           <header class="card_title">保险购买及理赔信息</header>
           <div class="card_content paddingtop0">
-            <el-collapse accordion class="bordertopN">
-              <el-collapse-item title="2018年9月3日 重大疾病险" name="1">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form label-width="130px" size="mini">
-                      <el-form-item label="购买保险名字：">
-                        <div>重大疾病险</div>
-                      </el-form-item>
-                      <el-form-item label="保险费金额：">
-                        <div>20000</div>
-                      </el-form-item>
-                      <el-form-item label="购买保险日期：">
-                        <div>2018年6月6日</div>
-                      </el-form-item>
-                      <el-form-item label="就诊医院：">
-                        <div>湖北省人民医院</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form ref="form" size="mini">
-                      <el-form-item label="病情：">
-                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
-                      </el-form-item>
-                      <el-form-item label="报案情况：">
-                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="2018年9月3日 意外险" name="2">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form label-width="130px" size="mini">
-                      <el-form-item label="购买保险名字：">
-                        <div>重大疾病险</div>
-                      </el-form-item>
-                      <el-form-item label="保险费金额：">
-                        <div>20000</div>
-                      </el-form-item>
-                      <el-form-item label="购买保险日期：">
-                        <div>2018年6月6日</div>
-                      </el-form-item>
-                      <el-form-item label="就诊医院：">
-                        <div>湖北省人民医院</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form ref="form" size="mini">
-                      <el-form-item label="病情：">
-                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
-                      </el-form-item>
-                      <el-form-item label="报案情况：">
-                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="2018年9月3日 财产险" name="3">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form label-width="130px" size="mini">
-                      <el-form-item label="购买保险名字：">
-                        <div>重大疾病险</div>
-                      </el-form-item>
-                      <el-form-item label="保险费金额：">
-                        <div>20000</div>
-                      </el-form-item>
-                      <el-form-item label="购买保险日期：">
-                        <div>2018年6月6日</div>
-                      </el-form-item>
-                      <el-form-item label="就诊医院：">
-                        <div>湖北省人民医院</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form ref="form" size="mini">
-                      <el-form-item label="病情：">
-                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
-                      </el-form-item>
-                      <el-form-item label="报案情况：">
-                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="2018年9月3日 意外险" name="4">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-form label-width="130px" size="mini">
-                      <el-form-item label="购买保险名字：">
-                        <div>重大疾病险</div>
-                      </el-form-item>
-                      <el-form-item label="保险费金额：">
-                        <div>20000</div>
-                      </el-form-item>
-                      <el-form-item label="购买保险日期：">
-                        <div>2018年6月6日</div>
-                      </el-form-item>
-                      <el-form-item label="就诊医院：">
-                        <div>湖北省人民医院</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form ref="form" size="mini">
-                      <el-form-item label="病情：">
-                        <div>病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。</div>
-                      </el-form-item>
-                      <el-form-item label="报案情况：">
-                        <div>咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间</div>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-            </el-collapse>
+            <el-table
+              :data="baoxian"
+              style="width: 100%">
+              <el-table-column type="expand" header-align="center" align="center">
+                <template slot-scope="props">
+                  <el-form label-position="left" inline>
+                    <el-form-item label="病情:">
+                      <span>{{ props.row.bq }}</span>
+                    </el-form-item>
+                    <el-form-item label="报案情况:">
+                      <span>{{ props.row.qk }}</span>
+                    </el-form-item>
+                  </el-form>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="购买保险名字"
+                prop="name"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                label="金额"
+                prop="je"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                label="购买保险日期"
+                prop="rq"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                label="就诊医院"
+                prop="yy"
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
+
           </div>
         </div>
         <!--缴费-->
@@ -528,122 +486,249 @@
               </el-table-column>
             </el-table>
             <div class="textr margintop20">
-              <el-button type="primary" size="mini" :icon="showMoreJiaofei ? 'el-icon-caret-top' : 'el-icon-caret-bottom'" round @click="toggleJiaofei">
+              <el-button type="primary" size="mini"
+                         :icon="showMoreJiaofei ? 'el-icon-caret-top' : 'el-icon-caret-bottom'" round
+                         @click="toggleJiaofei">
                 {{showMoreJiaofei === false ? '更多' : '收起'}}
-
               </el-button>
             </div>
-            <!--<el-collapse accordion class="bordertopN">-->
-            <!--<el-collapse-item title="2018年9月3日 学费" name="1">-->
-            <!--<el-row :gutter="20">-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="缴费年度：">-->
-            <!--<div>2018年</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="应收金额：">-->
-            <!--<div>20000</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="实缴金额：">-->
-            <!--<div>2018年6月6日</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="欠费金额：">-->
-            <!--<div>5000元</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="缴费日期：">-->
-            <!--<div>2018年3月3日</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--</el-row>-->
-            <!--</el-collapse-item>-->
-            <!--<el-collapse-item title="2018年9月3日 住宿费" name="2">-->
-            <!--<el-row :gutter="20">-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="缴费年度：">-->
-            <!--<div>2018年</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="应收金额：">-->
-            <!--<div>4000元</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="实缴金额：">-->
-            <!--<div>3000元</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="欠费金额：">-->
-            <!--<div>1000元</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="缴费日期：">-->
-            <!--<div>2018年3月8日</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="住宿情况：">-->
-            <!--<div>住院</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--</el-row>-->
-            <!--</el-collapse-item>-->
-            <!--<el-collapse-item title="2018年9月3日 保险费" name="3">-->
-            <!--<el-row :gutter="20">-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="缴费年度：">-->
-            <!--<div>重大疾病险</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="应收金额：">-->
-            <!--<div>20000</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="实缴金额：">-->
-            <!--<div>17000元</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="欠费金额：">-->
-            <!--<div>3000元</div>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="缴费日期：">-->
-            <!--<div>2018年3月8日</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--</el-row>-->
-            <!--</el-collapse-item>-->
-            <!--<el-collapse-item title="2018年9月3日 签证费" name="4">-->
-            <!--<el-row :gutter="20">-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="签证延期费：">-->
-            <!--<div>200元</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--<el-col :span="12">-->
-            <!--<el-form size="mini">-->
-            <!--<el-form-item label="缴费日期：">-->
-            <!--<div>2018年3月8日</div>-->
-            <!--</el-form-item>-->
-            <!--</el-form>-->
-            <!--</el-col>-->
-            <!--</el-row>-->
-            <!--</el-collapse-item>-->
-            <!--</el-collapse>-->
+          </div>
+        </div>
+        <!--奖惩信息-->
+        <div class="card_block">
+          <header class="card_title">奖惩信息</header>
+          <div class="card_content paddingtop0">
+            <div class="card_subtitle">素质评分</div>
+            <el-table
+              :data="pingfen"
+              style="width: 100%">
+              <el-table-column
+                prop="term"
+                label="学年学期"
+                width="180"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="lx"
+                label="类型"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="xh"
+                label="序号"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="date"
+                label="加分/扣分日期"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="detail"
+                label="活动内容"
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
+
+            <!--处分信息-->
+            <div class="card_subtitle">处分信息</div>
+            <el-table
+              :data="chufen"
+              style="width: 100%">
+              <el-table-column
+                prop="term"
+                label="学年学期"
+                width="180"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="lx"
+                label="处分类型"
+                width="80"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="date"
+                label="处分时间"
+                width="100"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="reason"
+                label="处分原因"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="qk"
+                label="教育情况"
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+
+        <!--临住登记信息-->
+        <div class="card_block">
+          <header class="card_title">临住登记信息</header>
+          <div class="card_content paddingtop0">
+            <div class="card_subtitle">出境</div>
+            <el-table
+              :data="chujing"
+              style="width: 100%">
+              <el-table-column
+                prop="outtime"
+                label="出境时间"
+                width="180"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="outplace"
+                label="地点"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="backtime"
+                label="回长沙时间"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="backplace"
+                label="地点"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="backschooltime"
+                label="到校时间"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="registtime"
+                label="登记日期"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="reporttime"
+                label="上报日期"
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
+
+            <!--国内旅游-->
+            <div class="card_subtitle">国内旅游</div>
+            <el-table
+              :data="lvyou"
+              style="width: 100%">
+              <el-table-column
+                prop="outtime"
+                label="离长沙时间"
+                width="180"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="outplace"
+                label="地点"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="backtime"
+                label="回长沙时间"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="backplace"
+                label="地点"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="backschooltime"
+                label="到校时间"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="registtime"
+                label="登记日期"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="reporttime"
+                label="上报日期"
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
+
+            <!--更新护照-->
+            <div class="card_subtitle">更新护照</div>
+            <el-table
+              :data="passport"
+              style="width: 100%">
+              <el-table-column
+                prop="oldNum"
+                label="旧护照号码"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="newNum"
+                label="新护照号码"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="registTime"
+                label="登记日期"
+                width="100"
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="reportTime"
+                label="上报日期"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
           </div>
         </div>
 
       </div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button @click="dialogVisible = false" size="small">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
   </span>
     </el-dialog>
   </div>
@@ -889,6 +974,7 @@
           //   { required: true, message: '请填写活动形式', trigger: 'blur' }
           // ]
         },
+        //缴费
         jiaofei_contain: [
           {
             xnxq: '2018~2019学年第一学期',
@@ -1190,6 +1276,244 @@
         ],
         jiaofei: [],//绑定表格
         showMoreJiaofei: false,//默认表格是收起的，false代表目前表格是收起的,true表示表格是展开的
+        //保险
+        baoxian: [
+          {
+            name: '重大疾病险',
+            je: '2000',
+            rq: '2018年6月9日',
+            yy: '湖北省人民医院',
+            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
+            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
+          },
+          {
+            name: '意外险',
+            je: '2000',
+            rq: '2018年6月10日',
+            yy: '湖北省人民医院',
+            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
+            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
+          },
+          {
+            name: '财产险',
+            je: '2000',
+            rq: '2018年6月11日',
+            yy: '湖北省人民医院',
+            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
+            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
+          },
+          {
+            name: '意外险',
+            je: '2000',
+            rq: '2018年6月12日',
+            yy: '湖北省人民医院',
+            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
+            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
+          },
+          {
+            name: '财产险',
+            je: '2000',
+            rq: '2018年6月13日',
+            yy: '湖北省人民医院',
+            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
+            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
+          },
+          {
+            name: '财产险',
+            je: '2000',
+            rq: '2018年6月14日',
+            yy: '湖北省人民医院',
+            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
+            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
+          }
+        ],
+        //素质评分
+        pingfen: [
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//类型
+            xh: '1',//活动序号
+            date: '2018-10-01',//活动时间
+            detail: '获得奖学金',//加分/扣分内容
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//类型
+            xh: '1',//活动序号
+            date: '2018-10-01',//活动时间
+            detail: '获得奖学金',//加分/扣分内容
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '扣分',//类型
+            xh: 'A',//活动序号
+            date: '2018-10-01',//活动时间
+            detail: '旷课',//加分/扣分内容
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '扣分',//类型
+            xh: 'B',//活动序号
+            date: '2018-10-01',//活动时间
+            detail: '迟到',//加分/扣分内容
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '扣分',//类型
+            xh: 'B',//活动序号
+            date: '2018-10-01',//活动时间
+            detail: '迟到',//加分/扣分内容
+          }
+        ],
+        //处分信息
+        chufen: [
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//处分类型
+            date: '2018-10-01',//处分时间
+            reason: '因与人打架',//处分原因
+            qk: '经批评教育，做出深刻的书面和口头检讨，认识到错误的严重性，态度良好。',//教育情况
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//处分类型
+            date: '2018-10-01',//处分时间
+            reason: '因与人打架',//处分原因
+            qk: '经批评教育，做出深刻的书面和口头检讨，认识到错误的严重性，态度良好。',//教育情况
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//处分类型
+            date: '2018-10-01',//处分时间
+            reason: '因与人打架',//处分原因
+            qk: '经批评教育，做出深刻的书面和口头检讨，认识到错误的严重性，态度良好。',//教育情况
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//处分类型
+            date: '2018-10-01',//处分时间
+            reason: '因与人打架',//处分原因
+            qk: '经批评教育，做出深刻的书面和口头检讨，认识到错误的严重性，态度良好。',//教育情况
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//处分类型
+            date: '2018-10-01',//处分时间
+            reason: '因与人打架',//处分原因
+            qk: '经批评教育，做出深刻的书面和口头检讨，认识到错误的严重性，态度良好。',//教育情况
+          },
+          {
+            term: '2017~2018学年第一学期',
+            lx: '加分',//处分类型
+            date: '2018-10-01',//处分时间
+            reason: '因与人打架',//处分原因
+            qk: '经批评教育，做出深刻的书面和口头检讨，认识到错误的严重性，态度良好。',//教育情况
+          }
+        ],
+        //临住登记
+        //出境
+        chujing:[
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          },
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          },
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          },
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          }
+        ],
+        //国内旅游
+        lvyou:[
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          },
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          },
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          },
+          {
+            outtime:'2018-08-08',
+            outplace:'长沙火车站',
+            backtime:'2018-09-08',
+            backplace:'长沙火车站',
+            backschooltime:'2018-09-08',
+            registtime:'2018-09-08',
+            reporttime:'2018-09-08'
+          }
+        ],
+        //更新护照
+        passport:[
+          {
+            oldNum:'21312321312',
+            newNum:'12312321321',
+            registTime:'2018-09-09',
+            reportTime:'2018-09-09'
+          },
+          {
+            oldNum:'21312321312',
+            newNum:'12312321321',
+            registTime:'2018-09-09',
+            reportTime:'2018-09-09'
+          }, {
+            oldNum:'21312321312',
+            newNum:'12312321321',
+            registTime:'2018-09-09',
+            reportTime:'2018-09-09'
+          }, {
+            oldNum:'21312321312',
+            newNum:'12312321321',
+            registTime:'2018-09-09',
+            reportTime:'2018-09-09'
+          }
+        ]
       }
     },
     computed: {},
@@ -1220,9 +1544,7 @@
 
       }
     },
-    computed: {
-
-    },
+    computed: {},
     mounted() {
       this.initJiaofei()
     }
@@ -1272,4 +1594,10 @@
       }
     }
   }
+.card_subtitle{
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid #eeeeee;
+}
 </style>

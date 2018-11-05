@@ -4,36 +4,45 @@
       <el-row>
         <el-col :span="12"><h4>加分活动</h4></el-col>
         <el-col :span="12" class="textr">
-          <el-button type="primary" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+          <el-button type="primary"  size="small"  icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
         </el-col>
       </el-row>
       <el-table
         :data="tableData3"
         style="width: 100%"
         border
-        height="250">
+        header-align="center"
+        align="center">
         <el-table-column
           prop="no"
           label="序号"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="shijian"
           label="活动时间"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="neirong"
           label="活动内容"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
         </el-table-column>
         <el-table-column
           fixed="right"
           label="操作"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
           <template slot-scope="scope">
-            <el-button @click="showStd(scope.row)" type="text" size="small">详情</el-button>
-            <el-button type="text" size="small">删除</el-button>
+            <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
+            <el-button type="danger" size="mini">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -43,36 +52,45 @@
       <el-row>
         <el-col :span="12"><h4>扣分活动</h4></el-col>
         <el-col :span="12" class="textr">
-          <el-button type="primary" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+          <el-button type="primary" size="small" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
         </el-col>
       </el-row>
       <el-table
         :data="tableData3"
         style="width: 100%"
         border
-        height="250">
+        header-align="center"
+        align="center">
         <el-table-column
           prop="no"
           label="序号"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="shijian"
           label="活动时间"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="neirong"
           label="活动内容"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
         </el-table-column>
         <el-table-column
           fixed="right"
           label="操作"
-          width="">
+          width=""
+          header-align="center"
+          align="center">
           <template slot-scope="scope">
-            <el-button @click="showStd(scope.row)" type="text" size="small">详情</el-button>
-            <el-button type="text" size="small">删除</el-button>
+            <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
+            <el-button type="danger" size="mini">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -129,17 +147,17 @@
         tableData3: [
           {
             no: '1',
-            shijian: 'tom',
+            shijian: '2018-08-08',
             neirong: 'sasdasd'
           },
           {
             no: '2',
-            shijian: 'tom',
+            shijian: '2018-08-08',
             neirong: 'sasdasd'
           },
           {
             no: '3',
-            shijian: 'tom',
+            shijian: '2018-08-08',
             neirong: 'sasdasd'
           }
         ],

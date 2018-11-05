@@ -1,5 +1,5 @@
 <template>
-    <div>欢迎页，XX您好</div>
+    <div class="pad20"></div>
 </template>
 
 <script>
