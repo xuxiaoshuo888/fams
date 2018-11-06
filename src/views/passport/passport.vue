@@ -50,6 +50,7 @@
           <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_dialogVisible = true">新增</el-button>
           <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
           <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-document">导出</el-button>
         </el-col>
       </el-row>
 

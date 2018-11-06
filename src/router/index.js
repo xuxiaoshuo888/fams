@@ -10,7 +10,7 @@ export default new Router({
       path: '/login', component: () => import('@/views/login/login'), hidden: true
     },
     {
-      path: '/404', component: () => import('@/views/404/error'), hidden: true
+      path: '/error', component: () => import('@/views/404/error'), hidden: true
     },
 
     {//进入后默认进入通知公告
@@ -130,26 +130,25 @@ export default new Router({
     {//a8系统管理
       path: '/sysManagement',
       component: Layout,
-      redirect: '/score/regist',
-      // name: 'Score',
+      redirect: '/sysManagement/user',
       meta: {title: '系统管理', icon: 'user'},
       children: [
         {
-          path: 'regist',
-          name: '',
-          component: () => import('@/views/score/regist'),
+          path: 'user',
+          name: 'sysUser',
+          component: () => import('@/views/sysManagement/user/user'),
           meta: {title: '用户管理', icon: 'user'}
         },
         {
-          path: 'matter',
-          name: '',
-          component: () => import('@/views/score/matter'),
+          path: 'role',
+          name: 'sysRole',
+          component: () => import('@/views/sysManagement/role/role'),
           meta: {title: '角色管理', icon: 'user'}
         },
         {
-          path: 'a1',
-          name: '',
-          component: () => import('@/views/score/matter'),
+          path: 'notice',
+          name: 'sysNotice',
+          component: () => import('@/views/sysManagement/notice/notice'),
           meta: {title: '提醒设置', icon: 'user'}
         }
       ]
