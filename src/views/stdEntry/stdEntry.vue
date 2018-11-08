@@ -1,6 +1,6 @@
 <template>
   <div class="pad20">
-    <el-row :gutter="20" class="search_area">
+    <el-row :gutter="10" class="search_area">
       <el-col :span="24" class="">
         <el-input
           placeholder="学号"
@@ -10,26 +10,62 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="性别"
+          placeholder="姓名"
           size="mini"
           clearable
           v-model="input2">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="性别"
           size="mini"
           clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+        <el-input
+          placeholder="学院"
+          size="mini"
+          clearable
+        >
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="年级"
+          size="mini"
+          clearable
+        >
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="专业"
+          size="mini"
+          clearable
+        >
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="班级"
+          size="mini"
+          clearable
+        >
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="国籍"
+          size="mini"
+          clearable
+        >
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
       </el-col>
-      <el-col :span="24">
+      <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-document">导出</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+      </el-col>
+      <el-col :span="24" class="functional_area">
+        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-upload2" @click="dialogVisible1 = true">导入</el-button>
       </el-col>
     </el-row>
 
@@ -50,7 +86,7 @@
 
       <el-table-column
         label="操作"
-        width="150"
+        width="130"
         header-align="center"
         align="center"
         fixed="right"
@@ -208,7 +244,7 @@
         <el-form :model="ruleForm" inline="" :rules="rules" ref="ruleForm" label-width="120px"
                  class="demo-ruleForm">
           <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.xh"></el-input>
+            <el-input v-model="ruleForm.xh" size="mini"></el-input>
           </el-form-item>
           <el-form-item label="姓名" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
@@ -297,6 +333,42 @@
     <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
   </span>
     </el-dialog>
+
+    <!--导入的模态框-->
+    <el-dialog
+      title=""
+      :visible.sync="dialogVisible1"
+      width="900px">
+      <div slot="title">数据导入</div>
+      <div>
+        <div class="daoru_block borderBottom">
+          <header>导入说明：</header>
+          <div class="">本系统支持xls,xlsx格式，请确保表格中的数据不含有空格等特殊符号，标准格式请参考【<a href="#" target="_blank">导入模板</a>】</div>
+        </div>
+        <div class="daoru_block borderBottom">
+          <header>注意事项：</header>
+          <div class="">导入学生基本信息若系统已存在，只改变所属班级专业学院信息，个人信息不改变</div>
+        </div>
+        <div class="daoru_block borderBottom">
+          <header>文件上传：</header>
+          <div class="">
+            <el-upload
+              class="upload-block"
+              drag
+              action="https://jsonplaceholder.typicode.com/posts/"
+              multiple>
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+            </el-upload>
+          </div>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogVisible1 = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="dialogVisible1 = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -310,6 +382,7 @@
         input3: "",
         currentPage4: 1,
         dialogVisible: false,
+        dialogVisible1:false,
         tableData3: [
           {
             order: '1',
@@ -557,7 +630,7 @@
 
 <style lang="scss" scoped>
   .el-row {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     &:last-child {
       margin-bottom: 0;
     }

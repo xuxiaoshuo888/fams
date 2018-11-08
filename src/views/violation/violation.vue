@@ -24,6 +24,24 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
+          placeholder="学院"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="班级"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="专业"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
           placeholder="处分类型"
           size="mini"
           clearable>
@@ -31,12 +49,14 @@
         </el-input>
         <el-date-picker type="date" size="mini" placeholder="处分时间" style="width: 100%;"></el-date-picker>
       </el-col>
-      <el-col :span="24">
+      <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-document">导出</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+      </el-col>
+      <el-col :span="24" class="functional_area">
+        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-plus">新增</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -68,13 +88,33 @@
         width="">
       </el-table-column>
       <el-table-column
+        prop=""
+        label="学院"
+        width="">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="专业"
+        width="">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="班级"
+        width="">
+      </el-table-column>
+      <el-table-column
         prop="cflx"
         label="处分类型"
         width="">
       </el-table-column>
       <el-table-column
         prop="sj"
-        label="处分时间"
+        label="处分到期时间"
+        width="">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="处分原因"
         width="">
       </el-table-column>
     </el-table>

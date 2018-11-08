@@ -21,6 +21,20 @@
           align="center">
         </el-table-column>
         <el-table-column
+          prop=""
+          label="学年"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="学期"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
           prop="shijian"
           label="活动时间"
           width=""
@@ -28,8 +42,22 @@
           align="center">
         </el-table-column>
         <el-table-column
+          prop=""
+          label="加分值"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
           prop="neirong"
           label="活动内容"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="举办活动单位"
           width=""
           header-align="center"
           align="center">
@@ -69,6 +97,20 @@
           align="center">
         </el-table-column>
         <el-table-column
+          prop=""
+          label="学年"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="学期"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
           prop="shijian"
           label="活动时间"
           width=""
@@ -76,8 +118,22 @@
           align="center">
         </el-table-column>
         <el-table-column
+          prop=""
+          label="加分值"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
           prop="neirong"
           label="活动内容"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop=""
+          label="举办活动单位"
           width=""
           header-align="center"
           align="center">
@@ -108,13 +164,27 @@
           <el-form-item label="活动序号" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
+          <el-form-item label="学年">
+            <el-select placeholder="请选择">
+              <el-option label="2018学年" value="a2018"></el-option>
+              <el-option label="2017学年" value="a2017"></el-option>
+              <el-option label="2016学年" value="a2016"></el-option>
+              <el-option label="2015学年" value="a2015"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="学期">
+            <el-select placeholder="请选择">
+              <el-option label="第一学期" value="1"></el-option>
+              <el-option label="第二学期" value="2"></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="活动时间">
             <el-col :span="11">
-              <el-date-picker type="date" placeholder="选择日期" v-model="date1" style="width: 100%;"></el-date-picker>
+              <el-date-picker type="date" placeholder="选择开始日期" v-model="date1" style="width: 100%;"></el-date-picker>
             </el-col>
             <el-col class="line" :span="2">-</el-col>
             <el-col :span="11">
-              <el-time-picker type="fixed-time" placeholder="选择时间" v-model="date2" style="width: 100%;"></el-time-picker>
+              <el-time-picker type="date" placeholder="选择结束日期" v-model="date2" style="width: 100%;"></el-time-picker>
             </el-col>
           </el-form-item>
         </el-form>

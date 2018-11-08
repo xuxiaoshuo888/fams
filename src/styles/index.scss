@@ -26,7 +26,7 @@ body{
 
 }
 .pad20{
-  padding: 20px;
+  padding: 15px;
 }
 .marginbot20{
   margin-bottom: 20px;
@@ -40,11 +40,20 @@ body{
 .textr{
   text-align: right;
 }
+.textc{
+  text-align: center;
+}
+.textl{
+  text-align: left;
+}
 .paddingtop0{
   padding-top: 0 !important;
 }
 .bordertopN{
   border-top: none !important;
+}
+.borderBottom{
+  border-bottom: solid 1px #e6e6e6;
 }
 //上传组件样式
 .avatar-uploader .el-upload {
@@ -76,7 +85,7 @@ body{
 //分页样式
 .pagination-block{
   text-align: center;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 //搜索区域样式
 .search_area .el-input{
@@ -86,6 +95,13 @@ body{
 }
 .search_area .el-button{
   margin-bottom: 10px;
+}
+//搜索重置区域按钮容器
+.search_btn_area{
+  text-align: center;
+}
+.functional_area{
+  text-align: right;
 }
 //模态框样式
 .el-dialog .el-input{
@@ -97,14 +113,33 @@ body{
 .el-form-item__label {
   width: 130px;
 }
-//照片上传
-.avatar-uploader .el-upload{
-  height: 220px;
+
+
+//导入 模态框样式
+.daoru_block{
+  padding: 10px 0;
+  header{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  a{
+    color: #409EFF;
+  }
 }
-.avatar{
-  height: 218px;
+.upload-block{
+  width: 360px;
 }
-.avatar-uploader-icon {
-  height: 218px;
-  line-height: 218px;
+//照片管理
+.pic_block{
+  width: 150px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 20px;
+  .pic_name{
+    font-size: 14px;
+  }
+  .pic_xh{
+    font-size: 14px;
+  }
 }

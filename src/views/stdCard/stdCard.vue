@@ -62,12 +62,9 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </el-col>
-      <el-col :span="24">
+      <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-upload">上传</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-document">导出</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
       </el-col>
     </el-row>
 
@@ -88,14 +85,12 @@
 
       <el-table-column
         label="操作"
-        width="150"
+        width="70"
         header-align="center"
         align="center"
-        fixed="right"
-      >
+        fixed="right">
         <template slot-scope="scope">
           <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-          <el-button type="danger" size="mini">删除</el-button>
         </template>
       </el-table-column>
       <el-table-column

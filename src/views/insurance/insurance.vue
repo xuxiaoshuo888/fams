@@ -23,6 +23,7 @@
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+
         <el-input
           placeholder="保险种类"
           size="mini"
@@ -30,12 +31,14 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </el-col>
-      <el-col :span="24">
+      <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-document">导出</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+      </el-col>
+      <el-col :span="24" class="functional_area">
+        <el-button type="primary" size="mini" icon="el-icon-plus">新增</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -67,6 +70,12 @@
       <el-table-column
         prop="gj"
         label="国籍"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+        prop="bxxm"
+        label="保险项目"
         width="120">
       </el-table-column>
       <el-table-column
@@ -106,13 +115,11 @@
       </el-table-column>
       <el-table-column
         label="操作"
-        width="150"
+        width="80"
         header-align="center"
         align="center"
-        fixed="right"
-      >
+        fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
           <el-button type="danger" size="mini">删除</el-button>
         </template>
       </el-table-column>
@@ -149,36 +156,25 @@
             <el-input v-model="ruleForm.zwm"></el-input>
           </el-form-item>
           <el-form-item label="出生年月" required>
-            <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
-            </el-form-item>
+            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
           </el-form-item>
-          <el-form-item label="到校日期" required>
-            <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date2"></el-date-picker>
-            </el-form-item>
-          </el-form-item>
-          <el-form-item label="宿舍号" prop="">
-            <el-input v-model="ruleForm.ssh"></el-input>
-          </el-form-item>
-
           <el-form-item label="电话号码" prop="">
             <el-input v-model="ruleForm.tel"></el-input>
           </el-form-item>
-          <el-form-item label="护照号码" prop="">
-            <el-input v-model="ruleForm.hzhm"></el-input>
+          <el-form-item label="保险项目" prop="">
+            <el-input></el-input>
           </el-form-item>
-          <el-form-item label="国籍" prop="">
-            <el-input v-model="ruleForm.gj"></el-input>
+          <el-form-item label="保险费" prop="">
+            <el-input></el-input>
           </el-form-item>
-          <el-form-item label="学籍注册号" prop="">
-            <el-input v-model="ruleForm.xjzch"></el-input>
+          <el-form-item label="保险日期" prop="">
+            <el-input></el-input>
           </el-form-item>
-          <el-form-item label="宗教" prop="">
-            <el-input v-model="ruleForm.religion"></el-input>
+          <el-form-item label="购买情况" prop="">
+            <el-input></el-input>
           </el-form-item>
-          <el-form-item label="班主任" prop="">
-            <el-input v-model="ruleForm.bzr"></el-input>
+          <el-form-item label="就诊医院" prop="">
+            <el-input></el-input>
           </el-form-item>
         </el-form>
         <el-form label-width="100px">
@@ -207,18 +203,19 @@
         dialogVisible: false,
         tableData3: [
           {
-          xh: '1',
-          xm: "2018",
-          passport: "计算机技术1班",
-          gj: "20180808001",
-          bxf: "12333.4",//保险费
-          bxrq: "20180909",//保险日期
-          gmqk: "男",//购买情况
-          jzyy: "省人民医院",//就诊医院
-          bq: "",//病情
-          bxba: "",
-          bz: '无'
-        },
+            xh: '1',
+            xm: "2018",
+            bxxm: '人生意外险',//保险项目
+            passport: "计算机技术1班",
+            gj: "20180808001",
+            bxf: "12333.4",//保险费
+            bxrq: "20180909",//保险日期
+            gmqk: "男",//购买情况
+            jzyy: "省人民医院",//就诊医院
+            bq: "",//病情
+            bxba: "",
+            bz: '无'
+          },
           {
             xh: '1',
             xm: "2018",

@@ -40,7 +40,7 @@
         <el-card shadow="always">
           <header class="title">系统提示</header>
           <div class="sub-block">
-            <header class="sub_title">护照到期提醒</header>
+            <header class="sub_title">护照到期提醒 <a href="#" target="_blank">更多</a></header>
             <el-table
               :data="table2"
               style="width: 100%">
@@ -72,7 +72,7 @@
           </div>
 
           <div class="sub-block">
-            <header class="sub_title">保险到期提醒</header>
+            <header class="sub_title">保险到期提醒 <a href="#" target="_blank">更多</a></header>
             <el-table
               :data="table2"
               style="width: 100%">
@@ -104,7 +104,7 @@
           </div>
 
           <div class="sub-block">
-            <header class="sub_title">临住到期提醒</header>
+            <header class="sub_title">临住到期提醒 <a href="#" target="_blank">更多</a></header>
             <el-table
               :data="table2"
               style="width: 100%">
@@ -197,21 +197,21 @@
             date: '2016-05-02',
           },
         ],
-        table2:[
+        table2: [
           {
-            name:'张三',
-            time1:'2019-08-08',
-            time2:'2018-08-08',
+            name: '张三',
+            time1: '2019-08-08',
+            time2: '2018-08-08',
           },
           {
-            name:'张三',
-            time1:'2019-08-08',
-            time2:'2018-08-08',
+            name: '张三',
+            time1: '2019-08-08',
+            time2: '2018-08-08',
           },
           {
-            name:'张三',
-            time1:'2019-08-08',
-            time2:'2018-08-08',
+            name: '张三',
+            time1: '2019-08-08',
+            time2: '2018-08-08',
           }
         ]
       }
@@ -231,11 +231,20 @@
     padding: 10px 10px;
     text-align: left;
     border-bottom: 1px solid #ebeef5;
-    background-color: rgb(238,238,238);
+    background-color: rgb(238, 238, 238);
     margin-top: 20px;
   }
+
   .sub-block {
     /*margin-bottom: 10px;*/
     text-align: center;
+    header {
+      a {
+        font-size: 14px;
+        float: right;
+        color: #409EFF;
+      }
+    }
+
   }
 </style>
