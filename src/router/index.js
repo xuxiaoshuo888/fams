@@ -127,6 +127,17 @@ export default new Router({
         component: () => import('@/views/tempAccommodation/tempAccommodation'),
       }]
     },
+    {//a7通知公告
+      path: '/notice',
+      component: Layout,
+      // name:"",
+      meta: {title: '通知公告', icon: 'password'},
+      children: [{
+        path: '',
+        name: 'TempAccommodation',
+        component: () => import('@/views/notice/notice'),
+      }]
+    },
     {//a8系统管理
       path: '/sysManagement',
       component: Layout,

@@ -72,13 +72,11 @@
       </el-table-column>
       <el-table-column
         label="操作"
-        width="150"
+        width="80"
         header-align="center"
         align="center"
-        fixed="right"
-      >
+        fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
           <el-button type="danger" size="mini">删除</el-button>
         </template>
       </el-table-column>
@@ -122,10 +120,10 @@
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="60%">
+      width="900px">
       <div slot="title">学生详情</div>
       <div>
-        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
+        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
           <el-form-item label="姓名" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
@@ -154,41 +152,21 @@
           <!--<el-option label="区域二" value="beijing"></el-option>-->
           <!--</el-select>-->
           <!--</el-form-item>-->
-          <el-form-item label="出生年月" required>
-            <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
-            </el-form-item>
-          </el-form-item>
-          <el-form-item label="到校日期" required>
-            <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date2"></el-date-picker>
-            </el-form-item>
-          </el-form-item>
-          <el-form-item label="宿舍号" prop="">
-            <el-input v-model="ruleForm.ssh"></el-input>
-          </el-form-item>
-
           <el-form-item label="电话号码" prop="">
             <el-input v-model="ruleForm.tel"></el-input>
           </el-form-item>
-          <el-form-item label="护照号码" prop="">
-            <el-input v-model="ruleForm.hzhm"></el-input>
+          <el-form-item label="处分类型">
+            <el-input></el-input>
           </el-form-item>
-          <el-form-item label="国籍" prop="">
-            <el-input v-model="ruleForm.gj"></el-input>
-          </el-form-item>
-          <el-form-item label="学籍注册号" prop="">
-            <el-input v-model="ruleForm.xjzch"></el-input>
-          </el-form-item>
-          <el-form-item label="宗教" prop="">
-            <el-input v-model="ruleForm.religion"></el-input>
-          </el-form-item>
-          <el-form-item label="班主任" prop="">
-            <el-input v-model="ruleForm.bzr"></el-input>
+          <el-form-item label="处分到期时间">
+            <el-date-picker
+              type="datetime"
+              placeholder="选择处分到期时间">
+            </el-date-picker>
           </el-form-item>
         </el-form>
-        <el-form label-width="100px">
-          <el-form-item label="备注" prop="desc" style="width:100%">
+        <el-form label-width="150px">
+          <el-form-item label="处分原因" prop="desc" style="width:100%">
             <el-input type="textarea" v-model="ruleForm.bz" style="width:100%;"></el-input>
           </el-form-item>
         </el-form>

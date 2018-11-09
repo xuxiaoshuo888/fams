@@ -10,25 +10,64 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="性别"
+          placeholder="姓名"
           size="mini"
           clearable
           v-model="input2">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="专业"
           size="mini"
           clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+        <el-input
+          placeholder="班级"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="学院"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="辅导员姓名"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="等登记老师姓名"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="护照号"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="联系号码"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
       </el-col>
-      <el-col :span="24">
+      <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-upload2">上传</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+      </el-col>
+      <el-col :span="24" class="functional_area">
+        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-edit-outline">重置密码</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -47,7 +86,7 @@
       <el-table-column
         prop="order"
         label="序号"
-        width=""
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
@@ -69,14 +108,14 @@
       <el-table-column
         prop="xh"
         label="学号"
-        width=""
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="passport"
         label="护照号"
-        width=""
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
@@ -97,35 +136,35 @@
       <el-table-column
         prop="roomNum"
         label="国内旅游学生"
-        width=""
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="birthday"
         label="更新护照学生"
-        width=""
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="Nation"
         label="辅导员姓名/登记日期"
-        width=""
+        width="160"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="stdNo"
         label="登记老师姓名/上报日期"
-        width=""
+        width="170"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="arriveDate"
         label="备注"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
@@ -145,10 +184,10 @@
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="60%">
+      width="1100px">
       <div slot="title">学生详情</div>
       <div>
-        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
+        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px"
                  class="demo-ruleForm">
           <el-form-item label="序号" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
@@ -187,7 +226,7 @@
             <el-input v-model="ruleForm.xjzch"></el-input>
           </el-form-item>
         </el-form>
-        <el-form label-width="100px">
+        <el-form label-width="200px">
           <el-form-item label="备注" prop="desc" style="width:100%">
             <el-input type="textarea" v-model="ruleForm.bz" style="width:100%;"></el-input>
           </el-form-item>

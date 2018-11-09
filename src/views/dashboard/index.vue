@@ -40,7 +40,7 @@
         <el-card shadow="always">
           <header class="title">系统提示</header>
           <div class="sub-block">
-            <header class="sub_title">护照到期提醒 <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">护照到期提醒（9人）  <a href="#" target="_blank">更多</a></header>
             <el-table
               :data="table2"
               style="width: 100%">
@@ -72,7 +72,7 @@
           </div>
 
           <div class="sub-block">
-            <header class="sub_title">保险到期提醒 <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">保险到期提醒（8人） <a href="#" target="_blank">更多</a></header>
             <el-table
               :data="table2"
               style="width: 100%">
@@ -104,7 +104,7 @@
           </div>
 
           <div class="sub-block">
-            <header class="sub_title">临住到期提醒 <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">临住到期提醒 （18人） <a href="#" target="_blank">更多</a></header>
             <el-table
               :data="table2"
               style="width: 100%">

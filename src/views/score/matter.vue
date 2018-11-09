@@ -180,11 +180,11 @@
           </el-form-item>
           <el-form-item label="活动时间">
             <el-col :span="11">
-              <el-date-picker type="date" placeholder="选择开始日期" v-model="date1" style="width: 100%;"></el-date-picker>
+              <el-date-picker type="datetime" placeholder="选择开始日期" v-model="date1" style="width: 100%;"></el-date-picker>
             </el-col>
             <el-col class="line" :span="2">-</el-col>
             <el-col :span="11">
-              <el-time-picker type="date" placeholder="选择结束日期" v-model="date2" style="width: 100%;"></el-time-picker>
+              <el-date-picker type="datetime" placeholder="选择结束日期" v-model="date2" style="width: 100%;"></el-date-picker>
             </el-col>
           </el-form-item>
         </el-form>
