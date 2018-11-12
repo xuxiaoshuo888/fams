@@ -10,37 +10,28 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="性别"
-          size="mini"
-          clearable
-          v-model="input2">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
           placeholder="姓名"
           size="mini"
           clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="学院"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="班级"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="专业"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <el-select size="mini" placeholder="性别">
+          <el-option key="1" label="男" value="1"></el-option>
+          <el-option key="2" label="女" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="学院">
+          <el-option key="1" label="文学院" value="1"></el-option>
+          <el-option key="2" label="医学院" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="专业">
+          <el-option key="1" label="临床医学" value="1"></el-option>
+          <el-option key="2" label="营养学" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="年级">
+          <el-option key="1" label="2018" value="1"></el-option>
+          <el-option key="2" label="2017" value="2"></el-option>
+        </el-select>
         <el-input
           placeholder="处分类型"
           size="mini"
@@ -81,39 +72,53 @@
         </template>
       </el-table-column>
       <el-table-column
+        prop="xh"
+        label="学号"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
         prop="xm"
         label="姓名"
-        width="">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop=""
         label="学院"
-        width="">
-      </el-table-column>
-      <el-table-column
-        prop=""
-        label="专业"
-        width="">
-      </el-table-column>
-      <el-table-column
-        prop=""
-        label="班级"
-        width="">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="cflx"
         label="处分类型"
-        width="">
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="处分时间"
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="sj"
         label="处分到期时间"
-        width="">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
       <el-table-column
         prop=""
         label="处分原因"
-        width="">
+        width=""
+        header-align="center"
+        align="center">
       </el-table-column>
     </el-table>
     <!--模态框-->
@@ -190,21 +195,25 @@
         input3: "",
         dialogVisible: false,
         tableData3: [{
+          xh:'201808080018',
           xm: '张三',
           cflx: "严重",
           sj: "20180808",
         },
           {
+            xh:'201808080018',
             xm: '张三',
             cflx: "严重",
             sj: "20180808",
           },
           {
+            xh:'201808080018',
             xm: '张三',
             cflx: "严重",
             sj: "20180808",
           },
           {
+            xh:'201808080018',
             xm: '张三',
             cflx: "严重",
             sj: "20180808",

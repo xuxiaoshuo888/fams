@@ -17,6 +17,12 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
+          placeholder="学院"
+          size="mini"
+          clearable>
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
           placeholder="专业"
           size="mini"
           clearable
@@ -25,12 +31,6 @@
         </el-input>
         <el-input
           placeholder="班级"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="学院"
           size="mini"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
@@ -66,7 +66,6 @@
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-edit-outline">重置密码</el-button>
         <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>

@@ -71,6 +71,48 @@
         align="center">
       </el-table-column>
       <el-table-column
+        prop=""
+        label="学院"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="专业"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="班级"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="加分总分"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="扣分总分"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop=""
+        label="总分"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
         label="操作"
         width="150"
         header-align="center"
@@ -213,7 +255,8 @@
                 <template slot-scope="scope">
                   <!--点击新增后-->
                   <span v-if="scope.row.editable">
-                    <el-button type="success" size="mini" icon="el-icon-check" circle @click="deliver_item(jiafen_list,scope)"></el-button>
+                    <el-button type="success" size="mini" icon="el-icon-check" circle
+                               @click="deliver_item(jiafen_list,scope)"></el-button>
                     <el-button type="danger" size="mini" icon="el-icon-close" circle
                                @click="delete_item(jiafen_list,scope)"></el-button>
                   </span>
@@ -325,7 +368,8 @@
                 <template slot-scope="scope">
                   <!--点击新增后-->
                   <span v-if="scope.row.editable">
-                    <el-button type="success" size="mini" icon="el-icon-check" circle @click="deliver_item(koufen_list,scope)"></el-button>
+                    <el-button type="success" size="mini" icon="el-icon-check" circle
+                               @click="deliver_item(koufen_list,scope)"></el-button>
                     <el-button type="danger" size="mini" icon="el-icon-close" circle
                                @click="delete_item(koufen_list,scope)"></el-button>
                   </span>
@@ -414,7 +458,7 @@
           }
         ],
         //扣分历史纪录
-        koufen_list:[
+        koufen_list: [
           {
             no: 'A',//活动序号
             name: '打架斗殴',//活动名称
@@ -506,7 +550,7 @@
         });
       },
       //提交新增项
-      deliver_item(list,scope){
+      deliver_item(list, scope) {
         // let index = scope.$index;
         list[scope.$index].editable = false
       }
@@ -525,7 +569,7 @@
         font-weight: 600;
       }
     }
-    .el-input, .el-input--suffix{
+    .el-input, .el-input--suffix {
       width: 100% !important;
     }
   }

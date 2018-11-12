@@ -10,19 +10,36 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="性别"
-          size="mini"
-          clearable
-          v-model="input2">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
           placeholder="姓名"
           size="mini"
           clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+        <el-select size="mini" placeholder="学籍类别">
+          <el-option key="1" label="在籍" value="1"></el-option>
+          <el-option key="2" label="不在籍" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="性别">
+          <el-option key="1" label="男" value="1"></el-option>
+          <el-option key="2" label="女" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="学院">
+          <el-option key="1" label="文学院" value="1"></el-option>
+          <el-option key="2" label="医学院" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="专业">
+          <el-option key="1" label="临床医学" value="1"></el-option>
+          <el-option key="2" label="营养学" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="年级">
+          <el-option key="1" label="2018" value="1"></el-option>
+          <el-option key="2" label="2017" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="民族">
+          <el-option key="1" label="汉族" value="1"></el-option>
+          <el-option key="2" label="满族" value="2"></el-option>
+        </el-select>
       </el-col>
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>

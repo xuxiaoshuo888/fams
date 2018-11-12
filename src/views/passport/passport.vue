@@ -48,7 +48,7 @@
         <el-col :span="24" class="search_btn_area">
           <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
           <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-refresh">即将到期</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-view">即将到期</el-button>
         </el-col>
         <el-col :span="24" class="functional_area">
           <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_dialogVisible = true">新增</el-button>
@@ -175,7 +175,7 @@
       <el-dialog
         title=""
         :visible.sync="add_dialogVisible"
-        width="900px">
+        width="1200px">
         <div slot="title">学生基本信息管理</div>
         <div>
           <el-form :model="ruleForm" inline="" :rules="rules" ref="ruleForm" label-width="160px"
@@ -210,6 +210,7 @@
             <el-form-item label="电话号码" prop="">
               <el-input v-model="ruleForm.tel"></el-input>
             </el-form-item>
+            <div class="hr"></div>
             <el-form-item label="护照号码" prop="">
               <el-input></el-input>
             </el-form-item>
@@ -228,11 +229,46 @@
             <el-form-item label="居留许可更新后到期日" prop="">
               <el-input></el-input>
             </el-form-item>
-          </el-form>
-          <el-form label-width="160px">
-            <el-form-item label="备注" prop="desc" style="width:100%">
-              <el-input type="textarea" v-model="ruleForm.bz" style="width:100%;"></el-input>
-            </el-form-item>
+            <div class="hr"></div>
+            <el-row :gutter="20">
+              <el-col :span="8">
+                <div class="pic_title">上传护照首页</div>
+
+                <el-upload
+                  class="avatar-uploader"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload">
+                  <img v-if="imageUrl" :src="imageUrl1" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-col>
+              <el-col :span="8">
+                <div class="pic_title">上传签证页</div>
+                <el-upload
+                  class="avatar-uploader"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload">
+                  <img v-if="imageUrl" :src="imageUrl2" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-col>
+              <el-col :span="8">
+                <div class="pic_title">居留许可证页</div>
+                <el-upload
+                  class="avatar-uploader"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload">
+                  <img v-if="imageUrl" :src="imageUrl3" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-col>
+            </el-row>
           </el-form>
         </div>
         <span slot="footer" class="dialog-footer">
@@ -243,7 +279,7 @@
     </div>
 
 
-    <!--模态框-->
+    <!--学生详情模态框-->
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
@@ -263,11 +299,15 @@
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取消设置</el-button>
-    <el-button type="primary" @click="dialogVisible = false">设置</el-button>
-  </span>
+        <el-button @click="dialogVisible = false">取消设置</el-button>
+        <el-button type="primary" @click="dialogVisible = false">设置</el-button>
+      </span>
     </el-dialog>
 
+    <!--预览照片模态框-->
+    <el-dialog :visible.sync="imgPreview">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>
   </div>
 </template>
 
@@ -357,7 +397,10 @@
           resource: '',
           desc: ''//备注
         },
-        rules: {}
+        rules: {},
+        imageUrl1: '',
+        imageUrl2: '',
+        imageUrl3: '',
       }
     },
     computed: {},
@@ -366,12 +409,18 @@
         this.add_dialogVisible = true;
         console.log(row);
       },
+
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .el-form-item__label{
+  .el-form-item__label {
     width: 150px;
+  }
+  .pic_title{
+    padding: 0px 15px 15px;
+    font-size: 14px;
+    color: #606266;
   }
 </style>

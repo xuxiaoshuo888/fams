@@ -1,4 +1,4 @@
- //to reset element-ui default css
+//to reset element-ui default css
 .el-upload {
   input[type="file"] {
     display: none !important;
@@ -29,29 +29,35 @@
 }
 
 //修改表格每行的padding
- .el-table td, .el-table th {
-   padding: 6px 0 !important;
- }
+.el-table td, .el-table th {
+  padding: 6px 0 !important;
+}
 
- //mini类型的按钮全部所有左右边距至10px
- .el-button--mini{
-   padding: 7px 10px !important;
- }
+//mini类型的按钮全部所有左右边距至10px
+.el-button--mini {
+  padding: 7px 10px !important;
+}
 
- //照片上传
- .avatar-uploader{
-   width: 150px;
-   height: 200px;
- }
- .avatar-uploader>.el-upload{
-   width: 100%;
-   height: 100%;
- }
- .avatar-uploader>.el-upload>i{
-   width: 100% !important;
-   height: 200px !important;
- }
- .avatar-uploader-icon {
+//用户头像上传，照片上传
+.pic_block {
+  .avatar-uploader {
+    width: 150px;
+    height: 200px;
+  }
+  .avatar-uploader > .el-upload {
+    width: 100%;
+    height: 100%;
+  }
+  .avatar-uploader > .el-upload > i {
+    width: 100% !important;
+    height: 200px !important;
+  }
+  .avatar-uploader-icon {
 
- }
+  }
+}
 
+// 单选框，宽度202px，方便对齐
+.el-form--inline .el-form-item__content {
+  width: 202px;
+}

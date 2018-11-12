@@ -17,50 +17,36 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="学籍类别"
-          size="mini"
-          clearable
-          v-model="input1">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="性别"
-          size="mini"
-          clearable
-          v-model="input2">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
           placeholder="姓名"
           size="mini"
           clearable
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="专业"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="学院"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="年级"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
-        <el-input
-          placeholder="民族"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <el-select size="mini" placeholder="学籍类别">
+          <el-option key="1" label="在籍" value="1"></el-option>
+          <el-option key="2" label="不在籍" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="性别">
+          <el-option key="1" label="男" value="1"></el-option>
+          <el-option key="2" label="女" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="学院">
+          <el-option key="1" label="文学院" value="1"></el-option>
+          <el-option key="2" label="医学院" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="专业">
+          <el-option key="1" label="临床医学" value="1"></el-option>
+          <el-option key="2" label="营养学" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="年级">
+          <el-option key="1" label="2018" value="1"></el-option>
+          <el-option key="2" label="2017" value="2"></el-option>
+        </el-select>
+        <el-select size="mini" placeholder="民族">
+          <el-option key="1" label="汉族" value="1"></el-option>
+          <el-option key="2" label="满族" value="2"></el-option>
+        </el-select>
       </el-col>
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
@@ -1407,106 +1393,106 @@
         ],
         //临住登记
         //出境
-        chujing:[
+        chujing: [
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           },
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           },
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           },
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           }
         ],
         //国内旅游
-        lvyou:[
+        lvyou: [
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           },
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           },
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           },
           {
-            outtime:'2018-08-08',
-            outplace:'长沙火车站',
-            backtime:'2018-09-08',
-            backplace:'长沙火车站',
-            backschooltime:'2018-09-08',
-            registtime:'2018-09-08',
-            reporttime:'2018-09-08'
+            outtime: '2018-08-08',
+            outplace: '长沙火车站',
+            backtime: '2018-09-08',
+            backplace: '长沙火车站',
+            backschooltime: '2018-09-08',
+            registtime: '2018-09-08',
+            reporttime: '2018-09-08'
           }
         ],
         //更新护照
-        passport:[
+        passport: [
           {
-            oldNum:'21312321312',
-            newNum:'12312321321',
-            registTime:'2018-09-09',
-            reportTime:'2018-09-09'
+            oldNum: '21312321312',
+            newNum: '12312321321',
+            registTime: '2018-09-09',
+            reportTime: '2018-09-09'
           },
           {
-            oldNum:'21312321312',
-            newNum:'12312321321',
-            registTime:'2018-09-09',
-            reportTime:'2018-09-09'
+            oldNum: '21312321312',
+            newNum: '12312321321',
+            registTime: '2018-09-09',
+            reportTime: '2018-09-09'
           }, {
-            oldNum:'21312321312',
-            newNum:'12312321321',
-            registTime:'2018-09-09',
-            reportTime:'2018-09-09'
+            oldNum: '21312321312',
+            newNum: '12312321321',
+            registTime: '2018-09-09',
+            reportTime: '2018-09-09'
           }, {
-            oldNum:'21312321312',
-            newNum:'12312321321',
-            registTime:'2018-09-09',
-            reportTime:'2018-09-09'
+            oldNum: '21312321312',
+            newNum: '12312321321',
+            registTime: '2018-09-09',
+            reportTime: '2018-09-09'
           }
         ]
       }
@@ -1589,10 +1575,11 @@
       }
     }
   }
-.card_subtitle{
-  padding: 15px;
-  text-align: center;
-  font-weight: 600;
-  border-bottom: 1px solid #eeeeee;
-}
+
+  .card_subtitle {
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid #eeeeee;
+  }
 </style>

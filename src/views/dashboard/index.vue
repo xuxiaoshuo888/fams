@@ -40,30 +40,33 @@
         <el-card shadow="always">
           <header class="title">系统提示</header>
           <div class="sub-block">
-            <header class="sub_title">护照到期提醒（9人）  <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">护照到期提醒（9人）
+              <router-link to="Passport">更多</router-link>
+              <!--<a href="#" target="_blank">更多</a>-->
+            </header>
             <el-table
               :data="table2"
               style="width: 100%">
               <el-table-column
-                label="姓名"
+                label="学号"
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
                 <template slot-scope="scope">
-                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.name}}</a>
+                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.xh}}</a>
                 </template>
               </el-table-column>
               <el-table-column
-                prop="time1"
-                label="到期时间"
+                prop="xm"
+                label="姓名"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
               </el-table-column>
               <el-table-column
-                prop="time2"
-                label="发布日期"
+                prop="dqsj"
+                label="到期时间"
                 width=""
                 header-align="center"
                 align="center">
@@ -72,30 +75,32 @@
           </div>
 
           <div class="sub-block">
-            <header class="sub_title">保险到期提醒（8人） <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">保险到期提醒（8人）
+              <router-link to="Insurance">更多</router-link>
+            </header>
             <el-table
               :data="table2"
               style="width: 100%">
               <el-table-column
-                label="姓名"
+                label="学号"
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
                 <template slot-scope="scope">
-                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.name}}</a>
+                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.xh}}</a>
                 </template>
               </el-table-column>
               <el-table-column
-                prop="time1"
-                label="到期时间"
+                prop="xm"
+                label="姓名"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
               </el-table-column>
               <el-table-column
-                prop="time2"
-                label="发布日期"
+                prop="dqsj"
+                label="到期时间"
                 width=""
                 header-align="center"
                 align="center">
@@ -104,30 +109,32 @@
           </div>
 
           <div class="sub-block">
-            <header class="sub_title">临住到期提醒 （18人） <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">临住到期提醒 （18人）
+              <router-link to="TempAccommodation">更多</router-link>
+            </header>
             <el-table
               :data="table2"
               style="width: 100%">
               <el-table-column
-                label="姓名"
+                label="学号"
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
                 <template slot-scope="scope">
-                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.name}}</a>
+                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.xh}}</a>
                 </template>
               </el-table-column>
               <el-table-column
-                prop="time1"
-                label="到期时间"
+                prop="xm"
+                label="姓名"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
               </el-table-column>
               <el-table-column
-                prop="time2"
-                label="发布日期"
+                prop="dqsj"
+                label="到期时间"
                 width=""
                 header-align="center"
                 align="center">
@@ -199,21 +206,20 @@
         ],
         table2: [
           {
-            name: '张三',
-            time1: '2019-08-08',
-            time2: '2018-08-08',
+            xh: '201808080018',
+            xm: '张三',
+            dqsj: '2018-08-08'
           },
           {
-            name: '张三',
-            time1: '2019-08-08',
-            time2: '2018-08-08',
+            xh: '201808080018',
+            xm: '张三',
+            dqsj: '2018-08-08'
           },
           {
-            name: '张三',
-            time1: '2019-08-08',
-            time2: '2018-08-08',
-          }
-        ]
+            xh: '201808080018',
+            xm: '张三',
+            dqsj: '2018-08-08'
+          }]
       }
     }
   }

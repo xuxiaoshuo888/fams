@@ -218,24 +218,30 @@
     data() {
       return {
         imageUrl: '',
-        dialogVisible1:false,
+        dialogVisible1: false,
         data1: [
           {
-            label: '文学院',
-            children: [{label: '汉语言文学'}, {label: '英语'}]
+            label: '长沙医学院',
+            children: [
+              {
+                label: '文学院',
+                children: [{label: '汉语言文学'}, {label: '英语'}]
+              },
+              {
+                label: '理学院',
+                children: [{label: '生物技术'}]
+              },
+              {
+                label: '工学院',
+                children: [{label: '计算机科学与技术'}]
+              },
+              {
+                label: '管理学院',
+                children: [{label: '工商学院'}, {label: '市场营销'}]
+              }
+            ]
           },
-          {
-            label: '理学院',
-            children: [{label: '生物技术'}]
-          },
-          {
-            label: '工学院',
-            children: [{label: '计算机科学与技术'}]
-          },
-          {
-            label: '管理学院',
-            children: [{label: '工商学院'}, {label: '市场营销'}]
-          }
+
         ],
         defaultProps: {
           children: 'children',
