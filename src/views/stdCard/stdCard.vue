@@ -52,20 +52,12 @@
           @focus="choose_select('nj',nj,njList,true)">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <!--<el-input-->
-          <!--placeholder="民族"-->
-          <!--size="mini"-->
-          <!--v-model="mz"-->
-          <!--@focus="choose_select('mz',mz,mzList,false)">-->
-          <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
-        <!--</el-input>-->
-        <el-select size="mini" no-data-text="" v-model="mz" @focus="choose_select('mz',mz,mzList,false)" multiple placeholder="民族">
-          <!--<el-option-->
-            <!--v-for="item in options"-->
-            <!--:key="item.value"-->
-            <!--:label="item.label"-->
-            <!--:value="item.value">-->
-          <!--</el-option>-->
+        <el-select size="mini"
+                   no-data-text=" "
+                   v-model="mz"
+                   @focus="choose_select('mz',mz,mzList,false)"
+                   multiple
+                   placeholder="民族">
         </el-select>
       </el-col>
       <el-col :span="24" class="search_btn_area">
@@ -736,9 +728,13 @@
       class="select_dialog"
       :visible.sync="dialogVisible_select_radio"
       width="900px">
-      <div slot="title">民族</div>
+      <div slot="title">请选择
+        {{select_type === 'xy' ? '学院' : ''}}
+        {{select_type === 'zy' ? '专业' : ''}}
+        {{select_type === 'nj' ? '年级' : ''}}
+        {{select_type === 'mz' ? '民族' : ''}}
+      </div>
       <div>
-        <!--<div class="tag" v-for="item in select_list" :key="item.name" @click="confirmSelect(item)">{{item.name}}</div>-->
         <el-radio-group v-if="isRadio" v-model="select_value">
           <el-radio v-for="item in select_list"
                     :key="item.name"
@@ -761,22 +757,6 @@
         <el-button type="primary" @click="confirm">确 定</el-button>
       </span>
     </el-dialog>
-
-    <!--弹出框多选-->
-    <!--<el-dialog-->
-    <!--title=""-->
-    <!--class="select_dialog"-->
-    <!--:visible.sync="dialogVisible_select_multiple"-->
-    <!--width="900px">-->
-    <!--<div slot="title">请选择</div>-->
-    <!--<div>-->
-    <!--<el-checkbox v-for="item in select_list" :key="item.name" v-model="item.name" :label="item.name" border @change="change_checkbox(e)">{{item.name}}</el-checkbox>-->
-    <!--</div>-->
-    <!--<span slot="footer" class="dialog-footer">-->
-    <!--<el-button >重置</el-button>-->
-    <!--<el-button type="primary" @click="dialogVisible_select_multiple = false">确 定</el-button>-->
-    <!--</span>-->
-    <!--</el-dialog>-->
   </div>
 </template>
 
@@ -1659,14 +1639,14 @@
         this.confirm_select()
         // console.log(this.select_value)
       },
-      confirm(){
+      confirm() {
         this.dialogVisible_select_radio = false;
       },
       //清空当前选中的项的值
       clear_select_value() {
-        if(this.isRadio){
+        if (this.isRadio) {
           this.select_value = ''
-        }else{
+        } else {
           this.select_value = []
         }
         this.confirm_select()
@@ -1681,7 +1661,7 @@
 
 <style lang="scss" scoped>
   .el-row {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     &:last-child {
       margin-bottom: 0;
     }

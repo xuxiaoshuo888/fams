@@ -1,5 +1,5 @@
 <template>
-  <el-header class="header_border">
+  <el-header class="header_border" style="height: 50px;">
     <breadcrumb></breadcrumb>
       <!--<el-dropdown>-->
         <!--<i class="el-icon-setting" style="margin-right: 15px"></i>-->

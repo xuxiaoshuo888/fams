@@ -1,7 +1,6 @@
 <template>
   <!--护照居留许可管理-->
   <div class="pad20">
-    <div class="pad20">
       <el-row :gutter="20" class="search_area">
         <el-col :span="24" class="">
           <el-input
@@ -272,11 +271,11 @@
           </el-form>
         </div>
         <span slot="footer" class="dialog-footer">
-    <el-button size="small" @click="dialogVisible = false">取 消</el-button>
-    <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
+          <el-button size="small" @click="dialogVisible = false">取 消</el-button>
+          <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
       </el-dialog>
-    </div>
+
 
 
     <!--学生详情模态框-->
