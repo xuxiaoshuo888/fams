@@ -23,29 +23,49 @@
           v-model="input3">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-select size="mini" placeholder="学籍类别">
-          <el-option key="1" label="在籍" value="1"></el-option>
-          <el-option key="2" label="不在籍" value="2"></el-option>
-        </el-select>
-        <el-select size="mini" placeholder="性别">
-          <el-option key="1" label="男" value="1"></el-option>
-          <el-option key="2" label="女" value="2"></el-option>
-        </el-select>
-        <el-select size="mini" placeholder="学院">
-          <el-option key="1" label="文学院" value="1"></el-option>
-          <el-option key="2" label="医学院" value="2"></el-option>
-        </el-select>
-        <el-select size="mini" placeholder="专业">
-          <el-option key="1" label="临床医学" value="1"></el-option>
-          <el-option key="2" label="营养学" value="2"></el-option>
-        </el-select>
-        <el-select size="mini" placeholder="年级">
-          <el-option key="1" label="2018" value="1"></el-option>
-          <el-option key="2" label="2017" value="2"></el-option>
-        </el-select>
-        <el-select size="mini" placeholder="民族">
-          <el-option key="1" label="汉族" value="1"></el-option>
-          <el-option key="2" label="满族" value="2"></el-option>
+        <!--<el-select size="mini" placeholder="学籍类别">-->
+        <!--<el-option key="1" label="在籍" value="1"></el-option>-->
+        <!--<el-option key="2" label="不在籍" value="2"></el-option>-->
+        <!--</el-select>-->
+        <!--<el-select size="mini" placeholder="性别">-->
+        <!--<el-option key="1" label="男" value="1"></el-option>-->
+        <!--<el-option key="2" label="女" value="2"></el-option>-->
+        <!--</el-select>-->
+        <el-input
+          placeholder="学院"
+          size="mini"
+          v-model="xy"
+          @focus="choose_select('xy',xy,xyList,true)">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="专业"
+          size="mini"
+          v-model="zy"
+          @focus="choose_select('zy',zy,zyList,true)">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="年级"
+          size="mini"
+          v-model="nj"
+          @focus="choose_select('nj',nj,njList,true)">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <!--<el-input-->
+          <!--placeholder="民族"-->
+          <!--size="mini"-->
+          <!--v-model="mz"-->
+          <!--@focus="choose_select('mz',mz,mzList,false)">-->
+          <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <el-select size="mini" no-data-text="" v-model="mz" @focus="choose_select('mz',mz,mzList,false)" multiple placeholder="民族">
+          <!--<el-option-->
+            <!--v-for="item in options"-->
+            <!--:key="item.value"-->
+            <!--:label="item.label"-->
+            <!--:value="item.value">-->
+          <!--</el-option>-->
         </el-select>
       </el-col>
       <el-col :span="24" class="search_btn_area">
@@ -60,15 +80,13 @@
       max-height="768"
       border
       stripe
-      @selection-change="handleSelectionChange"
-    >
+      @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         header-align="center"
         align="center"
         width="50">
       </el-table-column>
-
       <el-table-column
         label="操作"
         width="70"
@@ -705,13 +723,60 @@
             </el-table>
           </div>
         </div>
-
       </div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false" size="small">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
-  </span>
+        <el-button @click="dialogVisible = false" size="small">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
+      </span>
     </el-dialog>
+
+    <!--选择学院的列表弹出框，单选-->
+    <el-dialog
+      title=""
+      class="select_dialog"
+      :visible.sync="dialogVisible_select_radio"
+      width="900px">
+      <div slot="title">民族</div>
+      <div>
+        <!--<div class="tag" v-for="item in select_list" :key="item.name" @click="confirmSelect(item)">{{item.name}}</div>-->
+        <el-radio-group v-if="isRadio" v-model="select_value">
+          <el-radio v-for="item in select_list"
+                    :key="item.name"
+                    :label="item.name"
+                    @change="change"
+                    border>
+          </el-radio>
+        </el-radio-group>
+        <el-checkbox-group v-else v-model="select_value">
+          <el-checkbox v-for="item in select_list"
+                       :key="item.name"
+                       :label="item.name"
+                       @change="change"
+                       border>
+          </el-checkbox>
+        </el-checkbox-group>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="clear_select_value">置空</el-button>
+        <el-button type="primary" @click="confirm">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <!--弹出框多选-->
+    <!--<el-dialog-->
+    <!--title=""-->
+    <!--class="select_dialog"-->
+    <!--:visible.sync="dialogVisible_select_multiple"-->
+    <!--width="900px">-->
+    <!--<div slot="title">请选择</div>-->
+    <!--<div>-->
+    <!--<el-checkbox v-for="item in select_list" :key="item.name" v-model="item.name" :label="item.name" border @change="change_checkbox(e)">{{item.name}}</el-checkbox>-->
+    <!--</div>-->
+    <!--<span slot="footer" class="dialog-footer">-->
+    <!--<el-button >重置</el-button>-->
+    <!--<el-button type="primary" @click="dialogVisible_select_multiple = false">确 定</el-button>-->
+    <!--</span>-->
+    <!--</el-dialog>-->
   </div>
 </template>
 
@@ -723,6 +788,10 @@
         input1: "",
         input2: "",
         input3: "",
+        xy: '',
+        zy: '',
+        nj: '',
+        mz: [],
         currentPage4: 1,
         dialogVisible: false,
         tableData3: [
@@ -1255,7 +1324,7 @@
           },
 
         ],
-        jiaofei: [],//绑定表格
+        jiaofei: '' || [],//绑定表格
         showMoreJiaofei: false,//默认表格是收起的，false代表目前表格是收起的,true表示表格是展开的
         //保险
         baoxian: [
@@ -1494,6 +1563,39 @@
             registTime: '2018-09-09',
             reportTime: '2018-09-09'
           }
+        ],
+        dialogVisible_select_radio: false,//弹出框-单选
+        dialogVisible_select_multiple: false,//弹出框-多选
+        isRadio: true,//true-单选，false多选
+        select_type: '',//当前选项类别，比如，学校、年级、民族
+        select_value: [],//当前选择的值
+        select_list: [],//弹出框当前选项列表
+        xyList: [//待选择的学院列表
+          {name: '工学院', id: ''},
+          {name: '文学院', id: ''},
+          {name: '理学院', id: ''},
+          {name: '电信学院', id: ''},
+        ],
+        zyList: [
+          {name: '汉语言文学'},
+          {name: '临床医学'},
+          {name: '英语'},
+          {name: '机械制造及其自动化'},
+          {name: '护理学'}
+        ],
+        njList: [
+          {name: '2018'},
+          {name: '2017'},
+          {name: '2016'},
+          {name: '2015'},
+          {name: '2014'}
+        ],
+        mzList: [
+          {name: '汉族'},
+          {name: '蒙古族'},
+          {name: '回族'},
+          {name: '藏族'},
+          {name: '维吾尔族'}
         ]
       }
     },
@@ -1522,7 +1624,52 @@
           this.jiaofei.splice(10)
           this.showMoreJiaofei = false
         }
-
+      },
+      choose_select(type, value, list, isRadio) {//点击输入框，弹出框，并带入该选项的相关参数
+        //type-字段，value-字段值，list-字段选项列表, isRadio，true单选，false复选
+        this.select_type = type;
+        this.dialogVisible_select_radio = true;
+        this.select_list = list;
+        this.isRadio = isRadio;
+        //数据初始化，当已经选择了值
+        if (this.select_type === 'xy') {
+          this.select_value = this.xy
+        } else if (this.select_type === 'zy') {
+          this.select_value = this.zy
+        } else if (this.select_type === 'nj') {
+          this.select_value = this.nj
+        } else if (this.select_type === 'mz') {
+          this.select_value = this.mz
+        }
+      },
+      confirm_select() {//将选择的结果写入与视图绑定的数据容器
+        // console.log(this.select_value);
+        if (this.select_type === 'xy') {
+          this.xy = this.select_value
+        } else if (this.select_type === 'zy') {
+          this.zy = this.select_value
+        } else if (this.select_type === 'nj') {
+          this.nj = this.select_value
+        } else if (this.select_type === 'mz') {
+          this.mz = this.select_value
+        }
+        // this.dialogVisible_select_radio = false;
+      },
+      change() {
+        this.confirm_select()
+        // console.log(this.select_value)
+      },
+      confirm(){
+        this.dialogVisible_select_radio = false;
+      },
+      //清空当前选中的项的值
+      clear_select_value() {
+        if(this.isRadio){
+          this.select_value = ''
+        }else{
+          this.select_value = []
+        }
+        this.confirm_select()
       }
     },
     computed: {},
@@ -1545,8 +1692,6 @@
     display: block;
     font-size: 14px;
     color: #000;
-    /*-webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);*/
-    /*box-shadow: 0 2px 12px 0 rgba(238,238,238,1);*/
     box-shadow: 0px 3px 12px 0 rgba(0, 0, 0, .3);
     .card_title {
       border-bottom: 1px solid rgb(238, 238, 238);
@@ -1581,5 +1726,30 @@
     text-align: center;
     font-weight: 600;
     border-bottom: 1px solid #eeeeee;
+  }
+
+  .select_dialog {
+    .tag {
+      display: inline-block;
+      background-color: rgba(64, 158, 255, .1);
+      display: inline-block;
+      padding: 0 10px;
+      height: 32px;
+      line-height: 30px;
+      font-size: 12px;
+      color: #409eff;
+      border-radius: 4px;
+      box-sizing: border-box;
+      border: 1px solid rgba(64, 158, 255, .2);
+      white-space: nowrap;
+    }
+  }
+
+  .select_dialog .tag + .tag {
+    margin-left: 10px;
+  }
+
+  .select_dialog .tag:hover {
+    cursor: pointer;
   }
 </style>

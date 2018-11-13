@@ -45,8 +45,8 @@
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
-        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
         <el-button type="primary" size="mini" icon="el-icon-plus">新增</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
         <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>

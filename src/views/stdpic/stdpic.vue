@@ -41,7 +41,7 @@
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-upload2" @click="dialogVisible1 = true">导入</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-edit">导出</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download">导出</el-button>
       </el-col>
     </el-row>
     <el-row :gutter="20">

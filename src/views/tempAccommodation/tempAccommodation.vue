@@ -42,7 +42,7 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="等登记老师姓名"
+          placeholder="登记老师姓名"
           size="mini"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
@@ -183,7 +183,7 @@
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="1100px">
+      width="900px">
       <div slot="title">学生详情</div>
       <div>
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px"

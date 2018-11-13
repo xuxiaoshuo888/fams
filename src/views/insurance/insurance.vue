@@ -129,10 +129,10 @@
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
-      width="">
+      width="900px">
       <div slot="title">学生详情</div>
       <div>
-        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
+        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
           <el-form-item label="姓名" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
@@ -177,7 +177,7 @@
             <el-input></el-input>
           </el-form-item>
         </el-form>
-        <el-form label-width="100px">
+        <el-form label-width="150px">
           <el-form-item label="备注" prop="desc" style="width:100%">
             <el-input type="textarea" v-model="ruleForm.bz" style="width:100%;"></el-input>
           </el-form-item>

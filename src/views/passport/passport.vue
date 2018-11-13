@@ -52,8 +52,8 @@
         </el-col>
         <el-col :span="24" class="functional_area">
           <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_dialogVisible = true">新增</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-search">修改</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-document">导出Excel</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
         </el-col>
       </el-row>
 

@@ -129,11 +129,11 @@
     <!--模态框-->
     <el-dialog
       title=""
-      width="1100px"
+      width="1200px"
       :visible.sync="dialogVisible">
       <div slot="title">学生详情</div>
       <div>
-        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px"
+        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
           <el-form-item label="学号" prop="">
             <el-input v-model="ruleForm.xh"></el-input>
@@ -211,6 +211,8 @@
                   <el-date-picker v-else
                                   v-model="scope.row.datetime"
                                   type="date"
+                                  format="yyyy-MM-dd"
+                                  value-format="yyyy-MM-dd"
                                   placeholder="选择日期">
                   </el-date-picker>
                 </template>
@@ -324,6 +326,8 @@
                   <el-date-picker v-else
                                   v-model="scope.row.datetime"
                                   type="date"
+                                  format="yyyy 年 MM 月 dd 日"
+                                  value-format="yyyy-MM-dd"
                                   placeholder="选择日期">
                   </el-date-picker>
                 </template>
