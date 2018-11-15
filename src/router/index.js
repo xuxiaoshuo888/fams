@@ -140,6 +140,7 @@ export default new Router({
     {//a8系统管理
       path: '/sysManagement',
       component: Layout,
+      name:'SysManagement',
       redirect: '/sysManagement/user',
       meta: {title: '系统管理', icon: 'user'},
       children: [
