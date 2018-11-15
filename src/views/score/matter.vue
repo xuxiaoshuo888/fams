@@ -74,6 +74,21 @@
           </template>
         </el-table-column>
       </el-table>
+      <!--分页-->
+      <div class="pagination-block">
+        <el-pagination
+          background
+          @size-change=""
+          @current-change=""
+          @prev-click=""
+          @next-click=""
+          :current-page="currentPage4"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="10"
+          layout="total, sizes, prev, pager, next,->"
+          :total="400">
+        </el-pagination>
+      </div>
     </div>
 
     <div class="block">
@@ -150,6 +165,21 @@
           </template>
         </el-table-column>
       </el-table>
+      <!--分页-->
+      <div class="pagination-block">
+        <el-pagination
+          background
+          @size-change=""
+          @current-change=""
+          @prev-click=""
+          @next-click=""
+          :current-page="currentPage4"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="10"
+          layout="total, sizes, prev, pager, next,->"
+          :total="400">
+        </el-pagination>
+      </div>
     </div>
 
     <!--模态框-->
@@ -179,13 +209,13 @@
             </el-select>
           </el-form-item>
           <el-form-item label="活动时间">
-            <el-col :span="11">
-              <el-date-picker type="datetime" placeholder="选择开始日期" v-model="date1" style="width: 100%;"></el-date-picker>
-            </el-col>
-            <el-col class="line" :span="2">-</el-col>
-            <el-col :span="11">
-              <el-date-picker type="datetime" placeholder="选择结束日期" v-model="date2" style="width: 100%;"></el-date-picker>
-            </el-col>
+            <el-date-picker
+              v-model="value6"
+              type="daterange"
+              range-separator="-"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期">
+            </el-date-picker>
           </el-form-item>
         </el-form>
 
@@ -213,6 +243,7 @@
         input1: "",
         input2: "",
         input3: "",
+        value6:'',//时间范围
         dialogVisible: false,
         tableData3: [
           {
@@ -227,6 +258,16 @@
           },
           {
             no: '3',
+            shijian: '2018-08-08',
+            neirong: 'sasdasd'
+          },
+          {
+            no: '4',
+            shijian: '2018-08-08',
+            neirong: 'sasdasd'
+          },
+          {
+            no: '5',
             shijian: '2018-08-08',
             neirong: 'sasdasd'
           }

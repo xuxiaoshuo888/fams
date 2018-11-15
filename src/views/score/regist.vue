@@ -125,6 +125,21 @@
         </template>
       </el-table-column>
     </el-table>
+    <!--分页-->
+    <div class="pagination-block">
+      <el-pagination
+        background
+        @size-change=""
+        @current-change=""
+        @prev-click=""
+        @next-click=""
+        :current-page="currentPage4"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="10"
+        layout="total, sizes, prev, pager, next,->"
+        :total="400">
+      </el-pagination>
+    </div>
 
     <!--模态框-->
     <el-dialog
