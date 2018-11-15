@@ -21,7 +21,6 @@
     },
     computed: {
       key() {
-        console.log(this.$route);
         return this.$route.name + +new Date();
       }
     }

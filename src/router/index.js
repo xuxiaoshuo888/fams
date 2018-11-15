@@ -15,13 +15,14 @@ export default new Router({
 
     {//进入后默认进入通知公告
       path: '/',
-      name: 'Dashboard',
+      // name: 'Dashboard',
       component: Layout,
       redirect: '/dashboard',//路由重定向，如果设置noredirect，则在面包屑中不可点击
       hidden: false,//true代表在侧边栏中不展示，true代表展示
-      meta: {title: '首页', icon: 'example'},
       children: [{
         path: 'dashboard',
+        name: 'Dashboard',
+        meta: {title: '首页', icon: 'example'},
         component: () => import('@/views/dashboard/index')
       }]
     },
@@ -29,10 +30,10 @@ export default new Router({
       path: '/stdEntry',
       component: Layout,
       // name:"StdInfo",
-      meta: {title: '招生录入管理', icon: 'example'},
       children: [{
         path: '',
         name: 'StdInfoIndex',
+        meta: {title: '招生录入管理', icon: 'example'},
         component: () => import('@/views/stdEntry/stdEntry'),
       }]
     },
@@ -67,10 +68,10 @@ export default new Router({
       path: '/passport',
       component: Layout,
       // name:"",
-      meta: {title: '护照及居留许可管理', icon: 'nested'},
       children: [{
         path: '',
         name: 'Passport',
+        meta: {title: '护照及居留许可管理', icon: 'nested'},
         component: () => import('@/views/passport/passport'),
       }]
     },
@@ -78,20 +79,20 @@ export default new Router({
       path: '/insurance',
       component: Layout,
       // name:"Insurance",
-      meta: {title: '保险管理', icon: 'user'},
       children: [{
         path: '',
         name: 'Insurance',
+        meta: {title: '保险管理', icon: 'user'},
         component: () => import('@/views/insurance/insurance'),
       }]
     },
     {//a5学生处分管理
       path: '/violation',
       component: Layout,
-      meta: {title: '学生处分管理', icon: 'user'},
       children: [{
         path: '',
         name: 'Violation',
+        meta: {title: '学生处分管理', icon: 'user'},
         component: () => import('@/views/violation/violation'),
       }]
     },
@@ -119,22 +120,20 @@ export default new Router({
     {//a7临住管理
       path: '/tempAccommodation',
       component: Layout,
-      // name:"",
-      meta: {title: '临住管理', icon: 'password'},
       children: [{
         path: '',
         name: 'TempAccommodation',
+        meta: {title: '临住管理', icon: 'password'},
         component: () => import('@/views/tempAccommodation/tempAccommodation'),
       }]
     },
     {//a7通知公告
       path: '/notice',
       component: Layout,
-      // name:"",
-      meta: {title: '通知公告', icon: 'password'},
       children: [{
         path: '',
         name: 'TempAccommodation',
+        meta: {title: '通知公告', icon: 'password'},
         component: () => import('@/views/notice/notice'),
       }]
     },
@@ -164,7 +163,6 @@ export default new Router({
         }
       ]
     },
-
     // {//05国籍统计表
     //   path: '/nation',
     //   component: Layout,

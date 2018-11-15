@@ -225,23 +225,22 @@
             children: [
               {
                 label: '文学院',
-                children: [{label: '汉语言文学'}, {label: '英语'}]
+                children: [{label: '汉语言文学1班'}, {label: '英语1班'}]
               },
               {
                 label: '理学院',
-                children: [{label: '生物技术'}]
+                children: [{label: '生物技术1班'}]
               },
               {
                 label: '工学院',
-                children: [{label: '计算机科学与技术'}]
+                children: [{label: '计算机科学与技术1班'}]
               },
               {
                 label: '管理学院',
-                children: [{label: '工商学院'}, {label: '市场营销'}]
+                children: [{label: '管理1班'}, {label: '市场营销1班'}]
               }
             ]
-          },
-
+          }
         ],
         defaultProps: {
           children: 'children',

@@ -12,7 +12,7 @@
       <div class="" v-for="(route,index) in routes" :key="index" v-if="!route.hidden&&route.children">
         <!--点击不展开,1、没有子路由，2、有一个子路由，3、有子路由但是不展示-->
         <el-menu-item v-if="!route.hidden && (route.children.length === 1)" :index="route.path">
-          <item :title="route.meta.title" :icon="route.meta.icon"></item>
+          <item :title="route.children[0].meta.title" :icon="route.children[0].meta.icon"></item>
         </el-menu-item>
         <!--点击展开，1、子路由展示个数大于等于2-->
         <el-submenu v-if="!route.hidden && (route.children.length > 1)" :index="index + ''">
