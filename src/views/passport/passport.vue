@@ -36,12 +36,6 @@
             clearable>
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
           </el-input>
-          <el-input
-            placeholder="居留许可到期时间"
-            size="mini"
-            clearable>
-            <i slot="prefix" class="el-input__icon el-icon-search"></i>
-          </el-input>
           <el-date-picker type="date" size="mini" placeholder="居留许可到期时间" style="width: 100%;"></el-date-picker>
         </el-col>
         <el-col :span="24" class="search_btn_area">

@@ -63,6 +63,7 @@
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-view">即将到期</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
