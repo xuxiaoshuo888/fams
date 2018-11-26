@@ -219,6 +219,13 @@
               end-placeholder="结束日期">
             </el-date-picker>
           </el-form-item>
+          <el-form-item label="单位" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
+
+          <el-form-item label="分值">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
         </el-form>
 
         <el-form label-width="100px">

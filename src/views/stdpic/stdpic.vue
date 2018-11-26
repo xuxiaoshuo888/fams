@@ -222,10 +222,12 @@
         data1: [
           {
             label: '长沙医学院',
+            nodeType:'school',
             children: [
               {
                 label: '文学院',
-                children: [{label: '汉语言文学1班'}, {label: '英语1班'}]
+                nodeType:'xy',
+                children: [{label: '汉语言文学1班',nodeType:'class'}, {label: '英语1班',nodeType:'class'}]
               },
               {
                 label: '理学院',
@@ -263,11 +265,17 @@
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
         return isJPG && isLt2M;
+      },
+      handleNodeClick(e){
+        console.log(e);
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-
+.avatar{
+  width: 150px;
+  height: 200px;
+}
 </style>

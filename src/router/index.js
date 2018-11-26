@@ -33,7 +33,7 @@ export default new Router({
       children: [{
         path: '',
         name: 'StdInfoIndex',
-        meta: {title: '招生录入管理', icon: 'example'},
+        meta: {title: '招生录入管理', icon: 'excel'},
         component: () => import('@/views/stdEntry/stdEntry'),
       }]
     },
@@ -82,7 +82,7 @@ export default new Router({
       children: [{
         path: '',
         name: 'Insurance',
-        meta: {title: '保险管理', icon: 'user'},
+        meta: {title: '保险管理', icon: 'guide'},
         component: () => import('@/views/insurance/insurance'),
       }]
     },
@@ -92,7 +92,7 @@ export default new Router({
       children: [{
         path: '',
         name: 'Violation',
-        meta: {title: '学生处分管理', icon: 'user'},
+        meta: {title: '学生处分管理', icon: 'documentation'},
         component: () => import('@/views/violation/violation'),
       }]
     },
@@ -101,19 +101,19 @@ export default new Router({
       component: Layout,
       redirect: '/score/regist',
       name: 'Score',
-      meta: {title: '学生素质评分管理', icon: 'user'},
+      meta: {title: '学生素质评分管理', icon: 'clipboard'},
       children: [
         {
           path: 'regist',
           name: 'Regist',
           component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: 'user'}
+          meta: {title: '素质评分登记', icon: ''}
         },
         {
           path: 'matter',
           name: 'Matter',
           component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: 'user'}
+          meta: {title: '素质评分事项', icon: ''}
         }
       ]
     },
@@ -133,7 +133,7 @@ export default new Router({
       children: [{
         path: '',
         name: 'TempAccommodation',
-        meta: {title: '通知公告', icon: 'password'},
+        meta: {title: '通知公告', icon: 'tab'},
         component: () => import('@/views/notice/notice'),
       }]
     },
@@ -142,25 +142,25 @@ export default new Router({
       component: Layout,
       name:'SysManagement',
       redirect: '/sysManagement/user',
-      meta: {title: '系统管理', icon: 'user'},
+      meta: {title: '系统管理', icon: 'component'},
       children: [
         {
           path: 'user',
           name: 'sysUser',
           component: () => import('@/views/sysManagement/user/user'),
-          meta: {title: '用户管理', icon: 'user'}
+          meta: {title: '用户管理', icon: ''}
         },
         {
           path: 'role',
           name: 'sysRole',
           component: () => import('@/views/sysManagement/role/role'),
-          meta: {title: '角色管理', icon: 'user'}
+          meta: {title: '角色管理', icon: ''}
         },
         {
           path: 'notice',
           name: 'sysNotice',
           component: () => import('@/views/sysManagement/notice/notice'),
-          meta: {title: '提醒设置', icon: 'user'}
+          meta: {title: '提醒设置', icon: ''}
         }
       ]
     },

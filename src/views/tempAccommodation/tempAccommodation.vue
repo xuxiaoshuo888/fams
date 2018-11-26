@@ -66,6 +66,7 @@
         <el-button type="primary" size="mini" icon="el-icon-view">即将到期</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
+        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
         <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
         <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
@@ -202,28 +203,82 @@
           <el-form-item label="学号" prop="">
             <el-input v-model="ruleForm.bj"></el-input>
           </el-form-item>
-          <el-form-item label="护照号" prop="">
+          <el-form-item label="旧护照号" prop="">
+            <el-input v-model="ruleForm.zwm"></el-input>
+          </el-form-item>
+          <el-form-item label="新护照号" prop="">
             <el-input v-model="ruleForm.zwm"></el-input>
           </el-form-item>
           <el-form-item label="联系号码" prop="">
             <el-input v-model="ruleForm.zwm"></el-input>
           </el-form-item>
-
-          <el-form-item label="出境学生" prop="">
-            <el-input v-model="ruleForm.ssh"></el-input>
+          <el-form-item label="类别" prop="">
+            <el-select v-model="xslb" placeholder="">
+              <el-option v-for="item in options1" :key="item.value" :value="item.value" :label="item.label"></el-option>
+            </el-select>
+          </el-form-item>
+          <!--处境学生-->
+          <el-form-item v-if="xslb === '1'" label="入境时间" prop="">
+            <el-date-picker
+              v-model="date1"
+              type="datetime">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item v-if="xslb === '1'" label="入境地点" prop="">
+            <el-input v-model="ruleForm.zwm"></el-input>
+          </el-form-item>
+          <el-form-item v-if="xslb === '1'" label="回长时间" prop="">
+            <el-date-picker
+              v-model="date2"
+              type="datetime">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item v-if="xslb === '1'" label="回长地点" prop="">
+            <el-input v-model="ruleForm.zwm"></el-input>
+          </el-form-item>
+          <!--国内旅游学生-->
+          <el-form-item v-if="xslb === '2'" label="离长时间" prop="">
+            <el-date-picker
+              v-model="date3"
+              type="datetime">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item v-if="xslb === '2'" label="离长地点" prop="">
+            <el-input v-model="ruleForm.zwm"></el-input>
+          </el-form-item>
+          <el-form-item v-if="xslb === '2'" label="到长时间" prop="">
+            <el-date-picker
+              v-model="date4"
+              type="datetime">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item v-if="xslb === '2'" label="到长地点" prop="">
+            <el-input v-model="ruleForm.zwm"></el-input>
           </el-form-item>
 
-          <el-form-item label="国内旅游学生" prop="">
-            <el-input v-model="ruleForm.tel"></el-input>
+          <el-form-item label="到校时间" prop="">
+            <el-date-picker
+              v-model="date5"
+              type="datetime">
+            </el-date-picker>
           </el-form-item>
-          <el-form-item label="更新护照学生" prop="">
-            <el-input v-model="ruleForm.hzhm"></el-input>
-          </el-form-item>
-          <el-form-item label="辅导员姓名/登记日期" prop="">
+          <el-form-item label="辅导员姓名" prop="">
             <el-input v-model="ruleForm.gj"></el-input>
           </el-form-item>
-          <el-form-item label="登记老师姓名/上报日期" prop="">
+          <el-form-item label="登记日期" prop="">
+            <el-date-picker
+              v-model="date6"
+              type="datetime">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="登记老师姓名" prop="">
             <el-input v-model="ruleForm.xjzch"></el-input>
+          </el-form-item>
+          <el-form-item label="上报日期" prop="">
+            <el-date-picker
+              v-model="date7"
+              type="datetime">
+            </el-date-picker>
           </el-form-item>
         </el-form>
         <el-form label-width="200px">
@@ -250,6 +305,18 @@
         input2: "",
         input3: "",
         dialogVisible: false,
+        xslb:'',//学生类别
+        date1:'',
+        date2:'',
+        date3:'',
+        date4:'',
+        date5:'',
+        date6:'',
+        date7:'',
+        options1:[
+          {value:'1',label:'出境学生'},
+          {value:'2',label:'国内旅游学生'}
+        ],
         tableData3: [{
           order: '1',
           nj: "2018",
