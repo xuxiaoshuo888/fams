@@ -31,7 +31,7 @@
       </el-form-item>
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
+        <span> password: 1</span>
       </div>
     </el-form>
   </div>
@@ -60,11 +60,11 @@
       return {
         loginForm: {
           username: 'admin',
-          password: 'admin'
+          password: '1'
         },
         loginRules: {
           username: [{required: true, trigger: 'blur', validator: validateUsername}],
-          password: [{required: true, trigger: 'blur', validator: validatePass}]
+          password: [{required: true, trigger: 'blur'}]
         },
         loading: false,
         pwdType: 'password',
@@ -80,10 +80,26 @@
         }
       },
       handleLogin() {
+        this.$refs.loginForm.validate(valid => {
+          if (valid) {
+            this.loading = true
+            this.$store.dispatch('Login', this.loginForm).then(() => {
+              this.loading = false
+              this.$router.push({path: this.redirect || '/'})
+            }).catch(() => {
+              this.loading = false
+            })
+          } else {
+            console.log('failed to login')
+            return false
+          }
+        })
+
         // this.$refs.loginForm.validate(valid => {
         //   if (valid) {
         //     this.loading = true
-        //     this.$store.dispatch('Login', this.loginForm).then(() => {
+        //     this.$store.commit('Login', this.loginForm).then(() => {
+        //       this.$store.dispatch('requestToken')
         //       this.loading = false
         //       this.$router.push({path: this.redirect || '/'})
         //     }).catch(() => {
@@ -94,7 +110,8 @@
         //     return false
         //   }
         // })
-        this.$router.push('/dashboard')
+
+        // this.$router.push('/dashboard')
       }
     }
   }

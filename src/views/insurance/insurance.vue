@@ -25,7 +25,7 @@
         </el-input>
 
         <el-input
-          placeholder="保险种类"
+          placeholder="保险项目"
           size="mini"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>

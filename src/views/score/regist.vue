@@ -331,7 +331,7 @@
               </el-table-column>
               <el-table-column
                 prop="datetime"
-                label="活动时间"
+                label="扣分时间"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
@@ -349,7 +349,7 @@
               </el-table-column>
               <el-table-column
                 prop="content"
-                label="活动内容"
+                label="扣分内容"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">

@@ -161,6 +161,12 @@ export default new Router({
           name: 'sysNotice',
           component: () => import('@/views/sysManagement/notice/notice'),
           meta: {title: '提醒设置', icon: ''}
+        },
+        {
+          path:'dictionary',
+          name:'dictionary',
+          component: () => import('@/views/sysManagement/dictionary/dictionary'),
+          meta:{title:'字典维护',icon:''}
         }
       ]
     },
