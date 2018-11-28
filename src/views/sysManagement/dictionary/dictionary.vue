@@ -45,21 +45,21 @@
             <el-table-column
               prop="xm"
               label="代码名称"
-              width="100"
+              width="200"
               header-align="center"
               align="center">
             </el-table-column>
             <el-table-column
               prop="department"
               label="上级代码"
-              width="130"
+              width="100"
               header-align="center"
               align="center">
             </el-table-column>
             <el-table-column
               prop="userType"
               label="是否有效"
-              width="130"
+              width="80"
               header-align="center"
               align="center">
             </el-table-column>

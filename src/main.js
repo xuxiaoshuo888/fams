@@ -9,8 +9,10 @@ import 'element-ui/lib/theme-chalk/index.css';//样式表被单独抽出来
 
 import '@/styles/index.scss'
 import '@/icons'
-// import '@/permission' //权限控制
+import '@/permission'
+import request from  '@/utils/request'
 
+Vue.prototype.request = request
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
