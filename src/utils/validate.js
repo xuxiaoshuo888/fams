@@ -27,3 +27,11 @@ export function validatAlphabets(str) {
   const reg = /^[A-Za-z]+$/
   return reg.test(str)
 }
+
+export function isPositiveNumber(number) {
+  if(number > 0){
+    return true
+  }else{
+    return false
+  }
+}

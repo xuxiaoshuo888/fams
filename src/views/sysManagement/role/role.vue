@@ -124,11 +124,11 @@
               align="center">
             </el-table-column>
             <el-table-column
-              prop="deptId"
               label="部门"
               width=""
               header-align="center"
               align="center">
+              <template slot-scope="scope">{{scope.row.deptId}}</template>
             </el-table-column>
             <el-table-column
               prop="usertype"
@@ -229,15 +229,17 @@
               <template slot-scope="scope">{{scope.row.status === 1 ? '是' : '否'}}</template>
             </el-table-column>
           </el-table>
-          <el-pagination
-            background
-            @size-change="handleSizeChange3"
-            @current-change="handleCurrentChange3"
-            :page-sizes="[10, 20, 50]"
-            :page-size="pageSize3"
-            layout="total, sizes, prev, pager, next"
-            :total="records3">
-          </el-pagination>
+          <div class="pad20">
+            <el-pagination
+              background
+              @size-change="handleSizeChange3"
+              @current-change="handleCurrentChange3"
+              :page-sizes="[10, 20, 50]"
+              :page-size="pageSize3"
+              layout="total, sizes, prev, pager, next"
+              :total="records3">
+            </el-pagination>
+          </div>
         </el-col>
       </el-row>
     </el-dialog>
@@ -245,11 +247,12 @@
 </template>
 
 <script>
+  import {tranformDept, getStringArr, getDept} from '@/utils/tool'
+
   export default {
     name: 'role',
     data() {
       return {
-
         list: [],//角色名-name，角色管理范围-scope，定制-type，维护-id里面有SYS-1，没有-0
         managerScope: [
           {label: '学生', value: 'student'},
@@ -294,6 +297,9 @@
     },
     mounted() {
       this.getData()
+      // this.tranformDept()
+      // this.transformUserType()
+      this.abc()
     },
     methods: {
       handleSelectionChange(e) {//角色管理/选中某项
@@ -326,7 +332,7 @@
       //分配用户-左侧-删除
       removeUser() {
         if (this.selectedList2.length > 0) {
-          let m = this.getStringArr(this.selectedList2, 'id')
+          let m = getStringArr(this.selectedList2, 'id')
           this.request.post('/api/role/removeRoleUsers', {roleId: this.selectedList[0].id, userids: m}).then(res => {
             this.getData2()
             this.getData3()
@@ -347,7 +353,7 @@
       //分配用户-右侧-选择
       addUser() {
         if (this.selectedList3.length > 0) {
-          let m = this.getStringArr(this.selectedList3, 'id')
+          let m = getStringArr(this.selectedList3, 'id')
           this.request.post('/api/role/addUser', {roleId: this.selectedList[0].id, userids: m}).then(res => {
             this.getData2()
             this.getData3()
@@ -380,6 +386,7 @@
           this.pageNum2 = res.data.data.page
           this.pageSize2 = res.data.data.pageSize
           this.records2 = res.data.data.records
+
         })
       },
       getData3() {//分配用户右侧表格
@@ -395,6 +402,19 @@
           this.pageSize3 = res.data.data.pageSize
           this.records3 = res.data.data.records
         })
+      },
+      tranformDept() {
+        this.request.post('/api/select/common', {type: 'dept'}).then(res => {
+          console.log(res)
+        }).catch()
+      },
+      abc(){
+        console.log(getDept())
+      },
+      transformUserType() {
+        this.request.post('/api/select/common', {type: 'code', parentId: '20030'}).then(res => {
+          console.log(res)
+        }).catch()
       },
       //根据字符串匹配角色管理范围
       match(e) {
@@ -421,10 +441,9 @@
           })
         }
       },
-      del() {
-        let _this = this
+      del() {//删除按钮
         if (this.selectedList.length > 0) {
-          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          this.$confirm('确定删除?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -454,7 +473,7 @@
           })
         }
       },
-      distribution() {//分配用户
+      distribution() {//分配用户按钮
         if (this.selectedList.length === 1) {
           this.dialogVisible2 = true
           this.getData2()
@@ -483,22 +502,13 @@
           }
         })
       },
-      cancel() {
+      cancel() {//取消按钮
         this.dialogVisible1 = false
         this.resetForm('addForm')
       },
       //清空表单
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      },
-      //输入对象数组，key返回value组成的数组
-      getStringArr(objArr, m) {
-        let a = []
-        console.log(objArr)
-        for (let i = 0; i < objArr.length; i++) {
-          a.push(objArr[i][m])
-        }
-        return a
       }
     },
   }

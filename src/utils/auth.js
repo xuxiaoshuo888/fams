@@ -20,14 +20,14 @@ export function setRoleList(list) {
   return Cookies.set(RoleListKey, list)
 }
 
-export function getRoleList(list) {
-  return Cookies.get(RoleListKey, list)
+export function getRoleList() {
+  return Cookies.get(RoleListKey)
 }
 
 export function setCurrentRole(CurrentRole) {
   return Cookies.set(RoleKey, CurrentRole)
 }
 
-export function getCurrentRole(CurrentRole) {
-  return Cookies.get(RoleKey, CurrentRole)
+export function getCurrentRole() {
+  return Cookies.get(RoleKey)
 }

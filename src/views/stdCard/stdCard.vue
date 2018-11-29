@@ -6,21 +6,21 @@
           placeholder="学号"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="xh">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="在校状态"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="zxzt">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="姓名"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <!--<el-select size="mini" placeholder="学籍类别">-->
@@ -61,13 +61,13 @@
         </el-select>
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
       </el-col>
     </el-row>
 
     <el-table
-      :data="tableData3"
+      :data="list"
       style=""
       max-height="768"
       border
@@ -86,7 +86,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
+          <el-button @click="showStd(scope.row.xh)" type="primary" size="mini">详情</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -104,7 +104,7 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="class"
+        prop="bj"
         label="班级"
         width="130"
         header-align="center"
@@ -118,91 +118,91 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="xm"
         label="姓名"
-        width="100"
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="cnName"
+        prop="zwm"
         label="中文名"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="gender"
+        prop="xb"
         label="性别"
         width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="roomNum"
+        prop="xh"
         label="宿舍号"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="tel"
+        prop="lxdh"
         label="电话号码"
         width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="birthday"
+        prop="csrq"
         label="出生年月"
         width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="passport"
+        prop="xh"
         label="护照号"
         width="180"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="Nation"
+        prop="gb"
         label="国籍"
         width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="stdNo"
+        prop="xh"
         label="学籍注册号"
         width="130"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="arriveDate"
+        prop="xh"
         label="到校日期"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="religion"
+        prop="zjxy"
         label="宗教"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="bzr"
+        prop="zh"
         label="班主任"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="bz"
+        prop="zh"
         label="备注"
         width=""
         header-align="center"
@@ -242,49 +242,49 @@
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <el-form-item label="学号：">
-                    <div>201808080012</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                   <el-form-item label="姓名：">
-                    <div>Tom</div>
+                    <div>{{list_jb.xm}}</div>
                   </el-form-item>
                   <el-form-item label="中文名：">
-                    <div>汤姆</div>
+                    <div>{{list_jb.zwm}}</div>
                   </el-form-item>
                   <el-form-item label="性别：">
-                    <div>男</div>
+                    <div>{{list_jb.xb}}</div>
                   </el-form-item>
                   <el-form-item label="出生年月：">
-                    <div>1993年8月</div>
+                    <div>{{list_jb.csrq}}</div>
                   </el-form-item>
                   <el-form-item label="年级：">
-                    <div>2016级</div>
+                    <div>{{list_jb.nj}}级</div>
                   </el-form-item>
                   <el-form-item label="学院：">
-                    <div>工学院</div>
+                    <div>{{list_jb.xy}}</div>
                   </el-form-item>
                   <el-form-item label="专业：">
-                    <div>机械工程</div>
+                    <div>{{list_jb.zy}}</div>
                   </el-form-item>
                   <el-form-item label="班级：">
-                    <div>机械工程1班</div>
+                    <div>{{list_jb.bj}}</div>
                   </el-form-item>
                   <el-form-item label="入学年月：">
-                    <div>2015年1月</div>
+                    <div>{{list_jb.rxnf}}</div>
                   </el-form-item>
                   <el-form-item label="在校状态：">
-                    <div>在校</div>
+                    <div>{{list_jb.zxzt}}</div>
                   </el-form-item>
                   <el-form-item label="学籍状态：">
-                    <div>正常</div>
+                    <div>{{list_jb.zjzt}}</div>
                   </el-form-item>
                   <el-form-item label="联系电话：">
-                    <div>123213123213</div>
+                    <div>{{list_jb.lxdh}}</div>
                   </el-form-item>
                   <el-form-item label="住宿情况：">
-                    <div>2号宿舍楼503</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                   <el-form-item label="出生地：">
-                    <div>莫桑比克马普多</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -292,25 +292,25 @@
                 <el-form ref="form" size="mini">
                   <div class="card_pic"><img src="@/assets/1.jpg"/></div>
                   <el-form-item label="国籍：">
-                    <div>莫桑比克</div>
+                    <div>{{list_jb.gb}}</div>
                   </el-form-item>
                   <el-form-item label="宗教信仰：">
-                    <div>无宗教信仰</div>
+                    <div>{{list_jb.zjxy}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员工号：">
-                    <div>12321321</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员姓名：">
-                    <div>张三</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员联系方式：">
-                    <div>1231232313</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                   <el-form-item label="毕业去向：">
-                    <div>长沙XX机械制造有限公司XX分公司</div>
+                    <div>{{list_jb.xh}}</div>
                   </el-form-item>
                   <el-form-item label="永久联系电话：">
-                    <div>1231232333</div>
+                    <div>{{list_jb.yjlxdh}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -325,13 +325,13 @@
               <el-col :span="12">
                 <el-form label-width="130px" size="mini">
                   <el-form-item label="护照号码：">
-                    <div>201808080012</div>
+                    <div>{{list_hz.hzhm}}</div>
                   </el-form-item>
                   <el-form-item label="护照有效期：">
-                    <div>2019年8月7日</div>
+                    <div>{{list_hz.hzyxq}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可证件号：">
-                    <div>2564132168431</div>
+                    <div>{{list_hz.jlxkzy}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可有效期：">
                     <div>2019年7月6日</div>
@@ -765,13 +765,18 @@
     name: 'stdCard',
     data() {
       return {
-        input1: "",
-        input2: "",
-        input3: "",
+        xh: "",
+        zxzt: "",
+        xm: "",
         xy: '',
         zy: '',
         nj: '',
         mz: [],
+        list:[],//外面列表
+        list_jb:[],//基本
+        list_hz:[],
+        list_bx:[],
+        list_lz:[],
         currentPage4: 1,
         dialogVisible: false,
         tableData3: [
@@ -980,30 +985,7 @@
           resource: '',
           desc: ''//备注
         },
-        rules: {
-          // name: [
-          //   { required: true, message: '', trigger: 'blur' },
-          //   { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-          // ],
-          // region: [
-          //   { required: true, message: '请选择活动区域', trigger: 'change' }
-          // ],
-          // date1: [
-          //   { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          // ],
-          // date2: [
-          //   { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-          // ],
-          // type: [
-          //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-          // ],
-          // resource: [
-          //   { required: true, message: '请选择活动资源', trigger: 'change' }
-          // ],
-          // desc: [
-          //   { required: true, message: '请填写活动形式', trigger: 'blur' }
-          // ]
-        },
+        rules: {},
         //缴费
         jiaofei_contain: [
           {
@@ -1579,12 +1561,39 @@
         ]
       }
     },
-    computed: {},
+    mounted() {
+      this.initJiaofei()
+      this.getData()
+    },
     methods: {
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      getData() {
+        this.request.post('/api/student/page', {
+          page: this.pageNum,
+          limit: this.pageSize,
+          xh:this.xh,
+          zxzt:this.zxzt,
+          xm:this.xm,
+          xy:this.xy,
+          zy:this.zy,
+          nj:this.nj,
+          mz:this.mz
+        }).then(res => {
+          console.log(res)
+          this.list = res.data.page.rows
+        })
       },
+      showStd(xh) {
+        this.dialogVisible = true;
+        this.request.post('/api/student/getStdDetail', {xh:xh}).then(res => {
+          console.log(res)
+          this.list_jb = res.data.data
+          this.list_bx = res.data.bx
+          this.list_hz = res.data.hz
+          this.list_lz = res.data.lz
+
+        })
+      },
+
       handleSelectionChange(e) {
         console.log(e)
       },
@@ -1652,10 +1661,7 @@
         this.confirm_select()
       }
     },
-    computed: {},
-    mounted() {
-      this.initJiaofei()
-    }
+
   }
 </script>
 

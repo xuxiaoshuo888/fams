@@ -132,7 +132,7 @@ export default new Router({
       component: Layout,
       children: [{
         path: '',
-        name: 'TempAccommodation',
+        name: 'Notice',
         meta: {title: '通知公告', icon: 'tab'},
         component: () => import('@/views/notice/notice'),
       }]
@@ -166,7 +166,7 @@ export default new Router({
           path:'dictionary',
           name:'dictionary',
           component: () => import('@/views/sysManagement/dictionary/dictionary'),
-          meta:{title:'字典维护',icon:''}
+          meta:{title:'数据字典',icon:''}
         }
       ]
     },

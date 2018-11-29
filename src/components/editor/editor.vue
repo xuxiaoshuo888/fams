@@ -13,9 +13,10 @@
     name: 'editor',
     data() {
       return {
-        editorContent: ''
+        editorContent: ""
       }
     },
+    props: ['msg'],//接收父组件的传入的值
     methods: {
       getContent: function () {
         alert(this.editorContent)
@@ -27,6 +28,8 @@
         this.editorContent = html
       }
       editor.create()
+      console.log(this.msg)
+      this.editorContent = this.msg
     }
   }
 </script>
