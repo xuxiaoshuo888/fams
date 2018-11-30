@@ -23,14 +23,6 @@
           v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <!--<el-select size="mini" placeholder="学籍类别">-->
-        <!--<el-option key="1" label="在籍" value="1"></el-option>-->
-        <!--<el-option key="2" label="不在籍" value="2"></el-option>-->
-        <!--</el-select>-->
-        <!--<el-select size="mini" placeholder="性别">-->
-        <!--<el-option key="1" label="男" value="1"></el-option>-->
-        <!--<el-option key="2" label="女" value="2"></el-option>-->
-        <!--</el-select>-->
         <el-input
           placeholder="学院"
           size="mini"
@@ -88,13 +80,6 @@
         <template slot-scope="scope">
           <el-button @click="showStd(scope.row.xh)" type="primary" size="mini">详情</el-button>
         </template>
-      </el-table-column>
-      <el-table-column
-        prop="order"
-        label="序号"
-        width="50"
-        header-align="center"
-        align="center">
       </el-table-column>
       <el-table-column
         prop="nj"
@@ -331,26 +316,26 @@
                     <div>{{list_hz.hzyxq}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可证件号：">
-                    <div>{{list_hz.jlxkzy}}</div>
+                    <div></div>
                   </el-form-item>
                   <el-form-item label="居留许可有效期：">
-                    <div>2019年7月6日</div>
+                    <div>{{list_hz.jlxkdqr}}</div>
                   </el-form-item>
                   <el-form-item label="护照首页：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a href="#" target="_blank" :url="list_hz.hzsy">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="签证页：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a href="#" target="_blank" :url="list_hz.qzy">点击预览</a></div>
                   </el-form-item>
                 </el-form>
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <el-form-item label="护照有效期：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div>{{list_hz.hzyxq}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可页：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a href="#" target="_blank" :url="list_hz.jlxkzy">点击预览</a></div>
                   </el-form-item>
                   <el-form-item label="JW202表：">
                     <div><a href="#" target="_blank">点击预览</a></div>
@@ -374,7 +359,7 @@
           <header class="card_title">保险购买及理赔信息</header>
           <div class="card_content paddingtop0">
             <el-table
-              :data="baoxian"
+              :data="list_bx"
               style="width: 100%">
               <el-table-column type="expand" header-align="center" align="center">
                 <template slot-scope="props">
@@ -383,32 +368,32 @@
                       <span>{{ props.row.bq }}</span>
                     </el-form-item>
                     <el-form-item label="报案情况:">
-                      <span>{{ props.row.qk }}</span>
+                      <span>{{ props.row.bxba }}</span>
                     </el-form-item>
                   </el-form>
                 </template>
               </el-table-column>
               <el-table-column
                 label="购买保险名字"
-                prop="name"
+                prop="bxxm"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
                 label="金额"
-                prop="je"
+                prop="bxf"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
                 label="购买保险日期"
-                prop="rq"
+                prop="bxrq"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
                 label="就诊医院"
-                prop="yy"
+                prop="jzyy"
                 header-align="center"
                 align="center">
               </el-table-column>
@@ -578,7 +563,7 @@
           <div class="card_content paddingtop0">
             <div class="card_subtitle">出境</div>
             <el-table
-              :data="chujing"
+              :data="list_lz"
               style="width: 100%">
               <el-table-column
                 prop="outtime"
@@ -772,196 +757,15 @@
         zy: '',
         nj: '',
         mz: [],
-        list:[],//外面列表
-        list_jb:[],//基本
-        list_hz:[],
-        list_bx:[],
-        list_lz:[],
+        list: [],//外面列表
+        list_jb: [],//基本
+        list_hz: [],
+        list_bx: [],
+        list_lz: [],
         currentPage4: 1,
         dialogVisible: false,
-        tableData3: [
-          {
-            order: '1',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无看见的身份卡的话费卡说的话点卡收费但是法律肯定会是否考虑好了上的卡号发'
-          }, {
-            order: '2',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          },
-          {
-            order: '3',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '4',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '5',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '6',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '7',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '8',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '9',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '10',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }],
+        lvyou:[],
+        passport:[],
         ruleForm: {
           name: '',//姓名
           zwm: '',//中文名
@@ -1289,56 +1093,6 @@
         jiaofei: '' || [],//绑定表格
         showMoreJiaofei: false,//默认表格是收起的，false代表目前表格是收起的,true表示表格是展开的
         //保险
-        baoxian: [
-          {
-            name: '重大疾病险',
-            je: '2000',
-            rq: '2018年6月9日',
-            yy: '湖北省人民医院',
-            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
-            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
-          },
-          {
-            name: '意外险',
-            je: '2000',
-            rq: '2018年6月10日',
-            yy: '湖北省人民医院',
-            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
-            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
-          },
-          {
-            name: '财产险',
-            je: '2000',
-            rq: '2018年6月11日',
-            yy: '湖北省人民医院',
-            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
-            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
-          },
-          {
-            name: '意外险',
-            je: '2000',
-            rq: '2018年6月12日',
-            yy: '湖北省人民医院',
-            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
-            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
-          },
-          {
-            name: '财产险',
-            je: '2000',
-            rq: '2018年6月13日',
-            yy: '湖北省人民医院',
-            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
-            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
-          },
-          {
-            name: '财产险',
-            je: '2000',
-            rq: '2018年6月14日',
-            yy: '湖北省人民医院',
-            bq: '病人XXX，男，XX岁，因患XXXX，于2014年5月XX日住院。经立即施行手术和十天治疗后，现已痊愈，将于2014年5月16日出院。建议在家休息一个星期后再上班工作。',
-            qk: '咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间咯技术的金卡时间'
-          }
-        ],
         //素质评分
         pingfen: [
           {
@@ -1424,108 +1178,8 @@
         ],
         //临住登记
         //出境
-        chujing: [
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          },
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          },
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          },
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          }
-        ],
         //国内旅游
-        lvyou: [
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          },
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          },
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          },
-          {
-            outtime: '2018-08-08',
-            outplace: '长沙火车站',
-            backtime: '2018-09-08',
-            backplace: '长沙火车站',
-            backschooltime: '2018-09-08',
-            registtime: '2018-09-08',
-            reporttime: '2018-09-08'
-          }
-        ],
         //更新护照
-        passport: [
-          {
-            oldNum: '21312321312',
-            newNum: '12312321321',
-            registTime: '2018-09-09',
-            reportTime: '2018-09-09'
-          },
-          {
-            oldNum: '21312321312',
-            newNum: '12312321321',
-            registTime: '2018-09-09',
-            reportTime: '2018-09-09'
-          }, {
-            oldNum: '21312321312',
-            newNum: '12312321321',
-            registTime: '2018-09-09',
-            reportTime: '2018-09-09'
-          }, {
-            oldNum: '21312321312',
-            newNum: '12312321321',
-            registTime: '2018-09-09',
-            reportTime: '2018-09-09'
-          }
-        ],
         dialogVisible_select_radio: false,//弹出框-单选
         dialogVisible_select_multiple: false,//弹出框-多选
         isRadio: true,//true-单选，false多选
@@ -1570,13 +1224,13 @@
         this.request.post('/api/student/page', {
           page: this.pageNum,
           limit: this.pageSize,
-          xh:this.xh,
-          zxzt:this.zxzt,
-          xm:this.xm,
-          xy:this.xy,
-          zy:this.zy,
-          nj:this.nj,
-          mz:this.mz
+          xh: this.xh,
+          zxzt: this.zxzt,
+          xm: this.xm,
+          xy: this.xy,
+          zy: this.zy,
+          nj: this.nj,
+          mz: this.mz
         }).then(res => {
           console.log(res)
           this.list = res.data.page.rows
@@ -1584,7 +1238,7 @@
       },
       showStd(xh) {
         this.dialogVisible = true;
-        this.request.post('/api/student/getStdDetail', {xh:xh}).then(res => {
+        this.request.post('/api/student/getStdDetail', {xh: xh}).then(res => {
           console.log(res)
           this.list_jb = res.data.data
           this.list_bx = res.data.bx

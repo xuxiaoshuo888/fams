@@ -6,50 +6,54 @@
           placeholder="学号"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="xh">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="性别"
-          size="mini"
-          clearable
-          v-model="input2">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <!--<el-input-->
+        <!--placeholder="性别"-->
+        <!--size="mini"-->
+        <!--clearable-->
+        <!--v-model="input2">-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
         <el-input
           placeholder="姓名"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
 
         <el-input
           placeholder="保险项目"
           size="mini"
-          clearable>
+          clearable
+          v-model="bxxm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
-        <el-button type="primary" size="mini" icon="el-icon-plus">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-delete" @click="remove">批量删除</el-button>
+
         <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>
 
     <el-table
-      :data="tableData3"
+      :data="list"
       style="width: 100%"
-      border>
+      border
+      @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         header-align="center"
         align="center"
+
         width="50">
       </el-table-column>
       <el-table-column
@@ -58,7 +62,7 @@
         width="120">
       </el-table-column>
       <el-table-column
-        prop="xm"
+        prop="student.xm"
         label="姓名(护照用名)"
         width="120">
       </el-table-column>
@@ -68,11 +72,10 @@
         width="120">
       </el-table-column>
       <el-table-column
-        prop="gj"
+        prop="student.gb"
         label="国籍"
         width="120">
       </el-table-column>
-
       <el-table-column
         prop="bxxm"
         label="保险项目"
@@ -120,7 +123,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-          <el-button type="danger" size="mini">删除</el-button>
+          <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">编辑</el-button>
         </template>
       </el-table-column>
 
@@ -134,73 +137,94 @@
       <div>
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
+          <el-form-item label="学号" prop="">
+            <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
-            <el-radio-group v-model="ruleForm.xb">
+            <el-radio-group v-model="ruleForm.xb" disabled>
               <el-radio label="男"></el-radio>
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.xh"></el-input>
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="ruleForm.xm" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
-            <el-input v-model="ruleForm.bj"></el-input>
+            <el-input v-model="ruleForm.bj" disabled></el-input>
           </el-form-item>
           <el-form-item label="年级" prop="">
-            <el-input v-model="ruleForm.nj"></el-input>
+            <el-input v-model="ruleForm.nj" disabled></el-input>
           </el-form-item>
           <el-form-item label="中文名" prop="">
-            <el-input v-model="ruleForm.zwm"></el-input>
+            <el-input v-model="ruleForm.zwm" disabled></el-input>
           </el-form-item>
           <el-form-item label="出生年月" required>
-            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
+            <el-input v-model="ruleForm.csrq" disabled></el-input>
           </el-form-item>
           <el-form-item label="电话号码" prop="">
-            <el-input v-model="ruleForm.tel"></el-input>
+            <el-input v-model="ruleForm.lxdh" disabled></el-input>
           </el-form-item>
           <el-form-item label="保险项目" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm2.bxxm"></el-input>
           </el-form-item>
           <el-form-item label="保险费" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm2.bxf"></el-input>
           </el-form-item>
           <el-form-item label="保险日期" prop="">
-            <el-input></el-input>
+            <el-date-picker
+              type="date"
+              value-format="yyyy-MM-dd"
+              v-model="ruleForm2.bxrq">
+            </el-date-picker>
           </el-form-item>
           <el-form-item label="购买情况" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm2.gmqk"></el-input>
           </el-form-item>
           <el-form-item label="就诊医院" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm2.jzyy"></el-input>
+          </el-form-item>
+        </el-form>
+        <el-form label-width="150px">
+          <el-form-item label="病情" prop="desc" style="width:100%">
+            <el-input type="textarea" v-model="ruleForm2.bq" style="width:100%;"></el-input>
+          </el-form-item>
+        </el-form>
+        <el-form label-width="150px">
+          <el-form-item label="保险备案" prop="desc" style="width:100%">
+            <el-input type="textarea" v-model="ruleForm2.bxba" style="width:100%;"></el-input>
           </el-form-item>
         </el-form>
         <el-form label-width="150px">
           <el-form-item label="备注" prop="desc" style="width:100%">
-            <el-input type="textarea" v-model="ruleForm.bz" style="width:100%;"></el-input>
+            <el-input type="textarea" v-model="ruleForm2.bz" style="width:100%;"></el-input>
           </el-form-item>
         </el-form>
-
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button type="primary" @click="submit">确 定</el-button>
   </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
+  import {getStringArr} from '@/utils/tool'
+
   export default {
     name: 'insurance',
     data() {
       return {
-        input1: "",
-        input2: "",
-        input3: "",
+        xh: "",
+        xm: "",
+        bxxm: "",
+        list: [],
+        pageNum: null,
+        pageSize: null,
+        records: null,
         dialogVisible: false,
+        selectedList: [],
+        add_edit_flag: false,//false-新增，true-编辑
         tableData3: [
           {
             xh: '1',
@@ -270,60 +294,118 @@
           }
         ],
         ruleForm: {
-          name: '',//姓名
+          xm: '',//姓名
           zwm: '',//中文名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
-          ssh: '',//宿舍号
-          sex: '',
-          tel: '',
-          birth: '',
-          hzhm: '',//护照号码
-          gj: '',//国籍
-          xjzch: '',//学籍注册号
-          dxrq: '',//到校日期
-          region: '',//宗教
-          bzr: '',//班主任
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''//备注
+          xb: '',
+          lxdh: '',
+          csrq: '',
         },
-        rules: {
-          // name: [
-          //   { required: true, message: '', trigger: 'blur' },
-          //   { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-          // ],
-          // region: [
-          //   { required: true, message: '请选择活动区域', trigger: 'change' }
-          // ],
-          // date1: [
-          //   { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          // ],
-          // date2: [
-          //   { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-          // ],
-          // type: [
-          //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-          // ],
-          // resource: [
-          //   { required: true, message: '请选择活动资源', trigger: 'change' }
-          // ],
-          // desc: [
-          //   { required: true, message: '请填写活动形式', trigger: 'blur' }
-          // ]
-        }
+        ruleForm2: {
+          xh: "",
+          bxxm: "",
+          bxf: "",
+          bxrq: "",
+          gmqk: "",
+          jzyu: "",
+          bz: "",
+          id: ""
+        },
+        rules: {}
       }
     },
-    computed: {},
+    mounted() {
+      this.getData()
+    },
     methods: {
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      getData() {//分配用户左侧表格
+        this.request.post('/api/insurance/page', {
+          xm: this.xm,
+          xh: this.xh,
+          bxxm: this.bxxm,
+          page: this.pageNum,
+          limit: this.pageSize
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
       },
+      add_edit(e) {
+        this.dialogVisible = true
+        if (e === 'add') {//新增
+          this.add_edit_flag = false
+        } else {//编辑
+          this.add_edit_flag = true
+          this.request.post('/api/insurance/toEdit', {id: e}).then(res => {
+            this.ruleForm = res.data.data.student
+            this.ruleForm2 = res.data.data
+            delete this.ruleForm2.student
+            delete this.ruleForm2.whenCreated
+            delete this.ruleForm2.whenModified
+          })
+        }
+      },
+      handleSelectionChange(e) {
+        this.selectedList = e
+      },
+      remove() {//删除
+        if (this.selectedList.length > 0) {
+          let m = getStringArr(this.selectedList, 'id')
+          this.$confirm('确定删除?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.request.post('/api/insurance/remove', {ids: m}).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.errmsg
+              })
+              this.getData()
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+        } else {
+          this.$message({
+            message: '请至少选择一项',
+            type: 'warning',
+            duration: 5 * 1000
+          })
+        }
+      },
+      getStdInfo() {
+        if (this.ruleForm.xh) {
+          this.request.post('/api/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
+            this.ruleForm = res.data.data
+          })
+        }
+      },
+      submit() {
+        let url = ''
+        if (this.add_edit_flag) {//编辑
+          url = '/api/insurance/edit'
+        } else {
+          url = '/api/insurance/add'
+        }
+        this.ruleForm2.xh = this.ruleForm.xh
+        this.request.post(url, this.ruleForm2).then(res => {
+          this.$message({
+            message: res.errmsg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          this.getData()
+          this.dialogVisible = false
+        })
+      }
     }
   }
 </script>

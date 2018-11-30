@@ -14,7 +14,6 @@
           size="mini"
           type="date"
           value-format="yyyy-MM-dd"
-          @change="abc"
           placeholder="选择日期">
         </el-date-picker>
         <el-input
@@ -291,9 +290,6 @@
           })
           this.getList()
         })
-      },
-      abc(e) {
-        console.log(this.time)
       },
       handleSizeChange(e) {
         this.pageSize = e

@@ -386,7 +386,6 @@
           this.pageNum2 = res.data.data.page
           this.pageSize2 = res.data.data.pageSize
           this.records2 = res.data.data.records
-
         })
       },
       getData3() {//分配用户右侧表格
