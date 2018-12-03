@@ -4,59 +4,66 @@
       <el-row>
         <el-col :span="12"><h4>加分活动</h4></el-col>
         <el-col :span="12" class="textr">
-          <el-button type="primary"  size="small"  icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+          <el-button type="primary" size="small" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
         </el-col>
       </el-row>
       <el-table
-        :data="tableData3"
+        :data="list"
         style="width: 100%"
         border
         header-align="center"
         align="center">
         <el-table-column
-          prop="no"
+          prop="hdxh"
           label="序号"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="xn"
           label="学年"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="xq"
           label="学期"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="shijian"
-          label="活动时间"
+          prop="hdkssj"
+          label="活动开始时间"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="hdjssj"
+          label="活动结束时间"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop="score"
           label="加分值"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="neirong"
+          prop="hdnr"
           label="活动内容"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="hdjbdw"
           label="举办活动单位"
           width=""
           header-align="center"
@@ -65,12 +72,12 @@
         <el-table-column
           fixed="right"
           label="操作"
-          width=""
+          width="150"
           header-align="center"
           align="center">
           <template slot-scope="scope">
-            <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-            <el-button type="danger" size="mini">删除</el-button>
+            <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">修改</el-button>
+            <el-button type="danger" size="mini" @click="remove(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -78,15 +85,15 @@
       <div class="pagination-block">
         <el-pagination
           background
-          @size-change=""
-          @current-change=""
-          @prev-click=""
-          @next-click=""
-          :current-page="currentPage4"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
-          layout="total, sizes, prev, pager, next,->"
-          :total="400">
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          @prev-click="prev"
+          @next-click="next"
+          :current-page="pageNum"
+          :page-sizes="[10, 20, 50]"
+          :page-size="pageSize"
+          layout="total, sizes, prev, pager, next,jumper"
+          :total="records">
         </el-pagination>
       </div>
     </div>
@@ -95,59 +102,66 @@
       <el-row>
         <el-col :span="12"><h4>扣分活动</h4></el-col>
         <el-col :span="12" class="textr">
-          <el-button type="primary" size="small" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
+          <el-button type="primary" size="small" icon="el-icon-plus" @click="add_edit('add2')">新增</el-button>
         </el-col>
       </el-row>
       <el-table
-        :data="tableData3"
+        :data="list2"
         style="width: 100%"
         border
         header-align="center"
         align="center">
         <el-table-column
-          prop="no"
+          prop="hdxh"
           label="序号"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="xn"
           label="学年"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="xq"
           label="学期"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="shijian"
-          label="活动时间"
+          prop="hdkssj"
+          label="活动开始时间"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="hdjssj"
+          label="活动结束时间"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop="score"
           label="加分值"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="neirong"
+          prop="hdnr"
           label="活动内容"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop=""
+          prop="hdjbdw"
           label="举办活动单位"
           width=""
           header-align="center"
@@ -156,30 +170,30 @@
         <el-table-column
           fixed="right"
           label="操作"
-          width=""
+          width="150"
           header-align="center"
           align="center">
           <template slot-scope="scope">
-            <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-            <el-button type="danger" size="mini">删除</el-button>
+            <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">修改</el-button>
+            <el-button type="danger" size="mini" @click="remove(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <!--分页-->
-      <div class="pagination-block">
-        <el-pagination
-          background
-          @size-change=""
-          @current-change=""
-          @prev-click=""
-          @next-click=""
-          :current-page="currentPage4"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
-          layout="total, sizes, prev, pager, next,->"
-          :total="400">
-        </el-pagination>
-      </div>
+      <!--<div class="pagination-block">-->
+      <!--<el-pagination-->
+      <!--background-->
+      <!--@size-change=""-->
+      <!--@current-change=""-->
+      <!--@prev-click=""-->
+      <!--@next-click=""-->
+      <!--:current-page="currentPage4"-->
+      <!--:page-sizes="[10, 20, 30, 40]"-->
+      <!--:page-size="10"-->
+      <!--layout="total, sizes, prev, pager, next,->"-->
+      <!--:total="400">-->
+      <!--</el-pagination>-->
+      <!--</div>-->
     </div>
 
     <!--模态框-->
@@ -192,52 +206,56 @@
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
                  class="demo-ruleForm">
           <el-form-item label="活动序号" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
+            <el-input v-model="ruleForm.hdxh"></el-input>
           </el-form-item>
           <el-form-item label="学年">
-            <el-select placeholder="请选择">
-              <el-option label="2018学年" value="a2018"></el-option>
-              <el-option label="2017学年" value="a2017"></el-option>
-              <el-option label="2016学年" value="a2016"></el-option>
-              <el-option label="2015学年" value="a2015"></el-option>
-            </el-select>
+            <el-date-picker
+              v-model="ruleForm.xn"
+              type="year"
+              placeholder="选择学年"
+              value-format="yyyy">
+            </el-date-picker>
           </el-form-item>
           <el-form-item label="学期">
-            <el-select placeholder="请选择">
-              <el-option label="第一学期" value="1"></el-option>
-              <el-option label="第二学期" value="2"></el-option>
+            <el-select placeholder="请选择" v-model="ruleForm.xq">
+              <el-option value="第一学期">第一学期</el-option>
+              <el-option value="第二学期">第二学期</el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="活动时间">
             <el-date-picker
-              v-model="value6"
-              type="daterange"
-              align="right"
-              unlink-panels
-              range-separator="-"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期">
+              v-model="ruleForm.hdkssj"
+              type="date"
+              clearable
+              value-format="yyyy-MM-dd">
+            </el-date-picker>
+            -
+            <el-date-picker
+              v-model="ruleForm.hdjssj"
+              type="date"
+              clearable
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
           <el-form-item label="单位" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
+            <el-input v-model="ruleForm.hdjbdw"></el-input>
           </el-form-item>
 
           <el-form-item label="分值">
-            <el-input v-model="ruleForm.name"></el-input>
+            <el-input v-model="ruleForm.score"></el-input>
           </el-form-item>
         </el-form>
 
         <el-form label-width="100px">
           <el-form-item label="活动内容" prop="desc" style="width:100%">
-            <el-input type="textarea" v-model="ruleForm.bz" style="width:100%;"></el-input>
+            <el-input type="textarea" v-model="ruleForm.hdnr" style="width:100%;"></el-input>
           </el-form-item>
         </el-form>
 
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="submit">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -249,68 +267,139 @@
     name: "matter",
     data() {
       return {
-        input1: "",
-        input2: "",
-        input3: "",
-        value6:'',//时间范围
         dialogVisible: false,
-        tableData3: [
-          {
-            no: '1',
-            shijian: '2018-08-08',
-            neirong: 'sasdasd'
-          },
-          {
-            no: '2',
-            shijian: '2018-08-08',
-            neirong: 'sasdasd'
-          },
-          {
-            no: '3',
-            shijian: '2018-08-08',
-            neirong: 'sasdasd'
-          },
-          {
-            no: '4',
-            shijian: '2018-08-08',
-            neirong: 'sasdasd'
-          },
-          {
-            no: '5',
-            shijian: '2018-08-08',
-            neirong: 'sasdasd'
-          }
-        ],
+        add_edit_flag: false,//false-新增，true-编辑
+        list: [],
+        pageNum: 1,
+        pageSize: null,
+        records: null,
+        list2: [],
+        pageNum2: 1,
+        pageSize2: null,
+        records2: null,
         ruleForm: {
-          name: '',//姓名
-          zwm: '',//中文名
-          xh: '',//学号
-          bj: '',//班级
-          nj: '',//年级
-          ssh: '',//宿舍号
-          sex: '',
-          tel: '',
-          birth: '',
-          hzhm: '',//护照号码
-          gj: '',//国籍
-          xjzch: '',//学籍注册号
-          dxrq: '',//到校日期
-          region: '',//宗教
-          bzr: '',//班主任
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''//备注
+          hdlx: '',//1-加分，0-减分
+          hdxh: '',
+          xn: '',
+          xq: '',
+          hdkssj: '',
+          hdjssj: '',
+          hdjbdw: '',
+          score: '',
+          hdnr: ''
         },
         rules: {}
       }
     },
+    mounted() {
+      this.getData()
+      this.getData2()
+    },
     methods: {
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      getData() {
+        this.request.post('/api/score/itemPage', {
+          hdlx: '1',//1-加分，0-扣分
+          page: this.pageNum,
+          limit: this.pageSize,
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+      getData2() {
+        this.request.post('/api/score/itemPage', {
+          hdlx: '0',//1-加分，0-扣分
+          page: this.pageNum,
+          limit: this.pageSize,
+        }).then(res => {
+          this.list2 = res.data.page.rows
+          this.pageNum2 = res.data.page.page
+          this.pageSize2 = res.data.page.pageSize
+          this.records2 = res.data.page.records
+        })
+      },
+      add_edit(e) {//点击打开模态框
+        // this.reset_form()
+        this.dialogVisible = true
+        if (e === 'add') {//新增-加分
+          this.add_edit_flag = false
+          this.ruleForm.hdlx = '1'
+        } else if (e === 'add2') {//新增-减分
+          this.add_edit_flag = false
+          this.ruleForm.hdlx = '0'
+        } else {//编辑
+          this.add_edit_flag = true
+          this.request.post('/api/score/itemToEdit', {id: e}).then(res => {
+            if (res.data.data) {
+              this.ruleForm = res.data.data
+              delete this.ruleForm.whenCreated
+              delete this.ruleForm.whenModified
+            }
+          })
+        }
+      },
+      submit() {
+        let url = ''
+        if (this.add_edit_flag) {//编辑
+          url = '/api/score/itemEdit'
+        } else {
+          url = '/api/score/itemAdd'
+        }
+        console.log(this.ruleForm)
+        this.request.post(url, this.ruleForm).then(res => {
+          this.$message({
+            message: res.errmsg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          if (this.ruleForm.hdlx === '1') {
+            this.getData()
+          } else {
+            this.getData2()
+          }
+          this.dialogVisible = false
+        })
+      },
+      remove(e) {//删除
+        this.$confirm('确定删除?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.request.post('/api/score/itemRemove', {ids: e}).then(res => {
+            this.$message({
+              type: 'success',
+              message: res.errmsg
+            })
+            if (this.ruleForm.hdlx === '1') {
+              this.getData()
+            } else {
+              this.getData2()
+            }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+
+      },
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
       },
     }
   }

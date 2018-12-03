@@ -194,22 +194,20 @@
         align="center"
         show-overflow-tooltip>
       </el-table-column>
-
     </el-table>
-
     <!--分页-->
     <div class="pagination-block">
       <el-pagination
         background
-        @size-change=""
-        @current-change=""
-        @prev-click=""
-        @next-click=""
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next,->"
-        :total="400">
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
       </el-pagination>
     </div>
     <!--模态框-->
@@ -762,10 +760,12 @@
         list_hz: [],
         list_bx: [],
         list_lz: [],
-        currentPage4: 1,
+        pageNum: 1,
+        pageSize: null,
+        records: null,
         dialogVisible: false,
-        lvyou:[],
-        passport:[],
+        lvyou: [],
+        passport: [],
         ruleForm: {
           name: '',//姓名
           zwm: '',//中文名
@@ -1224,6 +1224,7 @@
         this.request.post('/api/student/page', {
           page: this.pageNum,
           limit: this.pageSize,
+          records: this.records,
           xh: this.xh,
           zxzt: this.zxzt,
           xm: this.xm,
@@ -1313,7 +1314,22 @@
           this.select_value = []
         }
         this.confirm_select()
-      }
+      },
+      //分页相关方法
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
+      },
     },
 
   }

@@ -23,27 +23,27 @@
           v-model="zxzt">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-select size="mini" placeholder="学籍类别">
+        <el-select size="mini" v-model="xjlb" placeholder="学籍类别">
           <el-option key="1" label="在籍" value="1"></el-option>
           <el-option key="2" label="不在籍" value="2"></el-option>
         </el-select>
-        <el-select size="mini" placeholder="性别">
+        <el-select size="mini" v-model="xb" placeholder="性别">
           <el-option key="1" label="男" value="1"></el-option>
           <el-option key="2" label="女" value="2"></el-option>
         </el-select>
-        <el-select size="mini" placeholder="学院">
+        <el-select size="mini" v-model="xy" placeholder="学院">
           <el-option key="1" label="文学院" value="1"></el-option>
           <el-option key="2" label="医学院" value="2"></el-option>
         </el-select>
-        <el-select size="mini" placeholder="专业">
+        <el-select size="mini" v-model="zy" placeholder="专业">
           <el-option key="1" label="临床医学" value="1"></el-option>
           <el-option key="2" label="营养学" value="2"></el-option>
         </el-select>
-        <el-select size="mini" placeholder="年级">
+        <el-select size="mini" v-model="nj" placeholder="年级">
           <el-option key="1" label="2018" value="1"></el-option>
           <el-option key="2" label="2017" value="2"></el-option>
         </el-select>
-        <el-select size="mini" placeholder="民族">
+        <el-select size="mini" v-model="mz" placeholder="民族">
           <el-option key="1" label="汉族" value="1"></el-option>
           <el-option key="2" label="满族" value="2"></el-option>
         </el-select>
@@ -406,32 +406,25 @@
           </div>
         </div>
       </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false" size="small">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
-  </span>
     </el-dialog>
-
-
   </div>
 </template>
 
 <script>
-  import Modal from '@/components/modal/Modal'
-
   export default {
     name: 'stdBasic',
-    components: {Modal},
     data() {
       return {
         xh: "",
         zxzt: '',
+        xjlb: "",
         xm: "",
         xb: "",
         xy: "",
         zy: "",
         bj: "",
         nj: "",
+        mz: '',
         pageNum: "",
         pageSize: "",
         records: "",
@@ -510,7 +503,7 @@
           })
         }
       },
-      reset_form() {
+      reset_form() {//置空弹出框里的表单
         this.ruleForm = {
           xm: '',//姓名
           xh: '',//学号

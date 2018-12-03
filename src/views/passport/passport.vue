@@ -48,7 +48,7 @@
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
         <el-button type="danger" size="mini" icon="el-icon-delete" @click="remove">批量删除</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download" @click="optExport">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -524,6 +524,21 @@
       handleSelectionChange(e) {
         this.selectedList = e
       },
+      optExport() {
+        // this.request.get('/api/passport/export', {
+        //   xm: this.xm,
+        //   xh: this.xh,
+        //   xy: this.xy,
+        //   zy: this.zy,
+        //   bj: this.bj,
+        //   hzhm: this.hzhm,
+        //   hzyxq: this.hzyxq,
+        //   jlxkdqr: this.jlxkdqr,
+        // }).then(res => {
+        //   console.log(res)
+        // })
+        window.open('http://192.168.0.110:806/ws/passport/export','_blank')
+      }
     }
   }
 </script>

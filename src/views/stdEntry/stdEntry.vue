@@ -6,102 +6,91 @@
           placeholder="学号"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="xh">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="姓名"
           size="mini"
           clearable
-          v-model="input2">
+          v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="性别"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="xb">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="学院"
           size="mini"
           clearable
-        >
+          v-model="xy">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="年级"
           size="mini"
           clearable
-        >
+          v-model="nj">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="专业"
           size="mini"
           clearable
-        >
+          v-model="zy">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="班级"
           size="mini"
           clearable
-        >
+          v-model="bj">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="国籍"
           size="mini"
           clearable
-        >
+          v-model="gb">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
-        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-delete" @click="remove">批量删除</el-button>
         <el-button type="primary" size="mini" icon="el-icon-upload2" @click="dialogVisible1 = true">导入</el-button>
       </el-col>
     </el-row>
 
     <el-table
-      :data="tableData3"
+      :data="list"
       style=""
       max-height="768"
       border
       stripe
-      @selection-change="handleSelectionChange"
-    >
+      @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         header-align="center"
         align="center"
         width="50">
       </el-table-column>
-
       <el-table-column
         label="操作"
-        width="130"
+        width="90"
         header-align="center"
         align="center"
-        fixed="right"
-      >
+        fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-          <el-button type="danger" size="mini">删除</el-button>
+          <el-button type="primary" size="mini" @click="add_edit(scope.row.xh)">修改</el-button>
         </template>
-      </el-table-column>
-      <el-table-column
-        prop="order"
-        label="序号"
-        width="50"
-        header-align="center"
-        align="center">
       </el-table-column>
       <el-table-column
         prop="nj"
@@ -111,7 +100,7 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="class"
+        prop="bj"
         label="班级"
         width="130"
         header-align="center"
@@ -125,77 +114,77 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="xm"
         label="姓名"
-        width="100"
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="cnName"
+        prop="zwm"
         label="中文名"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="gender"
+        prop="xb"
         label="性别"
         width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="roomNum"
+        prop="ssh"
         label="宿舍号"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="tel"
+        prop="lxdh"
         label="电话号码"
         width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="birthday"
+        prop="csrq"
         label="出生年月"
         width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="passport"
+        prop="hzhm"
         label="护照号"
         width="180"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="Nation"
+        prop="gb"
         label="国籍"
         width="50"
         header-align="center"
         align="center">
       </el-table-column>
+      <!--<el-table-column-->
+      <!--prop="xh"-->
+      <!--label="学籍注册号"-->
+      <!--width="130"-->
+      <!--header-align="center"-->
+      <!--align="center">-->
+      <!--</el-table-column>-->
       <el-table-column
-        prop="stdNo"
-        label="学籍注册号"
-        width="130"
-        header-align="center"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="arriveDate"
+        prop="dxrq"
         label="到校日期"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="religion"
+        prop="zjxy"
         label="宗教"
         width="100"
         header-align="center"
@@ -216,25 +205,23 @@
         align="center"
         show-overflow-tooltip>
       </el-table-column>
-
     </el-table>
 
     <!--分页-->
     <div class="pagination-block">
       <el-pagination
         background
-        @size-change=""
-        @current-change=""
-        @prev-click=""
-        @next-click=""
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next,->"
-        :total="400">
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
       </el-pagination>
     </div>
-    <!--模态框-->
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
@@ -243,82 +230,82 @@
       <div>
         <el-form :model="ruleForm" inline="" :rules="rules" ref="ruleForm" label-width="120px"
                  class="demo-ruleForm">
-          <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.xh" size="mini"></el-input>
+          <el-form-item label="学号" prop="xh">
+            <el-input v-model="ruleForm.xh" disabled></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
+          <el-form-item label="姓名" prop="xm">
+            <el-input v-model="ruleForm.xm" disabled></el-input>
           </el-form-item>
           <el-form-item label="中文名" prop="">
-            <el-input v-model="ruleForm.zwm"></el-input>
+            <el-input v-model="ruleForm.zwm" disabled></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
-            <el-radio-group v-model="ruleForm.xb">
-              <el-radio label="男"></el-radio>
-              <el-radio label="女"></el-radio>
-            </el-radio-group>
+            <el-input v-model="ruleForm.xb" disabled></el-input>
           </el-form-item>
-
-
           <el-form-item label="年级" prop="">
-            <el-input v-model="ruleForm.nj"></el-input>
+            <el-input v-model="ruleForm.nj" disabled></el-input>
           </el-form-item>
-          <el-form-item label="出生年月" required>
-            <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
-            </el-form-item>
+          <el-form-item label="出生年月">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="ruleForm.csrq"
+              value-format="yyyy-MM-dd" disabled>
+            </el-date-picker>
           </el-form-item>
           <el-form-item label="学院" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.xy" disabled></el-input>
           </el-form-item>
           <el-form-item label="专业" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.zy" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
-            <el-input v-model="ruleForm.bj"></el-input>
+            <el-input v-model="ruleForm.bj" disabled></el-input>
           </el-form-item>
-
-
           <el-form-item label="入学年月" required>
             <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date2"></el-date-picker>
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="ruleForm.rxnf"
+                value-format="yyyy-MM-dd" disabled></el-date-picker>
             </el-form-item>
           </el-form-item>
           <el-form-item label="在校状态" prop="region">
-            <el-select placeholder="请选择在校状态">
+            <el-select placeholder="请选择在校状态" v-model="ruleForm.zxzt">
               <el-option label="在校" value="1"></el-option>
               <el-option label="不在校" value="2"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="电话号码" prop="">
-            <el-input v-model="ruleForm.tel"></el-input>
+            <el-input v-model="ruleForm.lxdh"></el-input>
           </el-form-item>
           <el-form-item label="宿舍号" prop="">
             <el-input v-model="ruleForm.ssh"></el-input>
           </el-form-item>
           <el-form-item label="出生地" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.csd"></el-input>
           </el-form-item>
           <el-form-item label="国籍" prop="">
-            <el-input v-model="ruleForm.gj"></el-input>
+            <el-input v-model="ruleForm.gb"></el-input>
           </el-form-item>
           <el-form-item label="宗教信仰" prop="">
-            <el-input v-model="ruleForm.religion"></el-input>
+            <el-input v-model="ruleForm.zjxy"></el-input>
           </el-form-item>
           <el-form-item label="辅导员工号" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.fdygh"></el-input>
           </el-form-item>
           <el-form-item label="辅导员姓名" prop="">
-            <el-input v-model="ruleForm.bzr"></el-input>
+            <el-input v-model="ruleForm.fdyxm"></el-input>
           </el-form-item>
           <el-form-item label="辅导员联系方式" prop="">
-            <el-input v-model="ruleForm.hzhm"></el-input>
+            <el-input v-model="ruleForm.fdylxdh"></el-input>
           </el-form-item>
           <el-form-item label="毕业去向" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.byqx"></el-input>
           </el-form-item>
           <el-form-item label="永久联系电话" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.yjlxdh"></el-input>
           </el-form-item>
         </el-form>
         <el-form label-width="120px">
@@ -330,14 +317,14 @@
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button size="small" @click="dialogVisible = false">取 消</el-button>
-    <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button size="small" type="primary" @click="submit">确 定</el-button>
   </span>
     </el-dialog>
 
     <!--导入的模态框-->
     <el-dialog
       title=""
-      :visible.sync="dialogVisible1"
+      :visible.sync="dialogVisible_import"
       width="900px">
       <div slot="title">数据导入</div>
       <div>
@@ -373,257 +360,171 @@
 </template>
 
 <script>
+  import {getStringArr} from '@/utils/tool'
+
   export default {
     name: 'stdEntry',
     data() {
       return {
-        input1: "",
-        input2: "",
-        input3: "",
-        currentPage4: 1,
+        xh: "",
+        xm: "",
+        xb: "",
+        xy: "",
+        zy: "",
+        bj: "",
+        nj: "",
+        gb: '',
+        pageNum: null,
+        pageSize: null,
+        records: null,
         dialogVisible: false,
-        dialogVisible1:false,
-        tableData3: [
-          {
-            order: '1',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无看见的身份卡的话费卡说的话点卡收费但是法律肯定会是否考虑好了上的卡号发'
-          }, {
-            order: '2',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          },
-          {
-            order: '3',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '4',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '5',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '6',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '7',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '8',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '9',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '10',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }],
-        ruleForm: {
-          name: '',//姓名
-          zwm: '',//中文名
+        dialogVisible_import: false,
+        list: [],
+        selectedList: [],
+        rules: {},
+        add_edit_flag: false,//false-新增，true-编辑
+        detail: {},
+        ruleForm: {//修改基本信息
+          xm: '',//姓名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
-          ssh: '',//宿舍号
-          sex: '',
-          tel: '',
-          birth: '',
-          hzhm: '',//护照号码
-          gj: '',//国籍
-          xjzch: '',//学籍注册号
-          dxrq: '',//到校日期
-          region: '',//宗教
-          bzr: '',//班主任
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''//备注
+          xb: '',
+          lxdh: '',
+          csrq: '',
         },
-        rules: {
-          // name: [
-          //   { required: true, message: '', trigger: 'blur' },
-          //   { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-          // ],
-          // region: [
-          //   { required: true, message: '请选择活动区域', trigger: 'change' }
-          // ],
-          // date1: [
-          //   { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          // ],
-          // date2: [
-          //   { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-          // ],
-          // type: [
-          //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-          // ],
-          // resource: [
-          //   { required: true, message: '请选择活动资源', trigger: 'change' }
-          // ],
-          // desc: [
-          //   { required: true, message: '请填写活动形式', trigger: 'blur' }
-          // ]
-        }
+        rules: {}
       }
     },
-    computed: {},
+    mounted() {
+      this.getData()
+    },
     methods: {
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      getData() {
+        this.request.post('/api/student/page', {
+          xm: this.xm,
+          xh: this.xh,
+          xy: this.xy,
+          zy: this.zy,
+          bj: this.bj,
+          nj: this.nj,
+          gb: this.gb,
+          xb: this.xb,
+          page: this.pageNum,
+          limit: this.pageSize,
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+      reset() {//重置搜索条件
+        this.xh = ''
+        this.xm = ''
+        this.xb = ''
+        this.xy = ''
+        this.zy = ''
+        this.bj = ''
+        this.nj = ''
+        this.gb = ''
+        this.getData()
+      },
+      remove() {//批量删除
+        if (this.selectedList.length > 0) {
+          let m = getStringArr(this.selectedList, 'id')
+          this.$confirm('确定删除?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.request.post('/api/student/remove', {ids: m}).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.errmsg
+              })
+              this.getData()
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+        } else {
+          this.$message({
+            message: '请至少选择一项',
+            type: 'warning',
+            duration: 5 * 1000
+          })
+        }
       },
       handleSelectionChange(e) {
-        console.log(e)
-      }
+        this.selectedList = e
+      },
+      add_edit(e) {//编辑
+        this.reset_form()
+        this.dialogVisible = true
+        this.request.post('/api/student/getStdInfo', {xh: e}).then(res => {
+          if (res.data.data) {
+            this.ruleForm = res.data.data
+            // this.ruleForm2 = res.data.data
+            // delete this.ruleForm2.student
+            // delete this.ruleForm2.whenCreated
+            // delete this.ruleForm2.whenModified
+          }
+        })
+      },
+      submit() {
+        delete this.ruleForm.student
+        delete this.ruleForm.dept
+        delete this.ruleForm.whenCreated
+        delete this.ruleForm.whenModified
+        this.request.post('/api/student/edit', this.ruleForm).then(res => {
+          this.$message({
+            message: res.errmsg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          this.getData()
+          this.dialogVisible = false
+        })
+      },
+      reset_form() {//置空弹出框里的表单
+        this.ruleForm = {
+          xm: '',//姓名
+          xh: '',//学号
+          bj: '',//班级
+          nj: '',//年级
+          xb: '',
+          lxdh: '',
+          csrq: '',
+        },
+          this.ruleForm2 = {
+            xh: "",
+            cflx: "",
+            cfsj: "",
+            cfdqsj: "",
+            fcyy: "",
+            bz: "",
+            id: ""
+          }
+      },
+      //分页相关方法
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
+      },
     }
   }
 </script>

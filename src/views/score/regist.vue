@@ -6,14 +6,14 @@
           placeholder="学号"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="xh">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="姓名"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
@@ -25,12 +25,14 @@
         <el-input
           placeholder="专业"
           size="mini"
+          v-model="zy"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="班级"
           size="mini"
+          v-model="bj"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
@@ -41,13 +43,13 @@
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
         <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>
 
     <el-table
-      :data="tableData3"
+      :data="list"
       style="width: 100%"
       border>
       <el-table-column
@@ -57,56 +59,56 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xh"
+        prop="student.xh"
         label="学号"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm"
+        prop="student.xm"
         label="姓名"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop=""
+        prop="student.xy"
         label="学院"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop=""
+        prop="student.zy"
         label="专业"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop=""
+        prop="student.bj"
         label="班级"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop=""
+        prop="addScores"
         label="加分总分"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop=""
+        prop="subScores"
         label="扣分总分"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop=""
+        prop="totalScores"
         label="总分"
         width=""
         header-align="center"
@@ -114,32 +116,30 @@
       </el-table-column>
       <el-table-column
         label="操作"
-        width="150"
+        width="80"
         header-align="center"
         align="center"
-        fixed="right"
-      >
+        fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-          <el-button type="danger" size="mini">删除</el-button>
+          <el-button @click="add_edit(scope.row.id)" type="primary" size="mini">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
     <!--分页-->
-    <div class="pagination-block">
-      <el-pagination
-        background
-        @size-change=""
-        @current-change=""
-        @prev-click=""
-        @next-click=""
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next,->"
-        :total="400">
-      </el-pagination>
-    </div>
+    <!--<div class="pagination-block">-->
+    <!--<el-pagination-->
+    <!--background-->
+    <!--@size-change=""-->
+    <!--@current-change=""-->
+    <!--@prev-click=""-->
+    <!--@next-click=""-->
+    <!--:current-page="currentPage4"-->
+    <!--:page-sizes="[10, 20, 30, 40]"-->
+    <!--:page-size="10"-->
+    <!--layout="total, sizes, prev, pager, next,->"-->
+    <!--:total="400">-->
+    <!--</el-pagination>-->
+    <!--</div>-->
 
     <!--模态框-->
     <el-dialog
@@ -151,47 +151,47 @@
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
           <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.xh"></el-input>
+            <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
-            <el-radio-group v-model="ruleForm.xb">
+            <el-radio-group v-model="ruleForm.xb" disabled>
               <el-radio label="男"></el-radio>
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
+          <el-form-item label="姓名" prop="name" >
+            <el-input v-model="ruleForm.xm" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
-            <el-input v-model="ruleForm.bj"></el-input>
+            <el-input v-model="ruleForm.bj" disabled></el-input>
           </el-form-item>
           <el-form-item label="年级" prop="">
-            <el-input v-model="ruleForm.nj"></el-input>
+            <el-input v-model="ruleForm.nj" disabled></el-input>
           </el-form-item>
           <el-form-item label="中文名" prop="">
-            <el-input v-model="ruleForm.zwm"></el-input>
+            <el-input v-model="ruleForm.zwm" disabled></el-input>
           </el-form-item>
         </el-form>
         <!--加分项-->
         <div class="score_div">
           <header><span class="">加分项</span>
-            <el-button type="primary" size="mini" icon="el-icon-plus" circle @click="add_item(jiafen_list)"></el-button>
+            <el-button type="primary" size="mini" icon="el-icon-plus" circle @click="add_item(list_m)"></el-button>
           </header>
           <div class="score_list">
             <el-table
-              :data="jiafen_list"
+              :data="list_m"
               style="width: 100%"
               header-align="center"
               align="center">
               <el-table-column
-                prop="no"
+                prop="hdxh"
                 label="序号"
                 width=""
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.no}}</span>
-                  <el-input v-else v-model="scope.row.no" clearable placeholder="请输入序号"></el-input>
+                  <span v-if="!scope.row.editable">{{scope.row.hdxh}}</span>
+                  <el-input v-else v-model="scope.row.hdxh" clearable placeholder="请输入序号"></el-input>
                 </template>
               </el-table-column>
               <el-table-column
@@ -204,7 +204,7 @@
                   <!--历史数据-->
                   <span v-if="!scope.row.editable">{{scope.row.name}}</span>
                   <!--点击新增后-->
-                  <el-select v-else style="width: 100%;text-align: center" v-model="scope.row.name" placeholder="选择名称">
+                  <el-select v-else style="width: 100%;text-align: center" v-model="scope.row.name" filterable placeholder="选择名称">
                     <el-option style="width: 100%;text-align: center"
                                v-for="item in add_name_list"
                                :key="item.value"
@@ -215,16 +215,16 @@
                 </template>
               </el-table-column>
               <el-table-column
-                prop="datetime"
-                label="活动时间"
+                prop="hdkssj"
+                label="活动开始时间"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
                   <!--历史数据-->
-                  <span v-if="!scope.row.editable">{{scope.row.datetime}}</span>
+                  <span v-if="!scope.row.editable">{{scope.row.hdkssj}}</span>
                   <!--点击新增后-->
                   <el-date-picker v-else
-                                  v-model="scope.row.datetime"
+                                  v-model="scope.row.hdkssj"
                                   type="date"
                                   format="yyyy-MM-dd"
                                   value-format="yyyy-MM-dd"
@@ -233,24 +233,42 @@
                 </template>
               </el-table-column>
               <el-table-column
-                prop="content"
+                prop="hdjssj"
+                label="活动结束时间"
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <!--历史数据-->
+                  <span v-if="!scope.row.editable">{{scope.row.hdjssj}}</span>
+                  <!--点击新增后-->
+                  <el-date-picker v-else
+                                  v-model="scope.row.hdjssj"
+                                  type="date"
+                                  format="yyyy-MM-dd"
+                                  value-format="yyyy-MM-dd"
+                                  placeholder="选择日期">
+                  </el-date-picker>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="hdnr"
                 label="活动内容"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.content}}</span>
-                  <el-input v-else v-model="scope.row.content" clearable placeholder="请输入内容"></el-input>
+                  <span v-if="!scope.row.editable">{{scope.row.hdnr}}</span>
+                  <el-input v-else v-model="scope.row.hdnr" clearable placeholder="请输入内容"></el-input>
                 </template>
               </el-table-column>
               <el-table-column
-                prop="count"
+                prop="score"
                 label="分值"
                 width=""
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.count}}</span>
-                  <el-input v-else v-model="scope.row.count" clearable placeholder="请输入分值"></el-input>
+                  <span v-if="!scope.row.editable">{{scope.row.score}}</span>
+                  <el-input v-else v-model="scope.row.score" clearable placeholder="请输入分值"></el-input>
                 </template>
               </el-table-column>
               <el-table-column
@@ -414,9 +432,21 @@
     name: "regist",
     data() {
       return {
-        input1: "",
-        input2: "",
-        input3: "",
+        xh: "",
+        xm: "",
+        xb: "",
+        xy: "",
+        zy: "",
+        bj: "",
+        nj: "",
+        pageNum: 1,
+        pageSize: null,
+        records: null,
+        list: [],//加分
+        list_m:[],//模态框加分/扣分历史
+        list2:[],//扣分
+        selectedList: [],
+        add_edit_flag: false,//false-新增，true-编辑
         dialogVisible: false,
         tableData3: [
           {xh: '12312321', xm: 'tom'},
@@ -504,32 +534,76 @@
           }
         ],
         ruleForm: {
-          name: '',//姓名
-          zwm: '',//中文名
+          xm: '',//姓名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
-          ssh: '',//宿舍号
-          sex: '',
-          tel: '',
-          birth: '',
-          hzhm: '',//护照号码
-          gj: '',//国籍
-          xjzch: '',//学籍注册号
-          dxrq: '',//到校日期
-          region: '',//宗教
-          bzr: '',//班主任
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''//备注
+          xb: '',
+          zwm: '',
+        },
+        ruleForm2: {
+          xh: "",
+          cflx: "",
+          cfsj: "",
+          cfdqsj: "",
+          fcyy: "",
+          bz: "",
+          id: ""
         },
         rules: {}
       }
     },
+    mounted() {
+      this.getData()
+    },
     methods: {
+      getData() {//列表
+        this.request.post('/api/score/page', {
+          xm: this.xm,
+          xh: this.xh,
+          xy: this.xy,
+          zy: this.zy,
+          bj: this.bj,
+          page: this.pageNum,
+          limit: this.pageSize,
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+
+      add_edit(e) {//修改拿列表
+        // this.reset_form()
+        this.dialogVisible = true
+        if (e === 'add') {//新增
+          this.add_edit_flag = false
+        } else {//编辑
+          this.add_edit_flag = true
+          this.request.post('/api/score/toEdit', {id: e}).then(res => {
+            if (res.data.data) {
+              this.ruleForm = res.data.data.student
+              this.list_m = res.data.data.scoreItems
+              delete this.ruleForm2.student
+              delete this.ruleForm2.whenCreated
+              delete this.ruleForm2.whenModified
+            }
+          })
+        }
+      },
+      getStdInfo() {
+        if (this.ruleForm.xh) {
+          this.request.post('/api/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
+            if (res) {
+              this.ruleForm = res.data.data
+            }
+          })
+        }
+      },
+
+
+
       showStd(row) {
         this.dialogVisible = true;
         console.log(row);

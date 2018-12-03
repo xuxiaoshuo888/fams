@@ -353,6 +353,7 @@
         djlsxm: "",
         hzhm: "",
         lxdh: "",
+        xjlb:"",
         list: [],
         selectedList: [],
         cj_flag: '0',//出境-0，国内-1
