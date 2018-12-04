@@ -192,7 +192,7 @@
     },
     methods: {
       getList() {
-        this.request.post('/api/notice/page', {
+        this.request.post('/ws/notice/page', {
           page: this.pageNum,
           limit: this.pageSize,
           userId: this.author,
@@ -223,9 +223,9 @@
       submit() {//新增/编辑
         let url = ''
         if (this.add_edit_flag) {
-          url = '/api/notice/edit'
+          url = '/ws/notice/edit'
         } else {
-          url = '/api/notice/add'
+          url = '/ws/notice/add'
         }
         console.log(url)
         this.request.post(url, {
@@ -253,7 +253,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.request.post('/api/notice/remove', {ids: this.selectedList}).then(res => {
+            this.request.post('/ws/notice/remove', {ids: this.selectedList}).then(res => {
               this.$message({
                 type: 'success',
                 message: res.errmsg
@@ -279,7 +279,7 @@
         this.$refs[formName].resetFields();
       },
       changeState(e, state) {
-        this.request.post('/api/notice/updateStatus ', {
+        this.request.post('/ws/notice/updateStatus ', {
           status: state,
           id: e
         }).then(res => {

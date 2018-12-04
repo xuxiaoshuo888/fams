@@ -1,1 +1,0 @@
-webpackJsonp([7],{I2ka:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a={render:function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"pad20"})},staticRenderFns:[]};var i=n("VU/8")({name:"tempAccommodation"},a,!1,function(e){n("J7iU")},"data-v-44d23da6",null);t.default=i.exports},J7iU:function(e,t){}});

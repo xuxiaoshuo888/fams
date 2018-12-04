@@ -167,7 +167,7 @@
     },
     methods: {
       get_tzgg() {
-        this.request.post('/api/notice/page', {
+        this.request.post('/ws/notice/page', {
           page: this.pageNum,
           limit: this.pageSize,
         }).then(res => {
@@ -175,7 +175,7 @@
         })
       },
       get_hz() {
-        this.request.post('/api/passport/due', {
+        this.request.post('/ws/passport/due', {
           page: this.pageNum,
           limit: this.pageSize,
         }).then(res => {
@@ -184,7 +184,7 @@
         })
       },
       get_bx() {
-        this.request.post('/api/insurance/page', {
+        this.request.post('/ws/insurance/page', {
           page: this.pageNum,
           limit: this.pageSize,
         }).then(res => {
@@ -193,7 +193,7 @@
         })
       },
       get_lz() {
-        this.request.post('/api/roomassing/page', {
+        this.request.post('/ws/roomassing/page', {
           page: this.pageNum,
           limit: this.pageSize,
         }).then(res => {

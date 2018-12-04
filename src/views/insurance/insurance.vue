@@ -321,7 +321,7 @@
     },
     methods: {
       getData() {//分配用户左侧表格
-        this.request.post('/api/insurance/page', {
+        this.request.post('/ws/insurance/page', {
           xm: this.xm,
           xh: this.xh,
           bxxm: this.bxxm,
@@ -340,7 +340,7 @@
           this.add_edit_flag = false
         } else {//编辑
           this.add_edit_flag = true
-          this.request.post('/api/insurance/toEdit', {id: e}).then(res => {
+          this.request.post('/ws/insurance/toEdit', {id: e}).then(res => {
             this.ruleForm = res.data.data.student
             this.ruleForm2 = res.data.data
             delete this.ruleForm2.student
@@ -360,7 +360,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.request.post('/api/insurance/remove', {ids: m}).then(res => {
+            this.request.post('/ws/insurance/remove', {ids: m}).then(res => {
               this.$message({
                 type: 'success',
                 message: res.errmsg
@@ -383,7 +383,7 @@
       },
       getStdInfo() {
         if (this.ruleForm.xh) {
-          this.request.post('/api/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
+          this.request.post('/ws/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
             this.ruleForm = res.data.data
           })
         }
@@ -391,9 +391,9 @@
       submit() {
         let url = ''
         if (this.add_edit_flag) {//编辑
-          url = '/api/insurance/edit'
+          url = '/ws/insurance/edit'
         } else {
-          url = '/api/insurance/add'
+          url = '/ws/insurance/add'
         }
         this.ruleForm2.xh = this.ruleForm.xh
         this.request.post(url, this.ruleForm2).then(res => {

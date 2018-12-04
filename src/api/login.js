@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(username, password) {
   return request({
-    url: '/api/security/login',
+    url: '/ws/security/login',
     method: 'post',
     data: {
       user_name: username,
@@ -13,7 +13,7 @@ export function login(username, password) {
 
 export function requestToken(uuid) {
   return request({
-    url: '/api/gettoken',
+    url: '/ws/gettoken',
     method: 'post',
     data: {'uuid': uuid}
   })

@@ -97,7 +97,7 @@
     },
     methods: {
       getdata() {
-        this.request.post('/api/config/list', {id: '2'}).then(res => {
+        this.request.post('/ws/config/list', {id: '2'}).then(res => {
           this.list = res.data.data
         })
       },
@@ -108,7 +108,7 @@
       submit() {
         this.$refs.editForm.validate(valid => {
           if (valid) {
-            this.request.post('/api/config/save', this.formData).then(res => {
+            this.request.post('/ws/config/save', this.formData).then(res => {
               this.$message({
                 message: res.errmsg,
                 type: 'success',

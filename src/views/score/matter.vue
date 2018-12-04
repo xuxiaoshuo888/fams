@@ -21,6 +21,13 @@
           align="center">
         </el-table-column>
         <el-table-column
+          prop="name"
+          label="名称"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
           prop="xn"
           label="学年"
           width=""
@@ -119,6 +126,13 @@
           align="center">
         </el-table-column>
         <el-table-column
+          prop="name"
+          label="名称"
+          width=""
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
           prop="xn"
           label="学年"
           width=""
@@ -208,6 +222,9 @@
           <el-form-item label="活动序号" prop="name">
             <el-input v-model="ruleForm.hdxh"></el-input>
           </el-form-item>
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
           <el-form-item label="学年">
             <el-date-picker
               v-model="ruleForm.xn"
@@ -221,6 +238,9 @@
               <el-option value="第一学期">第一学期</el-option>
               <el-option value="第二学期">第二学期</el-option>
             </el-select>
+          </el-form-item>
+          <el-form-item label="单位" prop="name">
+            <el-input v-model="ruleForm.hdjbdw"></el-input>
           </el-form-item>
           <el-form-item label="活动时间">
             <el-date-picker
@@ -237,10 +257,6 @@
               value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="单位" prop="name">
-            <el-input v-model="ruleForm.hdjbdw"></el-input>
-          </el-form-item>
-
           <el-form-item label="分值">
             <el-input v-model="ruleForm.score"></el-input>
           </el-form-item>
@@ -278,6 +294,7 @@
         pageSize2: null,
         records2: null,
         ruleForm: {
+          name: '',
           hdlx: '',//1-加分，0-减分
           hdxh: '',
           xn: '',
@@ -297,7 +314,7 @@
     },
     methods: {
       getData() {
-        this.request.post('/api/score/itemPage', {
+        this.request.post('/ws/score/itemPage', {
           hdlx: '1',//1-加分，0-扣分
           page: this.pageNum,
           limit: this.pageSize,
@@ -309,7 +326,7 @@
         })
       },
       getData2() {
-        this.request.post('/api/score/itemPage', {
+        this.request.post('/ws/score/itemPage', {
           hdlx: '0',//1-加分，0-扣分
           page: this.pageNum,
           limit: this.pageSize,
@@ -331,7 +348,7 @@
           this.ruleForm.hdlx = '0'
         } else {//编辑
           this.add_edit_flag = true
-          this.request.post('/api/score/itemToEdit', {id: e}).then(res => {
+          this.request.post('/ws/score/itemToEdit', {id: e}).then(res => {
             if (res.data.data) {
               this.ruleForm = res.data.data
               delete this.ruleForm.whenCreated
@@ -343,9 +360,9 @@
       submit() {
         let url = ''
         if (this.add_edit_flag) {//编辑
-          url = '/api/score/itemEdit'
+          url = '/ws/score/itemEdit'
         } else {
-          url = '/api/score/itemAdd'
+          url = '/ws/score/itemAdd'
         }
         console.log(this.ruleForm)
         this.request.post(url, this.ruleForm).then(res => {
@@ -368,7 +385,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.request.post('/api/score/itemRemove', {ids: e}).then(res => {
+          this.request.post('/ws/score/itemRemove', {ids: e}).then(res => {
             this.$message({
               type: 'success',
               message: res.errmsg

@@ -1221,7 +1221,7 @@
     },
     methods: {
       getData() {
-        this.request.post('/api/student/page', {
+        this.request.post('/ws/student/page', {
           page: this.pageNum,
           limit: this.pageSize,
           records: this.records,
@@ -1239,7 +1239,7 @@
       },
       showStd(xh) {
         this.dialogVisible = true;
-        this.request.post('/api/student/getStdDetail', {xh: xh}).then(res => {
+        this.request.post('/ws/student/getStdDetail', {xh: xh}).then(res => {
           console.log(res)
           this.list_jb = res.data.data
           this.list_bx = res.data.bx

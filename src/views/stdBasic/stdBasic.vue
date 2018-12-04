@@ -451,7 +451,7 @@
     },
     methods: {
       getData() {
-        this.request.post('/api/student/page', {
+        this.request.post('/ws/student/page', {
           xm: this.xm,
           xh: this.xh,
           xy: this.xy,
@@ -483,7 +483,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.request.post('/api/student/resetPwd', {id: this.selectedList[0].xh}).then(res => {
+            this.request.post('/ws/student/resetPwd', {id: this.selectedList[0].xh}).then(res => {
               this.$message({
                 type: 'success',
                 message: res.errmsg
@@ -526,7 +526,7 @@
       add_edit(e) {//编辑
         this.reset_form()
         this.dialogVisible = true
-        this.request.post('/api/student/getStdInfo', {xh: e}).then(res => {
+        this.request.post('/ws/student/getStdInfo', {xh: e}).then(res => {
           if (res.data.data) {
             this.ruleForm = res.data.data
             // this.ruleForm2 = res.data.data
@@ -539,7 +539,7 @@
       showDetail(xh) {
         this.dialogVisible_detail = true
         if (xh) {
-          this.request.post('/api/student/getStdInfo', {xh: xh}).then(res => {
+          this.request.post('/ws/student/getStdInfo', {xh: xh}).then(res => {
             console.log(res)
             if (res.data.data) {
               this.detail = res.data.data
@@ -552,7 +552,7 @@
         delete this.ruleForm.dept
         delete this.ruleForm.whenCreated
         delete this.ruleForm.whenModified
-        this.request.post('/api/student/edit', this.ruleForm).then(res => {
+        this.request.post('/ws/student/edit', this.ruleForm).then(res => {
           this.$message({
             message: res.errmsg,
             type: 'success',

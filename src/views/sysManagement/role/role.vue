@@ -333,7 +333,7 @@
       removeUser() {
         if (this.selectedList2.length > 0) {
           let m = getStringArr(this.selectedList2, 'id')
-          this.request.post('/api/role/removeRoleUsers', {roleId: this.selectedList[0].id, userids: m}).then(res => {
+          this.request.post('/ws/role/removeRoleUsers', {roleId: this.selectedList[0].id, userids: m}).then(res => {
             this.getData2()
             this.getData3()
             this.$message({
@@ -354,7 +354,7 @@
       addUser() {
         if (this.selectedList3.length > 0) {
           let m = getStringArr(this.selectedList3, 'id')
-          this.request.post('/api/role/addUser', {roleId: this.selectedList[0].id, userids: m}).then(res => {
+          this.request.post('/ws/role/addUser', {roleId: this.selectedList[0].id, userids: m}).then(res => {
             this.getData2()
             this.getData3()
             this.$message({
@@ -372,12 +372,12 @@
         }
       },
       getData() {//拿角色表格数据
-        this.request.post('/api/role/list').then(res => {
+        this.request.post('/ws/role/list').then(res => {
           this.list = res.data.data
         })
       },
       getData2() {//分配用户左侧表格
-        this.request.post('/api/role/getPagerByRole', {
+        this.request.post('/ws/role/getPagerByRole', {
           roleId: this.selectedList[0].id,
           page: this.pageNum2,
           limit: this.pageSize2
@@ -389,7 +389,7 @@
         })
       },
       getData3() {//分配用户右侧表格
-        this.request.post('/api/role/getUsersPage', {
+        this.request.post('/ws/role/getUsersPage', {
           username: this.username,
           truename: this.truename,
           page: this.pageNum3,
@@ -403,7 +403,7 @@
         })
       },
       tranformDept() {
-        this.request.post('/api/select/common', {type: 'dept'}).then(res => {
+        this.request.post('/ws/select/common', {type: 'dept'}).then(res => {
           console.log(res)
         }).catch()
       },
@@ -411,7 +411,7 @@
         console.log(getDept())
       },
       transformUserType() {
-        this.request.post('/api/select/common', {type: 'code', parentId: '20030'}).then(res => {
+        this.request.post('/ws/select/common', {type: 'code', parentId: '20030'}).then(res => {
           console.log(res)
         }).catch()
       },
@@ -425,12 +425,12 @@
       },
       add() {//新增
         this.dialogVisible1 = true
-        this.url = '/api/role/add'
+        this.url = '/ws/role/add'
       },
       edit() {//编辑
         if (this.selectedList.length === 1) {
           this.dialogVisible1 = true
-          this.url = '/api/role/edit'
+          this.url = '/ws/role/edit'
           this.ruleForm = this.selectedList[0]
         } else {
           this.$message({
@@ -451,7 +451,7 @@
             for (let i = 0; i < this.selectedList.length; i++) {
               a.push(this.selectedList[i].id)
             }
-            this.request.post('/api/role/remove', {ids: a}).then(res => {
+            this.request.post('/ws/role/remove', {ids: a}).then(res => {
               this.$message({
                 type: 'success',
                 message: res.errmsg

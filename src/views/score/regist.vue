@@ -42,8 +42,8 @@
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-delete">批量删除</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_std_record">新增</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-delete" @click="remove">批量删除</el-button>
         <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
       </el-col>
     </el-row>
@@ -51,6 +51,7 @@
     <el-table
       :data="list"
       style="width: 100%"
+      @selection-change="handleSelectionChange"
       border>
       <el-table-column
         type="selection"
@@ -159,7 +160,7 @@
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="姓名" prop="name" >
+          <el-form-item label="姓名" prop="name">
             <el-input v-model="ruleForm.xm" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
@@ -172,14 +173,151 @@
             <el-input v-model="ruleForm.zwm" disabled></el-input>
           </el-form-item>
         </el-form>
+
         <!--加分项-->
         <div class="score_div">
           <header><span class="">加分项</span>
-            <el-button type="primary" size="mini" icon="el-icon-plus" circle @click="add_item(list_m)"></el-button>
+            <el-button type="primary" size="mini" icon="el-icon-plus" circle @click="add_item(jiafen_list)"></el-button>
           </header>
           <div class="score_list">
             <el-table
-              :data="list_m"
+              :data="jiafen_list"
+              style="width: 100%"
+              header-align="center"
+              align="center">
+              <el-table-column
+                prop="hdxh"
+                label="序号"
+                width=""
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <span v-if="!scope.row.editable">{{scope.row.hdxh}}</span>
+                  <el-input v-else v-model="scope.row.hdxh" clearable disabled placeholder="请输入序号"></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="活动名称"
+                width=""
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <!--历史数据-->
+                  <span v-if="!scope.row.editable">{{scope.row.name}}</span>
+                  <!--点击新增后-->
+                  <el-select v-else style="width: 100%;text-align: center" v-model="score_form.itemId" filterable
+                             placeholder="选择名称" @change="load_add">
+                    <el-option style="width: 100%;text-align: center"
+                               v-for="item in add_name_list"
+                               :key="item.id"
+                               :label="item.name"
+                               :value="item.id">
+                    </el-option>
+                  </el-select>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="hdkssj"
+                label="活动开始时间"
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <!--历史数据-->
+                  <span v-if="!scope.row.editable">{{scope.row.hdkssj}}</span>
+                  <!--点击新增后-->
+                  <el-date-picker v-else
+                                  v-model="scope.row.hdkssj"
+                                  type="date"
+                                  format="yyyy-MM-dd"
+                                  value-format="yyyy-MM-dd"
+                                  disabled
+                                  placeholder="选择日期">
+                  </el-date-picker>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="hdjssj"
+                label="活动结束时间"
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <!--历史数据-->
+                  <span v-if="!scope.row.editable">{{scope.row.hdjssj}}</span>
+                  <!--点击新增后-->
+                  <el-date-picker v-else
+                                  v-model="scope.row.hdjssj"
+                                  type="date"
+                                  format="yyyy-MM-dd"
+                                  value-format="yyyy-MM-dd"
+                                  disabled
+                                  placeholder="选择日期">
+                  </el-date-picker>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="hdnr"
+                label="活动内容"
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <span v-if="!scope.row.editable">{{scope.row.hdnr}}</span>
+                  <el-input v-else v-model="scope.row.hdnr" clearable placeholder="请输入内容" disabled></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="score"
+                label="分值"
+                width=""
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <span v-if="!scope.row.editable">{{scope.row.score}}</span>
+                  <el-input v-else v-model="scope.row.score" clearable placeholder="请输入分值" disabled></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="hdjbdw"
+                label="单位"
+                header-align="center"
+                align="center">
+                <template slot-scope="scope">
+                  <span v-if="!scope.row.editable">{{scope.row.hdjbdw}}</span>
+                  <el-input v-else v-model="scope.row.hdjbdw" clearable placeholder="请输入单位" disabled></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="操作"
+                width=""
+                header-align="center"
+                align="center"
+                fixed="right">
+                <template slot-scope="scope">
+                  <!--点击新增后-->
+                  <span v-if="scope.row.editable">
+                    <el-button type="success" size="mini" icon="el-icon-check" circle
+                               @click="deliver_item(jiafen_list,scope)"></el-button>
+                    <el-button type="danger" size="mini" icon="el-icon-close" circle
+                               @click="delete_item(scope.row.id)"></el-button>
+                  </span>
+                  <!--历史数据-->
+                  <el-button v-else type="danger" size="mini" icon="el-icon-close" circle
+                             @click="delete_item(scope.row.id)"></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+
+
+        <!--扣分项-->
+        <div class="score_div">
+          <header><span class="">扣分项</span>
+            <el-button type="primary" size="mini" icon="el-icon-plus" circle @click="add_item(koufen_list)"></el-button>
+          </header>
+          <div class="score_list">
+            <el-table
+              :data="koufen_list"
               style="width: 100%"
               header-align="center"
               align="center">
@@ -204,19 +342,20 @@
                   <!--历史数据-->
                   <span v-if="!scope.row.editable">{{scope.row.name}}</span>
                   <!--点击新增后-->
-                  <el-select v-else style="width: 100%;text-align: center" v-model="scope.row.name" filterable placeholder="选择名称">
+                  <el-select v-else style="width: 100%;text-align: center" v-model="score_form.itemId"
+                             placeholder="选择名称" @change="load_jianfen">
                     <el-option style="width: 100%;text-align: center"
-                               v-for="item in add_name_list"
-                               :key="item.value"
+                               v-for="item in koufen_name_list"
+                               :key="item.id"
                                :label="item.name"
-                               :value="item.value">
+                               :value="item.id">
                     </el-option>
                   </el-select>
                 </template>
               </el-table-column>
               <el-table-column
                 prop="hdkssj"
-                label="活动开始时间"
+                label="扣分时间"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
@@ -226,25 +365,7 @@
                   <el-date-picker v-else
                                   v-model="scope.row.hdkssj"
                                   type="date"
-                                  format="yyyy-MM-dd"
-                                  value-format="yyyy-MM-dd"
-                                  placeholder="选择日期">
-                  </el-date-picker>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="hdjssj"
-                label="活动结束时间"
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <!--历史数据-->
-                  <span v-if="!scope.row.editable">{{scope.row.hdjssj}}</span>
-                  <!--点击新增后-->
-                  <el-date-picker v-else
-                                  v-model="scope.row.hdjssj"
-                                  type="date"
-                                  format="yyyy-MM-dd"
+                                  format="yyyy 年 MM 月 dd 日"
                                   value-format="yyyy-MM-dd"
                                   placeholder="选择日期">
                   </el-date-picker>
@@ -252,7 +373,7 @@
               </el-table-column>
               <el-table-column
                 prop="hdnr"
-                label="活动内容"
+                label="扣分内容"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
@@ -272,13 +393,13 @@
                 </template>
               </el-table-column>
               <el-table-column
-                prop="department"
+                prop="hdjbdw"
                 label="单位"
                 header-align="center"
                 align="center">
                 <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.department}}</span>
-                  <el-input v-else v-model="scope.row.department" clearable placeholder="请输入单位"></el-input>
+                  <span v-if="!scope.row.editable">{{scope.row.hdjbdw}}</span>
+                  <el-input v-else v-model="scope.row.hdjbdw" clearable placeholder="请输入单位"></el-input>
                 </template>
               </el-table-column>
               <el-table-column
@@ -293,126 +414,11 @@
                     <el-button type="success" size="mini" icon="el-icon-check" circle
                                @click="deliver_item(jiafen_list,scope)"></el-button>
                     <el-button type="danger" size="mini" icon="el-icon-close" circle
-                               @click="delete_item(jiafen_list,scope)"></el-button>
+                               @click="delete_item(scope.row.id)"></el-button>
                   </span>
                   <!--历史数据-->
                   <el-button v-else type="danger" size="mini" icon="el-icon-close" circle
-                             @click="delete_item(jiafen_list,scope)"></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </div>
-
-
-        <!--扣分项-->
-        <div class="score_div">
-          <header><span class="">扣分项</span>
-            <el-button type="primary" size="mini" icon="el-icon-plus" circle @click="add_item(koufen_list)"></el-button>
-          </header>
-          <div class="score_list">
-            <el-table
-              :data="koufen_list"
-              style="width: 100%"
-              header-align="center"
-              align="center">
-              <el-table-column
-                prop="no"
-                label="序号"
-                width=""
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.no}}</span>
-                  <el-input v-else v-model="scope.row.no" clearable placeholder="请输入序号"></el-input>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="name"
-                label="活动名称"
-                width=""
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <!--历史数据-->
-                  <span v-if="!scope.row.editable">{{scope.row.name}}</span>
-                  <!--点击新增后-->
-                  <el-select v-else style="width: 100%;text-align: center" v-model="scope.row.name" placeholder="选择名称">
-                    <el-option style="width: 100%;text-align: center"
-                               v-for="item in koufen_name_list"
-                               :key="item.value"
-                               :label="item.name"
-                               :value="item.value">
-                    </el-option>
-                  </el-select>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="datetime"
-                label="扣分时间"
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <!--历史数据-->
-                  <span v-if="!scope.row.editable">{{scope.row.datetime}}</span>
-                  <!--点击新增后-->
-                  <el-date-picker v-else
-                                  v-model="scope.row.datetime"
-                                  type="date"
-                                  format="yyyy 年 MM 月 dd 日"
-                                  value-format="yyyy-MM-dd"
-                                  placeholder="选择日期">
-                  </el-date-picker>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="content"
-                label="扣分内容"
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.content}}</span>
-                  <el-input v-else v-model="scope.row.content" clearable placeholder="请输入内容"></el-input>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="count"
-                label="分值"
-                width=""
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.count}}</span>
-                  <el-input v-else v-model="scope.row.count" clearable placeholder="请输入分值"></el-input>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="department"
-                label="单位"
-                header-align="center"
-                align="center">
-                <template slot-scope="scope">
-                  <span v-if="!scope.row.editable">{{scope.row.department}}</span>
-                  <el-input v-else v-model="scope.row.department" clearable placeholder="请输入单位"></el-input>
-                </template>
-              </el-table-column>
-              <el-table-column
-                label="操作"
-                width=""
-                header-align="center"
-                align="center"
-                fixed="right">
-                <template slot-scope="scope">
-                  <!--点击新增后-->
-                  <span v-if="scope.row.editable">
-                    <el-button type="success" size="mini" icon="el-icon-check" circle
-                               @click="deliver_item(koufen_list,scope)"></el-button>
-                    <el-button type="danger" size="mini" icon="el-icon-close" circle
-                               @click="delete_item(koufen_list,scope)"></el-button>
-                  </span>
-                  <!--历史数据-->
-                  <el-button v-else type="danger" size="mini" icon="el-icon-close" circle
-                             @click="delete_item(koufen_list,scope)"></el-button>
+                             @click="delete_item(scope.row.id)"></el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -420,14 +426,15 @@
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button type="default" @click="dialogVisible = false">关闭</el-button>
   </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
+  import {getStringArr} from '@/utils/tool'
+
   export default {
     name: "regist",
     data() {
@@ -443,96 +450,19 @@
         pageSize: null,
         records: null,
         list: [],//加分
-        list_m:[],//模态框加分/扣分历史
-        list2:[],//扣分
+        list2: [],//扣分
         selectedList: [],
         add_edit_flag: false,//false-新增，true-编辑
         dialogVisible: false,
-        tableData3: [
-          {xh: '12312321', xm: 'tom'},
-          {xh: '12312321', xm: 'tom'},
-          {xh: '12312321', xm: 'tom'}
-        ],
+        current_edit_flag: false,//false-当前无正在新增的项目，true表示有正在新增的项目，不允许再次新增
         //加分活动名单
-        add_name_list: [
-          {name: "奖学金1", value: '奖学金1'},
-          {name: "奖学金2", value: '奖学金2'},
-          {name: "奖学金3", value: '奖学金3'},
-          {name: "奖学金4", value: '奖学金4'},
-          {name: "奖学金5", value: '奖学金5'},
-          {name: "奖学金6", value: '奖学金6'}
-        ],
+        add_name_list: [],
         //扣分名单
-        koufen_name_list: [
-          {name: "打架斗殴", value: '打架斗殴'},
-          {name: "旷课", value: '旷课'},
-          {name: "迟到", value: '迟到'},
-          {name: "早退", value: '早退'},
-          {name: "违纪", value: '违纪'},
-          {name: "记大过", value: '记大过'}
-        ],
+        koufen_name_list: [],
         //加分的历史纪录
-        jiafen_list: [
-          {
-            no: '1',//活动序号
-            name: '奖学金1',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '获得奖学金',//活动内容
-            count: '1',//分值
-            department: '文学院',//单位
-          },
-          {
-            no: '2',//活动序号
-            name: '奖学金2',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '获得奖学金',//活动内容
-            count: '2',//分值
-            department: '文学院'
-          },
-          {
-            no: '3',//活动序号
-            name: '奖学金3',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '获得奖学金',//活动内容
-            count: '3',//分值
-            department: '文学院'
-          },
-          {
-            no: '4',//活动序号
-            name: '奖学金4',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '获得奖学金',//活动内容
-            count: '4',//分值
-            department: '文学院'
-          }
-        ],
+        jiafen_list: [],
         //扣分历史纪录
-        koufen_list: [
-          {
-            no: 'A',//活动序号
-            name: '打架斗殴',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '打架斗殴',//活动内容
-            count: '5',//分值
-            department: '文学院',//单位
-          },
-          {
-            no: 'B',//活动序号
-            name: '旷课',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '旷课',//活动内容
-            count: '2',//分值
-            department: '文学院',//单位
-          },
-          {
-            no: 'B',//活动序号
-            name: '旷课',//活动名称
-            datetime: '2018-08-08',//活动时间
-            content: '旷课',//活动内容
-            count: '1',//分值
-            department: '文学院',//单位
-          }
-        ],
+        koufen_list: [],
         ruleForm: {
           xm: '',//姓名
           xh: '',//学号
@@ -540,6 +470,7 @@
           nj: '',//年级
           xb: '',
           zwm: '',
+          id: ''
         },
         ruleForm2: {
           xh: "",
@@ -550,15 +481,21 @@
           bz: "",
           id: ""
         },
+        score_form: {//加分项，新增记录，提交表单
+          itemId: '',
+          xh: '',
+          id: ''
+        },
         rules: {}
       }
     },
     mounted() {
       this.getData()
+      this.getOptionList()
     },
     methods: {
-      getData() {//列表
-        this.request.post('/api/score/page', {
+      getData() {//最外层列表
+        this.request.post('/ws/score/page', {
           xm: this.xm,
           xh: this.xh,
           xy: this.xy,
@@ -573,18 +510,32 @@
           this.records = res.data.page.records
         })
       },
-
+      add_std_record() {//新增某个学生的记录
+        this.dialogVisible = true
+        this.resetForm()
+      },
       add_edit(e) {//修改拿列表
         // this.reset_form()
+        this.jiafen_list = []
+        this.koufen_list = []
         this.dialogVisible = true
         if (e === 'add') {//新增
           this.add_edit_flag = false
         } else {//编辑
           this.add_edit_flag = true
-          this.request.post('/api/score/toEdit', {id: e}).then(res => {
+          this.request.post('/ws/score/toEdit', {id: e}).then(res => {
             if (res.data.data) {
               this.ruleForm = res.data.data.student
-              this.list_m = res.data.data.scoreItems
+              this.ruleForm.id = res.data.data.id
+              if (res.data.data.scoreItems) {
+                for (let i = 0; i < res.data.data.scoreItems.length; i++) {
+                  if (res.data.data.scoreItems[i].hdlx === '1') {//加分
+                    this.jiafen_list.push(res.data.data.scoreItems[i])
+                  } else {
+                    this.koufen_list.push(res.data.data.scoreItems[i])
+                  }
+                }
+              }
               delete this.ruleForm2.student
               delete this.ruleForm2.whenCreated
               delete this.ruleForm2.whenModified
@@ -594,47 +545,98 @@
       },
       getStdInfo() {
         if (this.ruleForm.xh) {
-          this.request.post('/api/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
+          this.request.post('/ws/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
             if (res) {
               this.ruleForm = res.data.data
             }
           })
         }
       },
-
-
-
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      getOptionList() {//拿加分项/扣分项下拉框list
+        this.request.post('/ws/score/itemList').then(res => {
+          if (res) {
+            let list = res.data.data
+            for (let i = 0; i < list.length; i++) {
+              if (list[i].hdlx === '1') {//加分名字选项
+                this.add_name_list.push(list[i])
+              } else {//扣分
+                this.koufen_name_list.push(list[i])
+              }
+            }
+          }
+        })
+      },
+      load_add(e) {//选中活动名称后自动加载其他的数据
+        let id = e
+        let item = []
+        for (let i = 0; i < this.add_name_list.length; i++) {
+          if (id == this.add_name_list[i].id) {
+            item = this.add_name_list[i];
+            item['editable'] = true
+            this.jiafen_list[this.jiafen_list.length - 1] = item
+            console.log(item)
+          }
+        }
+      },
+      load_jianfen(e) {
+        let id = e
+        let item = []
+        for (let i = 0; i < this.koufen_name_list.length; i++) {
+          if (id == this.koufen_name_list[i].id) {
+            item = this.koufen_name_list[i];
+            item['editable'] = true
+            this.koufen_list[this.koufen_list.length - 1] = item
+            console.log(item)
+          }
+        }
       },
       //新增加分项
       add_item(list) {
-        let item = {
-          no: '',//活动序号
-          name: '',//活动名称
-          datetime: '',//活动时间
-          content: '',//活动内容
-          count: '',//分值
-          department: '',
-          editable: true
+        if (this.ruleForm.xh) {
+          if (!this.current_edit_flag) {
+            this.current_edit_flag = true
+            let item = {
+              hdxh: '',//活动序号
+              name: '',//活动名称
+              hdkssj: '',//活动开始时间
+              hdjssj: '',//活动结束时间
+              time: '',//扣分时间
+              hdnr: '',//活动内容
+              score: '',//分值
+              hdjbdw: '',
+              editable: true
+            }
+            list.push(item)
+          } else {
+            this.$message({
+              type: 'warning',
+              message: '当前已有正在编辑的项!'
+            });
+          }
+        } else {
+          this.$message({
+            type: 'warning',
+            message: '请输入学号!'
+          });
         }
-        list.push(item)
       },
       //删除新增项
-      delete_item(list, scope) {
-        console.log(scope);
+      delete_item(id) {
+        console.log(id);
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           //1、请求后台删除数据，返回成功后，重新刷新数据
-          list.splice(scope.$index, 1)
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
+          console.log(id);
+          this.request.post('/ws/score/removeDetail', {itemId: id, id: this.ruleForm.id}).then(res => {
+            this.$message({
+              type: 'success',
+              message: res.errmsg
+            })
+            this.add_edit(res.data.id);
+          })
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -643,10 +645,63 @@
         });
       },
       //提交新增项
-      deliver_item(list, scope) {
-        // let index = scope.$index;
-        list[scope.$index].editable = false
-      }
+      deliver_item() {
+        this.score_form.xh = this.ruleForm.xh
+        console.log(this.score_form)
+        this.request.post('/ws/score/add', this.score_form).then(res => {
+          this.$message({
+            type: 'success',
+            message: res.errmsg
+          })
+          this.add_edit(res.data.id);
+          this.current_edit_flag = false
+        })
+      },
+      resetForm() {
+        this.jiafen_list = []
+        this.koufen_list = []
+        this.ruleForm = {
+          xm: '',//姓名
+          xh: '',//学号
+          bj: '',//班级
+          nj: '',//年级
+          xb: '',
+          zwm: '',
+          id: ''
+        }
+      },
+      handleSelectionChange(e) {
+        this.selectedList = e
+      },
+      remove() {//删除
+        if (this.selectedList.length > 0) {
+          let m = getStringArr(this.selectedList, 'id')
+          this.$confirm('确定删除?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.request.post('/ws/score/remove', {ids: m}).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.errmsg
+              })
+              this.getData()
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+        } else {
+          this.$message({
+            message: '请至少选择一项',
+            type: 'warning',
+            duration: 5 * 1000
+          })
+        }
+      },
     }
   }
 </script>

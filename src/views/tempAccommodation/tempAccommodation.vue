@@ -398,7 +398,7 @@
     },
     methods: {
       getData() {
-        this.request.post('/api/roomassing/page', {
+        this.request.post('/ws/roomassing/page', {
           xm: this.xm,
           xh: this.xh,
           xy: this.xy,
@@ -445,7 +445,7 @@
           this.add_edit_flag = false
         } else {//编辑
           this.add_edit_flag = true
-          this.request.post('/api/roomassing/toEdit', {id: e}).then(res => {
+          this.request.post('/ws/roomassing/toEdit', {id: e}).then(res => {
             if (res.data.data) {
               this.ruleForm = res.data.data.student
               this.ruleForm2 = res.data.data
@@ -464,7 +464,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.request.post('/api/roomassing/remove', {ids: m}).then(res => {
+            this.request.post('/ws/roomassing/remove', {ids: m}).then(res => {
               this.$message({
                 type: 'success',
                 message: res.errmsg
@@ -487,7 +487,7 @@
       },
       getStdInfo() {
         if (this.ruleForm.xh) {
-          this.request.post('/api/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
+          this.request.post('/ws/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
             if (res) {
               this.ruleForm = res.data.data
             }
@@ -500,9 +500,9 @@
       submit() {
         let url = ''
         if (this.add_edit_flag) {//编辑
-          url = '/api/roomassing/edit'
+          url = '/ws/roomassing/edit'
         } else {
-          url = '/api/roomassing/add'
+          url = '/ws/roomassing/add'
         }
         this.ruleForm2.xh = this.ruleForm.xh
         this.request.post(url, this.ruleForm2).then(res => {

@@ -11,14 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {//地址映射表
-      '/api': {  //代理地址
+      '/ws': {  //代理地址
         target: 'http://192.168.0.110:806/',  //需要代理的地址
-        // target: 'http://192.168.0.194:8087/',  //需要代理的地址
         changeOrigin: true,  //是否跨域
         // secure: false,
-        pathRewrite: {
-          '^/api': '/ws'   //本身的接口地址没有 '/api' 这种通用前缀，所以要rewrite，如果本身有则去掉
-        }
+        // pathRewrite: {
+        //   '^/ws': '/abc'   //本身的接口地址没有 '/api' 这种通用前缀，所以要rewrite，如果本身有则去掉
+        // }
       }
     },
 
@@ -48,13 +47,14 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../docs/index.html'),
+    index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../docs'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: './',
-
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    // assetsSubDirectory: 'static',
+    // assetsPublicPath: './',
+    assetsSubDirectory: '',
+    assetsPublicPath: '',
     /**
      * Source Maps
      */

@@ -6,31 +6,34 @@
           placeholder="姓名"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="学号"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="xh">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="专业"
           size="mini"
+          v-model="zy"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="学院"
           size="mini"
+          v-model="xy"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
           placeholder="年级"
           size="mini"
+          v-model="nj"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
@@ -217,6 +220,11 @@
     name: 'stdpic',
     data() {
       return {
+        xm:'',
+        xh:'',
+        zy:'',
+        xy:'',
+        nj:'',
         imageUrl: '',
         dialogVisible1: false,
         data1: [
@@ -250,7 +258,15 @@
         },
       };
     },
+    mounted(){
+      this.getTree()
+    },
     methods: {
+      getTree(){
+        this.request.post('/ws/dept/list').then(res => {
+         console.log(res)
+        })
+      },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
       },

@@ -293,7 +293,7 @@
     },
     methods: {
       getData() {
-        this.request.post('/api/punishment/page', {
+        this.request.post('/ws/punishment/page', {
           xm: this.xm,
           xh: this.xh,
           xy: this.xy,
