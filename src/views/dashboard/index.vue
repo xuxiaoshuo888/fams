@@ -13,8 +13,7 @@
                 width="180"
                 header-align="center"
                 align="center">
-                <template slot-scope="scope">{{scope.row.whenCreated.substr(0,10)}}
-                </template>
+                <template slot-scope="scope">{{scope.row.whenCreated.substr(0,10)}}</template>
               </el-table-column>
               <el-table-column
                 prop="deptId"
@@ -40,20 +39,10 @@
           <div class="sub-block">
             <header class="sub_title">护照到期提醒（{{hz_num}}人）
               <router-link to="Passport">更多</router-link>
-              <!--<a href="#" target="_blank">更多</a>-->
             </header>
             <el-table
               :data="list_hz"
               style="width: 100%">
-              <el-table-column
-                label="学号"
-                header-align="center"
-                align="center"
-                show-overflow-tooltip>
-                <template slot-scope="scope">
-                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.xh}}</a>
-                </template>
-              </el-table-column>
               <el-table-column
                 prop="student.xm"
                 label="姓名"
@@ -62,6 +51,17 @@
                 align="center"
                 show-overflow-tooltip>
               </el-table-column>
+              <el-table-column
+                prop="xh"
+                label="学号"
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+                <template slot-scope="scope">
+                  <div>{{scope.row.xh}}</div>
+                </template>
+              </el-table-column>
+
               <el-table-column
                 prop="hzyxq"
                 label="到期时间"
@@ -80,15 +80,6 @@
               :data="list_bx"
               style="width: 100%">
               <el-table-column
-                label="学号"
-                header-align="center"
-                align="center"
-                show-overflow-tooltip>
-                <template slot-scope="scope">
-                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.xh}}</a>
-                </template>
-              </el-table-column>
-              <el-table-column
                 prop="student.xm"
                 label="姓名"
                 width=""
@@ -96,6 +87,17 @@
                 align="center"
                 show-overflow-tooltip>
               </el-table-column>
+              <el-table-column
+                prop="xh"
+                label="学号"
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+                <template slot-scope="scope">
+                  <div>{{scope.row.xh}}</div>
+                </template>
+              </el-table-column>
+
               <el-table-column
                 prop="bxrq"
                 label="到期时间"
@@ -114,21 +116,22 @@
               :data="list_lz"
               style="width: 100%">
               <el-table-column
-                label="学号"
-                header-align="center"
-                align="center"
-                show-overflow-tooltip>
-                <template slot-scope="scope">
-                  <a href="" target="_blank" style="text-decoration: underline">{{scope.row.xh}}</a>
-                </template>
-              </el-table-column>
-              <el-table-column
                 prop="student.xm"
                 label="姓名"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="xh"
+                label="学号"
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+                <template slot-scope="scope">
+                  <div>{{scope.row.xh}}</div>
+                </template>
               </el-table-column>
               <el-table-column
                 prop="dxsj"
@@ -152,11 +155,11 @@
       return {
         list_tzgg: [],
         list_hz: [],
-        hz_num:'',
+        hz_num: '',
         list_bx: [],
-        bx_num:'',
+        bx_num: '',
         list_lz: [],
-        lz_num:'',
+        lz_num: '',
       }
     },
     mounted() {
@@ -177,7 +180,7 @@
       get_hz() {
         this.request.post('/ws/passport/due', {
           page: this.pageNum,
-          limit: this.pageSize,
+          limit: 3,
         }).then(res => {
           this.list_hz = res.data.page.rows
           this.hz_num = res.data.page.records
@@ -186,7 +189,7 @@
       get_bx() {
         this.request.post('/ws/insurance/page', {
           page: this.pageNum,
-          limit: this.pageSize,
+          limit:3,
         }).then(res => {
           this.list_bx = res.data.page.rows
           this.bx_num = res.data.page.records
@@ -195,7 +198,7 @@
       get_lz() {
         this.request.post('/ws/roomassing/page', {
           page: this.pageNum,
-          limit: this.pageSize,
+          limit: 3,
         }).then(res => {
           this.list_lz = res.data.page.rows
           this.lz_num = res.data.page.records

@@ -374,7 +374,7 @@
         bj: "",
         nj: "",
         gb: '',
-        pageNum: null,
+        pageNum: 1,
         pageSize: null,
         records: null,
         dialogVisible: false,

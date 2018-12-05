@@ -63,14 +63,7 @@
       style=""
       max-height="768"
       border
-      stripe
-      @selection-change="handleSelectionChange">
-      <el-table-column
-        type="selection"
-        header-align="center"
-        align="center"
-        width="50">
-      </el-table-column>
+      stripe>
       <el-table-column
         label="操作"
         width="70"
@@ -1233,8 +1226,10 @@
           nj: this.nj,
           mz: this.mz
         }).then(res => {
-          console.log(res)
           this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
         })
       },
       showStd(xh) {
@@ -1247,10 +1242,6 @@
           this.list_lz = res.data.lz
 
         })
-      },
-
-      handleSelectionChange(e) {
-        console.log(e)
       },
       //初始化10个数据
       initJiaofei() {

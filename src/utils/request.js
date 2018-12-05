@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Vue from 'vue'
 import {Message, MessageBox} from 'element-ui'
 import store from '../store'
 import {getToken} from '@/utils/auth'
@@ -12,10 +13,11 @@ const service = axios.create({
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 })
-
+let loading;
 //request拦截器
 service.interceptors.request.use(
   config => {
+    loading=Vue.prototype.$loading({text:"",background: 'rgba(0, 0, 0, 0.3)'});
     config.data = querystring.stringify(config.data)
     if (store.getters.token) {
       config.headers.Authorization = "Bearer " + getToken()
@@ -31,7 +33,8 @@ service.interceptors.request.use(
 //response拦截器
 service.interceptors.response.use(
   response => {
-    console.log(response)
+    // console.log(response)
+    loading.close();
     const res = response.data
     if (res.errcode === '0') {//正常
       return response.data
@@ -44,6 +47,7 @@ service.interceptors.response.use(
     }
   },
   error => {
+    loading.close();
     console.log('err' + error) // for debug
     Message({
       message: error.message,
