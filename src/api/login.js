@@ -11,7 +11,7 @@ export function login(username, password) {
   })
 }
 
-export function requestToken(uuid) {
+export function requestToken(uuid) {//用uuid请求后台拿到token
   return request({
     url: '/ws/gettoken',
     method: 'post',
@@ -21,7 +21,7 @@ export function requestToken(uuid) {
 
 export function logout() {
   return request({
-    url: '/user/logout',
+    url: '/ws/logout',
     method: 'post'
   })
 }

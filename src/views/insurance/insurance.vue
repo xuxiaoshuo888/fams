@@ -40,7 +40,7 @@
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
         <el-button type="danger" size="mini" icon="el-icon-delete" @click="remove">批量删除</el-button>
 
-        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download" @click="optExport">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -126,8 +126,23 @@
           <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">编辑</el-button>
         </template>
       </el-table-column>
-
     </el-table>
+
+    <!--分页-->
+    <div class="pagination-block">
+      <el-pagination
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
+      </el-pagination>
+    </div>
     <!--模态框-->
     <el-dialog
       title=""
@@ -219,7 +234,7 @@
         xm: "",
         bxxm: "",
         list: [],
-        pageNum: null,
+        pageNum: 1,
         pageSize: null,
         records: null,
         dialogVisible: false,
@@ -405,7 +420,29 @@
           this.getData()
           this.dialogVisible = false
         })
-      }
+      },
+      optExport() {
+        window.open('/ws/insurance/export?xm=' + this.xm +
+          '&xh=' + this.xh +
+          '&xy=' + this.xy +
+          '&zy=' + this.zy +
+          '&bj=' + this.bj, '_blank')
+      },
+      //分页相关方法
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
+      },
     }
   }
 </script>

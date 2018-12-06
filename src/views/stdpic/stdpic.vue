@@ -44,7 +44,7 @@
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-upload2" @click="dialogVisible1 = true">导入</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-download">导出</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download" @click="optExport">导出</el-button>
       </el-col>
     </el-row>
     <el-row :gutter="20">
@@ -313,11 +313,16 @@
       next() {
         this.pageNum = this.pageNum + 1
       },
-      whitchPic(item, index) {
-        console.log(item)
-        console.log(index)
+      whitchPic(item, index) {//选中某个照片
         this.pic_std_id = item.id
-      }
+      },
+      optExport() {
+        window.open('/ws/student/imgExport?xm=' + this.xm +
+          '&xh=' + this.xh +
+          '&xy=' + this.xy +
+          '&zy=' + this.zy +
+          '&bj=' + this.bj , '_blank')
+      },
     }
   }
 </script>

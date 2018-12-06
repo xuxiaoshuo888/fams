@@ -1,5 +1,9 @@
 import {login, requestToken, logout} from "@/api/login";
-import {getToken, setToken, removeToken, setRoleList, getRoleList, setCurrentRole, getCurrentRole} from "@/utils/auth";
+import {
+  getToken, setToken, removeToken,
+  setRoleList, getRoleList, removeRoleList,
+  setCurrentRole, getCurrentRole, removeCurrentRole
+} from "@/utils/auth";
 
 const user = {
   state: {
@@ -40,37 +44,20 @@ const user = {
           reject(error)
         })
       })
+    },
+    LogOut({commit, state}) {
+      return new Promise((resolve, reject) => {
+        logout(state.token).then(() => {
+          removeToken()
+          removeRoleList()
+          removeCurrentRole()
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   }
 }
 
 export default user
-//   .then(res => {
-//   //写入缓存
-//   setToken(res.data.token)
-//   setCurrentRole(res.data.currentRole)
-//   setRoleList(res.data.roles)
-//   //写入store
-//   commit('SET_TOKEN', res.data.token)
-//   commit('SET_ROLE', res.data.currentRole)
-//   commit('SET_ROLELIST', res.data.roles)
-// })
-// return res.data.
-// const data = response.data
-// setToken(data.token)
-// commit('SET_TOKEN', data.token)
-// resolve()
-
-
-// requestToken(res.data.APP_UUID).then((res) => {
-//   console.log(res)
-//   //写入缓存
-//   setToken(res.data.token)
-//   setCurrentRole(res.data.currentRole)
-//   setRoleList(res.data.roles)
-//   //写入store
-//   commit('SET_TOKEN', res.data.token)
-//   commit('SET_ROLE', res.data.currentRole)
-//   commit('SET_ROLELIST', res.data.roles)
-//   resolve()
-// })

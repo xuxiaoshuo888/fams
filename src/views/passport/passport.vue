@@ -76,28 +76,28 @@
       <el-table-column
         prop="student.xh"
         label="学号"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="student.xm"
         label="姓名"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="student.xb"
         label="性别"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="student.zy"
         label="专业"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
@@ -118,7 +118,7 @@
       <el-table-column
         prop="student.xy"
         label="学院"
-        width=""
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
@@ -167,20 +167,20 @@
     </el-table>
 
     <!--分页-->
-    <!--<div class="pagination-block">-->
-    <!--<el-pagination-->
-    <!--background-->
-    <!--@size-change=""-->
-    <!--@current-change=""-->
-    <!--@prev-click=""-->
-    <!--@next-click=""-->
-    <!--:current-page="currentPage4"-->
-    <!--:page-sizes="[10, 20, 30, 40]"-->
-    <!--:page-size="10"-->
-    <!--layout="total, sizes, prev, pager, next,->"-->
-    <!--:total="400">-->
-    <!--</el-pagination>-->
-    <!--</div>-->
+    <div class="pagination-block">
+      <el-pagination
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
+      </el-pagination>
+    </div>
     <!--模态框-->
     <el-dialog
       title=""
@@ -262,45 +262,45 @@
             </el-date-picker>
           </el-form-item>
           <div class="hr"></div>
-          <!--<el-row :gutter="20">-->
-          <!--<el-col :span="8">-->
-          <!--<div class="pic_title">上传护照首页</div>-->
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <div class="pic_title">上传护照首页</div>
 
-          <!--<el-upload-->
-          <!--class="avatar-uploader"-->
-          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--:show-file-list="false"-->
-          <!--:on-success="handleAvatarSuccess"-->
-          <!--:before-upload="beforeAvatarUpload">-->
-          <!--<img v-if="imageUrl" :src="imageUrl1" class="avatar">-->
-          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-          <!--</el-upload>-->
-          <!--</el-col>-->
-          <!--<el-col :span="8">-->
-          <!--<div class="pic_title">上传签证页</div>-->
-          <!--<el-upload-->
-          <!--class="avatar-uploader"-->
-          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--:show-file-list="false"-->
-          <!--:on-success="handleAvatarSuccess"-->
-          <!--:before-upload="beforeAvatarUpload">-->
-          <!--<img v-if="imageUrl" :src="imageUrl2" class="avatar">-->
-          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-          <!--</el-upload>-->
-          <!--</el-col>-->
-          <!--<el-col :span="8">-->
-          <!--<div class="pic_title">居留许可证页</div>-->
-          <!--<el-upload-->
-          <!--class="avatar-uploader"-->
-          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--:show-file-list="false"-->
-          <!--:on-success="handleAvatarSuccess"-->
-          <!--:before-upload="beforeAvatarUpload">-->
-          <!--<img v-if="imageUrl" :src="imageUrl3" class="avatar">-->
-          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-          <!--</el-upload>-->
-          <!--</el-col>-->
-          <!--</el-row>-->
+              <el-upload
+                class="avatar-uploader"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="imageUrl" :src="imageUrl1" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+            <el-col :span="8">
+              <div class="pic_title">上传签证页</div>
+              <el-upload
+                class="avatar-uploader"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="imageUrl" :src="imageUrl2" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+            <el-col :span="8">
+              <div class="pic_title">居留许可证页</div>
+              <el-upload
+                class="avatar-uploader"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="imageUrl" :src="imageUrl3" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+          </el-row>
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -359,9 +359,9 @@
         hzhm: "",
         hzyxq: "",
         jlxkdqr: "",
-        pageNum: "",
-        pageSize: "",
-        records: "",
+        pageNum: 1,
+        pageSize: null,
+        records: null,
         dialogVisible: false,
         list: [],
         selectedList: [],
@@ -534,9 +534,9 @@
           '&hzyxq=' + this.hzyxq +
           '&jlxkdqr=' + this.jlxkdqr, '_blank')
       },
-      daoqi(){
+      daoqi() {
         this.request.post('/ws/passport/page', {
-          due:'due',
+          due: 'due',
           xm: this.xm,
           xh: this.xh,
           xy: this.xy,
@@ -553,7 +553,22 @@
           this.pageSize = res.data.page.pageSize
           this.records = res.data.page.records
         })
-      }
+      },
+      //分页相关方法
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
+      },
     }
   }
 </script>

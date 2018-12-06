@@ -121,7 +121,7 @@
         :current-page="pageNum"
         :page-sizes="[10, 20, 50]"
         :page-size="pageSize"
-        layout="total, sizes, prev, pager, next"
+        layout="total, sizes, prev, pager, next,jumper"
         :total="records">
       </el-pagination>
     </div>
@@ -144,7 +144,7 @@
             <el-input v-model="ruleForm.author"></el-input>
           </el-form-item>
         </el-form>
-        <editor ref="editor1" :msg="ruleForm.content"></editor>
+        <editor ref="editor1" v-on:content="getContent" :msg="ruleForm.content"></editor>
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button size="small" @click="dialogVisible = false">取 消</el-button>
@@ -177,7 +177,7 @@
           title: "",
           dept: "",
           author: "",
-          content: "asdfasdfasdfas",
+          content: "",
           id: ''
         },
         rules: {},
@@ -232,7 +232,7 @@
           userId: this.ruleForm.author,
           deptId: this.ruleForm.deptId,
           title: this.ruleForm.title,
-          content: 'qwertyuiop',
+          content: this.ruleForm.content,
           id: this.ruleForm.id
         }).then(res => {
           this.$message({
@@ -311,10 +311,11 @@
         this.selectedList = getStringArr(e, 'id')
         console.log(this.selectedList)
       },
+      getContent(e){
+        this.ruleForm.content = e
+      }
     },
-    mounted() {
 
-    }
   }
 </script>
 

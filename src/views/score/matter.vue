@@ -194,20 +194,20 @@
         </el-table-column>
       </el-table>
       <!--分页-->
-      <!--<div class="pagination-block">-->
-      <!--<el-pagination-->
-      <!--background-->
-      <!--@size-change=""-->
-      <!--@current-change=""-->
-      <!--@prev-click=""-->
-      <!--@next-click=""-->
-      <!--:current-page="currentPage4"-->
-      <!--:page-sizes="[10, 20, 30, 40]"-->
-      <!--:page-size="10"-->
-      <!--layout="total, sizes, prev, pager, next,->"-->
-      <!--:total="400">-->
-      <!--</el-pagination>-->
-      <!--</div>-->
+      <div class="pagination-block">
+        <el-pagination
+          background
+          @size-change="handleSizeChange2"
+          @current-change="handleCurrentChange2"
+          @prev-click="prev2"
+          @next-click="next2"
+          :current-page="pageNum2"
+          :page-sizes="[10, 20, 50]"
+          :page-size="pageSize2"
+          layout="total, sizes, prev, pager, next,jumper"
+          :total="records2">
+        </el-pagination>
+      </div>
     </div>
 
     <!--模态框-->
@@ -418,6 +418,21 @@
       next() {
         this.pageNum = this.pageNum + 1
       },
+      //分页相关方法
+      handleSizeChange2(e) {
+        this.pageSize2 = e
+        this.getData()
+      },
+      handleCurrentChange2(e) {
+        this.pageNum2 = e
+        this.getData()
+      },
+      prev2() {
+        this.pageNum2 = this.pageNum2 - 1
+      },
+      next2() {
+        this.pageNum2 = this.pageNum2 + 1
+      }
     }
   }
 </script>

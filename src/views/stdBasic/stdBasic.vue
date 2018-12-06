@@ -54,7 +54,7 @@
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-edit-outline" @click="resetPassword">重置密码</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download" @click="optExport">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -561,6 +561,13 @@
           this.getData()
           this.dialogVisible = false
         })
+      },
+      optExport() {
+        window.open('/ws/student/export?xm=' + this.xm +
+          '&xh=' + this.xh +
+          '&xy=' + this.xy +
+          '&zy=' + this.zy +
+          '&bj=' + this.bj , '_blank')
       },
       handleSelectionChange(e) {
         this.selectedList = e

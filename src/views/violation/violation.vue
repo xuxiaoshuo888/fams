@@ -173,6 +173,22 @@
         align="center">
       </el-table-column>
     </el-table>
+
+    <!--分页-->
+    <div class="pagination-block">
+      <el-pagination
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
+      </el-pagination>
+    </div>
     <!--模态框-->
     <el-dialog
       title=""
@@ -415,9 +431,20 @@
       handleSelectionChange(e) {
         this.selectedList = e
       },
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      //分页相关方法
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
       },
     }
   }

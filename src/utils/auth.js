@@ -24,10 +24,19 @@ export function getRoleList() {
   return Cookies.get(RoleListKey)
 }
 
+export function removeRoleList() {
+  return Cookies.remove(RoleListKey)
+}
+
 export function setCurrentRole(CurrentRole) {
   return Cookies.set(RoleKey, CurrentRole)
 }
 
 export function getCurrentRole() {
   return Cookies.get(RoleKey)
+}
+
+export function removeCurrentRole() {
+  return Cookies.remove(RoleKey)
+
 }

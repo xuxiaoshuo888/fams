@@ -1,15 +1,15 @@
 <template>
   <el-header class="header_border" style="height: 50px;">
     <breadcrumb></breadcrumb>
-      <!--<el-dropdown>-->
-        <!--<i class="el-icon-setting" style="margin-right: 15px"></i>-->
-        <!--<el-dropdown-menu slot="dropdown">-->
-          <!--<el-dropdown-item>查看</el-dropdown-item>-->
-          <!--<el-dropdown-item>新增</el-dropdown-item>-->
-          <!--<el-dropdown-item>删除</el-dropdown-item>-->
-        <!--</el-dropdown-menu>-->
-      <!--</el-dropdown>-->
-      <!--<span>王小虎</span>-->
+    <!--<el-dropdown>-->
+    <!--<i class="el-icon-setting" style="margin-right: 15px"></i>-->
+    <!--<el-dropdown-menu slot="dropdown">-->
+    <!--<el-dropdown-item>查看</el-dropdown-item>-->
+    <!--<el-dropdown-item>新增</el-dropdown-item>-->
+    <!--<el-dropdown-item>删除</el-dropdown-item>-->
+    <!--</el-dropdown-menu>-->
+    <!--</el-dropdown>-->
+    <!--<span>王小虎</span>-->
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img src="" class="user-avatar">
@@ -17,12 +17,10 @@
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
-          <el-dropdown-item>
-            Home
-          </el-dropdown-item>
+          <el-dropdown-item>Home</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span style="display:block;" @click="">LogOut</span>
+          <span style="display:block;" @click="logout">LogOut</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -35,12 +33,22 @@
   export default {
     name: 'Navbar',
     components: {breadcrumb},
-
+    data() {
+      return {}
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch('LogOut').then(() => {
+            location.reload()
+          }
+        )
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-  .header_border{
+  .header_border {
     border-bottom: solid 1px #e6e6e6;
     font-size: 12px;
   }
