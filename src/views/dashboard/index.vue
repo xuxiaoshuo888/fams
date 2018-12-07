@@ -3,7 +3,9 @@
     <el-row :gutter="20">
       <el-col :span="12">
         <el-card shadow="always">
-          <header class="title">通知公告</header>
+          <header class="title">通知公告
+            <router-link to="notice" style="font-size: 14px;float: right;color: #409EFF;">更多详情</router-link>
+          </header>
           <div class="sub-block">
             <el-table
               :data="list_tzgg"
@@ -189,7 +191,7 @@
       get_bx() {
         this.request.post('/ws/insurance/page', {
           page: this.pageNum,
-          limit:3,
+          limit: 3,
         }).then(res => {
           this.list_bx = res.data.page.rows
           this.bx_num = res.data.page.records
@@ -232,6 +234,7 @@
         font-size: 14px;
         float: right;
         color: #409EFF;
+
       }
     }
 

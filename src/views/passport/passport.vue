@@ -262,45 +262,45 @@
             </el-date-picker>
           </el-form-item>
           <div class="hr"></div>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <div class="pic_title">上传护照首页</div>
+          <!--<el-row :gutter="20">-->
+            <!--<el-col :span="8">-->
+              <!--<div class="pic_title">上传护照首页</div>-->
 
-              <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl1" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-col>
-            <el-col :span="8">
-              <div class="pic_title">上传签证页</div>
-              <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl2" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-col>
-            <el-col :span="8">
-              <div class="pic_title">居留许可证页</div>
-              <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl3" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-col>
-          </el-row>
+              <!--<el-upload-->
+                <!--class="avatar-uploader"-->
+                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                <!--:show-file-list="false"-->
+                <!--:on-success="handleAvatarSuccess"-->
+                <!--:before-upload="beforeAvatarUpload">-->
+                <!--<img v-if="imageUrl" :src="imageUrl1" class="avatar">-->
+                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+              <!--</el-upload>-->
+            <!--</el-col>-->
+            <!--<el-col :span="8">-->
+              <!--<div class="pic_title">上传签证页</div>-->
+              <!--<el-upload-->
+                <!--class="avatar-uploader"-->
+                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                <!--:show-file-list="false"-->
+                <!--:on-success="handleAvatarSuccess"-->
+                <!--:before-upload="beforeAvatarUpload">-->
+                <!--<img v-if="imageUrl" :src="imageUrl2" class="avatar">-->
+                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+              <!--</el-upload>-->
+            <!--</el-col>-->
+            <!--<el-col :span="8">-->
+              <!--<div class="pic_title">居留许可证页</div>-->
+              <!--<el-upload-->
+                <!--class="avatar-uploader"-->
+                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                <!--:show-file-list="false"-->
+                <!--:on-success="handleAvatarSuccess"-->
+                <!--:before-upload="beforeAvatarUpload">-->
+                <!--<img v-if="imageUrl" :src="imageUrl3" class="avatar">-->
+                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+              <!--</el-upload>-->
+            <!--</el-col>-->
+          <!--</el-row>-->
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -535,8 +535,7 @@
           '&jlxkdqr=' + this.jlxkdqr, '_blank')
       },
       daoqi() {
-        this.request.post('/ws/passport/page', {
-          due: 'due',
+        this.request.post('/ws/passport/due', {
           xm: this.xm,
           xh: this.xh,
           xy: this.xy,

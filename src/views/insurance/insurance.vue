@@ -35,6 +35,7 @@
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-view" @click="daoqi">即将到期</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
@@ -342,6 +343,25 @@
           bxxm: this.bxxm,
           page: this.pageNum,
           limit: this.pageSize
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+      daoqi() {
+        this.request.post('/ws/insurance/due', {
+          xm: this.xm,
+          xh: this.xh,
+          xy: this.xy,
+          zy: this.zy,
+          bj: this.bj,
+          hzhm: this.hzhm,
+          hzyxq: this.hzyxq,
+          jlxkdqr: this.jlxkdqr,
+          page: this.pageNum,
+          limit: this.pageSize,
         }).then(res => {
           this.list = res.data.page.rows
           this.pageNum = res.data.page.page

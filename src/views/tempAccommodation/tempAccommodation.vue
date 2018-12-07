@@ -69,7 +69,7 @@
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-view">即将到期</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-view" @click="daoqi">即将到期</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
@@ -583,6 +583,27 @@
           '&zy=' + this.zy +
           '&bj=' + this.bj, '_blank')
       },
+      daoqi() {
+        this.request.post('/ws/roomassing/due', {
+          xm: this.xm,
+          xh: this.xh,
+          xy: this.xy,
+          zy: this.zy,
+          bj: this.bj,
+          fdyxm: this.fdyxm,
+          djlsxm: this.djlsxm,
+          hzhm: this.hzhm,
+          lxdh: this.lxdh,
+          page: this.pageNum,
+          limit: this.pageSize,
+          lb: this.cj_flag
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      }
     }
   }
 </script>

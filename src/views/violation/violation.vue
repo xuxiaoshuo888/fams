@@ -403,7 +403,7 @@
       },
       getStdInfo() {
         if (this.ruleForm.xh) {
-          this.request.post('/api/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
+          this.request.post('/ws/student/getStdInfo', {xh: this.ruleForm.xh}).then(res => {
             if (res) {
               this.ruleForm = res.data.data
             }
