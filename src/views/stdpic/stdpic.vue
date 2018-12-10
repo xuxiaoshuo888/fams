@@ -39,8 +39,8 @@
         </el-input>
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getStdList">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-upload2" @click="dialogVisible1 = true">导入</el-button>
@@ -192,29 +192,29 @@
         pageSize: null,
         records: null,
         tree_data: [
-          {
-            label: '长沙医学院',
-            nodeType: 'school',
-            children: [
-              {
-                label: '文学院',
-                nodeType: 'xy',
-                children: [{label: '汉语言文学1班', nodeType: 'class'}, {label: '英语1班', nodeType: 'class'}]
-              },
-              {
-                label: '理学院',
-                children: [{label: '生物技术1班'}]
-              },
-              {
-                label: '工学院',
-                children: [{label: '计算机科学与技术1班'}]
-              },
-              {
-                label: '管理学院',
-                children: [{label: '管理1班'}, {label: '市场营销1班'}]
-              }
-            ]
-          }
+          // {
+          //   label: '长沙医学院',
+          //   nodeType: 'school',
+          //   children: [
+          //     {
+          //       label: '文学院',
+          //       nodeType: 'xy',
+          //       children: [{label: '汉语言文学1班', nodeType: 'class'}, {label: '英语1班', nodeType: 'class'}]
+          //     },
+          //     {
+          //       label: '理学院',
+          //       children: [{label: '生物技术1班'}]
+          //     },
+          //     {
+          //       label: '工学院',
+          //       children: [{label: '计算机科学与技术1班'}]
+          //     },
+          //     {
+          //       label: '管理学院',
+          //       children: [{label: '管理1班'}, {label: '市场营销1班'}]
+          //     }
+          //   ]
+          // }
         ],
         defaultProps: {
           children: 'children',
@@ -296,7 +296,6 @@
           this.table_pic_flag = true
         }
         this.getStdList()
-
       },
       //分页相关方法
       handleSizeChange(e) {
@@ -322,6 +321,14 @@
           '&xy=' + this.xy +
           '&zy=' + this.zy +
           '&bj=' + this.bj , '_blank')
+      },
+      reset() {//重置搜索条件
+        this.xh = ''
+        this.xm = ''
+        this.xy = ''
+        this.zy = ''
+        this.nj = ''
+        this.getStdList()
       },
     }
   }

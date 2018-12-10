@@ -76,21 +76,21 @@
       <el-table-column
         prop="student.xh"
         label="学号"
-        width="100"
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="student.xm"
         label="姓名"
-        width="80"
+        width="200"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="student.xb"
         label="性别"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -186,11 +186,11 @@
       title=""
       :visible.sync="dialogVisible"
       width="1200px">
-      <div slot="title">学生基本信息管理</div>
+      <div slot="title">护照及居留许可管理</div>
       <div>
-        <el-form :model="ruleForm" inline="" :rules="rules" ref="ruleForm" label-width="160px"
+        <el-form :model="ruleForm" inline="" :rules="rules1" ref="ruleForm" label-width="160px"
                  class="demo-ruleForm">
-          <el-form-item label="学号" prop="">
+          <el-form-item label="学号" prop="xh">
             <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
@@ -218,10 +218,14 @@
             <el-input v-model="ruleForm.lxdh" disabled></el-input>
           </el-form-item>
           <div class="hr"></div>
-          <el-form-item label="护照号码" prop="">
-            <el-input v-model="ruleForm2.hzhm"></el-input>
+
+        </el-form>
+        <el-form :model="ruleForm2" inline="" :rules="rules2" ref="ruleForm2" label-width="160px"
+                 class="demo-ruleForm">
+          <el-form-item label="护照号码" prop="hzhm">
+            <el-input v-model="ruleForm2.hzhm" required></el-input>
           </el-form-item>
-          <el-form-item label="护照有效期" prop="">
+          <el-form-item label="护照有效期" prop="hzyxq">
             <el-date-picker
               type="date"
               placeholder=""
@@ -229,7 +233,7 @@
               value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="护照有效期到期日" prop="">
+          <el-form-item label="护照有效期到期日" prop="hzyxqdqr">
             <el-date-picker
               type="date"
               placeholder=""
@@ -245,7 +249,7 @@
               value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="居留许可到期日" prop="">
+          <el-form-item label="居留许可到期日" prop="jlxkdqr">
             <el-date-picker
               type="date"
               placeholder=""
@@ -263,43 +267,43 @@
           </el-form-item>
           <div class="hr"></div>
           <!--<el-row :gutter="20">-->
-            <!--<el-col :span="8">-->
-              <!--<div class="pic_title">上传护照首页</div>-->
+          <!--<el-col :span="8">-->
+          <!--<div class="pic_title">上传护照首页</div>-->
 
-              <!--<el-upload-->
-                <!--class="avatar-uploader"-->
-                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                <!--:show-file-list="false"-->
-                <!--:on-success="handleAvatarSuccess"-->
-                <!--:before-upload="beforeAvatarUpload">-->
-                <!--<img v-if="imageUrl" :src="imageUrl1" class="avatar">-->
-                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-              <!--</el-upload>-->
-            <!--</el-col>-->
-            <!--<el-col :span="8">-->
-              <!--<div class="pic_title">上传签证页</div>-->
-              <!--<el-upload-->
-                <!--class="avatar-uploader"-->
-                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                <!--:show-file-list="false"-->
-                <!--:on-success="handleAvatarSuccess"-->
-                <!--:before-upload="beforeAvatarUpload">-->
-                <!--<img v-if="imageUrl" :src="imageUrl2" class="avatar">-->
-                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-              <!--</el-upload>-->
-            <!--</el-col>-->
-            <!--<el-col :span="8">-->
-              <!--<div class="pic_title">居留许可证页</div>-->
-              <!--<el-upload-->
-                <!--class="avatar-uploader"-->
-                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                <!--:show-file-list="false"-->
-                <!--:on-success="handleAvatarSuccess"-->
-                <!--:before-upload="beforeAvatarUpload">-->
-                <!--<img v-if="imageUrl" :src="imageUrl3" class="avatar">-->
-                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-              <!--</el-upload>-->
-            <!--</el-col>-->
+          <!--<el-upload-->
+          <!--class="avatar-uploader"-->
+          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+          <!--:show-file-list="false"-->
+          <!--:on-success="handleAvatarSuccess"-->
+          <!--:before-upload="beforeAvatarUpload">-->
+          <!--<img v-if="imageUrl" :src="imageUrl1" class="avatar">-->
+          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+          <!--</el-upload>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+          <!--<div class="pic_title">上传签证页</div>-->
+          <!--<el-upload-->
+          <!--class="avatar-uploader"-->
+          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+          <!--:show-file-list="false"-->
+          <!--:on-success="handleAvatarSuccess"-->
+          <!--:before-upload="beforeAvatarUpload">-->
+          <!--<img v-if="imageUrl" :src="imageUrl2" class="avatar">-->
+          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+          <!--</el-upload>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+          <!--<div class="pic_title">居留许可证页</div>-->
+          <!--<el-upload-->
+          <!--class="avatar-uploader"-->
+          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+          <!--:show-file-list="false"-->
+          <!--:on-success="handleAvatarSuccess"-->
+          <!--:before-upload="beforeAvatarUpload">-->
+          <!--<img v-if="imageUrl" :src="imageUrl3" class="avatar">-->
+          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+          <!--</el-upload>-->
+          <!--</el-col>-->
           <!--</el-row>-->
         </el-form>
       </div>
@@ -365,7 +369,15 @@
         dialogVisible: false,
         list: [],
         selectedList: [],
-        rules: {},
+        rules1: {
+          xh: [{required: true, message: '请输入学号', trigger: 'blur'}]
+        },
+        rules2: {
+          hzhm: [{required: true, message: '请输入护照号码', trigger: 'blur'}],
+          hzyxq: [{required: true, message: '请选择护照有效期', trigger: 'blur'}],
+          hzyxqdqr: [{required: true, message: '请选择护照有效期到期日', trigger: 'blur'}],
+          jlxkdqr: [{required: true, message: '请选择居留许可到期日', trigger: 'blur'}]
+        },
         add_edit_flag: false,//false-新增，true-编辑
         ruleForm: {
           xm: '',//姓名
@@ -510,16 +522,18 @@
         } else {
           url = '/ws/passport/add'
         }
-        this.ruleForm2.xh = this.ruleForm.xh
-        this.request.post(url, this.ruleForm2).then(res => {
-          this.$message({
-            message: res.errmsg,
-            type: 'success',
-            duration: 5 * 1000
+        if (this.ruleForm.xh) {
+          this.ruleForm2.xh = this.ruleForm.xh
+          this.request.post(url, this.ruleForm2).then(res => {
+            this.$message({
+              message: res.errmsg,
+              type: 'success',
+              duration: 5 * 1000
+            })
+            this.getData()
+            this.dialogVisible = false
           })
-          this.getData()
-          this.dialogVisible = false
-        })
+        }
       },
       handleSelectionChange(e) {
         this.selectedList = e

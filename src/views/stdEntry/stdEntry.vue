@@ -95,7 +95,7 @@
       <el-table-column
         prop="nj"
         label="年级"
-        width="60"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
@@ -116,7 +116,8 @@
       <el-table-column
         prop="xm"
         label="姓名"
-        width="150"
+        width="250"
+        show-overflow-tooltip
         header-align="center"
         align="center">
       </el-table-column>
@@ -165,7 +166,7 @@
       <el-table-column
         prop="gb"
         label="国籍"
-        width="50"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
@@ -191,8 +192,8 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="bzr"
-        label="班主任"
+        prop="fdy"
+        label="辅导员"
         width="100"
         header-align="center"
         align="center">
@@ -330,7 +331,8 @@
       <div>
         <div class="daoru_block borderBottom">
           <header>导入说明：</header>
-          <div class="">本系统支持xls,xlsx格式，请确保表格中的数据不含有空格等特殊符号，标准格式请参考【<a href="#" target="_blank">导入模板</a>】</div>
+          <div class="">本系统支持xls,xlsx格式，请确保表格中的数据不含有空格等特殊符号，标准格式请参考【<a @click="import_template" target="_blank">导入模板</a>】
+          </div>
         </div>
         <div class="daoru_block borderBottom">
           <header>注意事项：</header>
@@ -343,7 +345,8 @@
               class="upload-block"
               drag
               action="https://jsonplaceholder.typicode.com/posts/"
-              multiple>
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload">
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
               <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -393,7 +396,7 @@
           lxdh: '',
           csrq: '',
         },
-        rules: {}
+        fileUrl:''//文件类型
       }
     },
     mounted() {
@@ -524,6 +527,34 @@
       },
       next() {
         this.pageNum = this.pageNum + 1
+      },
+      import_template() {//下载导入模板
+        window.open('/ws/data_import/downloadTemplate?id=studentInfo', '_blank')
+      },
+      handleAvatarSuccess(res, file, fileList) {
+        console.log(res)
+        console.log(file)
+        console.log(fileList)
+        this.fileUrl = URL.createObjectURL(file.raw);
+        this.request.post('/ws/data_import/upload').then(res => {
+          this.$message({
+            type: 'success',
+            message: res.errmsg
+          })
+        })
+      },
+      beforeAvatarUpload(file) {
+        console.log(file)
+        const isXlsx = file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        const isXls = file.type === 'application/vnd.ms-excel'
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isXlsx && !isXls) {
+          this.$message.error('上传表格只能是xlsx/xls格式文件');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传文件大小不能超过 2MB!');
+        }
+        return isXlsx && isLt2M;
       },
     }
   }

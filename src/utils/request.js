@@ -2,7 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 import {Message, MessageBox} from 'element-ui'
 import store from '../store'
-import {getToken} from '@/utils/auth'
+import {getToken, getCurrentRole} from '@/utils/auth'
 import querystring from 'querystring'
 
 //创建axios实例
@@ -17,7 +17,15 @@ let loading;
 //request拦截器
 service.interceptors.request.use(
   config => {
-    loading=Vue.prototype.$loading({text:"",background: 'rgba(0, 0, 0, 0.3)'});
+    loading = Vue.prototype.$loading({text: "", background: 'rgba(0, 0, 0, 0.3)'});
+    console.log(config.data)
+    let currentRole
+    if(getCurrentRole()){
+      currentRole = JSON.parse(getCurrentRole())
+      console.log(currentRole.id)
+      config.data['roleId'] = currentRole.id
+    }
+    console.log(currentRole)
     config.data = querystring.stringify(config.data)
     if (store.getters.token) {
       config.headers.Authorization = "Bearer " + getToken()

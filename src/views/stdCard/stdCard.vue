@@ -54,7 +54,7 @@
       </el-col>
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
       </el-col>
     </el-row>
 
@@ -1232,6 +1232,17 @@
           this.records = res.data.page.records
         })
       },
+      reset() {//重置搜索条件
+        this.xh = ''
+        this.xm = ''
+        this.xb = ''
+        this.xy = ''
+        this.zy = ''
+        this.bj = ''
+        this.nj = ''
+        this.zxzt = ''
+        this.getData()
+      },
       showStd(xh) {
         this.dialogVisible = true;
         this.request.post('/ws/student/getStdDetail', {xh: xh}).then(res => {
@@ -1240,7 +1251,6 @@
           this.list_bx = res.data.bx
           this.list_hz = res.data.hz
           this.list_lz = res.data.lz
-
         })
       },
       //初始化10个数据

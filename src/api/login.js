@@ -19,9 +19,10 @@ export function requestToken(uuid) {//用uuid请求后台拿到token
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
     url: '/ws/logout',
-    method: 'post'
+    method: 'post',
+    data: {token: token}
   })
 }

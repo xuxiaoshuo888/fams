@@ -23,27 +23,27 @@
           v-model="zxzt">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-select size="mini" v-model="xjlb" placeholder="学籍类别">
+        <el-select size="mini" v-model="xjlb" clearable placeholder="学籍类别">
           <el-option key="1" label="在籍" value="1"></el-option>
           <el-option key="2" label="不在籍" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="xb" placeholder="性别">
+        <el-select size="mini" v-model="xb" clearable placeholder="性别">
           <el-option key="1" label="男" value="1"></el-option>
           <el-option key="2" label="女" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="xy" placeholder="学院">
+        <el-select size="mini" v-model="xy" clearable placeholder="学院">
           <el-option key="1" label="文学院" value="1"></el-option>
           <el-option key="2" label="医学院" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="zy" placeholder="专业">
+        <el-select size="mini" v-model="zy" clearable placeholder="专业">
           <el-option key="1" label="临床医学" value="1"></el-option>
           <el-option key="2" label="营养学" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="nj" placeholder="年级">
+        <el-select size="mini" v-model="nj" clearable placeholder="年级">
           <el-option key="1" label="2018" value="1"></el-option>
           <el-option key="2" label="2017" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="mz" placeholder="民族">
+        <el-select size="mini" v-model="mz" clearable placeholder="民族">
           <el-option key="1" label="汉族" value="1"></el-option>
           <el-option key="2" label="满族" value="2"></el-option>
         </el-select>

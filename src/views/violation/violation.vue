@@ -16,19 +16,19 @@
           v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-select size="mini" v-model="xb" placeholder="性别">
+        <el-select size="mini" v-model="xb" clearable placeholder="性别">
           <el-option key="1" label="男" value="1"></el-option>
           <el-option key="2" label="女" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="xy" placeholder="学院">
+        <el-select size="mini" v-model="xy" clearable placeholder="学院">
           <el-option key="1" label="文学院" value="1"></el-option>
           <el-option key="2" label="医学院" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="zy" placeholder="专业">
+        <el-select size="mini" v-model="zy" clearable placeholder="专业">
           <el-option key="1" label="临床医学" value="1"></el-option>
           <el-option key="2" label="营养学" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="nj" placeholder="年级">
+        <el-select size="mini" v-model="nj" clearable placeholder="年级">
           <el-option key="1" label="2018" value="1"></el-option>
           <el-option key="2" label="2017" value="2"></el-option>
         </el-select>
@@ -199,7 +199,7 @@
         <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
           <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
+            <el-input v-model="ruleForm.xh" clearable @blur="getStdInfo"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
             <el-radio-group v-model="ruleForm.xb" disabled>
@@ -361,7 +361,7 @@
           this.add_edit_flag = false
         } else {//编辑
           this.add_edit_flag = true
-          this.request.post('/api/punishment/toEdit', {id: e}).then(res => {
+          this.request.post('/ws/punishment/toEdit', {id: e}).then(res => {
             if (res.data.data) {
               this.ruleForm = res.data.data.student
               this.ruleForm2 = res.data.data
@@ -380,7 +380,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.request.post('/api/punishment/remove', {ids: m}).then(res => {
+            this.request.post('/ws/punishment/remove', {ids: m}).then(res => {
               this.$message({
                 type: 'success',
                 message: res.errmsg
@@ -413,9 +413,9 @@
       submit() {
         let url = ''
         if (this.add_edit_flag) {//编辑
-          url = '/api/punishment/edit'
+          url = '/ws/punishment/edit'
         } else {
-          url = '/api/punishment/add'
+          url = '/ws/punishment/add'
         }
         this.ruleForm2.xh = this.ruleForm.xh
         this.request.post(url, this.ruleForm2).then(res => {

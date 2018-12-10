@@ -180,26 +180,31 @@
           <el-form-item label="电话号码" prop="">
             <el-input v-model="ruleForm.lxdh" disabled></el-input>
           </el-form-item>
-          <el-form-item label="保险项目" prop="">
+        </el-form>
+
+        <el-form :inline="true" :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="150px"
+                 class="demo-ruleForm">
+          <el-form-item label="保险项目" prop="bxxm">
             <el-input v-model="ruleForm2.bxxm"></el-input>
           </el-form-item>
-          <el-form-item label="保险费" prop="">
+          <el-form-item label="保险费" prop="bxf">
             <el-input v-model="ruleForm2.bxf"></el-input>
           </el-form-item>
-          <el-form-item label="保险日期" prop="">
+          <el-form-item label="保险日期" prop="bxrq">
             <el-date-picker
               type="date"
               value-format="yyyy-MM-dd"
               v-model="ruleForm2.bxrq">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="购买情况" prop="">
+          <el-form-item label="购买情况" prop="gmqk">
             <el-input v-model="ruleForm2.gmqk"></el-input>
           </el-form-item>
           <el-form-item label="就诊医院" prop="">
             <el-input v-model="ruleForm2.jzyy"></el-input>
           </el-form-item>
         </el-form>
+
         <el-form label-width="150px">
           <el-form-item label="病情" prop="desc" style="width:100%">
             <el-input type="textarea" v-model="ruleForm2.bq" style="width:100%;"></el-input>
@@ -241,74 +246,7 @@
         dialogVisible: false,
         selectedList: [],
         add_edit_flag: false,//false-新增，true-编辑
-        tableData3: [
-          {
-            xh: '1',
-            xm: "2018",
-            bxxm: '人生意外险',//保险项目
-            passport: "计算机技术1班",
-            gj: "20180808001",
-            bxf: "12333.4",//保险费
-            bxrq: "20180909",//保险日期
-            gmqk: "男",//购买情况
-            jzyy: "省人民医院",//就诊医院
-            bq: "",//病情
-            bxba: "",
-            bz: '无'
-          },
-          {
-            xh: '1',
-            xm: "2018",
-            passport: "计算机技术1班",
-            gj: "20180808001",
-            bxf: "12333.4",//保险费
-            bxrq: "20180909",//保险日期
-            gmqk: "男",//购买情况
-            jzyy: "省人民医院",//就诊医院
-            bq: "",//病情
-            bxba: "",
-            bz: '无'
-          },
-          {
-            xh: '1',
-            xm: "2018",
-            passport: "计算机技术1班",
-            gj: "20180808001",
-            bxf: "12333.4",//保险费
-            bxrq: "20180909",//保险日期
-            gmqk: "男",//购买情况
-            jzyy: "省人民医院",//就诊医院
-            bq: "",//病情
-            bxba: "",
-            bz: '无'
-          },
-          {
-            xh: '1',
-            xm: "2018",
-            passport: "计算机技术1班",
-            gj: "20180808001",
-            bxf: "12333.4",//保险费
-            bxrq: "20180909",//保险日期
-            gmqk: "男",//购买情况
-            jzyy: "省人民医院",//就诊医院
-            bq: "",//病情
-            bxba: "",
-            bz: '无'
-          },
-          {
-            xh: '1',
-            xm: "2018",
-            passport: "计算机技术1班",
-            gj: "20180808001",
-            bxf: "12333.4",//保险费
-            bxrq: "20180909",//保险日期
-            gmqk: "男",//购买情况
-            jzyy: "省人民医院",//就诊医院
-            bq: "",//病情
-            bxba: "",
-            bz: '无'
-          }
-        ],
+        tableData3: [],
         ruleForm: {
           xm: '',//姓名
           zwm: '',//中文名
@@ -329,7 +267,15 @@
           bz: "",
           id: ""
         },
-        rules: {}
+        rules1: {
+          xh: [{required: true, message: '请输入学号', trigger: 'blur'}]
+        },
+        rules2: {
+          bxxm: [{required: true, message: '请输入保险项目', trigger: 'blur'}],
+          bxf: [{required: true, message: '请输入保险费', trigger: 'blur'}],
+          bxrq: [{required: true, message: '请选择保险日期', trigger: 'blur'}],
+          gmqk: [{required: true, message: '请填写报名情况', trigger: 'blur'}]
+        },
       }
     },
     mounted() {
