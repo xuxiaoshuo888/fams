@@ -102,21 +102,21 @@
         <!--align="center">-->
         <!--</el-table-column>-->
         <el-table-column
-          prop="student.xm"
+          prop="xm"
           label="姓名"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="student.nj"
+          prop="nj"
           label="年级"
           width=""
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="student.xh"
+          prop="xh"
           label="学号"
           width="120"
           header-align="center"
@@ -137,7 +137,7 @@
           align="center">
         </el-table-column>
         <el-table-column
-          prop="student.lxdh"
+          prop="lxdh"
           label="联系号码"
           width=""
           header-align="center"
@@ -220,7 +220,7 @@
           header-align="center"
           align="center">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">编辑</el-button>
+            <el-button type="primary" size="mini" @click="add_edit(scope.row.pid)">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -379,8 +379,8 @@
         xslb: '',//学生类别
         add_edit_flag: false,//false-新增，true-编辑
         options1: [
-          {value: '1', label: '出境学生'},
-          {value: '0', label: '国内旅游学生'}
+          {value: '0', label: '出境学生'},
+          {value: '1', label: '国内旅游学生'}
         ],
         ruleForm: {
           xm: '',//姓名
@@ -476,7 +476,7 @@
       },
       remove() {//删除
         if (this.selectedList.length > 0) {
-          let m = getStringArr(this.selectedList, 'id')
+          let m = getStringArr(this.selectedList, 'pid')
           this.$confirm('确定删除?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',

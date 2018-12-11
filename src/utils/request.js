@@ -18,14 +18,11 @@ let loading;
 service.interceptors.request.use(
   config => {
     loading = Vue.prototype.$loading({text: "", background: 'rgba(0, 0, 0, 0.3)'});
-    console.log(config.data)
     let currentRole
-    if(getCurrentRole()){
+    if(getCurrentRole() && config.data){
       currentRole = JSON.parse(getCurrentRole())
-      console.log(currentRole.id)
       config.data['roleId'] = currentRole.id
     }
-    console.log(currentRole)
     config.data = querystring.stringify(config.data)
     if (store.getters.token) {
       config.headers.Authorization = "Bearer " + getToken()

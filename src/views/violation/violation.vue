@@ -70,60 +70,60 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">编辑</el-button>
+          <el-button type="primary" size="mini" @click="add_edit(scope.row.pid)">编辑</el-button>
         </template>
       </el-table-column>
       <el-table-column
-        prop="student.xh"
+        prop="xh"
         label="学号"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xm"
+        prop="xm"
         label="姓名"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xb"
+        prop="xb"
         label="性别"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.zy"
+        prop="zy"
         label="专业"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.nj"
+        prop="nj"
         label="年级"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.bj"
+        prop="bj"
         label="班级"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="xy"-->
+        <!--label="学院"-->
+        <!--width=""-->
+        <!--header-align="center"-->
+        <!--align="center">-->
+      <!--</el-table-column>-->
       <el-table-column
-        prop="student.xy"
-        label="学院"
-        width=""
-        header-align="center"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="student.gb"
+        prop="gb"
         label="国籍"
         width=""
         header-align="center"
@@ -131,14 +131,14 @@
       </el-table-column>
 
       <el-table-column
-        prop="student.hzhm"
+        prop="hzhm"
         label="护照号"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.lxdh"
+        prop="lxdh"
         label="联系方式"
         width=""
         header-align="center"
@@ -374,7 +374,7 @@
       },
       remove() {//删除
         if (this.selectedList.length > 0) {
-          let m = getStringArr(this.selectedList, 'id')
+          let m = getStringArr(this.selectedList, 'pid')
           this.$confirm('确定删除?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',

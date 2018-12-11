@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {//地址映射表
       '/ws': {  //代理地址
-        target: 'http://192.168.0.194:8087/',  //需要代理的地址
+        target: 'http://192.168.0.184:8087/',  //需要代理的地址
         changeOrigin: true,  //是否跨域
         // secure: false,
         // pathRewrite: {

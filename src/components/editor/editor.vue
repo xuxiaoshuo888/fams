@@ -8,7 +8,6 @@
 <script>
   import E from 'wangeditor'
 
-  // const editor = new E(this.$refs.editor)
   export default {
     name: 'editor',
     props: {
@@ -17,7 +16,6 @@
     mounted() {
       var editor = new E(this.$refs.editor)
       editor.customConfig.onchange = (html) => {
-        console.log('123')
         this.$emit('content', html)
       }
       editor.create()

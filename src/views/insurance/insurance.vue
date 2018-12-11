@@ -63,17 +63,17 @@
         width="120">
       </el-table-column>
       <el-table-column
-        prop="student.xm"
+        prop="std_xm"
         label="姓名(护照用名)"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="hzhm"
+        prop="std_hzhm"
         label="护照号码"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="student.gb"
+        prop="std_gb"
         label="国籍"
         width="120">
       </el-table-column>
@@ -151,7 +151,7 @@
       width="900px">
       <div slot="title">学生详情</div>
       <div>
-        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px"
+        <el-form :inline="true" :model="ruleForm" :rules="rules1" ref="ruleForm" label-width="150px"
                  class="demo-ruleForm">
           <el-form-item label="学号" prop="">
             <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>

@@ -16,12 +16,12 @@
           v-model="xm">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="学院"
-          size="mini"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <!--<el-input-->
+          <!--placeholder="学院"-->
+          <!--size="mini"-->
+          <!--clearable>-->
+          <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
         <el-input
           placeholder="专业"
           size="mini"
@@ -60,56 +60,56 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xh"
+        prop="xh"
         label="学号"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xm"
+        prop="xm"
         label="姓名"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xy"
+        prop="xy"
         label="学院"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.zy"
+        prop="zy"
         label="专业"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.bj"
+        prop="bj"
         label="班级"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="addScores"
+        prop="add_scores"
         label="加分总分"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="subScores"
+        prop="sub_scores"
         label="扣分总分"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="totalScores"
+        prop="total_scores"
         label="总分"
         width=""
         header-align="center"
@@ -122,7 +122,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-          <el-button @click="add_edit(scope.row.id)" type="primary" size="mini">修改</el-button>
+          <el-button @click="add_edit(scope.row.pid)" type="primary" size="mini">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -654,6 +654,7 @@
             message: res.errmsg
           })
           this.add_edit(res.data.id);
+          this.getData()
           this.current_edit_flag = false
         })
       },
@@ -675,7 +676,7 @@
       },
       remove() {//删除
         if (this.selectedList.length > 0) {
-          let m = getStringArr(this.selectedList, 'id')
+          let m = getStringArr(this.selectedList, 'pid')
           this.$confirm('确定删除?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',

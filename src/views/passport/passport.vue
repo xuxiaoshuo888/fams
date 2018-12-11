@@ -70,58 +70,58 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="add_edit(scope.row.id)">编辑</el-button>
+          <el-button type="primary" size="mini" @click="add_edit(scope.row.pid)">编辑</el-button>
         </template>
       </el-table-column>
       <el-table-column
-        prop="student.xh"
+        prop="xh"
         label="学号"
         width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xm"
+        prop="xm"
         label="姓名"
         width="200"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.xb"
+        prop="xb"
         label="性别"
         width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.zy"
+        prop="zy"
         label="专业"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.nj"
+        prop="nj"
         label="年级"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="student.bj"
+        prop="bj"
         label="班级"
         width=""
         header-align="center"
         align="center">
       </el-table-column>
-      <el-table-column
-        prop="student.xy"
-        label="学院"
-        width="150"
-        header-align="center"
-        align="center">
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="xy"-->
+        <!--label="学院"-->
+        <!--width="150"-->
+        <!--header-align="center"-->
+        <!--align="center">-->
+      <!--</el-table-column>-->
       <el-table-column
         prop="hzhm"
         label="护照号码"
@@ -266,45 +266,103 @@
             </el-date-picker>
           </el-form-item>
           <div class="hr"></div>
-          <!--<el-row :gutter="20">-->
-          <!--<el-col :span="8">-->
-          <!--<div class="pic_title">上传护照首页</div>-->
-
-          <!--<el-upload-->
-          <!--class="avatar-uploader"-->
-          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--:show-file-list="false"-->
-          <!--:on-success="handleAvatarSuccess"-->
-          <!--:before-upload="beforeAvatarUpload">-->
-          <!--<img v-if="imageUrl" :src="imageUrl1" class="avatar">-->
-          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-          <!--</el-upload>-->
-          <!--</el-col>-->
-          <!--<el-col :span="8">-->
-          <!--<div class="pic_title">上传签证页</div>-->
-          <!--<el-upload-->
-          <!--class="avatar-uploader"-->
-          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--:show-file-list="false"-->
-          <!--:on-success="handleAvatarSuccess"-->
-          <!--:before-upload="beforeAvatarUpload">-->
-          <!--<img v-if="imageUrl" :src="imageUrl2" class="avatar">-->
-          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-          <!--</el-upload>-->
-          <!--</el-col>-->
-          <!--<el-col :span="8">-->
-          <!--<div class="pic_title">居留许可证页</div>-->
-          <!--<el-upload-->
-          <!--class="avatar-uploader"-->
-          <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-          <!--:show-file-list="false"-->
-          <!--:on-success="handleAvatarSuccess"-->
-          <!--:before-upload="beforeAvatarUpload">-->
-          <!--<img v-if="imageUrl" :src="imageUrl3" class="avatar">-->
-          <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-          <!--</el-upload>-->
-          <!--</el-col>-->
-          <!--</el-row>-->
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>上传护照首页</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess1"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.hzsy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.hzsy).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>上传签证页</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess2"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.qzy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.qzy).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>居留许可证页</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess3"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.jlxkzy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jlxkzy).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20" class="margintop20">
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>上传JW202</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess4"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.jw202" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jw202).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>上传录取通知书</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess5"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.lqdzs" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.lqdzs).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>临住等级表</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess6"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.lzdjb" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.lzdjb).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20" class="margintop20">
+            <el-col :span="8">
+              <div class="pic_title"><span class="bitian">*</span>健康证</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess7"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.jkz" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jkz).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-col>
+          </el-row>
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -396,11 +454,22 @@
           hzgxhdqr: "",
           jlxkdqr: "",
           jlxkgxhdqr: "",
-          hzsy: '',
-          qzy: '',
-          jlxkzy: '',
+          hzsy: '',//护照首页
+          qzy: '',//签证页
+          jlxkzy: '',//居留许可证页
+          jw202: '',//jw202
+          lqdzs: '',//录取通知书
+          lzdjb: '',//临住登记表
+          jkz: '',//健康证
           id: ""
-        }
+        },
+        imageUrl1: '',
+        imageUrl2: '',
+        imageUrl3: '',
+        imageUrl4: '',
+        imageUrl5: '',
+        imageUrl6: '',
+        imageUrl7: '',
       }
     },
     mounted() {
@@ -444,20 +513,20 @@
           zwm: '',
           csrq: "",
           lxdh: ""
-        },
-          this.ruleForm2 = {
-            xh: "",
-            hzhm: "",
-            hzyxq: "",
-            hzyxqdqr: "",
-            hzgxhdqr: "",
-            jlxkdqr: "",
-            jlxkgxhdqr: "",
-            hzsy: '',
-            qzy: '',
-            jlxkzy: '',
-            id: ""
-          }
+        }
+        this.ruleForm2 = {
+          xh: "",
+          hzhm: "",
+          hzyxq: "",
+          hzyxqdqr: "",
+          hzgxhdqr: "",
+          jlxkdqr: "",
+          jlxkgxhdqr: "",
+          hzsy: '',//护照首页
+          qzy: '',//签证页
+          jlxkzy: '',//居留许可证页
+          id: ""
+        }
       },
       add_edit(e) {
         this.reset_form()
@@ -479,7 +548,7 @@
       },
       remove() {//删除
         if (this.selectedList.length > 0) {
-          let m = getStringArr(this.selectedList, 'id')
+          let m = getStringArr(this.selectedList, 'pid')
           this.$confirm('确定删除?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -582,6 +651,49 @@
       next() {
         this.pageNum = this.pageNum + 1
       },
+      //7个照片上传
+      handleAvatarSuccess1(res) {
+        console.log(res)
+        this.ruleForm2.hzsy = JSON.stringify(res.data)
+      },
+      handleAvatarSuccess2(res) {
+        console.log(res)
+        this.ruleForm2.qzy = JSON.stringify(res.data)
+      },
+      handleAvatarSuccess3(res) {
+        console.log(res)
+        this.ruleForm2.jlxkzy = JSON.stringify(res.data)
+      },
+      handleAvatarSuccess4(res) {
+        console.log(res)
+        this.ruleForm2.jw202 = JSON.stringify(res.data)
+      },
+      handleAvatarSuccess5(res) {
+        console.log(res)
+        this.ruleForm2.lqdzs = JSON.stringify(res.data)
+      },
+      handleAvatarSuccess6(res) {
+        console.log(res)
+        this.ruleForm2.lzdjb = JSON.stringify(res.data)
+      },
+      handleAvatarSuccess7(res) {
+        console.log(res)
+        this.ruleForm2.jkz = JSON.stringify(res.data)
+      },
+      beforeAvatarUpload(file) {
+        console.log(file)
+        const isJPG = file.type === 'image/jpeg';
+        const isPNG = file.type === 'image/png';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isJPG && !isPNG) {
+          this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return (isJPG || isPNG) && isLt2M;
+      },
+
     }
   }
 </script>

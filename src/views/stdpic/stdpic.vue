@@ -62,24 +62,24 @@
             <el-table-column
               prop="xm"
               label="姓名"
-              width="80"
+              width=""
               header-align="center"
               align="center">
             </el-table-column>
             <el-table-column
               prop="xh"
               label="学号"
-              width="100"
+              width="120"
               header-align="center"
               align="center">
             </el-table-column>
-            <el-table-column
-              prop="xy"
-              label="学院"
-              width=""
-              header-align="center"
-              align="center">
-            </el-table-column>
+            <!--<el-table-column-->
+              <!--prop="xy"-->
+              <!--label="学院"-->
+              <!--width=""-->
+              <!--header-align="center"-->
+              <!--align="center">-->
+            <!--</el-table-column>-->
             <el-table-column
               prop="nj"
               label="年级"
@@ -90,16 +90,23 @@
             <el-table-column
               prop="bj"
               label="班级"
-              width=""
+              width="100"
               header-align="center"
               align="center">
             </el-table-column>
+            <!--<el-table-column-->
+              <!--prop="mz"-->
+              <!--label="民族"-->
+              <!--width="120"-->
+              <!--header-align="center"-->
+              <!--align="center">-->
+            <!--</el-table-column>-->
             <el-table-column
-              prop="mz"
-              label="民族"
-              width="120"
-              header-align="center"
-              align="center">
+            prop="gb"
+            label="国籍"
+            width="150"
+            header-align="center"
+            align="center">
             </el-table-column>
           </el-table>
           <!--分页-->
@@ -278,7 +285,6 @@
         const isJPG = file.type === 'image/jpeg';
         const isPNG = file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 2;
-
         if (!isJPG && !isPNG) {
           this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
         }

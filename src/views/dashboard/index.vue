@@ -9,7 +9,8 @@
           <div class="sub-block">
             <el-table
               :data="list_tzgg"
-              style="width: 100%">
+              style="width: 100%"
+              @cell-dblclick="showNews">
               <el-table-column
                 label="发布时间"
                 width="180"
@@ -82,7 +83,7 @@
               :data="list_bx"
               style="width: 100%">
               <el-table-column
-                prop="student.xm"
+                prop="std_xm"
                 label="姓名"
                 width=""
                 header-align="center"
@@ -118,7 +119,7 @@
               :data="list_lz"
               style="width: 100%">
               <el-table-column
-                prop="student.xm"
+                prop="xm"
                 label="姓名"
                 width=""
                 header-align="center"
@@ -147,12 +148,43 @@
         </el-card>
       </el-col>
     </el-row>
+
+    <!--模态框-->
+    <el-dialog
+      title=""
+      :visible.sync="dialogVisible"
+      width="900px">
+      <div slot="title">学生详情</div>
+      <div>
+        <el-form :inline="true" :model="ruleForm" label-width="100px"
+                 class="demo-ruleForm">
+          <el-form-item label="标题" prop="name">
+            <el-input v-model="ruleForm.title" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="发布单位" prop="">
+            <el-input v-model="ruleForm.deptId" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="作者" prop="">
+            <el-input v-model="ruleForm.author" disabled></el-input>
+          </el-form-item>
+        </el-form>
+        <editor ref="editor1" :msg="ruleForm.content"></editor>
+      </div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">关闭</el-button>
+  </span>
+    </el-dialog>
+
+
   </div>
 </template>
 
 <script>
+  import editor from '@/components/editor/editor'
+
   export default {
     name: 'Dashboard',
+    components: {editor},
     data() {
       return {
         list_tzgg: [],
@@ -162,6 +194,14 @@
         bx_num: '',
         list_lz: [],
         lz_num: '',
+        dialogVisible: false,//新闻详情模态框
+        ruleForm: {
+          title: "",
+          dept: "",
+          author: "",
+          content: "",
+          id: ''
+        },
       }
     },
     mounted() {
@@ -205,6 +245,11 @@
           this.list_lz = res.data.page.rows
           this.lz_num = res.data.page.records
         })
+      },
+      showNews(e) {//点击展示新闻详情
+        console.log(e)
+        this.ruleForm = e
+        this.dialogVisible = true
       }
     }
   }

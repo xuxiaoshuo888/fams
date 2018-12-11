@@ -181,8 +181,8 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="bzr"
-        label="班主任"
+        prop="fdy"
+        label="辅导员"
         width="100"
         header-align="center"
         align="center">
@@ -378,7 +378,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
-                  <div class="card_pic"><img src="@/assets/1.jpg"/></div>
+                  <div class="card_pic"><img alt="暂无照片" :src="'/ws/resource/showImg?path=' + detail.path"/></div>
                   <el-form-item label="国籍：">
                     <div>{{detail.gb}}</div>
                   </el-form-item>
@@ -567,7 +567,7 @@
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +
-          '&bj=' + this.bj , '_blank')
+          '&bj=' + this.bj, '_blank')
       },
       handleSelectionChange(e) {
         this.selectedList = e
@@ -599,4 +599,13 @@
     }
   }
 
+  .card_pic {
+    width: 200px;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 15px;
+    img {
+      width: 100%;
+    }
+  }
 </style>

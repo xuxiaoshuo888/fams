@@ -117,7 +117,7 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xh"
+        prop="ssh"
         label="宿舍号"
         width="100"
         header-align="center"
@@ -138,7 +138,7 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xh"
+        prop="hzhm"
         label="护照号"
         width="180"
         header-align="center"
@@ -151,13 +151,13 @@
         header-align="center"
         align="center">
       </el-table-column>
-      <el-table-column
-        prop="xh"
-        label="学籍注册号"
-        width="130"
-        header-align="center"
-        align="center">
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="xh"-->
+        <!--label="学籍注册号"-->
+        <!--width="130"-->
+        <!--header-align="center"-->
+        <!--align="center">-->
+      <!--</el-table-column>-->
       <el-table-column
         prop="xh"
         label="到校日期"
@@ -173,8 +173,8 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="zh"
-        label="班主任"
+        prop="fdy"
+        label="辅导员"
         width="100"
         header-align="center"
         align="center">
@@ -218,75 +218,75 @@
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <el-form-item label="学号：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>{{list_jb.xh || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="姓名：">
-                    <div>{{list_jb.xm}}</div>
+                    <div>{{list_jb.xm || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="中文名：">
-                    <div>{{list_jb.zwm}}</div>
+                    <div>{{list_jb.zwm || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="性别：">
-                    <div>{{list_jb.xb}}</div>
+                    <div>{{list_jb.xb || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="出生年月：">
-                    <div>{{list_jb.csrq}}</div>
+                    <div>{{list_jb.csrq || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="年级：">
-                    <div>{{list_jb.nj}}级</div>
+                    <div>{{list_jb.nj || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="学院：">
-                    <div>{{list_jb.xy}}</div>
+                    <div>{{list_jb.xy || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="专业：">
-                    <div>{{list_jb.zy}}</div>
+                    <div>{{list_jb.zy || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="班级：">
-                    <div>{{list_jb.bj}}</div>
+                    <div>{{list_jb.bj || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="入学年月：">
-                    <div>{{list_jb.rxnf}}</div>
+                    <div>{{list_jb.rxnf || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="在校状态：">
-                    <div>{{list_jb.zxzt}}</div>
+                    <div>{{list_jb.zxzt || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="学籍状态：">
-                    <div>{{list_jb.zjzt}}</div>
+                    <div>{{list_jb.zjzt || '在籍'}}</div>
                   </el-form-item>
                   <el-form-item label="联系电话：">
-                    <div>{{list_jb.lxdh}}</div>
+                    <div>{{list_jb.lxdh || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="住宿情况：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>{{list_jb.ssh || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="出生地：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>{{list_jb.gb || '暂无数据'}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
-                  <div class="card_pic"><img src="@/assets/1.jpg"/></div>
+                  <div class="card_pic"><img alt="暂无照片" :src="'/ws/resource/showImg?path=' + list_jb.zp"/></div>
                   <el-form-item label="国籍：">
-                    <div>{{list_jb.gb}}</div>
+                    <div>{{list_jb.gb || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="宗教信仰：">
-                    <div>{{list_jb.zjxy}}</div>
+                    <div>{{list_jb.zjxy || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员工号：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>暂无数据</div>
                   </el-form-item>
                   <el-form-item label="辅导员姓名：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>{{fdy || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员联系方式：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>暂无数据</div>
                   </el-form-item>
                   <el-form-item label="毕业去向：">
-                    <div>{{list_jb.xh}}</div>
+                    <div>暂无数据</div>
                   </el-form-item>
                   <el-form-item label="永久联系电话：">
-                    <div>{{list_jb.yjlxdh}}</div>
+                    <div>{{list_jb.lxdh || '暂无数据'}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -301,44 +301,44 @@
               <el-col :span="12">
                 <el-form label-width="130px" size="mini">
                   <el-form-item label="护照号码：">
-                    <div>{{list_hz.hzhm}}</div>
+                    <div>{{list_hz.hzhm || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="护照有效期：">
-                    <div>{{list_hz.hzyxq}}</div>
+                    <div>{{list_hz.hzyxq || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可证件号：">
-                    <div></div>
+                    <div>{{list_hz.jlxkzjh || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可有效期：">
-                    <div>{{list_hz.jlxkdqr}}</div>
+                    <div>{{list_hz.jlxkdqr || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="护照首页：">
-                    <div><a href="#" target="_blank" :url="list_hz.hzsy">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.hzsy)">{{list_hz.hzsy ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                   <el-form-item label="签证页：">
-                    <div><a href="#" target="_blank" :url="list_hz.qzy">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.qzy)">{{list_hz.qzy ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                 </el-form>
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <el-form-item label="护照有效期：">
-                    <div>{{list_hz.hzyxq}}</div>
+                    <div>{{list_hz.hzyxq || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="居留许可页：">
-                    <div><a href="#" target="_blank" :url="list_hz.jlxkzy">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.jlxkzy)">{{list_hz.jlxkzy ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                   <el-form-item label="JW202表：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.jw202)">{{list_hz.jw202 ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                   <el-form-item label="录取通知书：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.lqdzs)">{{list_hz.lqdzs ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                   <el-form-item label="临住登记表：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.lzdjb)">{{list_hz.lzdjb ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                   <el-form-item label="健康证：">
-                    <div><a href="#" target="_blank">点击预览</a></div>
+                    <div><a @click="showImg(list_hz.jkz)">{{list_hz.jkz ? '点击预览' : '暂无数据'}}</a></div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -397,10 +397,10 @@
           <header class="card_title">缴费信息</header>
           <div class="card_content paddingtop0">
             <el-table
-              :data="jiaofei"
+              :data="jiaofei_contain"
               style="width: 100%">
               <el-table-column
-                prop="xnxq"
+                prop="sfqj"
                 label="收费区间"
                 width="180"
                 header-align="center"
@@ -427,7 +427,7 @@
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="sjje"
+                prop="ssje"
                 label="实缴金额"
                 header-align="center"
                 align="center">
@@ -452,7 +452,7 @@
                 align="center">
               </el-table-column>
             </el-table>
-            <div class="textr margintop20">
+            <div v-if="list_jf.length >= 10" class="textr margintop20">
               <el-button type="primary" size="mini"
                          :icon="showMoreJiaofei ? 'el-icon-caret-top' : 'el-icon-caret-bottom'" round
                          @click="toggleJiaofei">
@@ -467,7 +467,7 @@
           <div class="card_content paddingtop0">
             <div class="card_subtitle">素质评分</div>
             <el-table
-              :data="pingfen"
+              :data="list_sz"
               style="width: 100%">
               <el-table-column
                 prop="term"
@@ -507,38 +507,38 @@
             <!--处分信息-->
             <div class="card_subtitle">处分信息</div>
             <el-table
-              :data="chufen"
+              :data="list_jc"
               style="width: 100%">
+              <!--<el-table-column-->
+                <!--prop="xnxq"-->
+                <!--label="学年学期"-->
+                <!--width="180"-->
+                <!--header-align="center"-->
+                <!--align="center">-->
+              <!--</el-table-column>-->
               <el-table-column
-                prop="term"
-                label="学年学期"
-                width="180"
-                header-align="center"
-                align="center">
-              </el-table-column>
-              <el-table-column
-                prop="lx"
+                prop="cflx"
                 label="处分类型"
                 width="80"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="date"
+                prop="cfsj"
                 label="处分时间"
                 width="100"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="reason"
+                prop="cfyy"
                 label="处分原因"
                 width=""
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="qk"
+                prop="jyqk"
                 label="教育情况"
                 header-align="center"
                 align="center"
@@ -554,49 +554,49 @@
           <div class="card_content paddingtop0">
             <div class="card_subtitle">出境</div>
             <el-table
-              :data="list_lz"
+              :data="list_lz.cj"
               style="width: 100%">
               <el-table-column
-                prop="outtime"
-                label="出境时间"
+                prop="fssj"
+                label="入境时间"
                 width="180"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="outplace"
-                label="地点"
+                prop="fsdd"
+                label="入境地点"
                 width=""
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="backtime"
-                label="回长沙时间"
+                prop="dcsj"
+                label="回长时间"
                 width=""
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="backplace"
-                label="地点"
+                prop="dcdd"
+                label="回长地点"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="backschooltime"
+                prop="dxsj"
                 label="到校时间"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="registtime"
+                prop="djrq"
                 label="登记日期"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="reporttime"
+                prop="sbrq"
                 label="上报日期"
                 header-align="center"
                 align="center">
@@ -606,49 +606,49 @@
             <!--国内旅游-->
             <div class="card_subtitle">国内旅游</div>
             <el-table
-              :data="lvyou"
+              :data="list_lz.gn"
               style="width: 100%">
               <el-table-column
-                prop="outtime"
-                label="离长沙时间"
+                prop="fssj"
+                label="离长时间"
                 width="180"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="outplace"
+                prop="fsdd"
                 label="地点"
                 width=""
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="backtime"
+                prop="dcsj"
                 label="回长沙时间"
                 width=""
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="backplace"
+                prop="dcdd"
                 label="地点"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="backschooltime"
+                prop="dxsj"
                 label="到校时间"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="registtime"
+                prop="djrq"
                 label="登记日期"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="reporttime"
+                prop="sbrq"
                 label="上报日期"
                 header-align="center"
                 align="center">
@@ -658,7 +658,7 @@
             <!--更新护照-->
             <div class="card_subtitle">更新护照</div>
             <el-table
-              :data="passport"
+              :data="list_lz.gxhz"
               style="width: 100%">
               <el-table-column
                 prop="oldNum"
@@ -675,14 +675,14 @@
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="registTime"
+                prop="djrq"
                 label="登记日期"
                 width="100"
                 header-align="center"
                 align="center">
               </el-table-column>
               <el-table-column
-                prop="reportTime"
+                prop="sbrq"
                 label="上报日期"
                 width=""
                 header-align="center"
@@ -750,9 +750,22 @@
         mz: [],
         list: [],//外面列表
         list_jb: [],//基本
-        list_hz: [],
-        list_bx: [],
-        list_lz: [],
+        fdy:'',
+        list_hz: [],//护照
+        list_bx: [],//保险
+        list_lz: {//临住
+          cj:[],//出境
+          gn:[],//国内
+          gxhz:[]//更新护照
+        },
+        list_jc: [],//处分
+        list_sz:[],//素质
+
+        //缴费
+        jiaofei_contain: [],
+        showMoreJiaofei: false,//默认表格是收起的，false代表目前表格是收起的,true表示表格是展开的
+        list_jf: [],//绑定展示的缴费数据
+
         pageNum: 1,
         pageSize: null,
         records: null,
@@ -784,307 +797,7 @@
         },
         rules: {},
         //缴费
-        jiaofei_contain: [
-          {
-            xnxq: '2018~2019学年第一学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2018~2019学年第一学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2018~2019学年第一学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2018~2019学年第一学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2018~2019学年第二学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2018~2019学年第二学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2018~2019学年第二学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2018~2019学年第二学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2017~2018学年第一学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2017~2018学年第一学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2017~2018学年第一学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2017~2018学年第一学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2017~2018学年第二学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2017~2018学年第二学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2017~2018学年第二学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2017~2018学年第二学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2016~2017学年第一学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2016~2017学年第一学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2016~2017学年第一学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2016~2017学年第一学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2016~2017学年第二学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2016~2017学年第二学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2016~2017学年第二学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2016~2017学年第二学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2015~2016学年第一学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2015~2016学年第一学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2015~2016学年第一学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2015~2016学年第一学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
-          {
-            xnxq: '2015~2016学年第二学期',
-            jfxm: '学费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2015~2016学年第二学期',
-            jfxm: '住宿费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2015~2016学年第二学期',
-            jfxm: '保险费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000'
-          },
-          {
-            xnxq: '2015~2016学年第二学期',
-            jfxm: '签证费',
-            jfnd: '2018',
-            qfje: '5000',
-            ysje: '20000',
-            jfrq: '2018-03-03',
-            sjje: '15000',
-            qzyqf: '100'
-          },
 
-        ],
-        jiaofei: '' || [],//绑定表格
-        showMoreJiaofei: false,//默认表格是收起的，false代表目前表格是收起的,true表示表格是展开的
         //保险
         //素质评分
         pingfen: [
@@ -1249,24 +962,28 @@
           console.log(res)
           this.list_jb = res.data.data
           this.list_bx = res.data.bx
-          this.list_hz = res.data.hz
+          this.list_hz = res.data.hz[0]
           this.list_lz = res.data.lz
+          this.list_jc = res.data.jc
+          this.jiaofei_contain = res.data.jf//缴费数据容器
+          this.fdy = res.data.teacher.xm
         })
       },
       //初始化10个数据
       initJiaofei() {
-        var a = this.jiaofei_contain.slice(0, 9)
-        this.jiaofei = a
+        if (this.jiaofei_contain.length >= 10) {
+          this.list_jf = this.jiaofei_contain.slice(0, 9)
+        }
       },
       //展开/收起缴费信息
       toggleJiaofei() {
         if (!this.showMoreJiaofei) {
           //展开
-          this.jiaofei = this.jiaofei.concat(this.jiaofei_contain.slice(9, -1))
+          this.list_jf = this.list_jf.concat(this.jiaofei_contain.slice(9, -1))
           this.showMoreJiaofei = true
         } else {
           // 收起
-          this.jiaofei.splice(10)
+          this.list_jf.splice(10)
           this.showMoreJiaofei = false
         }
       },
@@ -1331,6 +1048,12 @@
       next() {
         this.pageNum = this.pageNum + 1
       },
+      showImg(e) {//打开新标签页
+        if (e) {
+          let path = JSON.parse(e).path
+          window.open('/ws/resource/showImg?path=' + path, '_blank')
+        }
+      }
     },
 
   }

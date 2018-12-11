@@ -10,17 +10,18 @@
     <!--</el-dropdown-menu>-->
     <!--</el-dropdown>-->
     <!--<span>王小虎</span>-->
-    <el-dropdown class="avatar-container" trigger="click">
+    <el-dropdown class="avatar-container" trigger="click" style="cursor: pointer">
       <div class="avatar-wrapper">
-        <img src="" class="user-avatar">
-        <i class="el-icon-caret-bottom"/>
+        <!--<img src="" class="user-avatar">-->
+        {{currentRole.name}}<i class="el-icon-caret-bottom"/>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
-        <router-link class="inlineBlock" to="/">
-          <el-dropdown-item>Home</el-dropdown-item>
-        </router-link>
-        <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">LogOut</span>
+        <!--<router-link class="inlineBlock" to="/">-->
+        <!--<el-dropdown-item>Home</el-dropdown-item>-->
+        <!--</router-link>-->
+
+        <el-dropdown-item>
+          <span style="display:block;" @click="logout">退出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -30,11 +31,17 @@
 <script>
   import breadcrumb from '@/components/breadcrumb/breadcrumb'
 
+
   export default {
     name: 'Navbar',
     components: {breadcrumb},
     data() {
-      return {}
+      return {
+        currentRole:JSON.parse(this.$store.state.user.role)
+      }
+    },
+    mounted() {
+      this.getRole()
     },
     methods: {
       logout() {
@@ -42,6 +49,9 @@
             location.reload()
           }
         )
+      },
+      getRole() {
+        let a = JSON.parse(this.$store.state.user.role)
       }
     }
   }
