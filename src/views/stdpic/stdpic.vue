@@ -238,7 +238,6 @@
     methods: {
       getTree() {
         this.request.post('/ws/dept/getTree').then(res => {
-          console.log(res)
           this.tree_data = res.data.data
         })
       },
@@ -253,7 +252,6 @@
           page: this.pageNum,
           limit: this.pageSize
         }).then(res => {
-          console.log(res)
           if (!this.table_pic_flag) {//照片
             this.pic_list = res.data.page.rows
           } else {//表格
@@ -265,9 +263,9 @@
         })
       },
       handleAvatarSuccess(res, file, fileList) {
-        console.log(res)
-        console.log(file)
-        console.log(fileList)
+        // console.log(res)
+        // console.log(file)
+        // console.log(fileList)
         // this.imageUrl = URL.createObjectURL(file.raw);
         this.request.post('/ws/student/edit', {
           id: this.pic_std_id,
@@ -281,7 +279,7 @@
         })
       },
       beforeAvatarUpload(file) {
-        console.log(file)
+        // console.log(file)
         const isJPG = file.type === 'image/jpeg';
         const isPNG = file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 2;
@@ -294,12 +292,14 @@
         return isJPG && isLt2M;
       },
       handleNodeClick(e) {//点击tree触发回调
-        console.log(e)
+        // console.log(e)
         this.dw_id = e.id
         if (e.leaf) {//照片
           this.table_pic_flag = false
+          this.pageSize = 100
         } else {//table
           this.table_pic_flag = true
+          this.pageSize = 10
         }
         this.getStdList()
       },

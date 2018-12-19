@@ -64,7 +64,6 @@
                   <div>{{scope.row.xh}}</div>
                 </template>
               </el-table-column>
-
               <el-table-column
                 prop="hzyxq"
                 label="到期时间"
@@ -74,7 +73,41 @@
               </el-table-column>
             </el-table>
           </div>
-
+          <!--新增的-->
+          <div class="sub-block">
+            <header class="sub_title">居留许可证到期提醒 （{{jlxk_num}}人）
+              <router-link to="Passport">更多</router-link>
+            </header>
+            <el-table
+              :data="list_jlxk"
+              style="width: 100%">
+              <el-table-column
+                prop="student.xm"
+                label="姓名"
+                width=""
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="xh"
+                label="学号"
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+                <template slot-scope="scope">
+                  <div>{{scope.row.xh}}</div>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="jlxkdqr"
+                label="到期时间"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+            </el-table>
+          </div>
           <div class="sub-block">
             <header class="sub_title">保险到期提醒（{{bx_num}}人）
               <router-link to="Insurance">更多</router-link>
@@ -111,40 +144,40 @@
             </el-table>
           </div>
 
-          <div class="sub-block">
-            <header class="sub_title">临住到期提醒 （{{lz_num}}人）
-              <router-link to="TempAccommodation">更多</router-link>
-            </header>
-            <el-table
-              :data="list_lz"
-              style="width: 100%">
-              <el-table-column
-                prop="xm"
-                label="姓名"
-                width=""
-                header-align="center"
-                align="center"
-                show-overflow-tooltip>
-              </el-table-column>
-              <el-table-column
-                prop="xh"
-                label="学号"
-                header-align="center"
-                align="center"
-                show-overflow-tooltip>
-                <template slot-scope="scope">
-                  <div>{{scope.row.xh}}</div>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="dxsj"
-                label="到校时间"
-                width=""
-                header-align="center"
-                align="center">
-              </el-table-column>
-            </el-table>
-          </div>
+          <!--<div class="sub-block">-->
+            <!--<header class="sub_title">临住到期提醒 （{{lz_num}}人）-->
+              <!--<router-link to="TempAccommodation">更多</router-link>-->
+            <!--</header>-->
+            <!--<el-table-->
+              <!--:data="list_lz"-->
+              <!--style="width: 100%">-->
+              <!--<el-table-column-->
+                <!--prop="xm"-->
+                <!--label="姓名"-->
+                <!--width=""-->
+                <!--header-align="center"-->
+                <!--align="center"-->
+                <!--show-overflow-tooltip>-->
+              <!--</el-table-column>-->
+              <!--<el-table-column-->
+                <!--prop="xh"-->
+                <!--label="学号"-->
+                <!--header-align="center"-->
+                <!--align="center"-->
+                <!--show-overflow-tooltip>-->
+                <!--<template slot-scope="scope">-->
+                  <!--<div>{{scope.row.xh}}</div>-->
+                <!--</template>-->
+              <!--</el-table-column>-->
+              <!--<el-table-column-->
+                <!--prop="dxsj"-->
+                <!--label="到校时间"-->
+                <!--width=""-->
+                <!--header-align="center"-->
+                <!--align="center">-->
+              <!--</el-table-column>-->
+            <!--</el-table>-->
+          <!--</div>-->
         </el-card>
       </el-col>
     </el-row>
@@ -194,6 +227,8 @@
         bx_num: '',
         list_lz: [],
         lz_num: '',
+        list_jlxk:[],
+        jlxk_num:'',
         dialogVisible: false,//新闻详情模态框
         ruleForm: {
           title: "",
@@ -208,7 +243,8 @@
       this.get_tzgg()
       this.get_hz()
       this.get_bx()
-      this.get_lz()
+      // this.get_lz()//临住，不要了
+      this.get_jlxk()
     },
     methods: {
       get_tzgg() {
@@ -223,6 +259,7 @@
         this.request.post('/ws/passport/due', {
           page: this.pageNum,
           limit: 3,
+          type:'hz'
         }).then(res => {
           this.list_hz = res.data.page.rows
           this.hz_num = res.data.page.records
@@ -237,17 +274,26 @@
           this.bx_num = res.data.page.records
         })
       },
-      get_lz() {
-        this.request.post('/ws/roomassing/page', {
+      // get_lz() {
+      //   this.request.post('/ws/roomassing/page', {
+      //     page: this.pageNum,
+      //     limit: 3,
+      //   }).then(res => {
+      //     this.list_lz = res.data.page.rows
+      //     this.lz_num = res.data.page.records
+      //   })
+      // },
+      get_jlxk() {
+        this.request.post('/ws/passport/due', {
           page: this.pageNum,
           limit: 3,
+          type:'jlxk'
         }).then(res => {
-          this.list_lz = res.data.page.rows
-          this.lz_num = res.data.page.records
+          this.list_jlxk = res.data.page.rows
+          this.jlxk_num = res.data.page.records
         })
       },
       showNews(e) {//点击展示新闻详情
-        console.log(e)
         this.ruleForm = e
         this.dialogVisible = true
       }

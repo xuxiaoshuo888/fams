@@ -9,9 +9,9 @@ import querystring from 'querystring'
 const service = axios.create({
   baseURL: process.env.BASE_API,
   timeout: 5000,//请求超时时间
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
+  // headers: {
+  //   'Content-Type': 'application/x-www-form-urlencoded'
+  // }
 })
 let loading;
 //request拦截器
@@ -19,11 +19,20 @@ service.interceptors.request.use(
   config => {
     loading = Vue.prototype.$loading({text: "", background: 'rgba(0, 0, 0, 0.3)'});
     let currentRole
-    if(getCurrentRole() && config.data){
+    if (getCurrentRole() && config.data) {
       currentRole = JSON.parse(getCurrentRole())
       config.data['roleId'] = currentRole.id
     }
-    config.data = querystring.stringify(config.data)
+    if (config.url == '/ws/data_import/upload?id=studentInfo') {
+      config.headers = {
+        'Content-Type': 'multipart/form-data'
+      }
+    } else {
+      config.headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+      config.data = querystring.stringify(config.data)
+    }
     if (store.getters.token) {
       config.headers.Authorization = "Bearer " + getToken()
     }

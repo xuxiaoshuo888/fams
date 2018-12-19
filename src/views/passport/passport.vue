@@ -43,7 +43,8 @@
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-view" @click="daoqi">即将到期</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-view" @click="hzdaoqi">护照到期</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-view" @click="jlxkdaoqi">护照到期</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
@@ -83,7 +84,7 @@
       <el-table-column
         prop="xm"
         label="姓名"
-        width="200"
+        width=""
         header-align="center"
         align="center">
       </el-table-column>
@@ -104,23 +105,23 @@
       <el-table-column
         prop="nj"
         label="年级"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="bj"
         label="班级"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <!--<el-table-column-->
-        <!--prop="xy"-->
-        <!--label="学院"-->
-        <!--width="150"-->
-        <!--header-align="center"-->
-        <!--align="center">-->
+      <!--prop="xy"-->
+      <!--label="学院"-->
+      <!--width="150"-->
+      <!--header-align="center"-->
+      <!--align="center">-->
       <!--</el-table-column>-->
       <el-table-column
         prop="hzhm"
@@ -136,34 +137,34 @@
         header-align="center"
         align="center">
       </el-table-column>
-      <el-table-column
-        prop="hzyxqdqr"
-        label="护照有效期到期日"
-        width="100"
-        header-align="center"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="hzgxhdqr"
-        label="护照更新后到期日"
-        width="100"
-        header-align="center"
-        align="center">
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="hzyxqdqr"-->
+        <!--label="护照有效期到期日"-->
+        <!--width="100"-->
+        <!--header-align="center"-->
+        <!--align="center">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column-->
+        <!--prop="hzgxhdqr"-->
+        <!--label="护照更新后到期日"-->
+        <!--width="100"-->
+        <!--header-align="center"-->
+        <!--align="center">-->
+      <!--</el-table-column>-->
       <el-table-column
         prop="jlxkdqr"
-        label="居留许可到期日"
+        label="居留许可证有效期"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
-      <el-table-column
-        prop="jlxkgxhdqr"
-        label="居留许可更新后到期日"
-        width="100"
-        header-align="center"
-        align="center">
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="jlxkgxhdqr"-->
+        <!--label="居留许可更新后到期日"-->
+        <!--width="100"-->
+        <!--header-align="center"-->
+        <!--align="center">-->
+      <!--</el-table-column>-->
     </el-table>
 
     <!--分页-->
@@ -193,14 +194,14 @@
           <el-form-item label="学号" prop="xh">
             <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
           </el-form-item>
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="ruleForm.xm" disabled></el-input>
+          </el-form-item>
           <el-form-item label="性别" prop="">
             <el-radio-group v-model="ruleForm.xb" disabled>
               <el-radio label="男"></el-radio>
               <el-radio label="女"></el-radio>
             </el-radio-group>
-          </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
             <el-input v-model="ruleForm.bj" disabled></el-input>
@@ -222,93 +223,119 @@
         </el-form>
         <el-form :model="ruleForm2" inline="" :rules="rules2" ref="ruleForm2" label-width="160px"
                  class="demo-ruleForm">
-          <el-form-item label="护照号码" prop="hzhm">
-            <el-input v-model="ruleForm2.hzhm" required></el-input>
-          </el-form-item>
-          <el-form-item label="护照有效期" prop="hzyxq">
-            <el-date-picker
-              type="date"
-              placeholder=""
-              v-model="ruleForm2.hzyxq"
-              value-format="yyyy-MM-dd">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="护照有效期到期日" prop="hzyxqdqr">
-            <el-date-picker
-              type="date"
-              placeholder=""
-              v-model="ruleForm2.hzyxqdqr"
-              value-format="yyyy-MM-dd">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="护照更新后到期日" prop="">
-            <el-date-picker
-              type="date"
-              placeholder=""
-              v-model="ruleForm2.hzgxhdqr"
-              value-format="yyyy-MM-dd">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="居留许可到期日" prop="jlxkdqr">
-            <el-date-picker
-              type="date"
-              placeholder=""
-              v-model="ruleForm2.jlxkdqr"
-              value-format="yyyy-MM-dd">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="居留许可更新后到期日" prop="">
-            <el-date-picker
-              type="date"
-              placeholder=""
-              v-model="ruleForm2.jlxkgxhdqr"
-              value-format="yyyy-MM-dd">
-            </el-date-picker>
-          </el-form-item>
-          <div class="hr"></div>
           <el-row :gutter="20">
-            <el-col :span="8">
-              <div class="pic_title"><span class="bitian">*</span>上传护照首页</div>
-              <el-upload
-                class="avatar-uploader"
-                action="/ws/upload/uploadFile"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess1"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="ruleForm2.hzsy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.hzsy).path"
-                     class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
+            <el-col :span="12"  class="borderRight">
+              <div style="min-height: 130px;">
+                <el-form-item label="护照号码" prop="hzhm">
+                  <el-input v-model="ruleForm2.hzhm" required></el-input>
+                </el-form-item>
+                <el-form-item label="护照有效期" prop="hzyxq">
+                  <el-date-picker
+                    type="date"
+                    placeholder=""
+                    v-model="ruleForm2.hzyxq"
+                    value-format="yyyy-MM-dd">
+                  </el-date-picker>
+                </el-form-item>
+                <!--<el-form-item label="护照有效期到期日" prop="hzyxqdqr">-->
+                  <!--<el-date-picker-->
+                    <!--type="date"-->
+                    <!--placeholder=""-->
+                    <!--v-model="ruleForm2.hzyxqdqr"-->
+                    <!--value-format="yyyy-MM-dd">-->
+                  <!--</el-date-picker>-->
+                <!--</el-form-item>-->
+                <!--<el-form-item label="护照更新后到期日" prop="">-->
+                  <!--<el-date-picker-->
+                    <!--type="date"-->
+                    <!--placeholder=""-->
+                    <!--v-model="ruleForm2.hzgxhdqr"-->
+                    <!--value-format="yyyy-MM-dd">-->
+                  <!--</el-date-picker>-->
+                <!--</el-form-item>-->
+              </div>
+              <el-row>
+                <el-col :span="12">
+                  <div class="pic_title"><span class="bitian">*</span>上传护照首页</div>
+                  <el-upload
+                    class="avatar-uploader"
+                    action="/ws/upload/uploadFile"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess1"
+                    :before-upload="beforeAvatarUpload">
+                    <img v-if="ruleForm2.hzsy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.hzsy).path"
+                         class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  </el-upload>
+                </el-col>
+                <el-col :span="12">
+                  <div class="pic_title"><span class="bitian">*</span>上传签证页</div>
+                  <el-upload
+                    class="avatar-uploader"
+                    action="/ws/upload/uploadFile"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess2"
+                    :before-upload="beforeAvatarUpload">
+                    <img v-if="ruleForm2.qzy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.qzy).path"
+                         class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  </el-upload>
+                </el-col>
+              </el-row>
+
             </el-col>
-            <el-col :span="8">
-              <div class="pic_title"><span class="bitian">*</span>上传签证页</div>
-              <el-upload
-                class="avatar-uploader"
-                action="/ws/upload/uploadFile"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess2"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="ruleForm2.qzy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.qzy).path"
-                     class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-col>
-            <el-col :span="8">
-              <div class="pic_title"><span class="bitian">*</span>居留许可证页</div>
-              <el-upload
-                class="avatar-uploader"
-                action="/ws/upload/uploadFile"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess3"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="ruleForm2.jlxkzy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jlxkzy).path"
-                     class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
+            <el-col :span="12"x>
+              <div style="min-height: 130px;">
+                <el-form-item label="居留许可证有效期" prop="jlxkdqr">
+                  <el-date-picker
+                    type="date"
+                    placeholder=""
+                    v-model="ruleForm2.jlxkdqr"
+                    value-format="yyyy-MM-dd">
+                  </el-date-picker>
+                </el-form-item>
+                <!--<el-form-item label="居留许可更新后到期日" prop="">-->
+                  <!--<el-date-picker-->
+                    <!--type="date"-->
+                    <!--placeholder=""-->
+                    <!--v-model="ruleForm2.jlxkgxhdqr"-->
+                    <!--value-format="yyyy-MM-dd">-->
+                  <!--</el-date-picker>-->
+                <!--</el-form-item>-->
+              </div>
+              <el-row>
+                <el-col :span="12">
+                  <div class="pic_title"><span class="bitian">*</span>上传居留许可证页</div>
+                  <el-upload
+                    class="avatar-uploader"
+                    action="/ws/upload/uploadFile"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess3"
+                    :before-upload="beforeAvatarUpload">
+                    <img v-if="ruleForm2.jlxkzy" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jlxkzy).path"
+                         class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  </el-upload>
+                </el-col>
+                <el-col :span="12">
+                  <div class="pic_title"><span class="bitian">*</span>上传临住登记表</div>
+                  <el-upload
+                    class="avatar-uploader"
+                    action="/ws/upload/uploadFile"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess6"
+                    :before-upload="beforeAvatarUpload">
+                    <img v-if="ruleForm2.lzdjb" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.lzdjb).path"
+                         class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  </el-upload>
+                </el-col>
+              </el-row>
             </el-col>
           </el-row>
+          <div class="hr"></div>
           <el-row :gutter="20" class="margintop20">
-            <el-col :span="8">
+            <el-col :span="6">
               <div class="pic_title"><span class="bitian">*</span>上传JW202</div>
               <el-upload
                 class="avatar-uploader"
@@ -321,7 +348,7 @@
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="6">
               <div class="pic_title"><span class="bitian">*</span>上传录取通知书</div>
               <el-upload
                 class="avatar-uploader"
@@ -334,33 +361,18 @@
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-col>
-            <el-col :span="8">
-              <div class="pic_title"><span class="bitian">*</span>临住等级表</div>
-              <el-upload
-                class="avatar-uploader"
-                action="/ws/upload/uploadFile"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess6"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="ruleForm2.lzdjb" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.lzdjb).path"
-                     class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20" class="margintop20">
-            <el-col :span="8">
-              <div class="pic_title"><span class="bitian">*</span>健康证</div>
-              <el-upload
-                class="avatar-uploader"
-                action="/ws/upload/uploadFile"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess7"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="ruleForm2.jkz" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jkz).path"
-                     class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
+            <el-col :span="6">
+                <div class="pic_title"><span class="bitian">*</span>上传健康证</div>
+                <el-upload
+                  class="avatar-uploader"
+                  action="/ws/upload/uploadFile"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess7"
+                  :before-upload="beforeAvatarUpload">
+                  <img v-if="ruleForm2.jkz" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jkz).path"
+                       class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
             </el-col>
           </el-row>
         </el-form>
@@ -617,7 +629,7 @@
           '&hzyxq=' + this.hzyxq +
           '&jlxkdqr=' + this.jlxkdqr, '_blank')
       },
-      daoqi() {
+      hzdaoqi() {
         this.request.post('/ws/passport/due', {
           xm: this.xm,
           xh: this.xh,
@@ -629,6 +641,27 @@
           jlxkdqr: this.jlxkdqr,
           page: this.pageNum,
           limit: this.pageSize,
+          type:'hz'
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+      jlxkdaoqi() {
+        this.request.post('/ws/passport/due', {
+          xm: this.xm,
+          xh: this.xh,
+          xy: this.xy,
+          zy: this.zy,
+          bj: this.bj,
+          hzhm: this.hzhm,
+          hzyxq: this.hzyxq,
+          jlxkdqr: this.jlxkdqr,
+          page: this.pageNum,
+          limit: this.pageSize,
+          type:'jlxk'
         }).then(res => {
           this.list = res.data.page.rows
           this.pageNum = res.data.page.page

@@ -54,68 +54,91 @@
         type="selection"
         header-align="center"
         align="center"
-
         width="50">
       </el-table-column>
       <el-table-column
         prop="xh"
         label="学号"
-        width="120">
+        header-align="center"
+        align="center"
+        width="110">
       </el-table-column>
       <el-table-column
         prop="std_xm"
         label="姓名(护照用名)"
-        width="120">
+        header-align="center"
+        align="center"
+        width="250">
       </el-table-column>
       <el-table-column
         prop="std_hzhm"
         label="护照号码"
-        width="120">
+        header-align="center"
+        align="center"
+        width="100">
       </el-table-column>
       <el-table-column
         prop="std_gb"
         label="国籍"
-        width="120">
+        header-align="center"
+        align="center"
+        width="80">
       </el-table-column>
       <el-table-column
         prop="bxxm"
         label="保险项目"
+        header-align="center"
+        align="center"
         width="120">
       </el-table-column>
       <el-table-column
         prop="bxf"
         label="保险费"
-        width="120">
+        header-align="center"
+        align="center"
+        width="100">
       </el-table-column>
       <el-table-column
         prop="bxrq"
         label="保险日期"
-        width="120">
+        header-align="center"
+        align="center"
+        width="100">
       </el-table-column>
       <el-table-column
         prop="gmqk"
         label="购买情况"
-        width="120">
+        header-align="center"
+        align="center"
+        width="100">
       </el-table-column>
       <el-table-column
         prop="jzyy"
         label="就诊医院"
+        header-align="center"
+        align="center"
         width="120">
       </el-table-column>
       <el-table-column
         prop="bq"
         label="病情"
+        header-align="center"
+        align="center"
         width="120">
       </el-table-column>
       <el-table-column
         prop="bxba"
         label="保险报案"
+        header-align="center"
+        align="center"
         width="120">
       </el-table-column>
       <el-table-column
         prop="bz"
         label="备注"
-        width="120">
+        header-align="center"
+        align="center"
+        width="">
       </el-table-column>
       <el-table-column
         label="操作"

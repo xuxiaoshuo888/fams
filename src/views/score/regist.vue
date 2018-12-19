@@ -62,7 +62,7 @@
       <el-table-column
         prop="xh"
         label="学号"
-        width=""
+        width="110"
         header-align="center"
         align="center">
       </el-table-column>
@@ -76,42 +76,42 @@
       <el-table-column
         prop="xy"
         label="学院"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="zy"
         label="专业"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="bj"
         label="班级"
-        width=""
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="add_scores"
         label="加分总分"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="sub_scores"
         label="扣分总分"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="total_scores"
         label="总分"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>

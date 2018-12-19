@@ -76,42 +76,42 @@
       <el-table-column
         prop="xh"
         label="学号"
-        width=""
+        width="110"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xm"
         label="姓名"
-        width=""
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xb"
         label="性别"
-        width=""
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="zy"
         label="专业"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="nj"
         label="年级"
-        width=""
+        width="60"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="bj"
         label="班级"
-        width=""
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
@@ -125,7 +125,7 @@
       <el-table-column
         prop="gb"
         label="国籍"
-        width=""
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -133,35 +133,35 @@
       <el-table-column
         prop="hzhm"
         label="护照号"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="lxdh"
         label="联系方式"
-        width=""
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="cflx"
         label="处分类型"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="cfsj"
         label="处分时间"
-        width=""
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="cfdqsj"
         label="处分到期时间"
-        width=""
+        width="120"
         header-align="center"
         align="center">
       </el-table-column>

@@ -163,10 +163,13 @@ body {
   margin-bottom: 20px;
   .pic_name {
     font-size: 14px;
-    min-height: 35px;
+    min-height: 60px;
+    padding-top: 10px;
+    word-break: break-all;
   }
   .pic_xh {
     font-size: 14px;
+    padding-top: 10px;
   }
 }
 
@@ -184,4 +187,8 @@ body {
 .bitian {
   color: #f56c6c;
   margin-right: 4px;
+}
+//右边边框
+.borderRight{
+  border-right: 1px solid #e6e6e6;
 }

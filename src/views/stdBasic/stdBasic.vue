@@ -92,14 +92,14 @@
       <el-table-column
         prop="bj"
         label="班级"
-        width="130"
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xh"
         label="学号"
-        width="130"
+        width="110"
         header-align="center"
         align="center">
       </el-table-column>
@@ -113,7 +113,7 @@
       <el-table-column
         prop="zwm"
         label="中文名"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -141,21 +141,21 @@
       <el-table-column
         prop="csrq"
         label="出生年月"
-        width="120"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="hzhm"
         label="护照号"
-        width="180"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="gb"
         label="国籍"
-        width="50"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -183,7 +183,7 @@
       <el-table-column
         prop="fdy"
         label="辅导员"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>

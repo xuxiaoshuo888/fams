@@ -16,7 +16,7 @@
         <el-table-column
           prop="hdxh"
           label="序号"
-          width=""
+          width="50"
           header-align="center"
           align="center">
         </el-table-column>
@@ -24,41 +24,42 @@
           prop="name"
           label="名称"
           width=""
+          show-overflow-tooltip
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="xn"
           label="学年"
-          width=""
+          width="60"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="xq"
           label="学期"
-          width=""
+          width="80"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="hdkssj"
           label="活动开始时间"
-          width=""
+          width="110"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="hdjssj"
           label="活动结束时间"
-          width=""
+          width="110"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="score"
           label="加分值"
-          width=""
+          width="70"
           header-align="center"
           align="center">
         </el-table-column>
@@ -66,6 +67,7 @@
           prop="hdnr"
           label="活动内容"
           width=""
+          show-overflow-tooltip
           header-align="center"
           align="center">
         </el-table-column>
@@ -73,6 +75,7 @@
           prop="hdjbdw"
           label="举办活动单位"
           width=""
+          show-overflow-tooltip
           header-align="center"
           align="center">
         </el-table-column>
@@ -121,7 +124,7 @@
         <el-table-column
           prop="hdxh"
           label="序号"
-          width=""
+          width="50"
           header-align="center"
           align="center">
         </el-table-column>
@@ -130,46 +133,48 @@
           label="名称"
           width=""
           header-align="center"
+          show-overflow-tooltip
           align="center">
         </el-table-column>
         <el-table-column
           prop="xn"
           label="学年"
-          width=""
+          width="60"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="xq"
           label="学期"
-          width=""
+          width="80"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="hdkssj"
           label="活动开始时间"
-          width=""
+          width="110"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="hdjssj"
           label="活动结束时间"
-          width=""
+          width="110"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="score"
           label="加分值"
-          width=""
+          width="70"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
           prop="hdnr"
           label="活动内容"
+          show-overflow-tooltip
           width=""
           header-align="center"
           align="center">
@@ -178,6 +183,7 @@
           prop="hdjbdw"
           label="举办活动单位"
           width=""
+          show-overflow-tooltip
           header-align="center"
           align="center">
         </el-table-column>

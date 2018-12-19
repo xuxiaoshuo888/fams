@@ -104,7 +104,7 @@
         <el-table-column
           prop="xm"
           label="姓名"
-          width=""
+          width="210"
           header-align="center"
           align="center">
         </el-table-column>
@@ -139,7 +139,7 @@
         <el-table-column
           prop="lxdh"
           label="联系号码"
-          width=""
+          width="130"
           header-align="center"
           align="center">
         </el-table-column>

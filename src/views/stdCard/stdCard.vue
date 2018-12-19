@@ -84,20 +84,27 @@
       <el-table-column
         prop="bj"
         label="班级"
-        width="130"
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xh"
         label="学号"
-        width="130"
+        width="110"
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="xm1"
+        label="姓"
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xm"
-        label="姓名"
+        label="名"
         width="150"
         header-align="center"
         align="center">
@@ -105,7 +112,7 @@
       <el-table-column
         prop="zwm"
         label="中文名"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -133,21 +140,21 @@
       <el-table-column
         prop="csrq"
         label="出生年月"
-        width="120"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="hzhm"
         label="护照号"
-        width="180"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="gb"
         label="国籍"
-        width="50"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -159,7 +166,7 @@
         <!--align="center">-->
       <!--</el-table-column>-->
       <el-table-column
-        prop="xh"
+        prop="dxrq"
         label="到校日期"
         width="100"
         header-align="center"
@@ -175,7 +182,7 @@
       <el-table-column
         prop="fdy"
         label="辅导员"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -256,18 +263,21 @@
                   <el-form-item label="联系电话：">
                     <div>{{list_jb.lxdh || '暂无数据'}}</div>
                   </el-form-item>
+                  <el-form-item label="永久联系电话：">
+                    <div>{{list_jb.lxdh || '暂无数据'}}</div>
+                  </el-form-item>
                   <el-form-item label="住宿情况：">
                     <div>{{list_jb.ssh || '暂无数据'}}</div>
-                  </el-form-item>
-                  <el-form-item label="出生地：">
-                    <div>{{list_jb.gb || '暂无数据'}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <div class="card_pic"><img alt="暂无照片" :src="'/ws/resource/showImg?path=' + list_jb.zp"/></div>
-                  <el-form-item label="国籍：">
+                  <el-form-item label="国籍/地区：">
+                    <div>{{list_jb.gb || '暂无数据'}}</div>
+                  </el-form-item>
+                  <el-form-item label="出生国籍/地区：">
                     <div>{{list_jb.gb || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="宗教信仰：">
@@ -285,9 +295,7 @@
                   <el-form-item label="毕业去向：">
                     <div>暂无数据</div>
                   </el-form-item>
-                  <el-form-item label="永久联系电话：">
-                    <div>{{list_jb.lxdh || '暂无数据'}}</div>
-                  </el-form-item>
+
                 </el-form>
               </el-col>
             </el-row>

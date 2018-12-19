@@ -95,28 +95,28 @@
       <el-table-column
         prop="nj"
         label="年级"
-        width="100"
+        width="60"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="bj"
         label="班级"
-        width="130"
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xh"
         label="学号"
-        width="130"
+        width="110"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xm"
         label="姓名"
-        width="250"
+        width="150"
         show-overflow-tooltip
         header-align="center"
         align="center">
@@ -124,7 +124,7 @@
       <el-table-column
         prop="zwm"
         label="中文名"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -152,21 +152,21 @@
       <el-table-column
         prop="csrq"
         label="出生年月"
-        width="120"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="hzhm"
         label="护照号"
-        width="180"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="gb"
         label="国籍"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -194,7 +194,7 @@
       <el-table-column
         prop="fdy"
         label="辅导员"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -344,12 +344,12 @@
             <el-upload
               class="upload-block"
               drag
-              action="https://jsonplaceholder.typicode.com/posts/"
+              action="/ws/data_import/upload?id=studentInfo"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload">
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+              <div class="el-upload__tip" slot="tip">只能上传xlsx/xls文件，且不超过500kb</div>
             </el-upload>
           </div>
         </div>
@@ -532,16 +532,14 @@
         window.open('/ws/data_import/downloadTemplate?id=studentInfo', '_blank')
       },
       handleAvatarSuccess(res, file, fileList) {
-        console.log(res)
-        console.log(file)
-        console.log(fileList)
-        this.fileUrl = URL.createObjectURL(file.raw);
-        this.request.post('/ws/data_import/upload').then(res => {
-          this.$message({
-            type: 'success',
-            message: res.errmsg
-          })
-        })
+        console.log(res)//后台返回的数据
+        // this.fileUrl = URL.createObjectURL(file.raw);
+        // this.request.post('/ws/data_import/upload').then(res => {
+        //   this.$message({
+        //     type: 'success',
+        //     message: res.errmsg
+        //   })
+        // })
       },
       beforeAvatarUpload(file) {
         console.log(file)
@@ -554,7 +552,7 @@
         if (!isLt2M) {
           this.$message.error('上传文件大小不能超过 2MB!');
         }
-        return isXlsx && isLt2M;
+        return (isXlsx || isXls) && isLt2M;
       },
     }
   }

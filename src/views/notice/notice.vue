@@ -70,7 +70,7 @@
       </el-table-column>
       <el-table-column
         label="发布时间"
-        width="180"
+        width="110"
         header-align="center"
         align="center">
         <template slot-scope="scope">{{scope.row.whenCreated.substr(0,10)}}
@@ -79,14 +79,14 @@
       <el-table-column
         prop="userId"
         label="作者"
-        width="80"
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="deptId"
         label="发布单位"
-        width="130"
+        width=""
         header-align="center"
         align="center">
       </el-table-column>
