@@ -10,10 +10,17 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="名"
+          size="mini"
+          clearable
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
@@ -114,9 +121,17 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm"
-        label="姓名"
-        width="150"
+        prop="xm_x"
+        label="姓"
+        width=""
+        show-overflow-tooltip
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="xm_m"
+        label="名"
+        width=""
         show-overflow-tooltip
         header-align="center"
         align="center">
@@ -234,8 +249,11 @@
           <el-form-item label="学号" prop="xh">
             <el-input v-model="ruleForm.xh" disabled></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="xm">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
+          <el-form-item label="姓" prop="">
+            <el-input v-model="ruleForm.xmX" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="名" prop="">
+            <el-input v-model="ruleForm.xmM" disabled></el-input>
           </el-form-item>
           <el-form-item label="中文名" prop="">
             <el-input v-model="ruleForm.zwm" disabled></el-input>
@@ -324,6 +342,7 @@
 
     <!--导入的模态框-->
     <el-dialog
+      v-if="dialogVisible_import"
       title=""
       :visible.sync="dialogVisible_import"
       width="900px">
@@ -344,19 +363,24 @@
             <el-upload
               class="upload-block"
               drag
+              :limit="1"
+              :multiple="multiple"
               action="/ws/data_import/upload?id=studentInfo"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload">
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
               <div class="el-upload__tip" slot="tip">只能上传xlsx/xls文件，且不超过500kb</div>
+              <div v-if="error_notice" class="el-upload__tip" style="font-size: 20px" slot="tip">
+                错误条数 <span style="color: red;">{{download_info.importData.errorCount}}</span> 条,<a @click="downLoad">下载查看</a><br/>
+                正确条数 <span style="color: green;">{{download_info.importData.succCount}}</span> 条,<a v-if="download_info.importData.succCount > 0" @click="succImport">导入成功</a>
+              </div>
             </el-upload>
           </div>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="small" @click="dialogVisible1 = false">取 消</el-button>
-        <el-button size="small" type="primary" @click="dialogVisible1 = false">确 定</el-button>
+        <el-button size="small" @click="dialogVisible_import = false">关闭</el-button>
       </span>
     </el-dialog>
   </div>
@@ -370,7 +394,8 @@
     data() {
       return {
         xh: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         xb: "",
         xy: "",
         zy: "",
@@ -388,7 +413,8 @@
         add_edit_flag: false,//false-新增，true-编辑
         detail: {},
         ruleForm: {//修改基本信息
-          xm: '',//姓名
+          xmX:'',
+          xmM:'',
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -396,7 +422,11 @@
           lxdh: '',
           csrq: '',
         },
-        fileUrl:''//文件类型
+        fileUrl: '',//文件类型
+        error_notice: false,//是否显示错误提示信息
+        X: '',//错误数
+        download_info: {},//下载链接
+        multiple:false,//false不支持多选
       }
     },
     mounted() {
@@ -405,7 +435,8 @@
     methods: {
       getData() {
         this.request.post('/ws/student/page', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m:this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,
@@ -424,7 +455,8 @@
       },
       reset() {//重置搜索条件
         this.xh = ''
-        this.xm = ''
+        this.xm_x = ''
+        this.xm_m = ''
         this.xb = ''
         this.xy = ''
         this.zy = ''
@@ -495,7 +527,8 @@
       },
       reset_form() {//置空弹出框里的表单
         this.ruleForm = {
-          xm: '',//姓名
+          xmX: '',//姓名
+          xmM: '',//姓名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -533,6 +566,14 @@
       },
       handleAvatarSuccess(res, file, fileList) {
         console.log(res)//后台返回的数据
+        this.error_notice = true
+        this.X = res.data.importData.errorCount
+        this.download_info = res.data
+        if(fileList.length === 1){
+          this.error_notice = true
+        }else{
+          this.error_notice = false
+        }
         // this.fileUrl = URL.createObjectURL(file.raw);
         // this.request.post('/ws/data_import/upload').then(res => {
         //   this.$message({
@@ -554,6 +595,19 @@
         }
         return (isXlsx || isXls) && isLt2M;
       },
+      downLoad() {//点击下载上传导入模板后的错误信息
+        let importDataId = this.download_info.importData.id
+        let importId = this.download_info.importDTO.id
+        window.open(`/ws/data_import/export?importDataId=${importDataId}&importId=${importId}&status=0`, '_blank')
+      },
+      //导入成功按钮
+      succImport() {
+        this.request.post('/ws/student/importData', {importDataId:this.download_info.importData.id}).then(res => {
+          if(res){
+
+          }
+        })
+      }
     }
   }
 </script>

@@ -10,43 +10,55 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="在校状态"
+          placeholder="名"
           size="mini"
           clearable
-          v-model="zxzt">
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-select size="mini" v-model="xjlb" clearable placeholder="学籍类别">
-          <el-option key="1" label="在籍" value="1"></el-option>
-          <el-option key="2" label="不在籍" value="2"></el-option>
-        </el-select>
+        <!--<el-input-->
+        <!--placeholder="在校状态"-->
+        <!--size="mini"-->
+        <!--clearable-->
+        <!--v-model="zxzt">-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <!--<el-select size="mini" v-model="xjlb" clearable placeholder="学籍类别">-->
+        <!--<el-option key="1" label="在籍" value="1"></el-option>-->
+        <!--<el-option key="2" label="不在籍" value="2"></el-option>-->
+        <!--</el-select>-->
         <el-select size="mini" v-model="xb" clearable placeholder="性别">
           <el-option key="1" label="男" value="1"></el-option>
           <el-option key="2" label="女" value="2"></el-option>
         </el-select>
-        <el-select size="mini" v-model="xy" clearable placeholder="学院">
-          <el-option key="1" label="文学院" value="1"></el-option>
-          <el-option key="2" label="医学院" value="2"></el-option>
-        </el-select>
-        <el-select size="mini" v-model="zy" clearable placeholder="专业">
-          <el-option key="1" label="临床医学" value="1"></el-option>
-          <el-option key="2" label="营养学" value="2"></el-option>
-        </el-select>
+        <!--<el-select size="mini" v-model="xy" clearable placeholder="学院">-->
+        <!--<el-option key="1" label="文学院" value="1"></el-option>-->
+        <!--<el-option key="2" label="医学院" value="2"></el-option>-->
+        <!--</el-select>-->
+        <!--<el-select size="mini" v-model="zy" clearable placeholder="专业">-->
+        <!--<el-option key="1" label="临床医学" value="1"></el-option>-->
+        <!--<el-option key="2" label="营养学" value="2"></el-option>-->
+        <!--</el-select>-->
         <el-select size="mini" v-model="nj" clearable placeholder="年级">
-          <el-option key="1" label="2018" value="1"></el-option>
-          <el-option key="2" label="2017" value="2"></el-option>
+          <el-option label="2019" value="2019"></el-option>
+          <el-option label="2018" value="2018"></el-option>
+          <el-option label="2017" value="2017"></el-option>
+          <el-option label="2016" value="2016"></el-option>
+          <el-option label="2015" value="2015"></el-option>
+          <el-option label="2014" value="2014"></el-option>
+          <el-option label="2013" value="2013"></el-option>
         </el-select>
-        <el-select size="mini" v-model="mz" clearable placeholder="民族">
-          <el-option key="1" label="汉族" value="1"></el-option>
-          <el-option key="2" label="满族" value="2"></el-option>
-        </el-select>
+        <!--<el-select size="mini" v-model="mz" clearable placeholder="民族">-->
+        <!--<el-option key="1" label="汉族" value="1"></el-option>-->
+        <!--<el-option key="2" label="满族" value="2"></el-option>-->
+        <!--</el-select>-->
       </el-col>
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
@@ -104,9 +116,18 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm"
-        label="姓名"
-        width="150"
+        prop="xm_x"
+        label="姓"
+        width=""
+        show-overflow-tooltip
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="xm_m"
+        label="名"
+        width=""
+        show-overflow-tooltip
         header-align="center"
         align="center">
       </el-table-column>
@@ -226,8 +247,11 @@
           <el-form-item label="学号" prop="xh">
             <el-input v-model="ruleForm.xh" disabled></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="xm">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
+          <el-form-item label="姓" prop="xmX">
+            <el-input v-model="ruleForm.xmX" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="名" prop="xmM">
+            <el-input v-model="ruleForm.xmM" disabled></el-input>
           </el-form-item>
           <el-form-item label="中文名" prop="">
             <el-input v-model="ruleForm.zwm" disabled></el-input>
@@ -332,8 +356,11 @@
                   <el-form-item label="学号：">
                     <div>{{detail.xh}}</div>
                   </el-form-item>
-                  <el-form-item label="姓名：">
-                    <div>{{detail.xm}}</div>
+                  <el-form-item label="姓：">
+                    <div>{{detail.xmX}}</div>
+                  </el-form-item>
+                  <el-form-item label="名：">
+                    <div>{{detail.xmM}}</div>
                   </el-form-item>
                   <el-form-item label="中文名：">
                     <div>{{detail.zwm}}</div>
@@ -418,7 +445,8 @@
         xh: "",
         zxzt: '',
         xjlb: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         xb: "",
         xy: "",
         zy: "",
@@ -436,7 +464,8 @@
         add_edit_flag: false,//false-新增，true-编辑
         detail: {},
         ruleForm: {//修改基本信息
-          xm: '',//姓名
+          xmX: '',//姓
+          xmM: '',//名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -452,7 +481,8 @@
     methods: {
       getData() {
         this.request.post('/ws/student/page', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,
@@ -468,7 +498,8 @@
         })
       },
       reset() {//重置搜索条件
-        this.xm = ''
+        this.xm_x = ''
+        this.xm_m=""
         this.xh = ''
         this.xy = ''
         this.zy = ''
@@ -505,7 +536,8 @@
       },
       reset_form() {//置空弹出框里的表单
         this.ruleForm = {
-          xm: '',//姓名
+          xmX: '',//姓名
+          xmM:'',//名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级

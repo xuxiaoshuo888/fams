@@ -10,26 +10,42 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="学院"
+          placeholder="名"
           size="mini"
           clearable
-          v-model="xy">
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="专业"
-          size="mini"
-          clearable
-          v-model="zy">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <!--<el-input-->
+        <!--placeholder="学院"-->
+        <!--size="mini"-->
+        <!--clearable-->
+        <!--v-model="xy">-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <!--<el-input-->
+        <!--placeholder="专业"-->
+        <!--size="mini"-->
+        <!--clearable-->
+        <!--v-model="zy">-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <el-select size="mini" v-model="nj" clearable placeholder="年级">
+          <el-option label="2019" value="2019"></el-option>
+          <el-option label="2018" value="2018"></el-option>
+          <el-option label="2017" value="2017"></el-option>
+          <el-option label="2016" value="2016"></el-option>
+          <el-option label="2015" value="2015"></el-option>
+          <el-option label="2014" value="2014"></el-option>
+          <el-option label="2013" value="2013"></el-option>
+        </el-select>
         <el-input
           placeholder="班级"
           size="mini"
@@ -102,9 +118,18 @@
         <!--align="center">-->
         <!--</el-table-column>-->
         <el-table-column
-          prop="xm"
-          label="姓名"
-          width="210"
+          prop="xm_x"
+          label="姓"
+          width=""
+          show-overflow-tooltip
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop="xm_m"
+          label="名"
+          width=""
+          show-overflow-tooltip
           header-align="center"
           align="center">
         </el-table-column>
@@ -259,8 +284,11 @@
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
+          <el-form-item label="姓" prop="name">
+            <el-input v-model="ruleForm.xmX" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="名" prop="name">
+            <el-input v-model="ruleForm.xmM" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
             <el-input v-model="ruleForm.bj" disabled></el-input>
@@ -360,10 +388,12 @@
     data() {
       return {
         xh: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         xy: "",
         zy: "",
         bj: "",
+        nj: "",
         fdyxm: "",
         djlsxm: "",
         hzhm: "",
@@ -383,7 +413,8 @@
           {value: '1', label: '国内旅游学生'}
         ],
         ruleForm: {
-          xm: '',//姓名
+          xmX: '',//姓名
+          xmM: '',//姓名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -417,11 +448,13 @@
     methods: {
       getData() {
         this.request.post('/ws/roomassing/page', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,
           bj: this.bj,
+          nj: this.nj,
           fdyxm: this.fdyxm,
           djlsxm: this.djlsxm,
           hzhm: this.hzhm,
@@ -445,7 +478,8 @@
         this.getData()
       },
       reset() {//重置
-        this.xm = ''
+        this.xm_x = ''
+        this.xm_m = ''
         this.xh = ''
         this.xy = ''
         this.zy = ''
@@ -535,7 +569,8 @@
       },
       reset_form() {
         this.ruleForm = {
-          xm: '',//姓名
+          xmX: '',//姓名
+          xmM: '',//姓名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -577,7 +612,7 @@
         this.pageNum = this.pageNum + 1
       },
       optExport() {
-        window.open('/ws/roomassing/export?xm=' + this.xm +
+        window.open('/ws/roomassing/export?xm_x=' + this.xm_x + '&xm_m=' +this.xm_m +
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +
@@ -585,7 +620,8 @@
       },
       daoqi() {
         this.request.post('/ws/roomassing/due', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m:this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,

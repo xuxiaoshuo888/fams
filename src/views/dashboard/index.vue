@@ -116,8 +116,16 @@
               :data="list_bx"
               style="width: 100%">
               <el-table-column
-                prop="std_xm"
-                label="姓名"
+                prop="std_xm_x"
+                label="姓"
+                width=""
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="std_xm_m"
+                label="名"
                 width=""
                 header-align="center"
                 align="center"

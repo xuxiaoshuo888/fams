@@ -17,13 +17,19 @@
         <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
         <!--</el-input>-->
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-
+        <el-input
+          placeholder="名"
+          size="mini"
+          clearable
+          v-model="xm_m">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
         <el-input
           placeholder="保险项目"
           size="mini"
@@ -64,11 +70,20 @@
         width="110">
       </el-table-column>
       <el-table-column
-        prop="std_xm"
-        label="姓名(护照用名)"
+        prop="std_xm_x"
+        label="姓"
         header-align="center"
         align="center"
-        width="250">
+        show-overflow-tooltip
+        width="">
+      </el-table-column>
+      <el-table-column
+        prop="std_xm_m"
+        label="名"
+        header-align="center"
+        align="center"
+        show-overflow-tooltip
+        width="">
       </el-table-column>
       <el-table-column
         prop="std_hzhm"
@@ -185,8 +200,11 @@
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
+          <el-form-item label="姓" prop="name">
+            <el-input v-model="ruleForm.xm_x" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="名" prop="name">
+            <el-input v-model="ruleForm.xm_m" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
             <el-input v-model="ruleForm.bj" disabled></el-input>
@@ -260,7 +278,8 @@
     data() {
       return {
         xh: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         bxxm: "",
         list: [],
         pageNum: 1,
@@ -271,7 +290,8 @@
         add_edit_flag: false,//false-新增，true-编辑
         tableData3: [],
         ruleForm: {
-          xm: '',//姓名
+          xm_x: '',//姓
+          xm_m: '',//名
           zwm: '',//中文名
           xh: '',//学号
           bj: '',//班级
@@ -307,7 +327,8 @@
     methods: {
       getData() {//分配用户左侧表格
         this.request.post('/ws/insurance/page', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
           xh: this.xh,
           bxxm: this.bxxm,
           page: this.pageNum,
@@ -321,7 +342,8 @@
       },
       daoqi() {
         this.request.post('/ws/insurance/due', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,
@@ -411,11 +433,18 @@
         })
       },
       optExport() {
-        window.open('/ws/insurance/export?xm=' + this.xm +
+        window.open('/ws/insurance/export?xm_x=' + this.xm_x + '&xm_m' +this.xm_m +
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +
           '&bj=' + this.bj, '_blank')
+
+        // window.open('/ws/insurance/export?' + `xm_x=${this.xm_x}
+        // '&xm_m='${this.xm_m}
+        //   '&xh='${this.xh}
+        //   '&xy='${this.xy}
+        //   '&zy='${this.zy}
+        //   '&bj='${this.bj}`, '_blank')
       },
       //分页相关方法
       handleSizeChange(e) {

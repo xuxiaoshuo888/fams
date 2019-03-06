@@ -17,26 +17,33 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="学院"
+          placeholder="名"
           size="mini"
-          v-model="xy"
-          @focus="choose_select('xy',xy,xyList,true)">
+          clearable
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="专业"
-          size="mini"
-          v-model="zy"
-          @focus="choose_select('zy',zy,zyList,true)">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <!--<el-input-->
+          <!--placeholder="学院"-->
+          <!--size="mini"-->
+          <!--v-model="xy"-->
+          <!--@focus="choose_select('xy',xy,xyList,true)">-->
+          <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <!--<el-input-->
+          <!--placeholder="专业"-->
+          <!--size="mini"-->
+          <!--v-model="zy"-->
+          <!--@focus="choose_select('zy',zy,zyList,true)">-->
+          <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
         <el-input
           placeholder="年级"
           size="mini"
@@ -44,13 +51,13 @@
           @focus="choose_select('nj',nj,njList,true)">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-select size="mini"
-                   no-data-text=" "
-                   v-model="mz"
-                   @focus="choose_select('mz',mz,mzList,false)"
-                   multiple
-                   placeholder="民族">
-        </el-select>
+        <!--<el-select size="mini"-->
+                   <!--no-data-text=" "-->
+                   <!--v-model="mz"-->
+                   <!--@focus="choose_select('mz',mz,mzList,false)"-->
+                   <!--multiple-->
+                   <!--placeholder="民族">-->
+        <!--</el-select>-->
       </el-col>
       <el-col :span="24" class="search_btn_area">
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
@@ -96,16 +103,18 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm1"
+        prop="xm_x"
         label="姓"
-        width="150"
+        width=""
+        show-overflow-tooltip
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm"
+        prop="xm_m"
         label="名"
-        width="150"
+        width=""
+        show-overflow-tooltip
         header-align="center"
         align="center">
       </el-table-column>
@@ -227,8 +236,11 @@
                   <el-form-item label="学号：">
                     <div>{{list_jb.xh || '暂无数据'}}</div>
                   </el-form-item>
-                  <el-form-item label="姓名：">
-                    <div>{{list_jb.xm || '暂无数据'}}</div>
+                  <el-form-item label="姓：">
+                    <div>{{list_jb.xmX || '暂无数据'}}</div>
+                  </el-form-item>
+                  <el-form-item label="名：">
+                    <div>{{list_jb.xmM || '暂无数据'}}</div>
                   </el-form-item>
                   <el-form-item label="中文名：">
                     <div>{{list_jb.zwm || '暂无数据'}}</div>
@@ -751,7 +763,8 @@
       return {
         xh: "",
         zxzt: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         xy: '',
         zy: '',
         nj: '',
@@ -914,11 +927,13 @@
           {name: '护理学'}
         ],
         njList: [
+          {name: '2019'},
           {name: '2018'},
           {name: '2017'},
           {name: '2016'},
           {name: '2015'},
-          {name: '2014'}
+          {name: '2014'},
+          {name: '2013'}
         ],
         mzList: [
           {name: '汉族'},
@@ -941,7 +956,8 @@
           records: this.records,
           xh: this.xh,
           zxzt: this.zxzt,
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
           xy: this.xy,
           zy: this.zy,
           nj: this.nj,
@@ -955,7 +971,8 @@
       },
       reset() {//重置搜索条件
         this.xh = ''
-        this.xm = ''
+        this.xm_x = ''
+        this.xm_m = ''
         this.xb = ''
         this.xy = ''
         this.zy = ''

@@ -11,10 +11,17 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="名"
+          size="mini"
+          clearable
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
@@ -35,7 +42,7 @@
         <el-date-picker
           type="date"
           size="mini"
-          placeholder="居留许可到期时间"
+          placeholder="居留许可证有效期"
           style="width: 100%;"
           v-model="jlxkdqr"
           value-format="yyyy-MM-dd"></el-date-picker>
@@ -44,7 +51,7 @@
         <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
         <el-button type="primary" size="mini" icon="el-icon-view" @click="hzdaoqi">护照到期</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-view" @click="jlxkdaoqi">护照到期</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-view" @click="jlxkdaoqi">居留许可到期</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
@@ -82,9 +89,18 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm"
-        label="姓名"
+        prop="xm_x"
+        label="姓"
         width=""
+        show-overflow-tooltip
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="xm_m"
+        label="名"
+        width=""
+        show-overflow-tooltip
         header-align="center"
         align="center">
       </el-table-column>
@@ -138,18 +154,18 @@
         align="center">
       </el-table-column>
       <!--<el-table-column-->
-        <!--prop="hzyxqdqr"-->
-        <!--label="护照有效期到期日"-->
-        <!--width="100"-->
-        <!--header-align="center"-->
-        <!--align="center">-->
+      <!--prop="hzyxqdqr"-->
+      <!--label="护照有效期到期日"-->
+      <!--width="100"-->
+      <!--header-align="center"-->
+      <!--align="center">-->
       <!--</el-table-column>-->
       <!--<el-table-column-->
-        <!--prop="hzgxhdqr"-->
-        <!--label="护照更新后到期日"-->
-        <!--width="100"-->
-        <!--header-align="center"-->
-        <!--align="center">-->
+      <!--prop="hzgxhdqr"-->
+      <!--label="护照更新后到期日"-->
+      <!--width="100"-->
+      <!--header-align="center"-->
+      <!--align="center">-->
       <!--</el-table-column>-->
       <el-table-column
         prop="jlxkdqr"
@@ -159,11 +175,11 @@
         align="center">
       </el-table-column>
       <!--<el-table-column-->
-        <!--prop="jlxkgxhdqr"-->
-        <!--label="居留许可更新后到期日"-->
-        <!--width="100"-->
-        <!--header-align="center"-->
-        <!--align="center">-->
+      <!--prop="jlxkgxhdqr"-->
+      <!--label="居留许可更新后到期日"-->
+      <!--width="100"-->
+      <!--header-align="center"-->
+      <!--align="center">-->
       <!--</el-table-column>-->
     </el-table>
 
@@ -194,14 +210,17 @@
           <el-form-item label="学号" prop="xh">
             <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
+          <el-form-item label="姓" prop="name">
+            <el-input v-model="ruleForm.xmX" disabled></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
             <el-radio-group v-model="ruleForm.xb" disabled>
               <el-radio label="男"></el-radio>
               <el-radio label="女"></el-radio>
             </el-radio-group>
+          </el-form-item>
+          <el-form-item label="名" prop="name">
+            <el-input v-model="ruleForm.xmM" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
             <el-input v-model="ruleForm.bj" disabled></el-input>
@@ -224,7 +243,7 @@
         <el-form :model="ruleForm2" inline="" :rules="rules2" ref="ruleForm2" label-width="160px"
                  class="demo-ruleForm">
           <el-row :gutter="20">
-            <el-col :span="12"  class="borderRight">
+            <el-col :span="12" class="borderRight">
               <div style="min-height: 130px;">
                 <el-form-item label="护照号码" prop="hzhm">
                   <el-input v-model="ruleForm2.hzhm" required></el-input>
@@ -238,20 +257,20 @@
                   </el-date-picker>
                 </el-form-item>
                 <!--<el-form-item label="护照有效期到期日" prop="hzyxqdqr">-->
-                  <!--<el-date-picker-->
-                    <!--type="date"-->
-                    <!--placeholder=""-->
-                    <!--v-model="ruleForm2.hzyxqdqr"-->
-                    <!--value-format="yyyy-MM-dd">-->
-                  <!--</el-date-picker>-->
+                <!--<el-date-picker-->
+                <!--type="date"-->
+                <!--placeholder=""-->
+                <!--v-model="ruleForm2.hzyxqdqr"-->
+                <!--value-format="yyyy-MM-dd">-->
+                <!--</el-date-picker>-->
                 <!--</el-form-item>-->
                 <!--<el-form-item label="护照更新后到期日" prop="">-->
-                  <!--<el-date-picker-->
-                    <!--type="date"-->
-                    <!--placeholder=""-->
-                    <!--v-model="ruleForm2.hzgxhdqr"-->
-                    <!--value-format="yyyy-MM-dd">-->
-                  <!--</el-date-picker>-->
+                <!--<el-date-picker-->
+                <!--type="date"-->
+                <!--placeholder=""-->
+                <!--v-model="ruleForm2.hzgxhdqr"-->
+                <!--value-format="yyyy-MM-dd">-->
+                <!--</el-date-picker>-->
                 <!--</el-form-item>-->
               </div>
               <el-row>
@@ -284,7 +303,7 @@
               </el-row>
 
             </el-col>
-            <el-col :span="12"x>
+            <el-col :span="12" x>
               <div style="min-height: 130px;">
                 <el-form-item label="居留许可证有效期" prop="jlxkdqr">
                   <el-date-picker
@@ -295,12 +314,12 @@
                   </el-date-picker>
                 </el-form-item>
                 <!--<el-form-item label="居留许可更新后到期日" prop="">-->
-                  <!--<el-date-picker-->
-                    <!--type="date"-->
-                    <!--placeholder=""-->
-                    <!--v-model="ruleForm2.jlxkgxhdqr"-->
-                    <!--value-format="yyyy-MM-dd">-->
-                  <!--</el-date-picker>-->
+                <!--<el-date-picker-->
+                <!--type="date"-->
+                <!--placeholder=""-->
+                <!--v-model="ruleForm2.jlxkgxhdqr"-->
+                <!--value-format="yyyy-MM-dd">-->
+                <!--</el-date-picker>-->
                 <!--</el-form-item>-->
               </div>
               <el-row>
@@ -362,17 +381,17 @@
               </el-upload>
             </el-col>
             <el-col :span="6">
-                <div class="pic_title"><span class="bitian">*</span>上传健康证</div>
-                <el-upload
-                  class="avatar-uploader"
-                  action="/ws/upload/uploadFile"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess7"
-                  :before-upload="beforeAvatarUpload">
-                  <img v-if="ruleForm2.jkz" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jkz).path"
-                       class="avatar">
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
+              <div class="pic_title"><span class="bitian">*</span>上传健康证</div>
+              <el-upload
+                class="avatar-uploader"
+                action="/ws/upload/uploadFile"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess7"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="ruleForm2.jkz" :src="'/ws/resource/showImg?path=' + JSON.parse(ruleForm2.jkz).path"
+                     class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
             </el-col>
           </el-row>
         </el-form>
@@ -424,7 +443,8 @@
     data() {
       return {
         xh: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         xb: "",
         xy: "",
         zy: "",
@@ -450,7 +470,8 @@
         },
         add_edit_flag: false,//false-新增，true-编辑
         ruleForm: {
-          xm: '',//姓名
+          xmX: '',//姓
+          xmM: "",//名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -490,7 +511,8 @@
     methods: {
       getData() {
         this.request.post('/ws/passport/page', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m:this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,
@@ -508,7 +530,8 @@
         })
       },
       reset() {//重置搜索条件
-        this.xm = ''
+        this.xm_x = ''
+        this.xm_m = ''
         this.xh = ''
         this.xy = ''
         this.zy = ''
@@ -517,7 +540,8 @@
       },
       reset_form() {
         this.ruleForm = {
-          xm: '',//姓名
+          xm_x: '',//姓
+          xm_m: '',//名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -641,7 +665,7 @@
           jlxkdqr: this.jlxkdqr,
           page: this.pageNum,
           limit: this.pageSize,
-          type:'hz'
+          type: 'hz'
         }).then(res => {
           this.list = res.data.page.rows
           this.pageNum = res.data.page.page
@@ -661,7 +685,7 @@
           jlxkdqr: this.jlxkdqr,
           page: this.pageNum,
           limit: this.pageSize,
-          type:'jlxk'
+          type: 'jlxk'
         }).then(res => {
           this.list = res.data.page.rows
           this.pageNum = res.data.page.page

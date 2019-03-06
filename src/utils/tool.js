@@ -5,7 +5,7 @@ const CookieName_dept = 'dept'
 
 //拿部门数据，根据ID匹配出汉字信息
 export function getDept() {
-  return request.post('/api/select/common', {type: 'dept'}).then(res => {
+  return request.post('/ws/select/common', {type: 'dept'}).then(res => {
     return res.data.data
   }).catch()
 }

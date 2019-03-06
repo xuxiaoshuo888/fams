@@ -23,7 +23,8 @@ service.interceptors.request.use(
       currentRole = JSON.parse(getCurrentRole())
       config.data['roleId'] = currentRole.id
     }
-    if (config.url == '/ws/data_import/upload?id=studentInfo') {
+    // console.log(config.url)
+    if (config.url === '/ws/data_import/upload?id=studentInfo' || config.url == '/ws/student/upload') {
       config.headers = {
         'Content-Type': 'multipart/form-data'
       }

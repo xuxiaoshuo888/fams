@@ -10,25 +10,41 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="xm">
+          v-model="xm_x">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-input
+          placeholder="名"
+          size="mini"
+          clearable
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <!--<el-input-->
-          <!--placeholder="学院"-->
-          <!--size="mini"-->
-          <!--clearable>-->
-          <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--placeholder="学院"-->
+        <!--size="mini"-->
+        <!--clearable>-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
         <!--</el-input>-->
-        <el-input
-          placeholder="专业"
-          size="mini"
-          v-model="zy"
-          clearable>
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        <!--<el-input-->
+        <!--placeholder="专业"-->
+        <!--size="mini"-->
+        <!--v-model="zy"-->
+        <!--clearable>-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <el-select size="mini" v-model="nj" clearable placeholder="年级">
+          <el-option label="2019" value="2019"></el-option>
+          <el-option label="2018" value="2018"></el-option>
+          <el-option label="2017" value="2017"></el-option>
+          <el-option label="2016" value="2016"></el-option>
+          <el-option label="2015" value="2015"></el-option>
+          <el-option label="2014" value="2014"></el-option>
+          <el-option label="2013" value="2013"></el-option>
+        </el-select>
         <el-input
           placeholder="班级"
           size="mini"
@@ -38,8 +54,8 @@
         </el-input>
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getData()">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh" @click="resetForm()">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_std_record">新增</el-button>
@@ -67,8 +83,15 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="xm"
-        label="姓名"
+        prop="xm_x"
+        label="姓"
+        width=""
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="xm_m"
+        label="名"
         width=""
         header-align="center"
         align="center">
@@ -154,14 +177,17 @@
           <el-form-item label="学号" prop="">
             <el-input v-model="ruleForm.xh" @blur="getStdInfo"></el-input>
           </el-form-item>
+          <el-form-item label="姓" prop="name">
+            <el-input v-model="ruleForm.xmX" disabled></el-input>
+          </el-form-item>
           <el-form-item label="性别" prop="">
             <el-radio-group v-model="ruleForm.xb" disabled>
               <el-radio label="男"></el-radio>
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.xm" disabled></el-input>
+          <el-form-item label="名" prop="name">
+            <el-input v-model="ruleForm.xmM" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
             <el-input v-model="ruleForm.bj" disabled></el-input>
@@ -440,7 +466,8 @@
     data() {
       return {
         xh: "",
-        xm: "",
+        xm_x: "",
+        xm_m: "",
         xb: "",
         xy: "",
         zy: "",
@@ -464,7 +491,8 @@
         //扣分历史纪录
         koufen_list: [],
         ruleForm: {
-          xm: '',//姓名
+          xmX: '',//姓
+          xmM: '',//名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -496,11 +524,13 @@
     methods: {
       getData() {//最外层列表
         this.request.post('/ws/score/page', {
-          xm: this.xm,
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
           xh: this.xh,
           xy: this.xy,
           zy: this.zy,
           bj: this.bj,
+          nj: this.nj,
           page: this.pageNum,
           limit: this.pageSize,
         }).then(res => {
@@ -662,7 +692,8 @@
         this.jiafen_list = []
         this.koufen_list = []
         this.ruleForm = {
-          xm: '',//姓名
+          xmX: '',//姓名
+          xmM: '',//姓名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
@@ -704,11 +735,11 @@
         }
       },
       optExport() {
-        window.open('/ws/score/export?xm=' + this.xm +
+        window.open('/ws/score/export?xm_x=' + this.xm_x + '&xm_m=' + this.xm_m +
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +
-          '&bj=' + this.bj , '_blank')
+          '&bj=' + this.bj, '_blank')
       },
       //分页相关方法
       handleSizeChange(e) {
