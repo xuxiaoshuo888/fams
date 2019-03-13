@@ -91,7 +91,7 @@
       <el-table-column
         prop="xm_x"
         label="姓"
-        width=""
+        width="200"
         show-overflow-tooltip
         header-align="center"
         align="center">
@@ -99,7 +99,7 @@
       <el-table-column
         prop="xm_m"
         label="名"
-        width=""
+        width="200"
         show-overflow-tooltip
         header-align="center"
         align="center">
@@ -114,7 +114,7 @@
       <el-table-column
         prop="zy"
         label="专业"
-        width="100"
+        width=""
         header-align="center"
         align="center">
       </el-table-column>
@@ -644,7 +644,7 @@
         this.selectedList = e
       },
       optExport() {
-        window.open('/ws/passport/export?xm=' + this.xm +
+        window.open('/ws/passport/export?xm_x=' + this.xm_x+'&xm_m='+this.xm_m +
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +

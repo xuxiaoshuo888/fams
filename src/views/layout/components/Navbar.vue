@@ -37,7 +37,7 @@
     components: {breadcrumb},
     data() {
       return {
-        currentRole:JSON.parse(this.$store.state.user.role)
+        currentRole:this.$store.state.user.role
       }
     },
     mounted() {
@@ -51,7 +51,7 @@
         )
       },
       getRole() {
-        let a = JSON.parse(this.$store.state.user.role)
+        let a = this.$store.state.user.role
       }
     }
   }

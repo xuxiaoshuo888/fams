@@ -99,14 +99,14 @@
       <el-table-column
         prop="xy"
         label="学院"
-        width="100"
+        width="200"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="zy"
         label="专业"
-        width="100"
+        width="200"
         header-align="center"
         align="center">
       </el-table-column>
@@ -460,7 +460,7 @@
 
 <script>
   import {getStringArr} from '@/utils/tool'
-
+  import {getToken} from "@/utils/auth";
   export default {
     name: "regist",
     data() {
@@ -735,7 +735,7 @@
         }
       },
       optExport() {
-        window.open('/ws/score/export?xm_x=' + this.xm_x + '&xm_m=' + this.xm_m +
+        window.open('/ws/score/export?token='+ getToken()+'&xm_x=' + this.xm_x + '&xm_m=' + this.xm_m +
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +

@@ -433,7 +433,7 @@
         })
       },
       optExport() {
-        window.open('/ws/insurance/export?xm_x=' + this.xm_x + '&xm_m' +this.xm_m +
+        window.open('/ws/insurance/export?xm_x=' + this.xm_x + '&xm_m=' +this.xm_m +
           '&xh=' + this.xh +
           '&xy=' + this.xy +
           '&zy=' + this.zy +

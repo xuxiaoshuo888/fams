@@ -29,10 +29,10 @@
           Sign in
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: 1</span>
-      </div>
+      <!--<div class="tips">-->
+      <!--<span style="margin-right:20px;">username: admin</span>-->
+      <!--<span> password: 1</span>-->
+      <!--</div>-->
     </el-form>
   </div>
 </template>
@@ -59,12 +59,12 @@
       }
       return {
         loginForm: {
-          username: 'admin',
-          password: '1'
+          username: '',
+          password: ''
         },
         loginRules: {
-          username: [{required: true, trigger: 'blur', validator: validateUsername}],
-          password: [{required: true, trigger: 'blur'}]
+          username: [{required: true, message: '请输入账号', trigger: 'blur'}],
+          password: [{required: true, message: '请输入密码', trigger: 'blur'}]
         },
         loading: false,
         pwdType: 'password',

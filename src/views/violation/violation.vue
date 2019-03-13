@@ -60,7 +60,7 @@
       <el-col :span="24" class="functional_area">
         <el-button type="primary" size="mini" icon="el-icon-plus" @click="add_edit('add')">新增</el-button>
         <el-button type="danger" size="mini" icon="el-icon-delete" @click="remove">批量删除</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-download" @click="optExport">导出Excel</el-button>
       </el-col>
     </el-row>
 
@@ -95,7 +95,7 @@
       <el-table-column
         prop="xm_x"
         label="姓"
-        width=""
+        width="100"
         show-overflow-tooltip
         header-align="center"
         align="center">
@@ -103,7 +103,7 @@
       <el-table-column
         prop="xm_m"
         label="名"
-        width=""
+        width="100"
         show-overflow-tooltip
         header-align="center"
         align="center">
@@ -118,7 +118,7 @@
       <el-table-column
         prop="zy"
         label="专业"
-        width="100"
+        width="200"
         header-align="center"
         align="center">
       </el-table-column>
@@ -438,6 +438,14 @@
             }
           })
         }
+      },
+      optExport() {
+        window.open('/ws//punishment/export?xm_x=' + this.xm_x+'&xm_m='+this.xm_m +
+          '&xh=' + this.xh +
+          '&xb=' + this.xb +
+          '&nj=' + this.nj +
+          '&cflx=' + this.cflx +
+          '&cfsj=' + this.cfsj, '_blank')
       },
       submit() {
         let url = ''

@@ -10,14 +10,14 @@ router.beforeEach((to, from, next) => {//to 将要去的路由，from-从哪里�
   //1判断是否有token，先在store中读，然后在cookie中读
   if (getToken()) {
     if (to.path === '/login') {
-      console.log(1)
+      // console.log(1)
       next({path: '/'})
     } else {
-      console.log(2)
+      // console.log(2)
       next()
     }
   } else {
-    console.log(3)
+    // console.log(3)
     if (whiteList.indexOf(to.path) !== -1) {//将要去的路由，不在白名单内为假
       next()
     } else {

@@ -148,7 +148,8 @@
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
-            <img v-if="imageUrl" alt="暂无照片信息" :src="'/ws/resource/showImg?path=' + item.zp" class="avatar">
+            <img v-if="imageUrl && item.zp" alt="暂无照片信息" :src="'/ws/resource/showImg?path=' + item.zp" class="avatar">
+            <img v-if="imageUrl && !item.zp" alt="暂无照片信息" src='@/assets/unnamed.png' class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
           <div class="pic_name">姓：{{item.xm_x}}</div>

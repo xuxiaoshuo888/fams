@@ -47,8 +47,16 @@
               :data="list_hz"
               style="width: 100%">
               <el-table-column
-                prop="student.xm"
-                label="姓名"
+                prop="xm_x"
+                label="姓"
+                width=""
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="xm_m"
+                label="名"
                 width=""
                 header-align="center"
                 align="center"
@@ -82,8 +90,16 @@
               :data="list_jlxk"
               style="width: 100%">
               <el-table-column
-                prop="student.xm"
-                label="姓名"
+                prop="xm_x"
+                label="姓"
+                width=""
+                header-align="center"
+                align="center"
+                show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="xm_m"
+                label="名"
                 width=""
                 header-align="center"
                 align="center"
