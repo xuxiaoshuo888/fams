@@ -3,6 +3,7 @@ import Vue from 'vue'
 import {Message, MessageBox} from 'element-ui'
 import store from '../store'
 import {getToken, getCurrentRole} from '@/utils/auth'
+import {logout} from "../api/login";
 import querystring from 'querystring'
 
 //创建axios实例
@@ -55,19 +56,26 @@ service.interceptors.response.use(
     const res = response.data
     if (res.errcode === '0') {//正常
       return response.data
-    } else if(res.errcode == '500'){
-      this.$alert('登录已失效，点击确定重新登陆', '提示：', {
-        confirmButtonText: '确定',
-        callback: action => {
-          this.$message({
-            type: 'info',
-            message: `action: ${ action }`
-          });
-        }
-      });
-    } else {//非正常
-      Message({
-        message: res.errmsg,
+    }
+    // else if (res.errcode == '500') {
+     // MessageBox({
+     //   title:'提示',
+     //   type:'warning',
+     //   message:`错误码：${res.errcode},错误信息：${res.errmsg},关闭弹窗重新登陆`,
+     // }).then(e => {
+     //    console.log(`then${e}`)
+     // }).catch(e =>{
+     //   console.log(`catch${e}`)
+     // })
+    //   Message({
+    //     message:`errcode:${res.errcode},errmsg:${res.errmsg},请重新登陆`,
+    //     type: 'error',
+    //     duration: 5 * 1000
+    //   })
+    // }
+    else {//非正常
+          Message({
+        message:`errcode:${res.errcode},errmsg:${res.errmsg}`,
         type: 'error',
         duration: 5 * 1000
       })
