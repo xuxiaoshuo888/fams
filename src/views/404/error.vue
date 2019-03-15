@@ -2,7 +2,7 @@
   <div class="img-center">
     <img src="@/assets/404.png" alt="" class="img">
     <div>
-      <router-link to="/dashboard">回到首页</router-link>
+      <router-link to="/login">回到首页</router-link>
     </div>
   </div>
 </template>

@@ -1,7 +1,8 @@
 
 export function isvalidUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
+  // const valid_map = ['admin', 'editor']
+  // return valid_map.indexOf(str.trim()) >= 0
+  return true
 }
 
 /* 合法uri*/
@@ -26,4 +27,12 @@ export function validateUpperCase(str) {
 export function validatAlphabets(str) {
   const reg = /^[A-Za-z]+$/
   return reg.test(str)
+}
+
+export function isPositiveNumber(number) {
+  if(number > 0){
+    return true
+  }else{
+    return false
+  }
 }

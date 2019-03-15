@@ -6,67 +6,93 @@
           placeholder="学号"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="xh">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="性别"
+          placeholder="姓"
           size="mini"
           clearable
-          v-model="input2">
+          v-model="xm_x">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-input
-          placeholder="姓名"
+          placeholder="名"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="xm_m">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
+        <!--<el-input-->
+        <!--placeholder="在校状态"-->
+        <!--size="mini"-->
+        <!--clearable-->
+        <!--v-model="zxzt">-->
+        <!--<i slot="prefix" class="el-input__icon el-icon-search"></i>-->
+        <!--</el-input>-->
+        <!--<el-select size="mini" v-model="xjlb" clearable placeholder="学籍类别">-->
+        <!--<el-option key="1" label="在籍" value="1"></el-option>-->
+        <!--<el-option key="2" label="不在籍" value="2"></el-option>-->
+        <!--</el-select>-->
+        <el-select size="mini" v-model="xb" clearable placeholder="性别">
+          <el-option key="1" label="男" value="1"></el-option>
+          <el-option key="2" label="女" value="2"></el-option>
+        </el-select>
+        <!--<el-select size="mini" v-model="xy" clearable placeholder="学院">-->
+        <!--<el-option key="1" label="文学院" value="1"></el-option>-->
+        <!--<el-option key="2" label="医学院" value="2"></el-option>-->
+        <!--</el-select>-->
+        <!--<el-select size="mini" v-model="zy" clearable placeholder="专业">-->
+        <!--<el-option key="1" label="临床医学" value="1"></el-option>-->
+        <!--<el-option key="2" label="营养学" value="2"></el-option>-->
+        <!--</el-select>-->
+        <el-select size="mini" v-model="nj" clearable placeholder="年级">
+          <el-option label="2019" value="2019"></el-option>
+          <el-option label="2018" value="2018"></el-option>
+          <el-option label="2017" value="2017"></el-option>
+          <el-option label="2016" value="2016"></el-option>
+          <el-option label="2015" value="2015"></el-option>
+          <el-option label="2014" value="2014"></el-option>
+          <el-option label="2013" value="2013"></el-option>
+        </el-select>
+        <!--<el-select size="mini" v-model="mz" clearable placeholder="民族">-->
+        <!--<el-option key="1" label="汉族" value="1"></el-option>-->
+        <!--<el-option key="2" label="满族" value="2"></el-option>-->
+        <!--</el-select>-->
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-refresh" @click="reset">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
-        <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialogVisible = true">修改</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-edit-outline">重置密码</el-button>
-        <el-button type="primary" size="mini" icon="el-icon-download">导出Excel</el-button>
+        <!--<el-button type="primary" size="mini" icon="el-icon-edit-outline" @click="resetPassword">重置密码</el-button>-->
+        <el-button type="primary" size="mini" icon="el-icon-download" @click="optExport">导出Excel</el-button>
       </el-col>
     </el-row>
 
     <el-table
-      :data="tableData3"
+      :data="list"
       style=""
       max-height="768"
       border
       stripe
-      @selection-change="handleSelectionChange"
-    >
+      @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         header-align="center"
         align="center"
         width="50">
       </el-table-column>
-
       <el-table-column
         label="操作"
-        width="130"
+        width="150"
         header-align="center"
         align="center"
         fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-          <el-button type="danger" size="mini">删除</el-button>
+          <el-button @click="showDetail(scope.row.xh)" type="primary" size="mini">详情</el-button>
+          <el-button type="primary" size="mini" @click="add_edit(scope.row.xh)">修改</el-button>
         </template>
-      </el-table-column>
-      <el-table-column
-        prop="order"
-        label="序号"
-        width="50"
-        header-align="center"
-        align="center">
       </el-table-column>
       <el-table-column
         prop="nj"
@@ -76,100 +102,109 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="class"
+        prop="bj"
         label="班级"
-        width="130"
+        width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         prop="xh"
         label="学号"
-        width="130"
+        width="110"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
-        width="100"
+        prop="xm_x"
+        label="姓"
+        width=""
+        show-overflow-tooltip
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="cnName"
+        prop="xm_m"
+        label="名"
+        width=""
+        show-overflow-tooltip
+        header-align="center"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="zwm"
         label="中文名"
-        width="100"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="gender"
+        prop="xb"
         label="性别"
         width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="roomNum"
+        prop="ssh"
         label="宿舍号"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="tel"
+        prop="lxdh"
         label="电话号码"
         width="120"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="birthday"
+        prop="csrq"
         label="出生年月"
-        width="120"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="passport"
+        prop="hzhm"
         label="护照号"
-        width="180"
+        width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="Nation"
+        prop="gb"
         label="国籍"
-        width="50"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
+      <!--<el-table-column-->
+      <!--prop="xh"-->
+      <!--label="学籍注册号"-->
+      <!--width="130"-->
+      <!--header-align="center"-->
+      <!--align="center">-->
+      <!--</el-table-column>-->
       <el-table-column
-        prop="stdNo"
-        label="学籍注册号"
-        width="130"
-        header-align="center"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="arriveDate"
+        prop="dxrq"
         label="到校日期"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="religion"
+        prop="zjxy"
         label="宗教"
         width="100"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="bzr"
-        label="班主任"
-        width="100"
+        prop="fdy"
+        label="辅导员"
+        width="80"
         header-align="center"
         align="center">
       </el-table-column>
@@ -181,25 +216,26 @@
         align="center"
         show-overflow-tooltip>
       </el-table-column>
-
     </el-table>
 
     <!--分页-->
     <div class="pagination-block">
       <el-pagination
         background
-        @size-change=""
-        @current-change=""
-        @prev-click=""
-        @next-click=""
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next,->"
-        :total="400">
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
       </el-pagination>
     </div>
-    <!--模态框-->
+
+
+    <!--修改模态框-->
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
@@ -208,82 +244,85 @@
       <div>
         <el-form :model="ruleForm" inline="" :rules="rules" ref="ruleForm" label-width="120px"
                  class="demo-ruleForm">
-          <el-form-item label="学号" prop="">
-            <el-input v-model="ruleForm.xh"></el-input>
+          <el-form-item label="学号" prop="xh">
+            <el-input v-model="ruleForm.xh" disabled></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
+          <el-form-item label="姓" prop="xmX">
+            <el-input v-model="ruleForm.xmX" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="名" prop="xmM">
+            <el-input v-model="ruleForm.xmM" disabled></el-input>
           </el-form-item>
           <el-form-item label="中文名" prop="">
-            <el-input v-model="ruleForm.zwm"></el-input>
+            <el-input v-model="ruleForm.zwm" disabled></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="">
-            <el-radio-group v-model="ruleForm.xb">
-              <el-radio label="男"></el-radio>
-              <el-radio label="女"></el-radio>
-            </el-radio-group>
+            <el-input v-model="ruleForm.xb" disabled></el-input>
           </el-form-item>
-
-
           <el-form-item label="年级" prop="">
-            <el-input v-model="ruleForm.nj"></el-input>
+            <el-input v-model="ruleForm.nj" disabled></el-input>
           </el-form-item>
-          <el-form-item label="出生年月" required>
-            <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"></el-date-picker>
-            </el-form-item>
+          <el-form-item label="出生年月">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="ruleForm.csrq"
+              value-format="yyyy-MM-dd" disabled>
+            </el-date-picker>
           </el-form-item>
           <el-form-item label="学院" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.xy" disabled></el-input>
           </el-form-item>
           <el-form-item label="专业" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.zy" disabled></el-input>
           </el-form-item>
           <el-form-item label="班级" prop="">
-            <el-input v-model="ruleForm.bj"></el-input>
+            <el-input v-model="ruleForm.bj" disabled></el-input>
           </el-form-item>
-
-
           <el-form-item label="入学年月" required>
             <el-form-item prop="">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date2"></el-date-picker>
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="ruleForm.rxnf"
+                value-format="yyyy-MM-dd" disabled></el-date-picker>
             </el-form-item>
           </el-form-item>
           <el-form-item label="在校状态" prop="region">
-            <el-select placeholder="请选择在校状态">
+            <el-select placeholder="请选择在校状态" v-model="ruleForm.zxzt">
               <el-option label="在校" value="1"></el-option>
               <el-option label="不在校" value="2"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="电话号码" prop="">
-            <el-input v-model="ruleForm.tel"></el-input>
+            <el-input v-model="ruleForm.lxdh"></el-input>
           </el-form-item>
           <el-form-item label="宿舍号" prop="">
             <el-input v-model="ruleForm.ssh"></el-input>
           </el-form-item>
           <el-form-item label="出生地" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.csd"></el-input>
           </el-form-item>
           <el-form-item label="国籍" prop="">
-            <el-input v-model="ruleForm.gj"></el-input>
+            <el-input v-model="ruleForm.gb"></el-input>
           </el-form-item>
           <el-form-item label="宗教信仰" prop="">
-            <el-input v-model="ruleForm.religion"></el-input>
+            <el-input v-model="ruleForm.zjxy"></el-input>
           </el-form-item>
           <el-form-item label="辅导员工号" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.fdygh"></el-input>
           </el-form-item>
           <el-form-item label="辅导员姓名" prop="">
-            <el-input v-model="ruleForm.bzr"></el-input>
+            <el-input v-model="ruleForm.fdyxm"></el-input>
           </el-form-item>
           <el-form-item label="辅导员联系方式" prop="">
-            <el-input v-model="ruleForm.hzhm"></el-input>
+            <el-input v-model="ruleForm.fdylxdh"></el-input>
           </el-form-item>
           <el-form-item label="毕业去向" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.byqx"></el-input>
           </el-form-item>
           <el-form-item label="永久联系电话" prop="">
-            <el-input></el-input>
+            <el-input v-model="ruleForm.yjlxdh"></el-input>
           </el-form-item>
         </el-form>
         <el-form label-width="120px">
@@ -295,15 +334,15 @@
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button size="small" @click="dialogVisible = false">取 消</el-button>
-    <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button size="small" type="primary" @click="submit">确 定</el-button>
   </span>
     </el-dialog>
 
 
-    <!--资料卡模态框-->
+    <!--详情 模态框-->
     <el-dialog
       title=""
-      :visible.sync="dialogVisible"
+      :visible.sync="dialogVisible_detail"
       width="900px">
       <div slot="title">学生基本信息</div>
       <div>
@@ -315,75 +354,78 @@
               <el-col :span="12">
                 <el-form ref="form" size="mini">
                   <el-form-item label="学号：">
-                    <div>201808080012</div>
+                    <div>{{detail.xh}}</div>
                   </el-form-item>
-                  <el-form-item label="姓名：">
-                    <div>Tom</div>
+                  <el-form-item label="姓：">
+                    <div>{{detail.xmX}}</div>
+                  </el-form-item>
+                  <el-form-item label="名：">
+                    <div>{{detail.xmM}}</div>
                   </el-form-item>
                   <el-form-item label="中文名：">
-                    <div>汤姆</div>
+                    <div>{{detail.zwm}}</div>
                   </el-form-item>
                   <el-form-item label="性别：">
-                    <div>男</div>
+                    <div>{{detail.xb}}</div>
                   </el-form-item>
                   <el-form-item label="出生年月：">
-                    <div>1993年8月</div>
+                    <div>{{detail.csrq}}</div>
                   </el-form-item>
                   <el-form-item label="年级：">
-                    <div>2016级</div>
+                    <div>{{detail.nj}}</div>
                   </el-form-item>
                   <el-form-item label="学院：">
-                    <div>工学院</div>
+                    <div>{{detail.xy}}</div>
                   </el-form-item>
                   <el-form-item label="专业：">
-                    <div>机械工程</div>
+                    <div>{{detail.zy}}</div>
                   </el-form-item>
                   <el-form-item label="班级：">
-                    <div>机械工程1班</div>
+                    <div>{{detail.bj}}</div>
                   </el-form-item>
                   <el-form-item label="入学年月：">
-                    <div>2015年1月</div>
+                    <div>{{detail.rxrq}}</div>
                   </el-form-item>
                   <el-form-item label="在校状态：">
-                    <div>在校</div>
+                    <div>{{detail.zxzt}}</div>
                   </el-form-item>
                   <el-form-item label="学籍状态：">
-                    <div>正常</div>
+                    <div>{{detail.xjzt}}</div>
                   </el-form-item>
                   <el-form-item label="联系电话：">
-                    <div>123213123213</div>
+                    <div>{{detail.lxdh}}</div>
                   </el-form-item>
                   <el-form-item label="住宿情况：">
-                    <div>2号宿舍楼503</div>
+                    <div>{{detail.zsqk}}</div>
                   </el-form-item>
                   <el-form-item label="出生地：">
-                    <div>莫桑比克马普多</div>
+                    <div>{{detail.csd}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
               <el-col :span="12">
                 <el-form ref="form" size="mini">
-                  <div class="card_pic"><img src="@/assets/1.jpg"/></div>
+                  <div class="card_pic"><img alt="暂无照片" :src="'/ws/resource/showImg?path=' + detail.path"/></div>
                   <el-form-item label="国籍：">
-                    <div>莫桑比克</div>
+                    <div>{{detail.gb}}</div>
                   </el-form-item>
                   <el-form-item label="宗教信仰：">
-                    <div>无宗教信仰</div>
+                    <div>{{detail.zjxy}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员工号：">
-                    <div>12321321</div>
+                    <div>{{detail.fdy}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员姓名：">
-                    <div>张三</div>
+                    <div>{{detail.fdy}}</div>
                   </el-form-item>
                   <el-form-item label="辅导员联系方式：">
-                    <div>1231232313</div>
+                    <div>{{detail.fdy}}</div>
                   </el-form-item>
                   <el-form-item label="毕业去向：">
-                    <div>长沙XX机械制造有限公司XX分公司</div>
+                    <div>{{detail.byqx}}</div>
                   </el-form-item>
                   <el-form-item label="永久联系电话：">
-                    <div>1231232333</div>
+                    <div>{{detail.yjlxdh}}</div>
                   </el-form-item>
                 </el-form>
               </el-col>
@@ -391,270 +433,192 @@
           </div>
         </div>
       </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false" size="small">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
-  </span>
     </el-dialog>
-
-
   </div>
 </template>
 
 <script>
-  import Modal from '@/components/modal/Modal'
-
   export default {
     name: 'stdBasic',
-    components: {Modal},
     data() {
       return {
-        input1: "",
-        input2: "",
-        input3: "",
-        currentPage4: 1,
+        xh: "",
+        zxzt: '',
+        xjlb: "",
+        xm_x: "",
+        xm_m: "",
+        xb: "",
+        xy: "",
+        zy: "",
+        bj: "",
+        nj: "",
+        mz: '',
+        pageNum: 1,
+        pageSize: null,
+        records: null,
         dialogVisible: false,
-        tableData3: [
-          {
-            order: '1',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无看见的身份卡的话费卡说的话点卡收费但是法律肯定会是否考虑好了上的卡号发'
-          }, {
-            order: '2',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          },
-          {
-            order: '3',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '4',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '5',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '6',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '7',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '8',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '9',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }, {
-            order: '10',
-            nj: "2018",
-            class: "计算机技术1班",
-            xh: "20180808001",
-            name: "Tom",
-            cnName: "王小虎",
-            gender: "男",
-            roomNum: "503",
-            tel: "13888888888",
-            birthday: "19900808",
-            passport: "126351263715283",
-            Nation: "美国",
-            stdNo: "1231323123213",
-            arriveDate: "20170707",
-            religion: "无宗教信仰",
-            bzr: '张洋',
-            bz: '无'
-          }],
-        ruleForm: {
-          name: '',//姓名
-          zwm: '',//中文名
+        dialogVisible_detail: false,
+        list: [],
+        selectedList: [],
+        rules: {},
+        add_edit_flag: false,//false-新增，true-编辑
+        detail: {},
+        ruleForm: {//修改基本信息
+          xmX: '',//姓
+          xmM: '',//名
           xh: '',//学号
           bj: '',//班级
           nj: '',//年级
-          ssh: '',//宿舍号
-          sex: '',
-          tel: '',
-          birth: '',
-          hzhm: '',//护照号码
-          gj: '',//国籍
-          xjzch: '',//学籍注册号
-          dxrq: '',//到校日期
-          region: '',//宗教
-          bzr: '',//班主任
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''//备注
+          xb: '',
+          lxdh: '',
+          csrq: '',
         },
-        rules: {
-          // name: [
-          //   { required: true, message: '', trigger: 'blur' },
-          //   { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-          // ],
-          // region: [
-          //   { required: true, message: '请选择活动区域', trigger: 'change' }
-          // ],
-          // date1: [
-          //   { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          // ],
-          // date2: [
-          //   { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-          // ],
-          // type: [
-          //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-          // ],
-          // resource: [
-          //   { required: true, message: '请选择活动资源', trigger: 'change' }
-          // ],
-          // desc: [
-          //   { required: true, message: '请填写活动形式', trigger: 'blur' }
-          // ]
-        }
       }
     },
-    computed: {},
+    mounted() {
+      this.getData()
+    },
     methods: {
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
+      getData() {
+        this.request.post('/ws/student/page', {
+          xm_x: this.xm_x,
+          xm_m: this.xm_m,
+          xh: this.xh,
+          xy: this.xy,
+          zy: this.zy,
+          bj: this.bj,
+          zxzt: this.zxzt,
+          page: this.pageNum,
+          limit: this.pageSize,
+        }).then(res => {
+          this.list = res.data.page.rows
+          this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+      reset() {//重置搜索条件
+        this.xm_x = ''
+        this.xm_m=""
+        this.xh = ''
+        this.xy = ''
+        this.zy = ''
+        this.bj = ''
+        this.getData()
+      },
+      resetPassword() {
+        if (this.selectedList.length === 1) {
+          console.log(this.selectedList)
+          this.$confirm('确定重置?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.request.post('/ws/student/resetPwd', {id: this.selectedList[0].xh}).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.errmsg
+              })
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消重置'
+            })
+          })
+        } else {
+          this.$message({
+            message: '只能选择一项',
+            type: 'warning',
+            duration: 5 * 1000
+          })
+        }
+      },
+      reset_form() {//置空弹出框里的表单
+        this.ruleForm = {
+          xmX: '',//姓名
+          xmM:'',//名
+          xh: '',//学号
+          bj: '',//班级
+          nj: '',//年级
+          xb: '',
+          lxdh: '',
+          csrq: '',
+        },
+          this.ruleForm2 = {
+            xh: "",
+            cflx: "",
+            cfsj: "",
+            cfdqsj: "",
+            fcyy: "",
+            bz: "",
+            id: ""
+          }
+      },
+      add_edit(e) {//编辑
+        this.reset_form()
+        this.dialogVisible = true
+        this.request.post('/ws/student/getStdInfo', {xh: e}).then(res => {
+          if (res.data.data) {
+            this.ruleForm = res.data.data
+            // this.ruleForm2 = res.data.data
+            // delete this.ruleForm2.student
+            // delete this.ruleForm2.whenCreated
+            // delete this.ruleForm2.whenModified
+          }
+        })
+      },
+      showDetail(xh) {
+        this.dialogVisible_detail = true
+        if (xh) {
+          this.request.post('/ws/student/getStdInfo', {xh: xh}).then(res => {
+            console.log(res)
+            if (res.data.data) {
+              this.detail = res.data.data
+            }
+          })
+        }
+      },
+      submit() {
+        delete this.ruleForm.student
+        delete this.ruleForm.dept
+        delete this.ruleForm.whenCreated
+        delete this.ruleForm.whenModified
+        this.request.post('/ws/student/edit', this.ruleForm).then(res => {
+          this.$message({
+            message: res.errmsg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          this.getData()
+          this.dialogVisible = false
+        })
+      },
+      optExport() {
+        window.open('/ws/student/export?xm_x=' + this.xm_x +'&xm_m='+this.xm_m+
+          '&xh=' + this.xh +
+          '&xy=' + this.xy +
+          '&zy=' + this.zy +
+          '&bj=' + this.bj, '_blank')
       },
       handleSelectionChange(e) {
-        console.log(e)
-      }
+        this.selectedList = e
+      },
+      //分页相关方法
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getData()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getData()
+      },
+      prev() {
+        this.pageNum = this.pageNum - 1
+      },
+      next() {
+        this.pageNum = this.pageNum + 1
+      },
     }
   }
 </script>
@@ -667,4 +631,13 @@
     }
   }
 
+  .card_pic {
+    width: 200px;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 15px;
+    img {
+      width: 100%;
+    }
+  }
 </style>

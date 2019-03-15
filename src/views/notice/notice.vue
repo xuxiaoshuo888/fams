@@ -6,31 +6,31 @@
           placeholder="作者"
           size="mini"
           clearable
-          v-model="input1">
+          v-model="author">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
-        <el-input
-          placeholder="发布时间"
+        <el-date-picker
+          v-model="time"
           size="mini"
-          clearable
-          v-model="input2">
-          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+          type="date"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期">
+        </el-date-picker>
         <el-input
           placeholder="标题"
           size="mini"
           clearable
-          v-model="input3">
+          v-model="title">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </el-col>
       <el-col :span="24" class="search_btn_area">
-        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-search" @click="getList">搜索</el-button>
         <el-button type="primary" size="mini" icon="el-icon-refresh">重置</el-button>
       </el-col>
       <el-col :span="24" class="functional_area">
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="dialogVisible = true">新增</el-button>
-        <el-button type="danger" size="mini" icon="el-icon-edit-delete">批量删除</el-button>
+        <el-button type="primary" size="mini" icon="el-icon-plus" @click="showDia('')">新增</el-button>
+        <el-button type="danger" size="mini" icon="el-icon-edit-delete" @click="remove">批量删除</el-button>
       </el-col>
     </el-row>
 
@@ -40,48 +40,53 @@
       max-height="768"
       border
       stripe
-      @selection-change="handleSelectionChange"
-    >
+      @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         header-align="center"
         align="center"
         width="50">
       </el-table-column>
-
       <el-table-column
         label="操作"
-        width="130"
+        width="160"
         header-align="center"
-        align="center"
+        align="left"
         fixed="right">
         <template slot-scope="scope">
-          <el-button @click="showStd(scope.row)" type="primary" size="mini">详情</el-button>
-          <el-button type="danger" size="mini">删除</el-button>
+          <el-button @click="showDia(scope.row)" type="primary" size="mini">编辑</el-button>
+          <el-button v-if="scope.row.status == '1'" type="danger" size="mini" @click="changeState(scope.row.id,'0')">
+            取消发布
+          </el-button>
+          <el-button v-else type="success" size="mini" @click="changeState(scope.row.id,'1')">发布</el-button>
         </template>
       </el-table-column>
-      id: '1',
-      date: '2018-08-08',
-      author: '张三',
-      title: '习近平向国家综合性消防救援队伍授旗并致训词'
       <el-table-column
-        prop="id"
+        prop="index"
         label="序号"
         width="50"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="date"
         label="发布时间"
-        width="100"
+        width="110"
+        header-align="center"
+        align="center">
+        <template slot-scope="scope">{{scope.row.whenCreated.substr(0,10)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="userId"
+        label="作者"
+        width="150"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="author"
-        label="作者"
-        width="130"
+        prop="deptId"
+        label="发布单位"
+        width=""
         header-align="center"
         align="center">
       </el-table-column>
@@ -90,8 +95,18 @@
         label="标题"
         width=""
         header-align="center"
-        align="center"
-      >
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="status"
+        label="状态"
+        width="80"
+        header-align="center"
+        align="center">
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.status == '1'" type="success" size="small">已发布</el-tag>
+          <el-tag v-else type="danger" size="small">未发布</el-tag>
+        </template>
       </el-table-column>
     </el-table>
 
@@ -99,15 +114,15 @@
     <div class="pagination-block">
       <el-pagination
         background
-        @size-change=""
-        @current-change=""
-        @prev-click=""
-        @next-click=""
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next,->"
-        :total="400">
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @prev-click="prev"
+        @next-click="next"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next,jumper"
+        :total="records">
       </el-pagination>
     </div>
     <!--模态框-->
@@ -117,209 +132,190 @@
       width="900px">
       <div slot="title">通知公告管理</div>
       <div>
-        <div ref="editor" style="text-align:left"></div>
-        <button v-on:click="getContent">查看内容</button>
+        <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px"
+                 class="demo-ruleForm">
+          <el-form-item label="标题" prop="name">
+            <el-input v-model="ruleForm.title"></el-input>
+          </el-form-item>
+          <el-form-item label="发布单位" prop="">
+            <el-input v-model="ruleForm.deptId"></el-input>
+          </el-form-item>
+          <el-form-item label="作者" prop="">
+            <el-input v-model="ruleForm.author"></el-input>
+          </el-form-item>
+        </el-form>
+        <editor ref="editor1" v-on:content="getContent" :msg="ruleForm.content"></editor>
       </div>
       <span slot="footer" class="dialog-footer">
     <el-button size="small" @click="dialogVisible = false">取 消</el-button>
-    <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button size="small" type="primary" @click="submit">确 定</el-button>
   </span>
     </el-dialog>
-
-
-    <!--资料卡模态框-->
-    <el-dialog
-      title=""
-
-      width="900px">
-      <div slot="title">学生基本信息</div>
-      <div>
-        <!--基本信息-->
-        <div class="card_block">
-          <!--<header class="card_title"></header>-->
-          <div class="card_content">
-            <el-row :gutter="20">
-              <el-col :span="12">
-                <el-form ref="form" size="mini">
-                  <el-form-item label="学号：">
-                    <div>201808080012</div>
-                  </el-form-item>
-                  <el-form-item label="姓名：">
-                    <div>Tom</div>
-                  </el-form-item>
-                  <el-form-item label="中文名：">
-                    <div>汤姆</div>
-                  </el-form-item>
-                  <el-form-item label="性别：">
-                    <div>男</div>
-                  </el-form-item>
-                  <el-form-item label="出生年月：">
-                    <div>1993年8月</div>
-                  </el-form-item>
-                  <el-form-item label="年级：">
-                    <div>2016级</div>
-                  </el-form-item>
-                  <el-form-item label="学院：">
-                    <div>工学院</div>
-                  </el-form-item>
-                  <el-form-item label="专业：">
-                    <div>机械工程</div>
-                  </el-form-item>
-                  <el-form-item label="班级：">
-                    <div>机械工程1班</div>
-                  </el-form-item>
-                  <el-form-item label="入学年月：">
-                    <div>2015年1月</div>
-                  </el-form-item>
-                  <el-form-item label="在校状态：">
-                    <div>在校</div>
-                  </el-form-item>
-                  <el-form-item label="学籍状态：">
-                    <div>正常</div>
-                  </el-form-item>
-                  <el-form-item label="联系电话：">
-                    <div>123213123213</div>
-                  </el-form-item>
-                  <el-form-item label="住宿情况：">
-                    <div>2号宿舍楼503</div>
-                  </el-form-item>
-                  <el-form-item label="出生地：">
-                    <div>莫桑比克马普多</div>
-                  </el-form-item>
-                </el-form>
-              </el-col>
-              <el-col :span="12">
-                <el-form ref="form" size="mini">
-                  <div class="card_pic"><img src="@/assets/1.jpg"/></div>
-                  <el-form-item label="国籍：">
-                    <div>莫桑比克</div>
-                  </el-form-item>
-                  <el-form-item label="宗教信仰：">
-                    <div>无宗教信仰</div>
-                  </el-form-item>
-                  <el-form-item label="辅导员工号：">
-                    <div>12321321</div>
-                  </el-form-item>
-                  <el-form-item label="辅导员姓名：">
-                    <div>张三</div>
-                  </el-form-item>
-                  <el-form-item label="辅导员联系方式：">
-                    <div>1231232313</div>
-                  </el-form-item>
-                  <el-form-item label="毕业去向：">
-                    <div>长沙XX机械制造有限公司XX分公司</div>
-                  </el-form-item>
-                  <el-form-item label="永久联系电话：">
-                    <div>1231232333</div>
-                  </el-form-item>
-                </el-form>
-              </el-col>
-            </el-row>
-          </div>
-        </div>
-      </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false" size="small">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
-  </span>
-    </el-dialog>
-
 
   </div>
 </template>
 
 <script>
-  import Modal from '@/components/modal/Modal'
-  import E from 'wangeditor'
+  import editor from '@/components/editor/editor'
+  import {getStringArr} from '@/utils/tool'
+
   export default {
-    name: 'stdBasic',
-    components: {Modal,E},
+    name: 'notice',
+    components: {editor},
     data() {
       return {
-        editorContent: '',
-        input1: "",
-        input2: "",
-        input3: "",
-        currentPage4: 1,
+        author: "",
+        time: "",
+        title: "",
+        newsList: [],
+        selectedList: [],//选中表单项
+        pageNum: null,//当前页
+        pageSize: null,
+        records: null,
         dialogVisible: false,
-        newsList: [
-          {
-            id: '1',
-            date: '2018-08-08',
-            author: '张三',
-            title: '习近平向国家综合性消防救援队伍授旗并致训词'
-          },
-          {
-            id: '2',
-            date: '2018-08-08',
-            author: '李四',
-            title: '让各国人民共享经济全球化和世界经济增长成果——论习近平主席在首届中国国际进口博览会开幕式上主旨演讲'
-          },
-          {
-            id: '3',
-            date: '2018-08-08',
-            author: '王五',
-            title: '习近平向国家综合性消防救援队伍授旗并致训词'
-          },
-          {
-            id: '4',
-            date: '2018-08-08',
-            author: '赵六',
-            title: '习近平向国家综合性消防救援队伍授旗并致训词'
-          },
-          {
-            id: '5',
-            date: '2018-08-08',
-            author: '葛八',
-            title: '习近平向国家综合性消防救援队伍授旗并致训词'
-          }
-        ],
         ruleForm: {
-          name: '',//姓名
-          zwm: '',//中文名
-          xh: '',//学号
-          bj: '',//班级
-          nj: '',//年级
-          ssh: '',//宿舍号
-          sex: '',
-          tel: '',
-          birth: '',
-          hzhm: '',//护照号码
-          gj: '',//国籍
-          xjzch: '',//学籍注册号
-          dxrq: '',//到校日期
-          region: '',//宗教
-          bzr: '',//班主任
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''//备注
+          title: "",
+          dept: "",
+          author: "",
+          content: "",
+          id: ''
         },
-        rules: {}
+        rules: {},
+        add_edit_flag: false,//false-新增，true-编辑
       }
     },
-    computed: {},
-    methods: {
-      showStd(row) {
-        this.dialogVisible = true;
-        console.log(row);
-      },
-      handleSelectionChange(e) {
-        console.log(e)
-      },
-      getContent: function () {
-        alert(this.editorContent)
-      }
+    created() {
+      this.getList()
     },
     mounted() {
-      var editor = new E(this.$refs.editor)
-      editor.customConfig.onchange = (html) => {
-        this.editorContent = html
+
+    },
+    methods: {
+      getList() {
+        this.request.post('/ws/notice/page', {
+          page: this.pageNum,
+          limit: this.pageSize,
+          userId: this.author,
+          whenCreated: this.time,
+          title: this.title,
+          type: 'all'
+        }).then(res => {
+          this.newsList = res.data.page.rows,
+            this.pageNum = res.data.page.page
+          this.pageSize = res.data.page.pageSize
+          this.records = res.data.page.records
+        })
+      },
+      showDia(row) {//打开模态框，新增/编辑共用
+        this.dialogVisible = true;
+        console.log(row)
+        if (row) {//编辑
+          this.add_edit_flag = true
+          this.ruleForm.content = row.content
+          this.ruleForm.title = row.title
+          this.ruleForm.deptId = row.deptId
+          this.ruleForm.userId = row.userId
+          this.ruleForm.id = row.id
+        } else {//新增
+          this.add_edit_flag = false
+        }
+      },
+      submit() {//新增/编辑
+        let url = ''
+        if (this.add_edit_flag) {
+          url = '/ws/notice/edit'
+        } else {
+          url = '/ws/notice/add'
+        }
+        console.log(url)
+        this.request.post(url, {
+          userId: this.ruleForm.author,
+          deptId: this.ruleForm.deptId,
+          title: this.ruleForm.title,
+          content: this.ruleForm.content,
+          id: this.ruleForm.id
+        }).then(res => {
+          this.$message({
+            message: res.errmsg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          this.dialogVisible = false
+          this.add_edit_flag = false
+          this.getList()
+          this.resetForm('ruleForm')
+        })
+      },
+      remove() {
+        if (this.selectedList.length > 0) {
+          this.$confirm('确定删除?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.request.post('/ws/notice/remove', {ids: this.selectedList}).then(res => {
+              this.$message({
+                type: 'success',
+                message: res.errmsg
+              })
+              this.getList()
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+        } else {
+          this.$message({
+            message: '请至少选择一项',
+            type: 'warning',
+            duration: 5 * 1000
+          })
+        }
+      },
+      //清空表单
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
+      changeState(e, state) {
+        this.request.post('/ws/notice/updateStatus ', {
+          status: state,
+          id: e
+        }).then(res => {
+          this.$message({
+            message: res.errmsg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          this.getList()
+        })
+      },
+      handleSizeChange(e) {
+        this.pageSize = e
+        this.getList()
+      },
+      handleCurrentChange(e) {
+        this.pageNum = e
+        this.getList()
+      },
+      prev() {
+        this.pageNum = this.pageNum + 1
+        this.getList()
+      },
+      next() {
+        this.pageNum = this.pageNum - 1
+        this.getList()
+      },
+      handleSelectionChange(e) {
+        this.selectedList = getStringArr(e, 'id')
+        console.log(this.selectedList)
+      },
+      getContent(e){
+        this.ruleForm.content = e
       }
-      editor.create()
-    }
+    },
+
   }
 </script>
 

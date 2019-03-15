@@ -15,13 +15,14 @@ export default new Router({
 
     {//进入后默认进入通知公告
       path: '/',
-      name: 'Dashboard',
+      // name: 'Dashboard',
       component: Layout,
       redirect: '/dashboard',//路由重定向，如果设置noredirect，则在面包屑中不可点击
       hidden: false,//true代表在侧边栏中不展示，true代表展示
-      meta: {title: '首页', icon: 'example'},
       children: [{
         path: 'dashboard',
+        name: 'Dashboard',
+        meta: {title: '首页', icon: 'example'},
         component: () => import('@/views/dashboard/index')
       }]
     },
@@ -29,10 +30,10 @@ export default new Router({
       path: '/stdEntry',
       component: Layout,
       // name:"StdInfo",
-      meta: {title: '招生录入管理', icon: 'example'},
       children: [{
         path: '',
         name: 'StdInfoIndex',
+        meta: {title: '招生录入管理', icon: 'excel'},
         component: () => import('@/views/stdEntry/stdEntry'),
       }]
     },
@@ -67,10 +68,10 @@ export default new Router({
       path: '/passport',
       component: Layout,
       // name:"",
-      meta: {title: '护照及居留许可管理', icon: 'nested'},
       children: [{
         path: '',
         name: 'Passport',
+        meta: {title: '护照及居留许可管理', icon: 'nested'},
         component: () => import('@/views/passport/passport'),
       }]
     },
@@ -78,20 +79,20 @@ export default new Router({
       path: '/insurance',
       component: Layout,
       // name:"Insurance",
-      meta: {title: '保险管理', icon: 'user'},
       children: [{
         path: '',
         name: 'Insurance',
+        meta: {title: '保险管理', icon: 'guide'},
         component: () => import('@/views/insurance/insurance'),
       }]
     },
     {//a5学生处分管理
       path: '/violation',
       component: Layout,
-      meta: {title: '学生处分管理', icon: 'user'},
       children: [{
         path: '',
         name: 'Violation',
+        meta: {title: '学生处分管理', icon: 'documentation'},
         component: () => import('@/views/violation/violation'),
       }]
     },
@@ -100,71 +101,75 @@ export default new Router({
       component: Layout,
       redirect: '/score/regist',
       name: 'Score',
-      meta: {title: '学生素质评分管理', icon: 'user'},
+      meta: {title: '学生素质评分管理', icon: 'clipboard'},
       children: [
         {
           path: 'regist',
           name: 'Regist',
           component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: 'user'}
+          meta: {title: '素质评分登记', icon: ''}
         },
         {
           path: 'matter',
           name: 'Matter',
           component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: 'user'}
+          meta: {title: '素质评分事项', icon: ''}
         }
       ]
     },
     {//a7临住管理
       path: '/tempAccommodation',
       component: Layout,
-      // name:"",
-      meta: {title: '临住管理', icon: 'password'},
       children: [{
         path: '',
         name: 'TempAccommodation',
+        meta: {title: '临住管理', icon: 'password'},
         component: () => import('@/views/tempAccommodation/tempAccommodation'),
       }]
     },
     {//a7通知公告
       path: '/notice',
       component: Layout,
-      // name:"",
-      meta: {title: '通知公告', icon: 'password'},
       children: [{
         path: '',
-        name: 'TempAccommodation',
+        name: 'Notice',
+        meta: {title: '通知公告', icon: 'tab'},
         component: () => import('@/views/notice/notice'),
       }]
     },
     {//a8系统管理
       path: '/sysManagement',
       component: Layout,
+      name:'SysManagement',
       redirect: '/sysManagement/user',
-      meta: {title: '系统管理', icon: 'user'},
+      meta: {title: '系统管理', icon: 'component'},
       children: [
         {
           path: 'user',
           name: 'sysUser',
           component: () => import('@/views/sysManagement/user/user'),
-          meta: {title: '用户管理', icon: 'user'}
+          meta: {title: '用户管理', icon: ''}
         },
         {
           path: 'role',
           name: 'sysRole',
           component: () => import('@/views/sysManagement/role/role'),
-          meta: {title: '角色管理', icon: 'user'}
+          meta: {title: '角色管理', icon: ''}
         },
         {
           path: 'notice',
           name: 'sysNotice',
           component: () => import('@/views/sysManagement/notice/notice'),
-          meta: {title: '提醒设置', icon: 'user'}
+          meta: {title: '提醒设置', icon: ''}
+        },
+        {
+          path:'dictionary',
+          name:'dictionary',
+          component: () => import('@/views/sysManagement/dictionary/dictionary'),
+          meta:{title:'数据字典',icon:''}
         }
       ]
     },
-
     // {//05国籍统计表
     //   path: '/nation',
     //   component: Layout,
