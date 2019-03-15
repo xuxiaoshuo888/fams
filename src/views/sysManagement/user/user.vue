@@ -193,13 +193,16 @@
       title=""
       :visible.sync="dialogVisible_Authorize"
       width="900px">
-      <div slot="title">新增用户</div>
+      <div slot="title">授权管理</div>
       <div>
-        <el-checkbox v-for="(item,index) in authorize_list" v-model="item.Check" :label="item.name" border></el-checkbox>
+        <el-checkbox-group
+          v-model="checkedRoles">
+          <el-checkbox v-for="item in authorize_list" :label="item.id" :key="item.id" border>{{item.name}}</el-checkbox>
+        </el-checkbox-group>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible_Authorize = false">取 消</el-button>
-        <el-button type="primary" @click="submit">确 定</el-button>
+        <el-button type="primary" @click="submit_Authorize">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -225,29 +228,7 @@
         pageNum: 1,
         pageSize: null,
         records: null,
-        tree: [
-          {
-            label: '长沙医学院',
-            children: [
-              {
-                label: '文学院',
-                children: [{label: '汉语言文学1班'}, {label: '英语1班'}]
-              },
-              {
-                label: '理学院',
-                children: [{label: '生物技术1班'}]
-              },
-              {
-                label: '工学院',
-                children: [{label: '计算机科学与技术1班'}]
-              },
-              {
-                label: '管理学院',
-                children: [{label: '管理1班'}, {label: '市场营销1班'}]
-              }
-            ]
-          }
-        ],
+        tree: [],
         defaultProps: {
           children: 'children',
           label: 'label'
@@ -264,17 +245,16 @@
           mobile: '',
           email: ''
         },
+        selectedList:[],//选中表格的项
         add_edit_flag: false,//false-新增，true-编辑
         rules1: {
           username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
           truename: [{required: true, message: '请输入姓名', trigger: 'blur'}],
           userType: [{required: true, message: '请输入用户类型', trigger: 'blur'}]
         },
-        dialogVisible_Authorize:false,
-        authorize_list:[
-          {name:'班主任',val:'001'},
-          {name:'管理员',val:'002'}
-        ]
+        dialogVisible_Authorize: false,
+        authorize_list: [],//角色列表
+        checkedRoles: [],//选中的角色列表
       };
     },
     mounted() {
@@ -418,7 +398,7 @@
           })
         }
       },
-      Authorize(){//批量授权
+      Authorize() {//批量授权
         if (this.selectedList && this.selectedList.length > 0) {
           this.dialogVisible_Authorize = true
         } else {
@@ -429,14 +409,31 @@
           })
         }
       },
-      getAuthorList(){
+      getAuthorList() {
         this.request.post('/ws/role/list')
           .then(res => {
-
+            this.authorize_list = res.data.data
           })
       },
-      submit_Authorize(){
-
+      submit_Authorize() {
+        let userIds = []
+        for (let i = 0; i < this.selectedList.length; i++) {
+          userIds.push(this.selectedList[i].id)
+        }
+        this.request.post('/ws/user/batchGrant', {
+          'userIds': userIds,
+          'roleIds': this.checkedRoles
+        })
+          .then(res => {
+            this.dialogVisible_Authorize = false
+            this.$message({
+              message: res.errmsg,
+              type: 'success',
+              duration: 5 * 1000
+            })
+            this.selectedList = []
+            this.checkedRoles = []
+          })
       }
     }
   }
