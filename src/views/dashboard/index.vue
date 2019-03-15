@@ -40,7 +40,7 @@
         <el-card shadow="always">
           <header class="title">系统提示</header>
           <div class="sub-block">
-            <header class="sub_title">护照到期提醒（9人）  <a href="#" target="_blank">更多</a></header>
+            <header class="sub_title">护照到期提醒（9人） <span @click="tohz" target="_blank">更多</span></header>
             <el-table
               :data="table2"
               style="width: 100%">
@@ -54,19 +54,19 @@
                 </template>
               </el-table-column>
               <el-table-column
+                prop="xh"
+                label="学号"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
                 prop="time1"
                 label="到期时间"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
-              </el-table-column>
-              <el-table-column
-                prop="time2"
-                label="发布日期"
-                width=""
-                header-align="center"
-                align="center">
               </el-table-column>
             </el-table>
           </div>
@@ -86,19 +86,19 @@
                 </template>
               </el-table-column>
               <el-table-column
+                prop="xh"
+                label="学号"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
                 prop="time1"
                 label="到期时间"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
-              </el-table-column>
-              <el-table-column
-                prop="time2"
-                label="发布日期"
-                width=""
-                header-align="center"
-                align="center">
               </el-table-column>
             </el-table>
           </div>
@@ -118,19 +118,19 @@
                 </template>
               </el-table-column>
               <el-table-column
+                prop="xh"
+                label="学号"
+                width=""
+                header-align="center"
+                align="center">
+              </el-table-column>
+              <el-table-column
                 prop="time1"
                 label="到期时间"
                 width=""
                 header-align="center"
                 align="center"
                 show-overflow-tooltip>
-              </el-table-column>
-              <el-table-column
-                prop="time2"
-                label="发布日期"
-                width=""
-                header-align="center"
-                align="center">
               </el-table-column>
             </el-table>
           </div>
@@ -201,19 +201,25 @@
           {
             name: '张三',
             time1: '2019-08-08',
-            time2: '2018-08-08',
+            xh: '201808080018',
           },
           {
             name: '张三',
             time1: '2019-08-08',
-            time2: '2018-08-08',
+            xh: '201808080018',
           },
           {
             name: '张三',
             time1: '2019-08-08',
-            time2: '2018-08-08',
+            xh: '201808080018',
           }
         ]
+      }
+    },
+    methods:{
+      //护照
+      tohz(){
+        this.$router.push({name:'Passport',params:{}})
       }
     }
   }
@@ -239,7 +245,7 @@
     /*margin-bottom: 10px;*/
     text-align: center;
     header {
-      a {
+      span {
         font-size: 14px;
         float: right;
         color: #409EFF;
