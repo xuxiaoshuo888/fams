@@ -10,6 +10,7 @@
             <el-table
               :data="list_tzgg"
               style="width: 100%"
+              @cell-click="showNews"
               @cell-dblclick="showNews">
               <el-table-column
                 label="发布时间"

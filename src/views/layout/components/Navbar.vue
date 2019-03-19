@@ -29,14 +29,17 @@
       </el-dropdown>
     </el-header>
 
+    <!--帮助链接弹出框-->
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
       width="500px">
       <div slot="title">帮助链接</div>
       <el-row :gutter="20" class="content">
-        <el-col :span="12"><a href="http://www.baidu.com" style="cursor: pointer;">点击下载操作手册</a></el-col>
-        <el-col :span="12"><a href="http://www.baidu.com" style="cursor: pointer;">点击下载帮助视频</a></el-col>
+        <el-col :span="12"><span @click="downLoad('/ws/resource/downloadFile?path=/help/word/1a/外事管理系统操作手册.docx')"
+                                 style="cursor: pointer;">点击下载操作手册</span></el-col>
+        <el-col :span="12"><span @click="downLoad('/ws/resource/downloadFile?path=/help/mv/1a/长沙医外事管理系统操作视频.mp4')"
+                                 style="cursor: pointer;">点击下载帮助视频</span></el-col>
       </el-row>
       <span slot="footer" class="dialog-footer">
           <el-button size="small" @click="dialogVisible = false">关闭</el-button>
@@ -48,14 +51,13 @@
 <script>
   import breadcrumb from '@/components/breadcrumb/breadcrumb'
 
-
   export default {
     name: 'Navbar',
     components: {breadcrumb},
     data() {
       return {
-        dialogVisible:false,
-        currentRole:this.$store.state.user.role
+        dialogVisible: false,
+        currentRole: this.$store.state.user.role
       }
     },
     mounted() {
@@ -70,6 +72,9 @@
       },
       getRole() {
         let a = this.$store.state.user.role
+      },
+      downLoad(url) {
+        window.open(url, '_blank')
       }
     }
   }
@@ -80,13 +85,15 @@
     border-bottom: solid 1px #e6e6e6;
     font-size: 12px;
   }
-  .help_span{
+
+  .help_span {
     padding: 0 20px;
     font-size: 16px;
     cursor: pointer;
     color: rgb(64, 158, 255);
   }
-  .content{
+
+  .content {
     text-align: center;
   }
 </style>
