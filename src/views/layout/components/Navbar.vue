@@ -36,9 +36,9 @@
       width="500px">
       <div slot="title">帮助链接</div>
       <el-row :gutter="20" class="content">
-        <el-col :span="12"><span @click="downLoad('/ws/resource/downloadFile?path=/help/word/1a/外事管理系统操作手册.docx')"
+        <el-col :span="12"><span @click="downLoad('/ws/resource/downloadFile?path=/help/word/1a/help.docx')"
                                  style="cursor: pointer;">点击下载操作手册</span></el-col>
-        <el-col :span="12"><span @click="downLoad('/ws/resource/downloadFile?path=/help/mv/1a/长沙医外事管理系统操作视频.mp4')"
+        <el-col :span="12"><span @click="downLoad('/ws/resource/downloadFile?path=/help/mv/1a/help.mp4')"
                                  style="cursor: pointer;">点击下载帮助视频</span></el-col>
       </el-row>
       <span slot="footer" class="dialog-footer">
