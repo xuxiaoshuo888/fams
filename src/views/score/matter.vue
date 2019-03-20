@@ -396,11 +396,11 @@
               type: 'success',
               message: res.errmsg
             })
-            if (this.ruleForm.hdlx === '1') {
+            // if (this.ruleForm.hdlx == '1') {//加分
               this.getData()
-            } else {
+            // } else {//扣分
               this.getData2()
-            }
+            // }
           })
         }).catch(() => {
           this.$message({
@@ -408,7 +408,6 @@
             message: '已取消删除'
           })
         })
-
       },
       handleSizeChange(e) {
         this.pageSize = e
