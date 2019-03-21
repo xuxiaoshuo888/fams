@@ -12,7 +12,6 @@ export default new Router({
     {
       path: '/error', component: () => import('@/views/404/error'), hidden: true
     },
-
     {//进入后默认进入通知公告
       path: '/',
       // name: 'Dashboard',
@@ -37,110 +36,100 @@ export default new Router({
         component: () => import('@/views/stdEntry/stdEntry'),
       }]
     },
-    {//a2学生信息管理
-      path: '/stdInfo',
+    {//a2外事管理
+      path: '/wsgl',
       component: Layout,
-      redirect: '/stdInfo/card',
-      name: 'StdInfo',
-      meta: {title: '学生信息管理', icon: 'user'},
+      redirect: '/wsgl/passpport',
+      name: 'Wsgl',
+      meta: {title: '外事管理', icon: 'user'},
       children: [
-        {//学生资料卡
-          path: 'card',
-          name: 'Card',
-          component: () => import('@/views/stdCard/stdCard'),
-          meta: {title: '学生资料卡', icon: ''}
+        {//护照
+          path: 'passport',
+          name: 'Passport',
+          meta: {title: '护照及居留许可管理', /*icon: 'nested'*/},
+          component: () => import('@/views/passport/passport'),
         },
-        {//学生基本信息管理
-          path: 'basic',
-          name: 'Basic',
-          component: () => import('@/views/stdBasic/stdBasic'),
-          meta: {title: '学生基本信息管理', icon: ''}
+        {//保险
+          path: 'insurance',
+          name: 'Insurance',
+          meta: {title: '保险管理', /*icon: 'guide'*/},
+          component: () => import('@/views/insurance/insurance'),
         },
-        {//学生照片管理
-          path: 'stdpic',
-          name: 'Stdpic',
-          component: () => import('@/views/stdpic/stdpic'),
-          meta: {title: '学生照片管理', icon: ''}
+        {//临住
+          path: 'tempAccommodation',
+          name: 'TempAccommodation',
+          meta: {title: '临住管理', /*icon: 'password'*/},
+          component: () => import('@/views/tempAccommodation/tempAccommodation'),
         }
       ]
     },
-    {//a3护照及居留许可管理
-      path: '/passport',
+    {//a3学工管理
+      path: '/xggl',
       component: Layout,
-      // name:"",
-      children: [{
-        path: '',
-        name: 'Passport',
-        meta: {title: '护照及居留许可管理', icon: 'nested'},
-        component: () => import('@/views/passport/passport'),
-      }]
-    },
-    {//a4保险管理
-      path: '/insurance',
-      component: Layout,
-      // name:"Insurance",
-      children: [{
-        path: '',
-        name: 'Insurance',
-        meta: {title: '保险管理', icon: 'guide'},
-        component: () => import('@/views/insurance/insurance'),
-      }]
-    },
-    {//a5学生处分管理
-      path: '/violation',
-      component: Layout,
-      children: [{
-        path: '',
-        name: 'Violation',
-        meta: {title: '学生处分管理', icon: 'documentation'},
-        component: () => import('@/views/violation/violation'),
-      }]
-    },
-    {//a6学生素质评分管理
-      path: '/score',
-      component: Layout,
-      redirect: '/score/regist',
-      name: 'Score',
-      meta: {title: '学生素质评分管理', icon: 'clipboard'},
+      redirect: '/xggl/stdInfo',
+      name: 'Xggl',
+      meta: {title: '学工管理', icon: 'user'},
       children: [
-        {
-          path: 'regist',
-          name: 'Regist',
-          component: () => import('@/views/score/regist'),
-          meta: {title: '素质评分登记', icon: ''}
+        {//a3-1学生信息
+          path: 'stdInfo',
+          name: 'StdInfo',
+          meta: {title: '学生信息', icon: ''},
+          children: [
+            {//a3-1-1学生资料卡
+              path: 'card',
+              name: 'Card',
+              component: () => import('@/views/stdCard/stdCard'),
+              meta: {title: '学生资料卡', icon: ''}
+            },
+            {//学生基本信息管理
+              path: 'basic',
+              name: 'Basic',
+              component: () => import('@/views/stdBasic/stdBasic'),
+              meta: {title: '学生基本信息管理', icon: ''}
+            },
+            {//学生照片管理
+              path: 'stdpic',
+              name: 'Stdpic',
+              component: () => import('@/views/stdpic/stdpic'),
+              meta: {title: '学生照片管理', icon: ''}
+            }
+          ]
         },
-        {
-          path: 'matter',
-          name: 'Matter',
-          component: () => import('@/views/score/matter'),
-          meta: {title: '素质评分事项', icon: ''}
-        }
-      ]
-    },
-    {//a7临住管理
-      path: '/tempAccommodation',
-      component: Layout,
-      children: [{
-        path: '',
-        name: 'TempAccommodation',
-        meta: {title: '临住管理', icon: 'password'},
-        component: () => import('@/views/tempAccommodation/tempAccommodation'),
-      }]
-    },
-    {//a7通知公告
-      path: '/notice',
-      component: Layout,
-      children: [{
-        path: '',
-        name: 'Notice',
-        meta: {title: '通知公告', icon: 'tab'},
-        component: () => import('@/views/notice/notice'),
-      }]
+        {//处分
+          path: 'violation',
+          name: 'Violation',
+          meta: {title: '学生处分管理', /*icon: 'documentation'*/},
+          component: () => import('@/views/violation/violation'),
+        },
+        {//素质评分
+          path: 'score',
+          name: 'Score',
+          meta: {title: '素质评分', icon: ''},
+          children: [
+            {//素质评分登记
+              path: 'regist',
+              name: 'Regist',
+              component: () => import('@/views/score/regist'),
+              meta: {title: '素质评分登记', icon: ''}
+            },
+            {//素质评分事项
+              path: 'matter',
+              name: 'Matter',
+              component: () => import('@/views/score/matter'),
+              meta: {title: '素质评分事项', icon: ''}
+            }]
+        },
+        {//通知公告
+          path: 'notice',
+          name: 'Notice',
+          meta: {title: '通知公告', /*icon: 'tab'*/},
+          component: () => import('@/views/notice/notice'),
+        }]
     },
     {//a8系统管理
       path: '/sysManagement',
       component: Layout,
-      name:'SysManagement',
+      name: 'SysManagement',
       redirect: '/sysManagement/user',
       meta: {title: '系统管理', icon: 'component'},
       children: [
@@ -163,13 +152,151 @@ export default new Router({
           meta: {title: '提醒设置', icon: ''}
         },
         {
-          path:'dictionary',
-          name:'dictionary',
+          path: 'dictionary',
+          name: 'dictionary',
           component: () => import('@/views/sysManagement/dictionary/dictionary'),
-          meta:{title:'数据字典',icon:''}
+          meta: {title: '数据字典', icon: ''}
         }
       ]
     },
+    {
+      path: '/*', component: () => import('@/views/404/error'), hidden: true
+    },
+
+    // {//a2学生信息管理
+    //   path: '/stdInfo',
+    //   component: Layout,
+    //   redirect: '/stdInfo/card',
+    //   name: 'StdInfo',
+    //   meta: {title: '学生信息管理', icon: 'user'},
+    //   children: [
+    //     {//学生资料卡
+    //       path: 'card',
+    //       name: 'Card',
+    //       component: () => import('@/views/stdCard/stdCard'),
+    //       meta: {title: '学生资料卡', icon: ''}
+    //     },
+    //     {//学生基本信息管理
+    //       path: 'basic',
+    //       name: 'Basic',
+    //       component: () => import('@/views/stdBasic/stdBasic'),
+    //       meta: {title: '学生基本信息管理', icon: ''}
+    //     },
+    //     {//学生照片管理
+    //       path: 'stdpic',
+    //       name: 'Stdpic',
+    //       component: () => import('@/views/stdpic/stdpic'),
+    //       meta: {title: '学生照片管理', icon: ''}
+    //     }
+    //   ]
+    // },
+    // {//a3护照及居留许可管理
+    //   path: '/passport',
+    //   component: Layout,
+    //   // name:"",
+    //   children: [{
+    //     path: '',
+    //     name: 'Passport',
+    //     meta: {title: '护照及居留许可管理', icon: 'nested'},
+    //     component: () => import('@/views/passport/passport'),
+    //   }]
+    // },
+    // {//a4保险管理
+    //   path: '/insurance',
+    //   component: Layout,
+    //   // name:"Insurance",
+    //   children: [{
+    //     path: '',
+    //     name: 'Insurance',
+    //     meta: {title: '保险管理', icon: 'guide'},
+    //     component: () => import('@/views/insurance/insurance'),
+    //   }]
+    // },
+    // {//a5学生处分管理
+    //   path: '/violation',
+    //   component: Layout,
+    //   children: [{
+    //     path: '',
+    //     name: 'Violation',
+    //     meta: {title: '学生处分管理', icon: 'documentation'},
+    //     component: () => import('@/views/violation/violation'),
+    //   }]
+    // },
+    // {//a6学生素质评分管理
+    //   path: '/score',
+    //   component: Layout,
+    //   redirect: '/score/regist',
+    //   name: 'Score',
+    //   meta: {title: '学生素质评分管理', icon: 'clipboard'},
+    //   children: [
+    //     {
+    //       path: 'regist',
+    //       name: 'Regist',
+    //       component: () => import('@/views/score/regist'),
+    //       meta: {title: '素质评分登记', icon: ''}
+    //     },
+    //     {
+    //       path: 'matter',
+    //       name: 'Matter',
+    //       component: () => import('@/views/score/matter'),
+    //       meta: {title: '素质评分事项', icon: ''}
+    //     }
+    //   ]
+    // },
+    // {//a7临住管理
+    //   path: '/tempAccommodation',
+    //   component: Layout,
+    //   children: [{
+    //     path: '',
+    //     name: 'TempAccommodation',
+    //     meta: {title: '临住管理', icon: 'password'},
+    //     component: () => import('@/views/tempAccommodation/tempAccommodation'),
+    //   }]
+    // },
+    // {//a7通知公告
+    //   path: '/notice',
+    //   component: Layout,
+    //   children: [{
+    //     path: '',
+    //     name: 'Notice',
+    //     meta: {title: '通知公告', icon: 'tab'},
+    //     component: () => import('@/views/notice/notice'),
+    //   }]
+    // },
+    // {//a8系统管理
+    //   path: '/sysManagement',
+    //   component: Layout,
+    //   name: 'SysManagement',
+    //   redirect: '/sysManagement/user',
+    //   meta: {title: '系统管理', icon: 'component'},
+    //   children: [
+    //     {
+    //       path: 'user',
+    //       name: 'sysUser',
+    //       component: () => import('@/views/sysManagement/user/user'),
+    //       meta: {title: '用户管理', icon: ''}
+    //     },
+    //     {
+    //       path: 'role',
+    //       name: 'sysRole',
+    //       component: () => import('@/views/sysManagement/role/role'),
+    //       meta: {title: '角色管理', icon: ''}
+    //     },
+    //     {
+    //       path: 'notice',
+    //       name: 'sysNotice',
+    //       component: () => import('@/views/sysManagement/notice/notice'),
+    //       meta: {title: '提醒设置', icon: ''}
+    //     },
+    //     {
+    //       path: 'dictionary',
+    //       name: 'dictionary',
+    //       component: () => import('@/views/sysManagement/dictionary/dictionary'),
+    //       meta: {title: '数据字典', icon: ''}
+    //     }
+    //   ]
+    // },
+
     // {//05国籍统计表
     //   path: '/nation',
     //   component: Layout,
@@ -309,9 +436,5 @@ export default new Router({
     //     component: () => import('@/views/routine/routine'),
     //   }]
     // },
-
-    {
-      path: '/*', component: () => import('@/views/404/error'), hidden: true
-    },
   ]
 })

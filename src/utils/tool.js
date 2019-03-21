@@ -36,3 +36,7 @@ export function getStringValue(objArr, id) {
   }
   return a
 }
+
+export function isExternal(path) {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}
