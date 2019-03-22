@@ -26,7 +26,6 @@
           <!--<el-menu-item v-if="route.children && route.children" v-for="(i,num) in route.children" :key="num" :index="route.path +'/' +i.path">-->
             <!--<item :title="i.meta.title" :icon="i.meta.icon"></item>-->
           <!--</el-menu-item>-->
-
         <!--</el-submenu>-->
       <!--</div>-->
       <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"></sidebar-item>
@@ -45,7 +44,7 @@
     components: {SidebarItem, svgIcon, Item},
     data() {
       return {
-        menu_router: true,
+        menu_router: false,
         isCollapse: false
       }
     },
