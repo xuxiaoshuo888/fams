@@ -2,6 +2,7 @@
   <div class="pad20">
     <el-row :gutter="20">
       <el-col :span="12">
+        <button type="button" @click="test_addRoutes">test button</button>
         <el-card shadow="always">
           <header class="title">通知公告
             <router-link to="notice" style="font-size: 14px;float: right;color: #409EFF;">更多详情</router-link>
@@ -170,38 +171,38 @@
           </div>
 
           <!--<div class="sub-block">-->
-            <!--<header class="sub_title">临住到期提醒 （{{lz_num}}人）-->
-              <!--<router-link to="TempAccommodation">更多</router-link>-->
-            <!--</header>-->
-            <!--<el-table-->
-              <!--:data="list_lz"-->
-              <!--style="width: 100%">-->
-              <!--<el-table-column-->
-                <!--prop="xm"-->
-                <!--label="姓名"-->
-                <!--width=""-->
-                <!--header-align="center"-->
-                <!--align="center"-->
-                <!--show-overflow-tooltip>-->
-              <!--</el-table-column>-->
-              <!--<el-table-column-->
-                <!--prop="xh"-->
-                <!--label="学号"-->
-                <!--header-align="center"-->
-                <!--align="center"-->
-                <!--show-overflow-tooltip>-->
-                <!--<template slot-scope="scope">-->
-                  <!--<div>{{scope.row.xh}}</div>-->
-                <!--</template>-->
-              <!--</el-table-column>-->
-              <!--<el-table-column-->
-                <!--prop="dxsj"-->
-                <!--label="到校时间"-->
-                <!--width=""-->
-                <!--header-align="center"-->
-                <!--align="center">-->
-              <!--</el-table-column>-->
-            <!--</el-table>-->
+          <!--<header class="sub_title">临住到期提醒 （{{lz_num}}人）-->
+          <!--<router-link to="TempAccommodation">更多</router-link>-->
+          <!--</header>-->
+          <!--<el-table-->
+          <!--:data="list_lz"-->
+          <!--style="width: 100%">-->
+          <!--<el-table-column-->
+          <!--prop="xm"-->
+          <!--label="姓名"-->
+          <!--width=""-->
+          <!--header-align="center"-->
+          <!--align="center"-->
+          <!--show-overflow-tooltip>-->
+          <!--</el-table-column>-->
+          <!--<el-table-column-->
+          <!--prop="xh"-->
+          <!--label="学号"-->
+          <!--header-align="center"-->
+          <!--align="center"-->
+          <!--show-overflow-tooltip>-->
+          <!--<template slot-scope="scope">-->
+          <!--<div>{{scope.row.xh}}</div>-->
+          <!--</template>-->
+          <!--</el-table-column>-->
+          <!--<el-table-column-->
+          <!--prop="dxsj"-->
+          <!--label="到校时间"-->
+          <!--width=""-->
+          <!--header-align="center"-->
+          <!--align="center">-->
+          <!--</el-table-column>-->
+          <!--</el-table>-->
           <!--</div>-->
         </el-card>
       </el-col>
@@ -239,6 +240,7 @@
 
 <script>
   import editor from '@/components/editor/editor'
+  import router from '@/router'
 
   export default {
     name: 'Dashboard',
@@ -252,8 +254,8 @@
         bx_num: '',
         list_lz: [],
         lz_num: '',
-        list_jlxk:[],
-        jlxk_num:'',
+        list_jlxk: [],
+        jlxk_num: '',
         dialogVisible: false,//新闻详情模态框
         ruleForm: {
           title: "",
@@ -284,7 +286,7 @@
         this.request.post('/ws/passport/due', {
           page: this.pageNum,
           limit: 3,
-          type:'hz'
+          type: 'hz'
         }).then(res => {
           this.list_hz = res.data.page.rows
           this.hz_num = res.data.page.records
@@ -312,7 +314,7 @@
         this.request.post('/ws/passport/due', {
           page: this.pageNum,
           limit: 3,
-          type:'jlxk'
+          type: 'jlxk'
         }).then(res => {
           this.list_jlxk = res.data.page.rows
           this.jlxk_num = res.data.page.records
@@ -321,6 +323,48 @@
       showNews(e) {//点击展示新闻详情
         this.ruleForm = e
         this.dialogVisible = true
+      },
+      test_addRoutes() {
+        console.log(router)
+        // let else_routes = []
+        router.addRoutes(
+          [{//a8系统管理
+            path: '/sysManagement',
+            component: () => import('@/views/layout/layout'),
+            name: 'SysManagement',
+            redirect: '/sysManagement/user',
+            meta: {title: '系统管理', icon: 'component', role_see: ['SYS_ADMIN'], role_edit: ['SYS_ADMIN']},
+            children: [
+              {
+                path: 'user',
+                name: 'sysUser',
+                component: () => import('@/views/sysManagement/user/user'),
+                meta: {title: '用户管理', icon: ''}
+              },
+              {
+                path: 'role',
+                name: 'sysRole',
+                component: () => import('@/views/sysManagement/role/role'),
+                meta: {title: '角色管理', icon: ''}
+              },
+              {
+                path: 'notice',
+                name: 'sysNotice',
+                component: () => import('@/views/sysManagement/notice/notice'),
+                meta: {title: '提醒设置', icon: ''}
+              },
+              {
+                path: 'dictionary',
+                name: 'dictionary',
+                component: () => import('@/views/sysManagement/dictionary/dictionary'),
+                meta: {title: '数据字典', icon: ''}
+              }
+            ]
+          }]
+        )
+        console.log(router)
+
+
       }
     }
   }

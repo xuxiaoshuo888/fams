@@ -5,10 +5,23 @@ import { asyncRoutes, constantRoutes } from '@/router'
  * @param roles
  * @param route
  */
+/*
+是否有查看权限
+ */
 function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
     return roles.some(role => route.meta.roles.includes(role))
   } else {
+    return true
+  }
+}
+/*
+判断是否有编辑权限
+ */
+function hasEditPermission(roles,route){
+  if(route.meta && route.meta.role_edit){
+    return roles.some(role => route.meta.role_edit.includes(role))
+  }else{
     return true
   }
 }
@@ -48,8 +61,10 @@ const permission = {
   actions: {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
-        const { roles } = data
+        const roles = []
+        roles.push(data.id)
         let accessedRoutes
+        //如果是管理员，则可见全部路由，如果不是管理员，则系统设置不可见，其他均可见
         if (roles.includes('admin')) {
           accessedRoutes = asyncRoutes
         } else {

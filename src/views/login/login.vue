@@ -29,34 +29,14 @@
           Sign in
         </el-button>
       </el-form-item>
-      <!--<div class="tips">-->
-      <!--<span style="margin-right:20px;">username: admin</span>-->
-      <!--<span> password: 1</span>-->
-      <!--</div>-->
     </el-form>
   </div>
 </template>
 
 <script>
-  import {isvalidUsername} from '@/utils/validate'
-
   export default {
     name: 'login',
     data() {
-      const validateUsername = (rule, value, callback) => {
-        if (!isvalidUsername(value)) {
-          callback(new Error('请输入正确的用户名'))
-        } else {
-          callback()
-        }
-      }
-      const validatePass = (rule, value, callback) => {
-        if (value.length < 5) {
-          callback(new Error('密码不能小于5位'))
-        } else {
-          callback()
-        }
-      }
       return {
         loginForm: {
           username: '',

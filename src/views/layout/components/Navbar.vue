@@ -2,26 +2,13 @@
   <div>
     <el-header class="header_border" style="height: 50px;">
       <breadcrumb></breadcrumb>
-      <!--<el-dropdown>-->
-      <!--<i class="el-icon-setting" style="margin-right: 15px"></i>-->
-      <!--<el-dropdown-menu slot="dropdown">-->
-      <!--<el-dropdown-item>查看</el-dropdown-item>-->
-      <!--<el-dropdown-item>新增</el-dropdown-item>-->
-      <!--<el-dropdown-item>删除</el-dropdown-item>-->
-      <!--</el-dropdown-menu>-->
-      <!--</el-dropdown>-->
-      <!--<span>王小虎</span>-->
       <span @click="dialogVisible = true" class="help_span">帮助 <i class="el-icon-question"></i></span>
       <el-dropdown class="avatar-container" trigger="click" style="cursor: pointer">
         <div class="avatar-wrapper">
           <!--<img src="" class="user-avatar">-->
-          {{currentRole.name}}<i class="el-icon-caret-bottom"/>
+          {{currentRole}}<i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <!--<router-link class="inlineBlock" to="/">-->
-          <!--<el-dropdown-item>Home</el-dropdown-item>-->
-          <!--</router-link>-->
-
           <el-dropdown-item>
             <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
@@ -50,6 +37,7 @@
 
 <script>
   import breadcrumb from '@/components/breadcrumb/breadcrumb'
+  import {getCurrentRole} from "@/utils/auth";
 
   export default {
     name: 'Navbar',
@@ -57,7 +45,7 @@
     data() {
       return {
         dialogVisible: false,
-        currentRole: this.$store.state.user.role
+        currentRole: this.getRole()
       }
     },
     mounted() {
@@ -71,7 +59,11 @@
         )
       },
       getRole() {
-        let a = this.$store.state.user.role
+        if (this.$store.state.user.role) {
+          return this.$store.state.user.role.name
+        } else {
+          return getCurrentRole()
+        }
       },
       downLoad(url) {
         window.open(url, '_blank')

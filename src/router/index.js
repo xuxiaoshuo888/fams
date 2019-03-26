@@ -4,15 +4,10 @@ import Layout from '../views/layout/layout'
 
 Vue.use(Router)
 
-export default new Router({
-  scrollBehavior: () => ({ y: 0 }),//当跳转到新路由时，页面定位的最顶端
-  routes: constantRoutes
-})
-
 export const constantRoutes = [
-  {path: '/login', component: () => import('@/views/login/login'), hidden: false},
+  {path: '/login', component: () => import('@/views/login/login'), hidden: true},
   {path: '/error', component: () => import('@/views/404/error'), hidden: true},
-  {path: '/*', component: () => import('@/views/404/error'), hidden: true},
+
   {//进入后默认进入通知公告
     path: '/',
     // name: 'Dashboard',
@@ -30,14 +25,11 @@ export const constantRoutes = [
       },
       component: () => import('@/views/dashboard/index')
     }]
-  }
-]
-
-export const asyncRoutes = [
+  },
   {//a1招生录入管理
     path: '/stdEntry',
     component: Layout,
-    name:"StdEntry",
+    // name:"StdEntry",
     children: [{
       path: '',
       name: 'StdInfoIndex',
@@ -152,6 +144,13 @@ export const asyncRoutes = [
         component: () => import('@/views/notice/notice'),
       }]
   },
+
+  {path: '/*', component: () => import('@/views/404/error'), hidden: true}
+]
+
+
+
+export const asyncRoutes = [
   {//a8系统管理
     path: '/sysManagement',
     component: Layout,
@@ -326,3 +325,12 @@ export const asyncRoutes = [
   //   }]
   // },
 ]
+
+export default new Router({
+  //当跳转到新路由时，页面定位的最顶端
+  scrollBehavior: () => ({y: 0}),
+  routes: constantRoutes
+})
+
+
+
