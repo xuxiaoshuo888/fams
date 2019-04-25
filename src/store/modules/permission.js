@@ -64,7 +64,7 @@ const permission = {
         const roles = []
         roles.push(data.id)
         let accessedRoutes
-        //如果是管理员，则可见全部路由，如果不是管理员，则系统设置不可见，其他均可见
+        //如果是管理员，则可见全部路由，如果不是管理员，则系统设置模块不可见，其他均可见
         if (roles.includes('admin')) {
           accessedRoutes = asyncRoutes
         } else {
