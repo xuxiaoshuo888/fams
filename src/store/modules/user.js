@@ -23,7 +23,7 @@ const user = {
     }
   },
   actions: {
-    Login({commit}, userInfo) {
+    Login({commit, dispatch}, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         //login方法获取uuid，
@@ -38,6 +38,9 @@ const user = {
             commit('SET_TOKEN', res.data.token)
             commit('SET_ROLE', res.data.currentRole)
             commit('SET_ROLELIST', res.data.roles)
+            //1、登陆之后获取用户角色；2、根据角色加载路由
+            //
+            dispatch('GenerateRoutes', res.data.currentRole) // 动态修改权限后 重绘侧边菜单
             resolve()
           })
         }).catch(error => {
